@@ -1,7 +1,7 @@
 {
   "general": {
     "next": "Next",
-    "madeByDU": "A test made in collaboration with Digital Ungdom"
+    "madeByDU": "A test made in collaboration with"
   },
   "meta": {
     "keywords": "Keyword1, Keyword2, Keyword3",
@@ -11,9 +11,9 @@
     "aboutDesc": "About The best react website template"
   },
   "welcome": {
-    "welcome": "How secure are you?",
-    "desc": "Take the test and find out",
-    "test": "Take the test"
+    "title": "Sakerhetskontrollen",
+    "desc": "How bad are you at digital security?",
+    "test": "START THE TEST"
   },
   "steps": {
     "profile": "You online",

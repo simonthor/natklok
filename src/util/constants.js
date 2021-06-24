@@ -1,4 +1,10 @@
-export const HEIGHT = 540;
+// Global colors
+export const BLUE = "#063955";
+export const PURPLE = "#292881";
+export const PINK = "#E2147E";
+export const PALEBLUE = "#1DB6EB";
+export const BLACK = "#111111";
+export const WHITE = "#FFFFFF"
 
 // Profiles
 export const BANK_PROFILE = "BANK_PROFILE";
