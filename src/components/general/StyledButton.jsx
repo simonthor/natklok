@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import { PURPLE,PALEBLUE } from "../../util/constants";
+
 
 export default ({
   children,
   style,
-  color = "white",
-  hoverColor = "black",
+  color = PALEBLUE,
   onClick,
 }) => {
   const [hoveringOver, setHoveringOver] = useState(false);
@@ -15,15 +16,17 @@ export default ({
       onMouseLeave={() => setHoveringOver(false)}
       onClick={onClick}
       style={{
-        borderRadius: 6,
-        borderStyle: "solid",
+        borderRadius: 4,
         cursor: "pointer",
-        borderWidth: 2,
-        borderColor: hoveringOver ? hoverColor : color,
-        color: hoveringOver ? hoverColor : color,
-        padding: 10,
+        background: color,
+        filter: hoveringOver ? "brightness(1.1)" : "none",
+        scale: hoveringOver ? "1.05" : "1",
+        color: PURPLE,
+        padding: "12px 40px",
+        fontWeight: "bold",
         display: "inline-block",
         margin: 0,
+        transition: "0.3s ease-in-out",
         ...style,
       }}
     >

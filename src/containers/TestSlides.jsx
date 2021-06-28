@@ -12,7 +12,6 @@ import {
 } from "../components/general";
 import StyledLink from "../components/general/StyledLink";
 import {
-  HEIGHT,
   QUESTIONS,
   BANK_PROFILE,
   GAMING_PROFILE,
@@ -349,7 +348,15 @@ const TestSlides = ({ t }) => {
   };
 
   return (
-    <div style={{ height: HEIGHT }}>
+    <div style={{ background: "lightblue", height: "100vh" }}>
+      <AlignCenter>
+        <Stepper
+          index={slideIndex}
+          steps={[t("steps.profile"), t("steps.questions"), t("steps.result")]}
+          style={{ background: "lightblue" }}
+        />
+      </AlignCenter>
+
       <SwipeableViews index={slideIndex}>
         <ProfileSelection
           t={t}
