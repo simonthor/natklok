@@ -6,7 +6,7 @@ This is the repository for Säkerhetskontrollen, an online security quiz made by
 
 To start the development website you need to have [Node.js](https://nodejs.org/en/download/) installed.
 
-- Download the project by using `git clone https://github.com/digitalungdom-se/infrarays.se.git`
+- Download the project by using `git clone https://github.com/digitalungdom-se/sakerhetskontrollen.git`
 
 - To install our packages and dependencies use `npm install`
 
