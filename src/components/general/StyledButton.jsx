@@ -7,13 +7,28 @@ export default ({
   style,
   color = PALEBLUE,
   onClick,
+  cinematicColor
 }) => {
   const [hoveringOver, setHoveringOver] = useState(false);
 
+  function handleMouseChange(isonTop) {
+    if (isonTop) {
+      if (cinematicColor) {
+        document.getElementById("bgd-container").style.background = cinematicColor;
+      }
+      setHoveringOver(true);
+    } else {
+      if (cinematicColor) {
+        document.getElementById("bgd-container").style.background = PURPLE;
+      }
+      setHoveringOver(false);
+    }
+  }
+
   return (
     <div
-      onMouseEnter={() => setHoveringOver(true)}
-      onMouseLeave={() => setHoveringOver(false)}
+      onMouseEnter={() => handleMouseChange(true)}
+      onMouseLeave={() => handleMouseChange(false)}
       onClick={onClick}
       style={{
         borderRadius: 4,

@@ -54,7 +54,7 @@ const TestSlides = ({ t }) => {
   };
 
   return (
-    <div style={{ background: PURPLE, height: HEIGHT }}>
+    <div style={{ background: PURPLE, height: (HEIGHT === 0) ? "100%" : HEIGHT }}>
       <SwipeableViews index={slideIndex}>
         <ProfileSelectionSlide
           t={t}

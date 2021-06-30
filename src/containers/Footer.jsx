@@ -11,7 +11,7 @@ import ToggleLanguage from "../components/features/ToggleLanguage";
 const Footer = ({ t }) => {
   return (
     <AlignCenter>
-      <Grid container xs={12} justify="space-between">
+      <Grid container justify="space-between">
         <Grid item style={{ height: 30, padding: "3px 15px 15px 15px",backgroundColor: "rgba(0,0,0,0.1)",cursor:"pointer" }}>
           <ToggleLanguage />
         </Grid>

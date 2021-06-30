@@ -10,6 +10,7 @@ import { PURPLE, HEIGHT } from "../util/constants";
 import Mainlogo from "../assets/sakerhetskontrollen-logo.svg";
 import DUlogo from "../assets/duLogo.svg";
 import ListOfReviews from "../components/features/ListOfReviews";
+import keyframes from "../keyframes.css";
 
 const Welcome = ({ t }) => {
   const bgdRef = useRef(null);
@@ -17,7 +18,7 @@ const Welcome = ({ t }) => {
   useEffect(() => {
     const bgdObj = bgdRef.current;
 
-    function GenerateBgd() {
+    function generateBgd() {
       let nBlobs = window.innerWidth < 576 ? 3 : 5;
       let height = (HEIGHT === 0) ? window.innerHeight : HEIGHT;
       let width = window.innerWidth;
@@ -28,14 +29,14 @@ const Welcome = ({ t }) => {
         let posY = Math.floor(Math.random() * (height - (diam * 2)) + diam);
         var blob = document.createElement("div");
         if (i % 2 == 0) {
-          blob.style.cssText = `width:${diam}px;height:${diam}px;position:absolute;top:${posY}px;left:${posX}px;background:radial-gradient(58.66% 58.66% at 77.37% 78.77%, #84256F 0%, #E2147E 100%);border-radius:100%;z-index:0;`
+          blob.style.cssText = `width:${diam}px;height:${diam}px;position:absolute;top:${posY}px;left:${posX}px;background:radial-gradient(58.66% 58.66% at 77.37% 78.77%, #84256F 0%, #E2147E 100%);border-radius:100%;z-index:0;animation: blobsExpand 8s infinite alternate;animation-delay: ${i}s;`
         } else {
-          blob.style.cssText = `width:${diam}px;height:${diam}px;position:absolute;top:${posY}px;left:${posX}px;background: radial-gradient(58.66% 58.66% at 77.37% 78.77%, #0F5073 0%, #1D78AA 100%);;border-radius:100%;z-index:0;`
+          blob.style.cssText = `width:${diam}px;height:${diam}px;position:absolute;top:${posY}px;left:${posX}px;background: radial-gradient(58.66% 58.66% at 77.37% 78.77%, #0F5073 0%, #1D78AA 100%);;border-radius:100%;z-index:0;animation: blobsExpand 8s infinite alternate;animation-delay: ${i}s;`
         }
         bgdObj.appendChild(blob);
       }
     };
-    GenerateBgd();
+    generateBgd();
   }, [bgdRef]);
   return (
     <Grid
@@ -45,7 +46,6 @@ const Welcome = ({ t }) => {
     >
       <Grid item
         style={{
-          background: PURPLE,
           display: "flex",
           flexDirection: "row",
           flexWrap: "wrap",
@@ -55,9 +55,9 @@ const Welcome = ({ t }) => {
           overflow: "hidden",
           height: "100%"
         }}
-        lg="12"
-        md="12"
-        sm="12"
+        lg={12}
+        md={12}
+        sm={12}
         ref={bgdRef}
       >
         <div
@@ -95,16 +95,12 @@ const Welcome = ({ t }) => {
             />
           </div>
           <Link to="/test">
-            <StyledButton>{t("welcome.test")}</StyledButton>
-            <div></div>
+            <StyledButton cinematicColor="#212058" onClick="document.getElementById('bgd-container').style.background = PURPLE">{t("welcome.test")}</StyledButton>
           </Link>
         </div>
       </Grid>
       <Grid item 
-        style={{backgroundColor: "red",position:"relative"}}
-        lg="2"
-        md="0"
-        sm="0">
+        style={{backgroundColor: "red",position:"relative",display: "hidden"}}>
           <div style={{position:"absolute",width:"100%",height: "30%",top:0,left:0,zIndex: 5,background:"linear-gradient(rgb(34,34,107),rgb(34,34,107) 40%,rgba(34,34,107,0))"}}></div>
           <div style={{position:"absolute",width:"100%",height: "30%",bottom:0,left:0,zIndex: 5,background:"linear-gradient(0deg,rgb(34,34,107),rgb(34,34,107) 40%,rgba(34,34,107,0))"}}></div>
           <ListOfReviews/>

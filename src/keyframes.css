@@ -1,0 +1,6 @@
+@keyframes blobsExpand {
+    0% {scale: 1;transform: translate(0,0);}
+    20% {scale: 1.1;transform: translate(2px,-5px);}
+    70% { scale: 0.9;transform: translate(-22,2px);}
+    100% {scale: 1;transform: translate(30px,12px);}
+}

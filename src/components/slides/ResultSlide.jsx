@@ -73,7 +73,7 @@ const ResultSlide = ({ t, score, maxScore, testFinished }) => {
         item
         xs={12}
         sm={6}
-        style={{ textAlign: "center", paddingRight: 10 }}
+        style={{ textAlign: "center", paddingRight: 10,overflow: "hidden" }}
         container
         direction="column"
       >

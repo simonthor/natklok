@@ -3,15 +3,15 @@ import React from "react";
 import { Logo } from ".";
 import { HEIGHT, PURPLE } from "../../util/constants";
 
-const Loading = ({ fullScreen }) => {
+const Loading = () => {
   return (
     <div
       style={{
         textAlign: "center",
         flex: 1,
         background: PURPLE,
-        height: fullScreen ? HEIGHT : 0,
-        paddingTop: fullScreen ? HEIGHT / 3 : 0,
+        height: (HEIGHT === 0) ? 0 : HEIGHT,
+        paddingTop: (HEIGHT === 0) ? 0 : HEIGHT / 3,
       }}
     >
       <Logo />

@@ -214,7 +214,7 @@ const Question = ({
     <Wrapper>
       <Grid container xs={12} style={{ textAlign: "center" }}>
         {questionResult !== null ? (
-          <ReactReveal style={{ width: "100%" }}>
+          <ReactReveal style={{ width: "100%",margin: "0 auto" }}>
             <Grid container xs={12} justify="center">
               <Grid item xs={12} sm={8} md={6} lg={4}>
                 <h2>{questionResult}</h2>
@@ -286,7 +286,7 @@ const Question = ({
                     <div
                       style={{
                         width: "90%",
-                        height: HEIGHT - 10,
+                        height: (HEIGHT === 0) ? 500 : HEIGHT - 10,
                         position: "relative",
                       }}
                     >
