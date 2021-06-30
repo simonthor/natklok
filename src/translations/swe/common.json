@@ -31,10 +31,14 @@
   "test": {
     "nextQuestion": "Nästa fråga",
     "result": "Se resultat",
-    "correct": "Rätt!",
-    "almost": "Nästan rätt...",
-    "meh": "Inte rätt, inte fel...",
-    "wrong": "Fel.",
+    "correctAnswer": "Rätt!",
+    "almostCorrectAnswer": "Nästan rätt...",
+    "acceptableAnswer": "Inte rätt, inte fel...",
+    "wrongAnswer": "Fel.",
+    "excellent": "Utmärkt!",
+    "good": "Bra",
+    "meh": "Sådär",
+    "bad": "Dåligt",
     "pressToReadMore": "Läs mer här"
   },
   "questions": {
@@ -58,6 +62,11 @@
       "option1": "Jag är helt skyddad, även utan VPN.",
       "option2": "De kan bara se vissa saker jag gör",
       "option3": "De kan se allt jag gör."
+    },
+    "passwordCheck": {
+      "title": "Skapa det starkaste lösenordet",
+      "text": "Du har 14 karaktärer på dig att skapa ett så svår-knäckt lösenord som möjligt. Bonus-poäng ifall det är enkelt att komma ihåg också!",
+      "moreInfo": "Med hjälp av speciella karaktärer, längre lösenord, ovanliga ord, mm. gör du det mycket svårare att knäcka ditt lösenord. "
     }
   },
   "result":{

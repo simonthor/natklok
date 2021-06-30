@@ -18,11 +18,13 @@ export const GENERAL_PROFILE = "GENERAL_PROFILE";
 // Categories
 export const SHARED_PASSWORD_QUESTION = "SHARED_PASSWORD_QUESTION";
 export const PUBLIC_WIFI_QUESTION = "PUBLIC_WIFI_QUESTION";
+export const PASSWORD_STRENGTH_QUESTION = "PASSWORD_STRENGTH_QUESTION";
 export const WIFI_ON_QUESTION = "WIFI_ON_QUESTION";
 
 // Question types
 export const YES_NO = "YES_NO";
 export const SEVERAL_OPTION = "SEVERAL_OPTION";
+export const PASSWORD_INPUT = "PASSWORD_INPUT";
 
 export const QUESTIONS = [
   {
@@ -56,6 +58,25 @@ export const QUESTIONS = [
       "https://sakerhetskollen.se/testa-din-sakerhet/ar-du-saker-pa-ditt-losenord",
     yes_score: 0,
     no_score: 1,
+  },
+  {
+    category: PASSWORD_STRENGTH_QUESTION,
+    type: PASSWORD_INPUT,
+    forProfile: GENERAL_PROFILE,
+    title: "questions.passwordCheck.title",
+    text: "questions.passwordCheck.text",
+    moreInfo: "questions.passwordCheck.moreInfo",
+    emojis: ["🔒", "🔑"],
+    readMoreLink:
+      "https://sakerhetskollen.se/testa-din-sakerhet/ar-du-saker-pa-ditt-losenord",
+    options: [
+      { text: "questions.publicWifi.option1", score: 0 },
+      {
+        text: "questions.publicWifi.option2",
+        score: 1,
+      },
+      { text: "questions.publicWifi.option3", score: 0.7 },
+    ],
   },
   {
     category: PUBLIC_WIFI_QUESTION,

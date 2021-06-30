@@ -8,7 +8,7 @@ const Logo = ({ large }) => {
         fontFamily: "Courier New",
         fontWeight: 700,
         color: "white",
-        "text-shadow": "1px 1px #8da6eb",
+        textShadow: "1px 1px #8da6eb",
       }}
     >
       SäkerhetsKontrollen

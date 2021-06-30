@@ -31,10 +31,14 @@
   "test": {
     "nextQuestion": "Next question",
     "result": "See result",
-    "correct": "Correct!",
-    "almost": "Almost right...",
-    "meh": "Not right, not wrong...",
-    "wrong": "Wrong",
+    "correctAnswer": "Correct!",
+    "almostCorrectAnswer": "Almost right...",
+    "acceptableAnswer": "Not right, not wrong...",
+    "wrongAnswer": "wrong.",
+    "excellent": "Excellent!",
+    "good": "Good",
+    "meh": "Not good, not bad",
+    "bad": "Bad",
     "pressToReadMore": "Read more here"
   },
   "questions": {

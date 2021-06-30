@@ -1,14 +1,20 @@
-import { Grid, Hidden } from "@material-ui/core";
+import { Grid, Hidden, Input, TextField } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { withTranslation } from "react-i18next";
 import SwipeableViews from "react-swipeable-views";
+import stringEntropy from "fast-password-entropy";
 
 // Custom components
 import { AlignCenter, Fade, StyledButton, StyledMarkdown } from "../general";
 import ReactReveal from "react-reveal/Fade";
 
 import StyledLink from "../general/StyledLink";
-import { YES_NO, SEVERAL_OPTION, HEIGHT } from "../../util/constants";
+import {
+  YES_NO,
+  SEVERAL_OPTION,
+  HEIGHT,
+  PASSWORD_INPUT,
+} from "../../util/constants";
 
 const generateEmojiArt = (arrayOfEmojis) => {
   let emojiArt = [];
@@ -22,7 +28,7 @@ const generateEmojiArt = (arrayOfEmojis) => {
         const top = Math.random() * 80 + "%";
         const left = Math.random() * 80 + "%";
         const fontSize = Math.random() * 18 + 18;
-        const rot = Math.random() * 180 - 90;
+        const rot = Math.random() * 100 - 50;
         emojiArt.push({ emoji, top, left, fontSize, rot });
       }
     }
@@ -95,7 +101,62 @@ const AnswerOptions = ({ t, questionData, onSelectAnswer }) => {
         ))}
       </>
     );
+  } else if (questionData.type === PASSWORD_INPUT) {
+    return <PasswordCheck onSelectAnswer={onSelectAnswer} />;
   }
+};
+
+const PasswordCheck = ({ onSelectAnswer }) => {
+  const [password, setPassword] = useState("");
+  const onChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    //console.log(stringEntropy(password));
+    let score = stringEntropy(password) / 92; // 92 seems to be the max for 14 chars
+    if (score > 0.8) {
+      onSelectAnswer(
+        score,
+        "Utmärkt lösenord! (" + stringEntropy(password) + "/95 entropi)"
+      );
+    } else if (score > 0.6) {
+      onSelectAnswer(
+        score,
+        "Bra lösenord! (" + stringEntropy(password) + "/95 entropi)"
+      );
+    } else if (score > 0.4) {
+      onSelectAnswer(
+        score,
+        "Helt okej lösenord. (" + stringEntropy(password) + "/95 entropi)"
+      );
+    } else {
+      onSelectAnswer(
+        score,
+        "Dåligt lösenord... (" + stringEntropy(password) + "/95 entropi)"
+      );
+    }
+  };
+
+  return (
+    <form
+      style={{
+        width: "95%",
+      }}
+      onSubmit={handleSubmit}
+    >
+      <TextField
+        inputProps={{ maxLength: 14 }}
+        onChange={onChange}
+        margin="normal"
+        fullWidth
+        autoFocus={true}
+        type="text"
+      />
+      <button type="submit">Fortsätt</button>
+    </form>
+  );
 };
 
 const Question = ({
@@ -108,6 +169,7 @@ const Question = ({
   handleIncrementScore,
 }) => {
   const [questionResult, setQuestionResult] = useState(null);
+  const [questionResultDesc, setQuestionResultDesc] = useState(null);
   const [questionOpened, setQuestionOpened] = useState(false);
   const [timeSinceOpened, setTimeSinceOpened] = useState(0);
   const [questionPicture] = useState(
@@ -118,17 +180,19 @@ const Question = ({
   const last = index + 1 === amountOfQuestions;
   const showTextAfterTime = t(questionData.title).length / 25;
 
-  const onSelectAnswer = (addedScore) => {
+  const onSelectAnswer = (addedScore, resultText = "") => {
     if (questionResult === null) {
       var res = "";
-      if (addedScore > 0.8) {
-        res = t("test.correct");
+      if (resultText != "") {
+        res = resultText;
+      } else if (addedScore > 0.8) {
+        res = t("test.correctAnswer");
       } else if (addedScore > 0.5) {
-        res = t("test.almost");
+        res = t("test.almostCorrectAnswer");
       } else if (addedScore > 0.3) {
-        res = t("test.meh");
+        res = t("test.acceptableAnswer");
       } else {
-        res = t("test.wrong");
+        res = t("test.wrongAnswer");
       }
       setQuestionResult(res);
       handleIncrementScore(addedScore);
@@ -154,6 +218,9 @@ const Question = ({
             <Grid container xs={12} justify="center">
               <Grid item xs={12} sm={8} md={6} lg={4}>
                 <h2>{questionResult}</h2>
+                <StyledMarkdown style={{ textAlign: "justify" }}>
+                  {questionResultDesc}
+                </StyledMarkdown>
                 <StyledMarkdown style={{ textAlign: "justify" }}>
                   {t(questionData.moreInfo)}
                 </StyledMarkdown>
