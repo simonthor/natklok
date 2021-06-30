@@ -13,16 +13,30 @@ const Footer = ({ t }) => {
   return (
     <AlignCenter>
       <Grid container xs={12} justify="space-between">
-        <Grid item style={{ height: 50 }}>
+        <Grid item style={{ height: 30, paddingTop: 14 }}>
           <img alt="" src={sakerhetskollen_logo} />
           <img alt="" src={digitalungdom_logo} />
         </Grid>
         <Grid item>
-          <Grid container>
-            <Grid container direction="row" alignItems="center">
-              <p style={{ margin: 0, padding: "0 0 2px 0", color: "white" }}>
-                Dela
+          <Grid
+            container
+            direction="column"
+            alignItems="center"
+            style={{ paddingBottom: 10 }}
+          >
+            <Grid item>
+              <p
+                style={{
+                  margin: 0,
+                  padding: "0 0 2px 0",
+                  color: "white",
+                  fontSize: "0.7em",
+                }}
+              >
+                {t("general.share")}
               </p>
+            </Grid>
+            <Grid item>
               <FooterLink icon={<InstagramIcon style={{ fontSize: 32 }} />} />
               <FooterLink icon={<Facebook style={{ fontSize: 32 }} />} />
               <FooterLink icon={<Twitter style={{ fontSize: 32 }} />} />

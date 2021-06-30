@@ -1,22 +1,73 @@
 {
   "general": {
-    "readMore": "Läs mer.",
-    "getStarted": "Kom igång"
+    "next": "Nästa",
+    "madeByDU": "Ett quiz gjort i samarbete med",
+    "share": "Dela",
+    "yes": "Ja",
+    "no": "Nej"
   },
   "meta": {
     "keywords": "Keyword1, Keyword2, Keyword3",
     "homeTitle": "Website template",
-    "homeDesc": "Bästa mallen för react hemsidor!",
-    "aboutTitle": "Om oss",
-    "aboutDesc": "Läs mer om den bästa mallen för react hemsidor"
+    "homeDesc": "The best react website template!",
+    "aboutTitle": "About us",
+    "aboutDesc": "About The best react website template"
   },
-  "home": {
-    "title": "Hem titel",
-    "desc": "Hem beskrivning",
-    "longTest": "Men jag måste förklara för dig hur all denna felaktiga idé om att fördöma ett nöje och berömma smärta föddes och jag kommer att ge dig en fullständig redogörelse för systemet och redogöra för den verkliga lärdomarna för den stora sanningsutforskaren, mästebyggaren Ingen avvisar, ogillar eller undviker nöje själv, för det är nöje, men för att de som inte vet hur man bedriver nöje på ett rationellt sätt möter konsekvenser som är extremt smärtsamma. Det finns inte heller någon som älskar eller förföljer eller önskar att få smärta av sig själv, eftersom det är smärta, men ibland inträffar omständigheter där slit och smärta kan skaffa honom ett stort nöje. Att ta ett triviellt exempel, vem av oss gör någonsin en mödosam fysisk träning, förutom att få någon fördel av det? Men vem har någon rätt att hitta fel hos en man som väljer att njuta av ett nöje som inte har några irriterande konsekvenser, eller en som undviker en smärta som inte ger något resulterande nöje? [33] Å andra sidan förnekar vi Nce med rättfärdig förargelse och ogillar människor som är så förrätta och demoraliserade av ögonblickets charm av njutning, så förblindade av begär, att de inte kan förutse den smärta och besvär som kommer att följa, och lika skyll tillhör de som misslyckas i deras plikt genom svaghet i viljan, vilket är detsamma som att säga genom att krympa från slit och smärta. Dessa fall är helt enkla och lätta att skilja. På en fri timme, när vår valmakt är ostängd och när ingenting hindrar vår möjlighet att gör vad vi gillar bäst, varje glädje är att välkomnas och all smärta undviks. Men under vissa omständigheter och på grund av krav på plikt eller skyldigheter från företag kommer det ofta att uppstå att nöjen måste avvisas och irritationer accepteras. därför håller i dessa frågor alltid denna princip om urval: han avvisar nöjen för att säkra andra större nöjen, eller annars uthärdar han smärta för att undvika värre."
+  "welcome": {
+    "title": "Sakerhetskontrollen",
+    "desc": "Ta reda på hur säker du är online på 10 minuter",
+    "test": "STARTA TESTET"
   },
-  "about": {
-    "title": "Om oss titel",
-    "desc": "Om oss beskrivning"
+  "profileSelection": {
+    "title": "Skapa din digitala profil",
+    "desc": "Vilka av följande gör du online?",
+    "profiles": {
+      "BANK_PROFILE": "Gör banktransaktioner",
+      "GAMING_PROFILE": "Spelar datorspel",
+      "STREAMING_PROFILE": "Streamar film",
+      "SOCIAL_MEDIA_PROFILE": "Är på sociala medier"
+    }
+  },
+  "test": {
+    "nextQuestion": "Nästa fråga",
+    "result": "Se resultat",
+    "correct": "Rätt!",
+    "almost": "Nästan rätt...",
+    "meh": "Inte rätt, inte fel...",
+    "wrong": "Fel.",
+    "pressToReadMore": "Läs mer här"
+  },
+  "questions": {
+    "csgoSkin": {
+      "title": "Du hittar det perfekta CSGO skin:et online...",
+      "text": "Med ditt steam-konto kan du logga in på en hemsida som heter 'csgoskins.cz' för att få tag på den. **Är detta en bra idé?**",
+      "moreInfo":  "Om du inte loggar in genom steam kan hackers se ditt lösenord och ta över ditt steamkonto.",
+      "option1": "Det borde vara lugnt",
+      "option2": "Om jag länkas vidare till Steams sida är det okej",
+      "option3": "Jag borde försöka hitta skin:et någon annanstans"
+    },
+    "fakeApp": {
+      "title": "Din vän hittade en app där du kan se vilka som stalkar dig på instagram!",
+      "text": "Med ditt instagramkonto kan du logga in i en app som heter 'stalkwatcher' för att se vem som besöker ditt konto. **Är detta en bra idé?**",
+      "moreInfo": "Om det inte är en inloggning via instagram kan hackare se ditt lösenord, kapa ditt konto och du kan förlora tillgång till ditt konto!"
+    },
+    "publicWifi": {
+      "title": "Gratis wifi på kaféet",
+      "text": "Nice, alla älskar ju gratis saker! ** Men hur mycket av min surfning kan kaféet faktiskt se? **",
+      "moreInfo": "Med HTTPS är alla meddelanden eller lösenord du skickar säkra, men utan en VPN kan de som äger en router kan **alltid se vilken webbplatser du besöker.**",
+      "option1": "Jag är helt skyddad, även utan VPN.",
+      "option2": "De kan bara se vissa saker jag gör",
+      "option3": "De kan se allt jag gör."
+    }
+  },
+  "result":{
+    "firstPlaceTitle": "Imponerande!",
+    "firstPlaceDesc": "Du kan mycket när det kommer till säkerhet online, men du kan alltid lära dig mer!",
+    "secondPlaceTitle": "Inte bra, inte dåligt",
+    "secondPlaceDesc": "Du verkar kunna en del om säkerhet online, men du har fortfarande en hel del att lära dig.",
+    "thirdPlaceTitle": "Aj då...",
+    "thirdPlaceDesc": "Du skulle behöva lära dig mer om digital säkerhet innan du råkar ut för en olycka!",
+    "readMore": "Läs mer",
+    "yourScore": "Dina poäng:"
   }
 }

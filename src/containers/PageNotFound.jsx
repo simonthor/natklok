@@ -1,17 +1,10 @@
 // Third party
 import React from "react";
 import { withTranslation } from "react-i18next";
+import { Redirect } from "react-router";
 // Custom
 import { AlignCenter } from "../components/general";
 
-const Home = () => {
-  return (
-    <div>
-      <AlignCenter>
-        <h1>404</h1>
-      </AlignCenter>
-    </div>
-  );
-};
+const PageNotFound = () => <Redirect to="/" />;
 
-export default withTranslation("common")(Home);
+export default withTranslation("common")(PageNotFound);

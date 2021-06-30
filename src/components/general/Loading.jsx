@@ -1,6 +1,7 @@
 import React from "react";
 // Custom
 import { Logo } from ".";
+import { HEIGHT, PURPLE } from "../../util/constants";
 
 const Loading = ({ fullScreen }) => {
   return (
@@ -8,8 +9,9 @@ const Loading = ({ fullScreen }) => {
       style={{
         textAlign: "center",
         flex: 1,
-        minHeight: fullScreen ? "100vh" : 0,
-        marginTop: fullScreen ? "30vh" : 0,
+        background: PURPLE,
+        height: fullScreen ? HEIGHT : 0,
+        paddingTop: fullScreen ? HEIGHT / 3 : 0,
       }}
     >
       <Logo />
