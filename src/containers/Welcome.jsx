@@ -95,7 +95,7 @@ const Welcome = ({ t }) => {
             />
           </div>
           <Link to="/test">
-            <StyledButton cinematicColor="#212058" onClick="document.getElementById('bgd-container').style.background = PURPLE">{t("welcome.test")}</StyledButton>
+            <StyledButton cinematicColor="#212058">{t("welcome.test")}</StyledButton>
           </Link>
         </div>
       </Grid>
