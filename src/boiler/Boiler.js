@@ -5,15 +5,19 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import { Loading } from "../components/general";
 import TestSlides from "../containers/TestSlides";
 import Welcome from "../containers/Welcome";
-import { PURPLE } from "../util/constants";
+import { PURPLE, HEIGHT } from "../util/constants";
 // Lazy loading
 const Header = lazy(() => import("../containers/Header"));
 const Footer = lazy(() => import("../containers/Footer"));
 
 const Boiler = () => (
   <Suspense fallback={<Loading fullScreen />}>
-    <div style={{ background: PURPLE }}>
-      <Header />
+    <div style={{ 
+      background: PURPLE,
+      height: ((HEIGHT === 0) ? "100vh" : HEIGHT),
+      display: "grid",
+      gridTemplateRows: "1fr min-content"
+     }}>
       <Switch>
         <Route path="/" exact render={() => <Welcome />} />
         <Route path="/test" exact render={() => <TestSlides />} />

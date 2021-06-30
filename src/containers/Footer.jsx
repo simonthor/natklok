@@ -5,44 +5,31 @@ import { withTranslation } from "react-i18next";
 import InstagramIcon from "@material-ui/icons/Instagram";
 // Custom
 import { AlignCenter } from "../components/general";
-import sakerhetskollen_logo from "../assets/sakerhetskollen_logo.svg";
-import digitalungdom_logo from "../assets/digitalungdom_logo.png";
 import { Facebook, Twitter } from "@material-ui/icons";
+import ToggleLanguage from "../components/features/ToggleLanguage";
 
 const Footer = ({ t }) => {
   return (
     <AlignCenter>
       <Grid container xs={12} justify="space-between">
-        <Grid item style={{ height: 30, paddingTop: 14 }}>
-          <img alt="" src={sakerhetskollen_logo} />
-          <img alt="" src={digitalungdom_logo} />
+        <Grid item style={{ height: 30, padding: "3px 15px 15px 15px",backgroundColor: "rgba(0,0,0,0.1)",cursor:"pointer" }}>
+          <ToggleLanguage />
         </Grid>
-        <Grid item>
-          <Grid
-            container
-            direction="column"
-            alignItems="center"
-            style={{ paddingBottom: 10 }}
-          >
             <Grid item>
-              <p
-                style={{
-                  margin: 0,
-                  padding: "0 0 2px 0",
-                  color: "white",
-                  fontSize: "0.7em",
-                }}
-              >
-                {t("general.share")}
-              </p>
+              <span
+                  style={{
+                    margin: 0,
+                    padding: "6px",
+                    color: "white",
+                    fontSize: "0.7em",
+                  }}
+                >
+                  {t("general.share")}
+                </span>
+              <FooterLink icon={<InstagramIcon style={{ fontSize: 25 }} />} />
+              <FooterLink icon={<Facebook style={{ fontSize: 25 }} />} />
+              <FooterLink icon={<Twitter style={{ fontSize: 25 }} />} />
             </Grid>
-            <Grid item>
-              <FooterLink icon={<InstagramIcon style={{ fontSize: 32 }} />} />
-              <FooterLink icon={<Facebook style={{ fontSize: 32 }} />} />
-              <FooterLink icon={<Twitter style={{ fontSize: 32 }} />} />
-            </Grid>
-          </Grid>
-        </Grid>
       </Grid>
     </AlignCenter>
   );
