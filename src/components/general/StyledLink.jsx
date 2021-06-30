@@ -6,7 +6,7 @@ export default ({ children, colored, href, style }) => (
     target="_blank"
     rel="noopener noreferrer"
     style={{
-      color: colored !== undefined ? "blue" : "grey",
+      color: colored !== undefined ? "lightblue" : "grey",
       fontWeight: 500,
       textDecoration: "none",
       cursor: "pointer",

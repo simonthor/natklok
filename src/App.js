@@ -20,7 +20,7 @@ const theme = createMuiTheme({
 
 i18next.init({
   interpolation: { escapeValue: false }, // React already does escaping
-  lng: "en",
+  lng: "swe",
   resources: {
     en: {
       common: common_en,
