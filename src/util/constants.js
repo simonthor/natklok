@@ -1,4 +1,5 @@
-export const HEIGHT = 440;
+//0 sets the height to windowHeight
+export const HEIGHT = 0;
 
 // Global colors
 export const BLUE = "#063955";
