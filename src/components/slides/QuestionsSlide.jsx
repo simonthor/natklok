@@ -14,6 +14,8 @@ import {
   SEVERAL_OPTION,
   HEIGHT,
   PASSWORD_INPUT,
+  PALEBLUE,
+  PURPLE
 } from "../../util/constants";
 
 const generateEmojiArt = (arrayOfEmojis) => {
@@ -102,11 +104,11 @@ const AnswerOptions = ({ t, questionData, onSelectAnswer }) => {
       </>
     );
   } else if (questionData.type === PASSWORD_INPUT) {
-    return <PasswordCheck onSelectAnswer={onSelectAnswer} />;
+    return <PasswordCheck onSelectAnswer={onSelectAnswer} t={t} />;
   }
 };
 
-const PasswordCheck = ({ onSelectAnswer }) => {
+const PasswordCheck = ({ t, onSelectAnswer }) => {
   const [password, setPassword] = useState("");
   const onChange = (e) => {
     setPassword(e.target.value);
@@ -152,9 +154,25 @@ const PasswordCheck = ({ onSelectAnswer }) => {
         margin="normal"
         fullWidth
         autoFocus={true}
-        type="text"
+        type="password"
+        variant="outlined"
+        label={t("questions.passwordCheck.inputLabel")}
       />
-      <button type="submit">Fortsätt</button>
+      <button 
+        type="submit"
+        style={{
+          borderRadius: 4,
+          cursor: "pointer",
+          fontSize: "1.1em",
+          background: PALEBLUE,
+          color: PURPLE,
+          padding: "14px 50px",
+          fontWeight: "800",
+          display: "inline-block",
+          margin: 0,
+          transition: "0.3s ease-in-out",
+          border: "none"
+        }}>{t("general.next")}</button>
     </form>
   );
 };

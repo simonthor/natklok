@@ -11,6 +11,7 @@ import {
   STREAMING_PROFILE,
   SOCIAL_MEDIA_PROFILE,
 } from "../../util/constants";
+import { BorderColor } from "@material-ui/icons";
 
 const ProfileSelectionSlide = ({
   t,
@@ -80,9 +81,10 @@ const ProfilCheckbox = ({ profileState, handleChange, name, t }) => {
     <Grid item xs={6}>
       <div
         style={{
-          background: "rgba(62, 166, 207, 0.3)",
-          borderRadius: 4,
+          background: "rgba(0, 0, 0, 0.2)",
+          borderRadius: 8,
           width: "100%",
+          padding: "5px 0"
         }}
       >
         <FormControlLabel
@@ -91,6 +93,7 @@ const ProfilCheckbox = ({ profileState, handleChange, name, t }) => {
               checked={profileState[name]}
               onChange={handleChange}
               name={name}
+              style={{color: "white"}}
             />
           }
           style={{ paddingLeft: 12 }}

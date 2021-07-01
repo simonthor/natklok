@@ -62,6 +62,12 @@
       "option1": "I'm 100% protected, even without a VPN.",
       "option2": "They can only see certain things I'm doing.",
       "option3": "They can see everything I do."
+    },
+    "passwordCheck": {
+      "title": "Create the strongest password",
+      "text": "You can use 14 characters to create such a hard-cracked password as possible. Bonus points if it is easy to remember too!",
+      "moreInfo": "With the help of special characters, longer passwords, unusual words, etc. you make it much harder to crack your password. ",
+      "inputLabel": "Write your password"
     }
   },
   "result":{
