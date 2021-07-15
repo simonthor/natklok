@@ -20,7 +20,8 @@
   },
   "profileSelection": {
     "title": "Skapa din digitala profil",
-    "desc": "Vilka av följande gör du online?",
+    "subtitle": "Vilka av följande gör du online?",
+    "desc": "Testet anpassas efter din digitala profil.",
     "profiles": {
       "BANK_PROFILE": "Gör banktransaktioner",
       "GAMING_PROFILE": "Spelar datorspel",

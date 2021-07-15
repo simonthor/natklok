@@ -43,6 +43,7 @@ const Welcome = ({ t }) => {
       container
       alignContent="stretch"
       style={{height: "100%"}}
+      id="hoverColorEffect"
     >
       <Grid item
         style={{

@@ -20,7 +20,8 @@
   },
   "profileSelection": {
     "title": "Create your digital profile",
-    "desc": "Which of these do you do online?",
+    "subtitle": "Which of the following do you do online?",
+    "desc": "The test is tailored to your digital profile.",
     "profiles": {
       "BANK_PROFILE": "Make bank transactions",
       "GAMING_PROFILE": "Play computer games",

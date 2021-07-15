@@ -47,6 +47,8 @@ const TestSlides = ({ t }) => {
       let maxScore = getMaxScore(generated_questions);
       setQuestions(generated_questions);
       setMaxScore(maxScore);
+      document.getElementById("formContainer").style.background = "none";
+      document.getElementById("formFooter").style.background = PURPLE;
     } else if (slideIndex === 1) {
       setTestFinished(true);
     }
@@ -55,7 +57,6 @@ const TestSlides = ({ t }) => {
 
   return (
     <div style={{ 
-      background: PURPLE, 
       height: (HEIGHT === 0) ? "100%" : HEIGHT,
       display: "flex",
       flexDirection: "row",
@@ -64,7 +65,9 @@ const TestSlides = ({ t }) => {
       alignItems: "center",
       position: "relative",
       overflow: "hidden",
-    }}>
+      background: PURPLE
+    }}
+    id="formContainer">
       <SwipeableViews index={slideIndex}>
         <ProfileSelectionSlide
           t={t}

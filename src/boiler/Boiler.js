@@ -15,9 +15,8 @@ const Boiler = () => (
     <div style={{ 
       background: PURPLE,
       height: ((HEIGHT === 0) ? "100vh" : HEIGHT),
-      display: "grid",
-      gridTemplateRows: "1fr min-content",
-      transition: "0.13s"
+      transition: "0.13s",
+      position: "relative"
      }}
      id="bgd-container">
       <Switch>
@@ -25,7 +24,7 @@ const Boiler = () => (
         <Route path="/test" exact render={() => <TestSlides />} />
         <Route render={(props) => <Redirect to="/" />} />
       </Switch>
-      <Footer />
+      <Footer style={{position: "absolute", bottom: 0, left: "50%", transform: "translateX(-50%)"}} quizstarted={true}/>
     </div>
   </Suspense>
 );

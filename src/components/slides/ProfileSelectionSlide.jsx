@@ -10,6 +10,7 @@ import {
   GAMING_PROFILE,
   STREAMING_PROFILE,
   SOCIAL_MEDIA_PROFILE,
+  PURPLE
 } from "../../util/constants";
 import { BorderColor } from "@material-ui/icons";
 
@@ -28,8 +29,8 @@ const ProfileSelectionSlide = ({
           xs={12}
           style={{ textAlign: "center", margin: "40px 0 20px 0" }}
         >
-          <h2 style={{ margin: 0 }}>{t("profileSelection.title")}</h2>
-          <p style={{ margin: 0 }}>{t("profileSelection.desc")}</p>
+          <h2 style={{ margin: "0 0 10px 0", fontSize: 31, fontFamily: "Bungee, Roboto, sans-serif" }}>{t("profileSelection.title")}</h2>
+          <p style={{ margin: "0 0 25px 0", fontSize: 19 }}>{t("profileSelection.subtitle")}</p>
         </Grid>
         <Grid container xs={12} alignItems="center" justify="center">
           <Grid item xs={11} sm={12} md={8} lg={6} xl={4}>
@@ -65,6 +66,7 @@ const ProfileSelectionSlide = ({
               xs={12}
               style={{ textAlign: "center", paddingRight: 8, marginTop: 20 }}
             >
+              <p style={{fontSize: 15}}>{t("profileSelection.desc")}</p>
               <StyledButton onClick={nextSlide}>
                 {t("general.next")}
               </StyledButton>
@@ -81,7 +83,7 @@ const ProfilCheckbox = ({ profileState, handleChange, name, t }) => {
     <Grid item xs={6}>
       <div
         style={{
-          background: "rgba(0, 0, 0, 0.2)",
+          background: profileState[name] ? "#E2147E" : "rgba(0, 0, 0, 0.2)",
           borderRadius: 8,
           width: "100%",
           padding: "5px 0"

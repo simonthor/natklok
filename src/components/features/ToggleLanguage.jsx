@@ -11,15 +11,19 @@ const ToggleLanguage = () => {
   };
   return (
     <>
-      <span onClick={() => {
-        toggleEng();
-        changeLanguage();
-      }}
-      style={{
-        fontSize: 15
-      }}>
-        {isEng ? 'Take the quiz in English' : 'Gör quizzet pa svenska'}
-      </span>
+      <div style={{ 
+        padding: "10px 15px 10px 15px",
+        backgroundColor: "rgba(0,0,0,0.1)",
+        cursor:"pointer" }}
+        onClick={() => {
+          toggleEng();
+          changeLanguage();
+        }}
+        >
+        <span style={{fontSize: 15}}>
+          {isEng ? 'Take the quiz in English' : 'Gör quizzet pa svenska'}
+        </span>
+      </div>
     </>
   )
 }
