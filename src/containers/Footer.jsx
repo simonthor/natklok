@@ -9,19 +9,25 @@ import { Facebook, Twitter } from "@material-ui/icons";
 import ToggleLanguage from "../components/features/ToggleLanguage";
 import ProgressBar from "../components/features/ProgressBar";
 
-const Footer = ({ t, quizstarted, style }) => {
+const Footer = ({ t, currentQuestion, totalQuestions, isFinished, style }) => {
     return (
       <AlignCenter>
-        <Grid container justify="space-between"
+        <Grid container justify={isFinished ? "center" : "space-between"}
           style={{
             padding: 10,
+            position: "absolute",
+            bottom: 0,
+            left: "50%",
+            transform: "translateX(-50%)",
             ...style
           }}
           id="formFooter"
           alignItems="center">
-          <Grid item>
-            {quizstarted ? <ProgressBar/> : <ToggleLanguage />}
-          </Grid>
+          {(!isFinished) ? (
+              <Grid item>
+                {currentQuestion === 0 ? <ToggleLanguage /> : <ProgressBar currentQuestion={currentQuestion} totalQuestions={totalQuestions}/>}
+              </Grid>
+          ) : (<></>)}
           <Grid item>
             <span
                 style={{

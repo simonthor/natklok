@@ -39,7 +39,7 @@ const generateEmojiArt = (arrayOfEmojis) => {
   return emojiArt;
 };
 
-const Questions = ({ t, nextSlide, questions, score, increaseScore }) => {
+const Questions = ({ t, nextSlide, questions, score, increaseScore, updateFooterCount }) => {
   const [questionIndex, setQuestionIndex] = useState(0);
 
   const nextQuestion = () => {
@@ -47,6 +47,7 @@ const Questions = ({ t, nextSlide, questions, score, increaseScore }) => {
       nextSlide();
     } else {
       setQuestionIndex(questionIndex + 1);
+      updateFooterCount(questionIndex + 2);
     }
   };
 
@@ -148,6 +149,27 @@ const PasswordCheck = ({ t, onSelectAnswer }) => {
       }}
       onSubmit={handleSubmit}
     >
+      <TextField
+        id="disable-pwd-mgr-1"
+        name="disable-pwd-mgr-1"
+        value="disable-pwd-mgr-1"
+        type="password"
+        style={{display: "none"}}
+      />
+      <TextField
+        id="disable-pwd-mgr-2"
+        name="disable-pwd-mgr-2"
+        value="disable-pwd-mgr-2"
+        type="password"
+        style={{display: "none"}}
+      />
+      <TextField
+        id="disable-pwd-mgr-3"
+        name="disable-pwd-mgr-3"
+        value="disable-pwd-mgr-3"
+        type="password"
+        style={{display: "none"}}
+      />
       <TextField
         inputProps={{ maxLength: 14 }}
         onChange={onChange}

@@ -12,7 +12,7 @@ import DUlogo from "../assets/duLogo.svg";
 import ListOfReviews from "../components/features/ListOfReviews";
 import keyframes from "../keyframes.css";
 
-const Welcome = ({ t }) => {
+const Welcome = ({ t, hasStarted }) => {
   const bgdRef = useRef(null);
 
   useEffect(() => {
