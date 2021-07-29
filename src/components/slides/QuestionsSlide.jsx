@@ -15,7 +15,7 @@ import {
   HEIGHT,
   PASSWORD_INPUT,
   PALEBLUE,
-  PURPLE
+  PURPLE,
 } from "../../util/constants";
 
 const generateEmojiArt = (arrayOfEmojis) => {
@@ -39,7 +39,14 @@ const generateEmojiArt = (arrayOfEmojis) => {
   return emojiArt;
 };
 
-const Questions = ({ t, nextSlide, questions, score, increaseScore, updateFooterCount }) => {
+const Questions = ({
+  t,
+  nextSlide,
+  questions,
+  score,
+  increaseScore,
+  updateFooterCount,
+}) => {
   const [questionIndex, setQuestionIndex] = useState(0);
 
   const nextQuestion = () => {
@@ -154,21 +161,21 @@ const PasswordCheck = ({ t, onSelectAnswer }) => {
         name="disable-pwd-mgr-1"
         value="disable-pwd-mgr-1"
         type="password"
-        style={{display: "none"}}
+        style={{ display: "none" }}
       />
       <TextField
         id="disable-pwd-mgr-2"
         name="disable-pwd-mgr-2"
         value="disable-pwd-mgr-2"
         type="password"
-        style={{display: "none"}}
+        style={{ display: "none" }}
       />
       <TextField
         id="disable-pwd-mgr-3"
         name="disable-pwd-mgr-3"
         value="disable-pwd-mgr-3"
         type="password"
-        style={{display: "none"}}
+        style={{ display: "none" }}
       />
       <TextField
         inputProps={{ maxLength: 14 }}
@@ -180,7 +187,7 @@ const PasswordCheck = ({ t, onSelectAnswer }) => {
         variant="outlined"
         label={t("questions.passwordCheck.inputLabel")}
       />
-      <button 
+      <button
         type="submit"
         style={{
           borderRadius: 4,
@@ -193,8 +200,11 @@ const PasswordCheck = ({ t, onSelectAnswer }) => {
           display: "inline-block",
           margin: 0,
           transition: "0.3s ease-in-out",
-          border: "none"
-        }}>{t("general.next")}</button>
+          border: "none",
+        }}
+      >
+        {t("general.next")}
+      </button>
     </form>
   );
 };
@@ -252,30 +262,136 @@ const Question = ({
 
   return (
     <Wrapper>
-      <Grid container xs={12} style={{ textAlign: "center" }}>
+      <Grid container justify="center">
         {questionResult !== null ? (
-          <ReactReveal style={{ width: "100%",margin: "0 auto" }}>
-            <Grid container xs={12} justify="center">
-              <Grid item xs={12} sm={8} md={6} lg={4}>
-                <h2>{questionResult}</h2>
-                <StyledMarkdown style={{ textAlign: "justify" }}>
-                  {questionResultDesc}
-                </StyledMarkdown>
-                <StyledMarkdown style={{ textAlign: "justify" }}>
-                  {t(questionData.moreInfo)}
-                </StyledMarkdown>
-
-                <StyledButton onClick={nextQuestion}>
-                  {t(last === true ? "test.result" : "test.nextQuestion")}
-                </StyledButton>
-                <p>
-                  <StyledLink colored href={questionData.readMoreLink}>
-                    {t("test.pressToReadMore")}
-                  </StyledLink>
-                </p>
+          <>
+            <Grid container justify="center">
+              <Grid item xs={12} sm={7}>
+                <div
+                  style={{
+                    margin: 0,
+                    padding: 0,
+                    textAlign: "left",
+                    fontFamily: "Bungee, Arial, Helvetica, sans-serif",
+                    color: "#1DB6EB",
+                    padding: 3,
+                    display: "flex",
+                    alignItems: "center",
+                    fontSize: "1.1em",
+                  }}
+                >
+                  <span>Streak</span>
+                  <div
+                    style={{
+                      fontSize: "1.2em",
+                      padding: 15,
+                      borderRadius: 15,
+                      marginLeft: 5,
+                      display: "inline-block",
+                      position: "relative",
+                      backgroundColor: "#063955",
+                    }}
+                  >
+                    <span
+                      style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                      }}
+                    >
+                      5
+                    </span>
+                  </div>
+                </div>
+                <Grid container>
+                  <Grid item md={7}>
+                    <ReactReveal bottom cascade>
+                      <h3
+                        style={{
+                          fontSize: "5vw",
+                          textTransform: "uppercase",
+                          margin: 0,
+                          padding: 0,
+                          textAlign: "left",
+                          lineHeight: "1",
+                          letterSpacing: 1,
+                          fontFamily: "Bowlby One SC, Arial, Helvetica, sans-serif",
+                          whiteSpace: "nowrap",
+                        }}
+                      >
+                        Snyggt!
+                      </h3>
+                    </ReactReveal>
+                  </Grid>
+                  <Grid
+                    item
+                    md={5}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "flex-end",
+                    }}
+                  >
+                    <div>
+                      <h5
+                        style={{
+                          fontSize: "1.05em",
+                          opacity: 0.8,
+                          fontWeight: "normal",
+                          textAlign: "right",
+                          margin: 0,
+                        }}
+                      >
+                        Spela på nätet
+                      </h5>
+                      <h4
+                        style={{
+                          fontSize: "1.5em",
+                          textAlign: "right",
+                          margin: 0,
+                        }}
+                      >
+                        # Im Steamin'
+                      </h4>
+                    </div>
+                  </Grid>
+                </Grid>
+                <Grid container>
+                  <Grid item md={10}>
+                    <p
+                      style={{
+                        textAlign: "left",
+                        fontSize: "1.4em",
+                        margin: "40px 0"
+                      }}
+                    >
+                      När du loggar in på en hemsida, var alltid säker på att
+                      adressen du besökt är rätt.
+                    </p>
+                  </Grid>
+                </Grid>
+                <Grid container>
+                  <Grid item xs={6}>
+                    <div style={{
+                      backgroundColor: "rgba(0,0,0,0.25)",
+                      width: "100%",
+                      height: "100%",
+                      marginRight: 10
+                    }}></div>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <StyledButton onClick={nextQuestion} style={{width: "100%"}}>
+                      {t(last === true ? "test.result" : "test.nextQuestion")}
+                    </StyledButton>
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid item xs={12} sm={5}>
+                <div></div>
               </Grid>
             </Grid>
-          </ReactReveal>
+          </>
         ) : (
           <Grid container direction={questionPicture}>
             <Grid item sm={12} md={6} style={{ textAlign: "start" }}>
@@ -326,7 +442,7 @@ const Question = ({
                     <div
                       style={{
                         width: "90%",
-                        height: (HEIGHT === 0) ? 500 : HEIGHT - 10,
+                        height: HEIGHT === 0 ? 500 : HEIGHT - 10,
                         position: "relative",
                       }}
                     >

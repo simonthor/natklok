@@ -43,6 +43,7 @@ export default ({
         display: "inline-block",
         margin: 0,
         transition: "0.3s ease-in-out",
+        boxSizing: "border-box",
         ...style,
       }}
     >
