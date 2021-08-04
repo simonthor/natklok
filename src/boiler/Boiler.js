@@ -1,6 +1,7 @@
 // Third party
 import React, { Suspense, lazy, useState } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
+import Confetti from 'react-confetti';
 // Custom components
 import { Loading } from "../components/general";
 import TestSlides from "../containers/TestSlides";
@@ -14,6 +15,10 @@ const Boiler = () => {
   const [footerCount, updateFooterCount] = useState(0);
   const [footerTotal, setFooterTotal] = useState(0);
   const [finishedStatus, setFinishedStatus] = useState(false);
+  const [confettiRecycle, setconfettiRecycle] = useState(true);
+  const [confettiRun, setconfettiRun] = useState(false);
+  const width = window.innerWidth;
+  const height = window.innerHeight;
   return (
     <Suspense fallback={<Loading />}>
       <div style={{ 
@@ -23,9 +28,18 @@ const Boiler = () => {
         position: "relative"
       }}
       id="bgd-container">
+        <Confetti
+          width={width}
+          height={height}
+          run={confettiRun}
+          recycle={confettiRecycle}
+          confettiSource={{x: 400, y: 200}}
+          initialVelocityX={6}
+          initialVelocityY={8}
+        />
         <Switch>
           <Route path="/" exact render={() => <Welcome />} />
-          <Route path="/test" exact render={() => <TestSlides updateFooterCount={updateFooterCount} setFooterTotal={setFooterTotal} setFinishedStatus={setFinishedStatus} />} />
+          <Route path="/test" exact render={() => <TestSlides updateFooterCount={updateFooterCount} setFooterTotal={setFooterTotal} setFinishedStatus={setFinishedStatus} setconfettiRecycle={setconfettiRecycle} setconfettiRun={setconfettiRun} />} />
           <Route render={(props) => <Redirect to="/" />} />
         </Switch>
         <Footer currentQuestion={footerCount} totalQuestions={footerTotal} isFinished={finishedStatus}/>

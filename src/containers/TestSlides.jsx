@@ -19,7 +19,7 @@ import ResultSlide from "../components/slides/ResultSlide";
 import ProfileSelectionSlide from "../components/slides/ProfileSelectionSlide";
 import QuestionsSlide from "../components/slides/QuestionsSlide";
 
-const TestSlides = ({ t, updateFooterCount, setFooterTotal, setFinishedStatus }) => {
+const TestSlides = ({ t, updateFooterCount, setFooterTotal, setFinishedStatus, setconfettiRun, setconfettiRecycle }) => {
   const [slideIndex, setSlideIndex] = useState(0);
   const [questions, setQuestions] = useState([]);
   const [score, setScore] = useState(0);
@@ -85,6 +85,8 @@ const TestSlides = ({ t, updateFooterCount, setFooterTotal, setFinishedStatus })
           questions={questions}
           score={score}
           increaseScore={increaseScore}
+          setconfettiRun={setconfettiRun}
+          setconfettiRecycle={setconfettiRecycle}
         />
         <ResultSlide
           score={score}

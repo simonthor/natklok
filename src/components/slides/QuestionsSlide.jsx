@@ -46,6 +46,8 @@ const Questions = ({
   score,
   increaseScore,
   updateFooterCount,
+  setconfettiRun,
+  setconfettiRecycle
 }) => {
   const [questionIndex, setQuestionIndex] = useState(0);
 
@@ -74,6 +76,8 @@ const Questions = ({
             questionData={questionData}
             nextQuestion={nextQuestion}
             handleIncrementScore={handleIncrementScore}
+            setconfettiRun={setconfettiRun}
+            setconfettiRecycle={setconfettiRecycle}
           />
         </div>
       ))}
@@ -217,6 +221,8 @@ const Question = ({
   questionData,
   nextQuestion,
   handleIncrementScore,
+  setconfettiRun,
+  setconfettiRecycle
 }) => {
   const [questionResult, setQuestionResult] = useState(null);
   const [questionResultDesc, setQuestionResultDesc] = useState(null);
@@ -237,6 +243,10 @@ const Question = ({
         res = resultText;
       } else if (addedScore > 0.8) {
         res = t("test.correctAnswer");
+        setconfettiRun(true);
+        setTimeout(() => {
+          setconfettiRecycle(false);
+        }, 500);
       } else if (addedScore > 0.5) {
         res = t("test.almostCorrectAnswer");
       } else if (addedScore > 0.3) {
@@ -265,120 +275,89 @@ const Question = ({
       <Grid container justify="center">
         {questionResult !== null ? (
           <>
-            <Grid container justify="center">
+            <Grid container justify="center" spacing={10} style={{margin: 0}}>
               <Grid item xs={12} sm={7}>
-                <div
-                  style={{
-                    margin: 0,
-                    padding: 0,
-                    textAlign: "left",
-                    fontFamily: "Bungee, Arial, Helvetica, sans-serif",
-                    color: "#1DB6EB",
-                    padding: 3,
-                    display: "flex",
-                    alignItems: "center",
-                    fontSize: "1.1em",
-                  }}
-                >
-                  <span>Streak</span>
+                <ReactReveal delay={700}>
                   <div
                     style={{
-                      fontSize: "1.2em",
-                      padding: 15,
-                      borderRadius: 15,
-                      marginLeft: 5,
-                      display: "inline-block",
-                      position: "relative",
-                      backgroundColor: "#063955",
-                    }}
-                  >
-                    <span
-                      style={{
-                        position: "absolute",
-                        top: "50%",
-                        left: "50%",
-                        transform: "translate(-50%, -50%)",
-                      }}
-                    >
-                      5
-                    </span>
-                  </div>
-                </div>
-                <Grid container>
-                  <Grid item md={7}>
-                    <ReactReveal bottom cascade>
-                      <h3
-                        style={{
-                          fontSize: "5vw",
-                          textTransform: "uppercase",
-                          margin: 0,
-                          padding: 0,
-                          textAlign: "left",
-                          lineHeight: "1",
-                          letterSpacing: 1,
-                          fontFamily: "Bowlby One SC, Arial, Helvetica, sans-serif",
-                          whiteSpace: "nowrap",
-                        }}
-                      >
-                        Snyggt!
-                      </h3>
-                    </ReactReveal>
-                  </Grid>
-                  <Grid
-                    item
-                    md={5}
-                    style={{
+                      margin: 0,
+                      padding: 0,
+                      textAlign: "left",
+                      fontFamily: "Bungee, Arial, Helvetica, sans-serif",
+                      color: "#1DB6EB",
+                      padding: 3,
                       display: "flex",
                       alignItems: "center",
-                      justifyContent: "flex-end",
+                      fontSize: "1.1em",
                     }}
                   >
-                    <div>
-                      <h5
-                        style={{
-                          fontSize: "1.05em",
-                          opacity: 0.8,
-                          fontWeight: "normal",
-                          textAlign: "right",
-                          margin: 0,
-                        }}
-                      >
-                        Spela på nätet
-                      </h5>
-                      <h4
-                        style={{
-                          fontSize: "1.5em",
-                          textAlign: "right",
-                          margin: 0,
-                        }}
-                      >
-                        # Im Steamin'
-                      </h4>
-                    </div>
-                  </Grid>
-                </Grid>
-                <Grid container>
-                  <Grid item md={10}>
-                    <p
+                    <span>Streak</span>
+                    <div
                       style={{
-                        textAlign: "left",
-                        fontSize: "1.4em",
-                        margin: "40px 0"
+                        fontSize: "1.2em",
+                        padding: 15,
+                        borderRadius: 15,
+                        marginLeft: 5,
+                        display: "inline-block",
+                        position: "relative",
+                        backgroundColor: "#063955",
                       }}
                     >
-                      När du loggar in på en hemsida, var alltid säker på att
-                      adressen du besökt är rätt.
-                    </p>
+                      <span
+                        style={{
+                          position: "absolute",
+                          top: "50%",
+                          left: "50%",
+                          transform: "translate(-50%, -50%)",
+                        }}
+                      >
+                        5
+                      </span>
+                    </div>
+                  </div>
+                </ReactReveal>
+                <ReactReveal bottom cascade>
+                  <h3
+                    style={{
+                      fontSize: "5vw",
+                      textTransform: "uppercase",
+                      margin: 0,
+                      padding: 0,
+                      textAlign: "left",
+                      lineHeight: "1",
+                      letterSpacing: 6,
+                      fontFamily: "Bowlby One SC, Arial, Helvetica, sans-serif",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    Helt rätt!
+                  </h3>
+                </ReactReveal>
+                <Grid container>
+                  <Grid item md={10}>
+                    <ReactReveal delay={400}>
+                      <p
+                        style={{
+                          textAlign: "left",
+                          fontSize: "1.4em",
+                          margin: "40px 0"
+                        }}
+                      >
+                        När du loggar in på en hemsida, var alltid säker på att
+                        adressen du besökt är rätt.
+                      </p>
+                    </ReactReveal>
                   </Grid>
                 </Grid>
-                <Grid container>
+                <Grid container spacing={3}>
                   <Grid item xs={6}>
                     <div style={{
                       backgroundColor: "rgba(0,0,0,0.25)",
                       width: "100%",
                       height: "100%",
                       marginRight: 10
-                    }}></div>
+                    }}>
+                    </div>
                   </Grid>
                   <Grid item xs={6}>
                     <StyledButton onClick={nextQuestion} style={{width: "100%"}}>
@@ -387,8 +366,25 @@ const Question = ({
                   </Grid>
                 </Grid>
               </Grid>
-              <Grid item xs={12} sm={5}>
-                <div></div>
+              <Grid item xs={12} sm={5} style={{
+                backgroundColor: "rgba(0,0,0,0.25)",
+                position: "relative",
+                overflow: "scroll",
+                textAlign: "left",
+                height: "50vh",
+                lineHeight: "1.5",
+                fontSize: "1.2em",
+                minHeight: 300,
+              }}>
+                <div>
+                  <h4 style={{
+                    fontFamily: "Bungee, Roboto, sans-serif",
+                    fontSize: "1.2em",
+                    margin: 0,
+                  }}>Du ska vara försiktig.</h4>
+                  <p>If you believed most of nature was threatened already, we think it’s useful for you to realize that two thirds of all animals and plants are NOT threatened, yet. One third is terribly high, but it’s still possible to reverse the trend towards mass extinction. A lot of conservation work is successful and more is needed. Every year, biologists across the world study the situation of plants and animals across the world and they publish their findings on the RedList, where you can track the status of more than 120,000 species! That is a lot, but it’s actually just 6% of all known species in the world, and nobody knows what share of all existing species are known. Even among the known species, 94% haven’t yet gotten enough attention to be fully investigated, mainly because it’s very costly to conduct multiple surveys of wild populations of animals and plants over time and track their decline. But new assessments of more species are still added every year, and with the additions to the list, roughly the same proportion is listed as threatened or endangered – around 27%. We have no intention of trivializing the fact that one third of nature is at risk already. But most people thought the situation was even worse, and we believe that may cause resignation, as people lose their hope. We hope this fact helps them realize that there’s still a lot we can and should do to reverse the trend towards mass extinction. It’s not too late, which too many seem to believe.</p>
+                </div>
+                
               </Grid>
             </Grid>
           </>

@@ -11,6 +11,7 @@
     "fast-password-entropy": "^1.1.1",
     "i18next": "^19.6.0",
     "react": "^16.13.1",
+    "react-confetti": "^6.0.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
     "react-i18next": "^11.7.0",
