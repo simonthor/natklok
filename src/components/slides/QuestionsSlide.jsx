@@ -7,6 +7,7 @@ import stringEntropy from "fast-password-entropy";
 // Custom components
 import { AlignCenter, Fade, StyledButton, StyledMarkdown } from "../general";
 import ReactReveal from "react-reveal/Fade";
+import { Facebook, Twitter, Instagram } from "@material-ui/icons";
 
 import StyledLink from "../general/StyledLink";
 import {
@@ -235,6 +236,7 @@ const Question = ({
 
   const last = index + 1 === amountOfQuestions;
   const showTextAfterTime = t(questionData.title).length / 25;
+  let streak = 0;
 
   const onSelectAnswer = (addedScore, resultText = "") => {
     if (questionResult === null) {
@@ -243,10 +245,6 @@ const Question = ({
         res = resultText;
       } else if (addedScore > 0.8) {
         res = t("test.correctAnswer");
-        setconfettiRun(true);
-        setTimeout(() => {
-          setconfettiRecycle(false);
-        }, 500);
       } else if (addedScore > 0.5) {
         res = t("test.almostCorrectAnswer");
       } else if (addedScore > 0.3) {
@@ -256,6 +254,15 @@ const Question = ({
       }
       setQuestionResult(res);
       handleIncrementScore(addedScore);
+    }
+    if (addedScore > 0.3) {
+      setconfettiRun(true);
+      setTimeout(() => {
+        setconfettiRecycle(false);
+      }, 500);
+      streak += 1;
+    } else {
+      streak = 0;
     }
   };
 
@@ -311,7 +318,7 @@ const Question = ({
                           transform: "translate(-50%, -50%)",
                         }}
                       >
-                        5
+                        {streak}
                       </span>
                     </div>
                   </div>
@@ -329,9 +336,7 @@ const Question = ({
                       fontFamily: "Bowlby One SC, Arial, Helvetica, sans-serif",
                       whiteSpace: "nowrap",
                     }}
-                  >
-                    Helt rätt!
-                  </h3>
+                  >{questionResult}</h3>
                 </ReactReveal>
                 <Grid container>
                   <Grid item md={10}>
@@ -355,8 +360,16 @@ const Question = ({
                       backgroundColor: "rgba(0,0,0,0.25)",
                       width: "100%",
                       height: "100%",
-                      marginRight: 10
+                      marginRight: 10,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "rgba(255,255,255,0.6"
                     }}>
+                      <span style={{fontSize: "0.9em", marginRight: 10}}>Dela frågan</span>
+                      <Instagram style={{ fontSize: 25 }} />
+                      <Facebook style={{ fontSize: 25 }} />
+                      <Twitter style={{ fontSize: 25 }} />
                     </div>
                   </Grid>
                   <Grid item xs={6}>

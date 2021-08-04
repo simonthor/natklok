@@ -34,9 +34,9 @@
   "test": {
     "nextQuestion": "Nästa fråga",
     "result": "Se resultat",
-    "correctAnswer": "Rätt!",
-    "almostCorrectAnswer": "Nästan rätt...",
-    "acceptableAnswer": "Inte rätt, inte fel...",
+    "correctAnswer": "Helt rätt!",
+    "almostCorrectAnswer": "Typ rätt!",
+    "acceptableAnswer": "Njaaaa..",
     "wrongAnswer": "Fel.",
     "excellent": "Utmärkt!",
     "good": "Bra",
