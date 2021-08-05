@@ -91,13 +91,13 @@ const AnswerOptions = ({ t, questionData, onSelectAnswer }) => {
     return (
       <>
         <StyledButton
-          style={{ margin: "6px 0" }}
+          style={{ margin: "6px 0",width: "100%" }}
           onClick={() => onSelectAnswer(questionData.yes_score)}
         >
           {t("general.yes")}
         </StyledButton>
         <StyledButton
-          style={{ margin: "6px 0" }}
+          style={{ margin: "6px 0",width: "100%" }}
           onClick={() => onSelectAnswer(questionData.no_score)}
         >
           {t("general.no")}
@@ -109,7 +109,7 @@ const AnswerOptions = ({ t, questionData, onSelectAnswer }) => {
       <>
         {questionData.options.map((option) => (
           <div style={{ margin: "6px 0" }}>
-            <StyledButton onClick={() => onSelectAnswer(option.score)}>
+            <StyledButton onClick={() => onSelectAnswer(option.score)} style={{width: "100%", textAlign: "center"}}>
               {t(option.text)}
             </StyledButton>
           </div>
@@ -156,9 +156,6 @@ const PasswordCheck = ({ t, onSelectAnswer }) => {
 
   return (
     <form
-      style={{
-        width: "95%",
-      }}
       onSubmit={handleSubmit}
     >
       <TextField
@@ -189,7 +186,8 @@ const PasswordCheck = ({ t, onSelectAnswer }) => {
         fullWidth
         autoFocus={true}
         type="password"
-        variant="outlined"
+        variant="filled"
+        color="secondary"
         label={t("questions.passwordCheck.inputLabel")}
       />
       <button
@@ -402,7 +400,7 @@ const Question = ({
             </Grid>
           </>
         ) : (
-          <Grid container direction={questionPicture}>
+          <Grid container direction={questionPicture} justify="center">
             <Grid item sm={12} md={6} style={{ textAlign: "start" }}>
               {questionOpened === true ? (
                 <Fade>
@@ -444,35 +442,6 @@ const Question = ({
                 </Fade>
               ) : null}
             </Grid>
-            <Hidden smDown>
-              <Grid item sm={12} md={6} style={{ textAlign: "center" }}>
-                {questionOpened === true ? (
-                  <ReactReveal>
-                    <div
-                      style={{
-                        width: "90%",
-                        height: HEIGHT === 0 ? 500 : HEIGHT - 10,
-                        position: "relative",
-                      }}
-                    >
-                      {emojiArt.map((emojiArtObj) => (
-                        <span
-                          style={{
-                            position: "absolute",
-                            top: emojiArtObj.top,
-                            left: emojiArtObj.left,
-                            transform: "rotate(" + emojiArtObj.rot + "deg)",
-                            fontSize: emojiArtObj.fontSize,
-                          }}
-                        >
-                          {emojiArtObj.emoji}
-                        </span>
-                      ))}
-                    </div>
-                  </ReactReveal>
-                ) : null}
-              </Grid>
-            </Hidden>
           </Grid>
         )}
       </Grid>
