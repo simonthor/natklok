@@ -21,14 +21,7 @@ const Boiler = () => {
   const height = window.innerHeight;
   return (
     <Suspense fallback={<Loading />}>
-      <div style={{ 
-        background: PURPLE,
-        height: ((HEIGHT === 0) ? "100vh" : HEIGHT),
-        transition: "0.13s",
-        position: "relative"
-      }}
-      id="bgd-container">
-        <Confetti
+      <Confetti
           width={width}
           height={height}
           run={confettiRun}
@@ -37,12 +30,24 @@ const Boiler = () => {
           initialVelocityX={6}
           initialVelocityY={8}
         />
+      <div style={{ 
+        background: PURPLE,
+        height: ((HEIGHT === 0) ? "100vh" : HEIGHT),
+        transition: "0.13s",
+        position: "relative",
+        display: "grid",
+        gridTemplateRows: "min-content 1fr",
+        justifyItems: "stretch",
+        alignItems: "stretch",
+      }}
+      id="bgd-container">
+        <Header/>
         <Switch>
           <Route path="/" exact render={() => <Welcome />} />
           <Route path="/test" exact render={() => <TestSlides updateFooterCount={updateFooterCount} setFooterTotal={setFooterTotal} setFinishedStatus={setFinishedStatus} setconfettiRecycle={setconfettiRecycle} setconfettiRun={setconfettiRun} />} />
           <Route render={(props) => <Redirect to="/" />} />
         </Switch>
-        <Footer currentQuestion={footerCount} totalQuestions={footerTotal} isFinished={finishedStatus}/>
+        {/*<Footer currentQuestion={footerCount} totalQuestions={footerTotal} isFinished={finishedStatus}/>*/}
       </div>
     </Suspense>
   );

@@ -28,21 +28,6 @@ const Footer = ({ t, currentQuestion, totalQuestions, isFinished, style }) => {
                 {currentQuestion === 0 ? <ToggleLanguage /> : <ProgressBar currentQuestion={currentQuestion} totalQuestions={totalQuestions}/>}
               </Grid>
           ) : (<></>)}
-          <Grid item>
-            <span
-                style={{
-                  margin: 0,
-                  padding: "6px",
-                  color: "white",
-                  fontSize: "0.7em",
-                }}
-              >
-                {t("general.share")}
-              </span>
-            <FooterLink icon={<InstagramIcon style={{ fontSize: 25 }} />} />
-            <FooterLink icon={<Facebook style={{ fontSize: 25 }} />} />
-            <FooterLink icon={<Twitter style={{ fontSize: 25 }} />} />
-          </Grid>
         </Grid>
       </AlignCenter>
     );
