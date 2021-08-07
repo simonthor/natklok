@@ -46,7 +46,7 @@ const Questions = ({
   questions,
   score,
   increaseScore,
-  updateFooterCount,
+  setCurrentQuestionIndex,
   setconfettiRun,
   setconfettiRecycle
 }) => {
@@ -57,7 +57,7 @@ const Questions = ({
       nextSlide();
     } else {
       setQuestionIndex(questionIndex + 1);
-      updateFooterCount(questionIndex + 2);
+      setCurrentQuestionIndex(questionIndex + 2);
     }
   };
 
