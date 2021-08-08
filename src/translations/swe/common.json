@@ -17,7 +17,7 @@
   },
   "welcome": {
     "title": "Sakerhetskontrollen",
-    "desc": "Ta reda på hur säker du är online på 10 minuter",
+    "desc": "Hur säkra är dina internetvanor?",
     "test": "STARTA TESTET"
   },
   "profileSelection": {
@@ -34,9 +34,9 @@
   "test": {
     "nextQuestion": "Nästa fråga",
     "result": "Se resultat",
-    "correctAnswer": "Rätt!",
-    "almostCorrectAnswer": "Nästan rätt...",
-    "acceptableAnswer": "Inte rätt, inte fel...",
+    "correctAnswer": "Helt rätt!",
+    "almostCorrectAnswer": "Typ rätt!",
+    "acceptableAnswer": "Njaaaa..",
     "wrongAnswer": "Fel.",
     "excellent": "Utmärkt!",
     "good": "Bra",

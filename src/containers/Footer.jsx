@@ -6,7 +6,6 @@ import InstagramIcon from "@material-ui/icons/Instagram";
 // Custom
 import { AlignCenter } from "../components/general";
 import { Facebook, Twitter } from "@material-ui/icons";
-import ToggleLanguage from "../components/features/ToggleLanguage";
 import ProgressBar from "../components/features/ProgressBar";
 
 const Footer = ({ t, currentQuestion, totalQuestions, isFinished, style }) => {
@@ -25,24 +24,9 @@ const Footer = ({ t, currentQuestion, totalQuestions, isFinished, style }) => {
           alignItems="center">
           {(!isFinished) ? (
               <Grid item>
-                {currentQuestion === 0 ? <ToggleLanguage /> : <ProgressBar currentQuestion={currentQuestion} totalQuestions={totalQuestions}/>}
+                {currentQuestion === 0 ? null : <ProgressBar currentQuestion={currentQuestion} totalQuestions={totalQuestions}/>}
               </Grid>
           ) : (<></>)}
-          <Grid item>
-            <span
-                style={{
-                  margin: 0,
-                  padding: "6px",
-                  color: "white",
-                  fontSize: "0.7em",
-                }}
-              >
-                {t("general.share")}
-              </span>
-            <FooterLink icon={<InstagramIcon style={{ fontSize: 25 }} />} />
-            <FooterLink icon={<Facebook style={{ fontSize: 25 }} />} />
-            <FooterLink icon={<Twitter style={{ fontSize: 25 }} />} />
-          </Grid>
         </Grid>
       </AlignCenter>
     );

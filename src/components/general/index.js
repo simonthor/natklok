@@ -7,3 +7,4 @@ export { default as StyledButton } from "./StyledButton";
 export { default as AlignCenter } from "./AlignCenter";
 export { default as StyledNavLink } from "./StyledNavLink";
 export { default as StyledMarkdown } from "./StyledMarkdown";
+export { default as StyledTextField } from "./StyledTextField";

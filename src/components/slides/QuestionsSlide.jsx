@@ -5,9 +5,10 @@ import SwipeableViews from "react-swipeable-views";
 import stringEntropy from "fast-password-entropy";
 
 // Custom components
-import { AlignCenter, Fade, StyledButton, StyledMarkdown } from "../general";
+import { AlignCenter, Fade, StyledButton, StyledMarkdown, StyledTextField } from "../general";
+import AnswerFeedback from "./AnswerFeedback";
 import ReactReveal from "react-reveal/Fade";
-
+import { Facebook, Twitter, Instagram } from "@material-ui/icons";
 import StyledLink from "../general/StyledLink";
 import {
   YES_NO,
@@ -15,9 +16,10 @@ import {
   HEIGHT,
   PASSWORD_INPUT,
   PALEBLUE,
-  PURPLE
+  PURPLE,
 } from "../../util/constants";
 
+// Deprecated: Emoji art used in Yes/No & Multiple choice questions
 const generateEmojiArt = (arrayOfEmojis) => {
   let emojiArt = [];
   let style = "random";
@@ -39,7 +41,17 @@ const generateEmojiArt = (arrayOfEmojis) => {
   return emojiArt;
 };
 
-const Questions = ({ t, nextSlide, questions, score, increaseScore, updateFooterCount }) => {
+// Component that layers all the questions
+const Questions = ({
+  t,
+  nextSlide,
+  questions,
+  score,
+  increaseScore,
+  setCurrentQuestionIndex,
+  setconfettiRun,
+  setconfettiRecycle
+}) => {
   const [questionIndex, setQuestionIndex] = useState(0);
 
   const nextQuestion = () => {
@@ -47,7 +59,7 @@ const Questions = ({ t, nextSlide, questions, score, increaseScore, updateFooter
       nextSlide();
     } else {
       setQuestionIndex(questionIndex + 1);
-      updateFooterCount(questionIndex + 2);
+      setCurrentQuestionIndex(questionIndex + 2);
     }
   };
 
@@ -67,6 +79,8 @@ const Questions = ({ t, nextSlide, questions, score, increaseScore, updateFooter
             questionData={questionData}
             nextQuestion={nextQuestion}
             handleIncrementScore={handleIncrementScore}
+            setconfettiRun={setconfettiRun}
+            setconfettiRecycle={setconfettiRecycle}
           />
         </div>
       ))}
@@ -79,13 +93,13 @@ const AnswerOptions = ({ t, questionData, onSelectAnswer }) => {
     return (
       <>
         <StyledButton
-          style={{ margin: "6px 0" }}
+          style={{ margin: "6px 0",width: "100%" }}
           onClick={() => onSelectAnswer(questionData.yes_score)}
         >
           {t("general.yes")}
         </StyledButton>
         <StyledButton
-          style={{ margin: "6px 0" }}
+          style={{ margin: "6px 0",width: "100%" }}
           onClick={() => onSelectAnswer(questionData.no_score)}
         >
           {t("general.no")}
@@ -97,7 +111,7 @@ const AnswerOptions = ({ t, questionData, onSelectAnswer }) => {
       <>
         {questionData.options.map((option) => (
           <div style={{ margin: "6px 0" }}>
-            <StyledButton onClick={() => onSelectAnswer(option.score)}>
+            <StyledButton onClick={() => onSelectAnswer(option.score)} style={{width: "100%", textAlign: "center"}}>
               {t(option.text)}
             </StyledButton>
           </div>
@@ -144,9 +158,6 @@ const PasswordCheck = ({ t, onSelectAnswer }) => {
 
   return (
     <form
-      style={{
-        width: "95%",
-      }}
       onSubmit={handleSubmit}
     >
       <TextField
@@ -154,33 +165,33 @@ const PasswordCheck = ({ t, onSelectAnswer }) => {
         name="disable-pwd-mgr-1"
         value="disable-pwd-mgr-1"
         type="password"
-        style={{display: "none"}}
+        style={{ display: "none" }}
       />
       <TextField
         id="disable-pwd-mgr-2"
         name="disable-pwd-mgr-2"
         value="disable-pwd-mgr-2"
         type="password"
-        style={{display: "none"}}
+        style={{ display: "none" }}
       />
       <TextField
         id="disable-pwd-mgr-3"
         name="disable-pwd-mgr-3"
         value="disable-pwd-mgr-3"
         type="password"
-        style={{display: "none"}}
+        style={{ display: "none" }}
       />
-      <TextField
+      <StyledTextField
         inputProps={{ maxLength: 14 }}
         onChange={onChange}
         margin="normal"
         fullWidth
         autoFocus={true}
         type="password"
-        variant="outlined"
+        variant="filled"
         label={t("questions.passwordCheck.inputLabel")}
       />
-      <button 
+      <button
         type="submit"
         style={{
           borderRadius: 4,
@@ -193,8 +204,11 @@ const PasswordCheck = ({ t, onSelectAnswer }) => {
           display: "inline-block",
           margin: 0,
           transition: "0.3s ease-in-out",
-          border: "none"
-        }}>{t("general.next")}</button>
+          border: "none",
+        }}
+      >
+        {t("general.next")}
+      </button>
     </form>
   );
 };
@@ -207,6 +221,8 @@ const Question = ({
   questionData,
   nextQuestion,
   handleIncrementScore,
+  setconfettiRun,
+  setconfettiRecycle
 }) => {
   const [questionResult, setQuestionResult] = useState(null);
   const [questionResultDesc, setQuestionResultDesc] = useState(null);
@@ -219,6 +235,7 @@ const Question = ({
 
   const last = index + 1 === amountOfQuestions;
   const showTextAfterTime = t(questionData.title).length / 25;
+  let streak = 0;
 
   const onSelectAnswer = (addedScore, resultText = "") => {
     if (questionResult === null) {
@@ -237,6 +254,19 @@ const Question = ({
       setQuestionResult(res);
       handleIncrementScore(addedScore);
     }
+    if (addedScore > 0.3) {
+      setconfettiRun(true);
+      setTimeout(() => {
+        setconfettiRecycle(false);
+      }, 500);
+      setTimeout(() => {
+        setconfettiRun(false);
+        setconfettiRecycle(true);
+      }, 6000);
+      streak += 1;
+    } else {
+      streak = 0;
+    }
   };
 
   useEffect(() => {
@@ -252,32 +282,18 @@ const Question = ({
 
   return (
     <Wrapper>
-      <Grid container xs={12} style={{ textAlign: "center" }}>
+      <Grid container justify="center">
         {questionResult !== null ? (
-          <ReactReveal style={{ width: "100%",margin: "0 auto" }}>
-            <Grid container xs={12} justify="center">
-              <Grid item xs={12} sm={8} md={6} lg={4}>
-                <h2>{questionResult}</h2>
-                <StyledMarkdown style={{ textAlign: "justify" }}>
-                  {questionResultDesc}
-                </StyledMarkdown>
-                <StyledMarkdown style={{ textAlign: "justify" }}>
-                  {t(questionData.moreInfo)}
-                </StyledMarkdown>
-
-                <StyledButton onClick={nextQuestion}>
-                  {t(last === true ? "test.result" : "test.nextQuestion")}
-                </StyledButton>
-                <p>
-                  <StyledLink colored href={questionData.readMoreLink}>
-                    {t("test.pressToReadMore")}
-                  </StyledLink>
-                </p>
-              </Grid>
-            </Grid>
-          </ReactReveal>
+          <AnswerFeedback
+            nextQuestion={nextQuestion}
+            streak={null}
+            isCorrect={true}
+            title={questionResult}
+            desc={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing elit duis tristique sollicitudin nibh sit. Aliquam faucibus purus in massa tempor nec feugiat."}
+            bodyMarkdown={null}
+          />
         ) : (
-          <Grid container direction={questionPicture}>
+          <Grid container direction={questionPicture} justify="center">
             <Grid item sm={12} md={6} style={{ textAlign: "start" }}>
               {questionOpened === true ? (
                 <Fade>
@@ -319,35 +335,6 @@ const Question = ({
                 </Fade>
               ) : null}
             </Grid>
-            <Hidden smDown>
-              <Grid item sm={12} md={6} style={{ textAlign: "center" }}>
-                {questionOpened === true ? (
-                  <ReactReveal>
-                    <div
-                      style={{
-                        width: "90%",
-                        height: (HEIGHT === 0) ? 500 : HEIGHT - 10,
-                        position: "relative",
-                      }}
-                    >
-                      {emojiArt.map((emojiArtObj) => (
-                        <span
-                          style={{
-                            position: "absolute",
-                            top: emojiArtObj.top,
-                            left: emojiArtObj.left,
-                            transform: "rotate(" + emojiArtObj.rot + "deg)",
-                            fontSize: emojiArtObj.fontSize,
-                          }}
-                        >
-                          {emojiArtObj.emoji}
-                        </span>
-                      ))}
-                    </div>
-                  </ReactReveal>
-                ) : null}
-              </Grid>
-            </Hidden>
           </Grid>
         )}
       </Grid>

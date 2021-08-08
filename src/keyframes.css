@@ -1,6 +1,58 @@
 @keyframes blobsExpand {
-    0% {scale: 1;transform: translate(0,0);}
-    20% {scale: 1.1;transform: translate(2px,-5px);}
-    70% { scale: 0.9;transform: translate(-22,2px);}
-    100% {scale: 1;transform: translate(30px,12px);}
+  0% {
+    scale: 1;
+    transform: translate(0, 0);
+  }
+  20% {
+    scale: 1.1;
+    transform: translate(2px, -5px);
+  }
+  70% {
+    scale: 0.9;
+    transform: translate(-22, 2px);
+  }
+  100% {
+    scale: 1;
+    transform: translate(30px, 12px);
+  }
+}
+
+@keyframes progressBarAnimationTop {
+  0% {
+    left: -100%;
+  }
+  50%,
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes progressBarAnimationRight {
+  0% {
+    top: -100%;
+  }
+  50%,
+  100% {
+    top: 100%;
+  }
+}
+
+@keyframes progressBarAnimationBottom {
+  0% {
+    right: -100%;
+  }
+  50%,
+  100% {
+    right: 100%;
+  }
+}
+
+@keyframes progressBarAnimationLeft {
+  0% {
+    bottom: -100%;
+  }
+  50%,
+  100% {
+    bottom: 100%;
+  }
 }

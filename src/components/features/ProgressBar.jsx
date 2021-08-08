@@ -1,38 +1,100 @@
 import { Grid } from "@material-ui/core";
 import React from "react";
-import { withTranslation } from "react-i18next";
-import Mainlogo from "../../assets/sakerhetskontrollen-logo.svg";
 
-const ProgressBar = ({ t, currentQuestion, totalQuestions }) => {
+const ProgressBar = ({ t, currentQuestionIndex = 1, totalQuestions = 1 }) => {
+  const CompletedBlocks = () => {
+    return [...Array(currentQuestionIndex - 1)].map((e, i) => (
+      <div
+        style={{ height: "100%", width: "100%", background: "white" }}
+        key={i}
+      ></div>
+    ));
+  };
 
-    const CompletedBlocks = () => {
-        return [...Array(currentQuestion - 1)].map((e, i) => <div style={{height: "100%",width: "100%", background: "white"}} key={i}></div>);
-    }
+  const UnCompletedBlocks = () => {
+    return [...Array(totalQuestions - currentQuestionIndex)].map((e, i) => (
+      <div
+        style={{ height: "100%", width: "100%", background: "rgba(0,0,0,0.3)" }}
+        key={i}
+      ></div>
+    ));
+  };
 
-    const UnCompletedBlocks = () => {
-        return [...Array(totalQuestions - currentQuestion + 1)].map((e, i) => <div style={{height: "100%",width: "100%", background: "rgba(0,0,0,0.3)"}} key={i}></div>);
-    }
-
+  const CurrentBlock = () => {
     return (
-        <Grid container justify="space-evenly" alignItems="center">
-            <Grid item><img src={Mainlogo} style={{height: 40, margin: 10}}/></Grid>
-            <Grid item style={{marginLeft: 10}}>
-                <p style={{margin: 0}}>{totalQuestions - currentQuestion + 1} {(totalQuestions - currentQuestion + 1) === 1 ? t("general.questionLeft") : t("general.questionsLeft")}</p>
-                <Grid container style={{
-                    height: 6, 
-                    width: 180, 
-                    borderRadius: 9, 
-                    overflow: "hidden",
-                    margin: "7px 0",
-                    display: "grid",
-                    gridTemplateColumns: "repeat(auto-fit, minmax(0, 1fr))",
-                    gridGap: 3}}>
-                        <CompletedBlocks/>
-                        <UnCompletedBlocks/>
-                </Grid>
-            </Grid>
-        </Grid>
-    )
-}
+      <div
+        style={{
+          height: "100%",
+          width: "100%",
+          background: "rgba(255,255,255,0.2)",
+          boxShadow: "inset 0 0 0 2px rgba(255,255,255,0.2)",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+          <span style={{
+              position: "absolute",
+              display: "block",
+              top: 0,
+              left: "-100%",
+              width: "100%",
+              height: 2,
+              background: "linear-gradient(90deg, transparent, #fff)",
+              animation: "progressBarAnimationTop 4s linear infinite",
+          }}></span>
+          <span style={{
+              position: "absolute",
+              display: "block",
+              right: 0,
+              top: "-100%",
+              height: "100%",
+              width: 2,
+              background: "linear-gradient(180deg, transparent, #fff)",
+              animation: "progressBarAnimationRight 4s linear infinite",
+              animationDelay: "1s"
+          }}></span>
+          <span style={{
+              position: "absolute",
+              display: "block",
+              bottom: 0,
+              right: "-100%",
+              width: "100%",
+              height: 2,
+              background: "linear-gradient(270deg, transparent, #fff)",
+              animation: "progressBarAnimationBottom 4s linear infinite",
+              animationDelay: "2s"
+          }}></span>
+          <span style={{
+              position: "absolute",
+              display: "block",
+              left: 0,
+              bottom: "-100%",
+              height: "100%",
+              width: 2,
+              background: "linear-gradient(0deg, transparent, #fff)",
+              animation: "progressBarAnimationLeft 4s linear infinite",
+              animationDelay: "3s"
+          }}></span>
+      </div>
+    );
+  };
 
-export default withTranslation("common")(ProgressBar);
+  return (
+    <Grid
+      container
+      style={{
+        height: 6,
+        overflow: "hidden",
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(0, 1fr))",
+        gridGap: 3,
+      }}
+    >
+      <CompletedBlocks />
+      <CurrentBlock/>
+      <UnCompletedBlocks />
+    </Grid>
+  );
+};
+
+export default ProgressBar;
