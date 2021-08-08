@@ -285,11 +285,13 @@ const Question = ({
       <Grid container justify="center">
         {questionResult !== null ? (
           <AnswerFeedback
+            t={t}
             nextQuestion={nextQuestion}
             streak={null}
             isCorrect={true}
+            isLastQuestion={last}
             title={questionResult}
-            desc={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing elit duis tristique sollicitudin nibh sit. Aliquam faucibus purus in massa tempor nec feugiat."}
+            desc={t(questionData.moreInfo)}
             bodyMarkdown={null}
           />
         ) : (
@@ -297,33 +299,18 @@ const Question = ({
             <Grid item sm={12} md={6} style={{ textAlign: "start" }}>
               {questionOpened === true ? (
                 <Fade>
-                  <Grid
-                    container
-                    justify="space-between"
-                    alignItems="flex-end"
-                    style={{ marginBottom: 20 }}
-                  >
-                    <Grid item>
-                      <p
-                        style={{ fontSize: "3em", fontWeight: 900, margin: 0 }}
-                      >
-                        {index + 1}{" "}
-                        <span style={{ opacity: 0.5, fontSize: "0.5em" }}>
-                          / {amountOfQuestions}
-                        </span>
-                      </p>
-                    </Grid>
-                    <Grid item>
-                      <h2 style={{ margin: "0 0 6px 0" }}>
+                  <Grid container>
+                    <Grid item xs={12}>
+                      <h1 style={{ lineHeight:"1.3", fontSize: "1.5em", marginBottom: 0 }}>
                         {t(questionData.title)}
-                      </h2>
+                      </h1>
                     </Grid>
                   </Grid>
                 </Fade>
               ) : null}
 
               {timeSinceOpened > showTextAfterTime ? (
-                <Fade>
+                <ReactReveal>
                   <StyledMarkdown style={{ marginBottom: 20 }}>
                     {t(questionData.text)}
                   </StyledMarkdown>
@@ -332,7 +319,7 @@ const Question = ({
                     questionData={questionData}
                     onSelectAnswer={onSelectAnswer}
                   />
-                </Fade>
+                </ReactReveal>
               ) : null}
             </Grid>
           </Grid>

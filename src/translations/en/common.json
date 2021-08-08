@@ -2,7 +2,8 @@
   "general": {
     "next": "Next",
     "madeByDU": "A test made in collaboration with",
-    "share": "Share this quiz",
+    "shareTest": "Share this test",
+    "shareQuestion": "Share this question",
     "questionsLeft": "questions left",
     "questionLeft": "question left!",
     "yes": "Yes",

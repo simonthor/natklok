@@ -2,7 +2,8 @@
   "general": {
     "next": "Nästa",
     "madeByDU": "Ett quiz gjort i samarbete med",
-    "share": "Dela quizzet",
+    "shareTest": "Dela detta test",
+    "shareQuestion": "Dela denna fråga",
     "questionsLeft": "frågor kvar",
     "questionLeft": "fråga kvar!",
     "yes": "Ja",

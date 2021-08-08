@@ -77,7 +77,7 @@ const Welcome = ({ t, hasStarted }) => {
           <Link to="/test">
             <StyledButton cinematicColor="#212058">{t("welcome.test")}</StyledButton>
           </Link>
-          <SocialShare shareText="Dela detta test"/>
+          <SocialShare shareText={t("general.shareTest")}/>
       </Grid>
     </Grid>
     <Grid container>
