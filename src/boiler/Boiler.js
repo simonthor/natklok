@@ -7,6 +7,8 @@ import { Loading } from "../components/general";
 import TestSlides from "../containers/TestSlides";
 import Welcome from "../containers/Welcome";
 import { PURPLE, HEIGHT } from "../util/constants";
+import getWindowSize from "../util/getWindowSize.js";
+
 // Lazy loading
 const Header = lazy(() => import("../containers/Header"));
 const Footer = lazy(() => import("../containers/Footer"));
@@ -26,9 +28,9 @@ const Boiler = () => {
         height={height}
         run={confettiRun}
         recycle={confettiRecycle}
-        confettiSource={{ x: 400, y: 200 }}
-        initialVelocityX={6}
-        initialVelocityY={8}
+        confettiSource={{ x: width / 2, y: 55 }}
+        initialVelocityX={3}
+        initialVelocityY={1}
       />
       <div
         style={{

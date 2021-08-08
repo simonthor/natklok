@@ -10,7 +10,7 @@ import { BLUE, PURPLE, WHITE, HEIGHT } from "../util/constants";
 import Mainlogo from "../assets/sakerhetskontrollen-logo.svg";
 import ListOfReviews from "../components/features/ListOfReviews";
 import keyframes from "../keyframes.css";
-import ShareOutlinedIcon from '@material-ui/icons/ShareOutlined';
+import SocialShare from "../components/features/SocialShare";
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
@@ -77,20 +77,7 @@ const Welcome = ({ t, hasStarted }) => {
           <Link to="/test">
             <StyledButton cinematicColor="#212058">{t("welcome.test")}</StyledButton>
           </Link>
-          <div style={{
-            display: "flex",
-            justifyContent: "center",
-          }}>
-            <div style={{
-              margin: 8,
-              padding: 8,
-              display: "flex",
-              alignItems: "center",
-            }}>
-              <ShareOutlinedIcon style={{marginRight: 5}}/>
-              <span style={{marginRight: 10}}>Dela detta test</span>
-            </div>
-          </div>
+          <SocialShare shareText="Dela detta test"/>
       </Grid>
     </Grid>
     <Grid container>
