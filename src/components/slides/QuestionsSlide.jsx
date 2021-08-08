@@ -5,7 +5,7 @@ import SwipeableViews from "react-swipeable-views";
 import stringEntropy from "fast-password-entropy";
 
 // Custom components
-import { AlignCenter, Fade, StyledButton, StyledMarkdown } from "../general";
+import { AlignCenter, Fade, StyledButton, StyledMarkdown, StyledTextField } from "../general";
 import ReactReveal from "react-reveal/Fade";
 import { Facebook, Twitter, Instagram } from "@material-ui/icons";
 
@@ -179,7 +179,7 @@ const PasswordCheck = ({ t, onSelectAnswer }) => {
         type="password"
         style={{ display: "none" }}
       />
-      <TextField
+      <StyledTextField
         inputProps={{ maxLength: 14 }}
         onChange={onChange}
         margin="normal"
@@ -187,7 +187,6 @@ const PasswordCheck = ({ t, onSelectAnswer }) => {
         autoFocus={true}
         type="password"
         variant="filled"
-        color="secondary"
         label={t("questions.passwordCheck.inputLabel")}
       />
       <button

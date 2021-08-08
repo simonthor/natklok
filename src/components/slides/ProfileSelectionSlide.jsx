@@ -27,13 +27,13 @@ const ProfileSelectionSlide = ({
           container
           direction="column"
           xs={12}
-          style={{ textAlign: "center", margin: "40px 0 20px 0" }}
+          style={{ textAlign: "center", margin: "0 0 20px 0" }}
         >
           <h2 style={{ margin: "0 0 10px 0", fontSize: 31, fontFamily: "Bungee, Roboto, sans-serif" }}>{t("profileSelection.title")}</h2>
           <p style={{ margin: "0 0 25px 0", fontSize: 19 }}>{t("profileSelection.subtitle")}</p>
         </Grid>
-        <Grid container xs={12} alignItems="center" justify="center">
-          <Grid item xs={11} sm={12} md={8} lg={6} xl={4}>
+        <Grid container alignItems="center" justify="center">
+          <Grid item xs={11} sm={12} md={8} lg={6} xl={6}>
             <Grid container xs={12} spacing={1}>
               <ProfilCheckbox
                 t={t}
@@ -80,7 +80,7 @@ const ProfileSelectionSlide = ({
 
 const ProfilCheckbox = ({ profileState, handleChange, name, t }) => {
   return (
-    <Grid item xs={6}>
+    <Grid item xs={12} sm={12} md={6}>
       <div
         style={{
           background: profileState[name] ? "#E2147E" : "rgba(0, 0, 0, 0.2)",
