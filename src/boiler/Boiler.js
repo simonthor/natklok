@@ -19,16 +19,16 @@ const Boiler = () => {
   const [isFinished, setIsFinished] = useState(false);
   const [confettiRecycle, setconfettiRecycle] = useState(true);
   const [confettiRun, setconfettiRun] = useState(false);
-  const width = window.innerWidth;
-  const height = window.innerHeight;
+  const windowSize = getWindowSize();
+
   return (
     <Suspense fallback={<Loading />}>
       <Confetti
-        width={width}
-        height={height}
+        width={windowSize.width}
+        height={windowSize.height}
         run={confettiRun}
         recycle={confettiRecycle}
-        confettiSource={{ x: width / 2, y: 55 }}
+        confettiSource={{ x: windowSize.width / 2, y: 55 }}
         initialVelocityX={3}
         initialVelocityY={1}
       />
