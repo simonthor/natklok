@@ -70,7 +70,7 @@ const ProfileSelectionSlide = ({
                 handleChange={handleProfileCheckboxChecked}
                 name={STREAMING_PROFILE.title}
                 icon={<MovieOutlinedIcon />}
-                checkedIcon={<MovieIcon style={{color: "rgba(255,255,255,0.8)"}}/>}
+                checkedIcon={<MovieIcon style={{color: "rgba(0,0,0,0.7)"}}/>}
                 color={STREAMING_PROFILE.color}
                 dark={STREAMING_PROFILE.dark}
               />
@@ -110,9 +110,11 @@ const ProfilCheckbox = ({ profileState, handleChange, name, icon, checkedIcon, c
         style={{
           background: profileState[name] ? color : "rgba(0, 0, 0, 0.2)",
           borderRadius: 8,
+          border: profileState[name] ? "4px solid rgba(0, 0, 0, 0.2)" : "4px solid transparent",
           width: "100%",
-          padding: "5px 0",
+          padding: "3px 0",
           color: profileState[name]? dark? "rgba(0, 0, 0, 0.7)" : "rgba(255, 255, 255, 0.8)" : "white",
+          transition: "all 0.2s",
         }}
       >
         <FormControlLabel

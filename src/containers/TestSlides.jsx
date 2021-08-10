@@ -73,8 +73,7 @@ const TestSlides = ({
       justifyContent: "center",
       alignItems: "center",
       position: "relative",
-      overflow: "hidden",
-      background: PURPLE
+      overflow: "hidden"
     }}
     id="formContainer">
       <SwipeableViews index={slideIndex}>

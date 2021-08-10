@@ -23,7 +23,7 @@ export const GAMING_PROFILE = {
 export const STREAMING_PROFILE = {
   "title": "STREAMING_PROFILE",
   "color": "#FB733F",
-  "dark": false
+  "dark": true
 };
 export const SOCIAL_MEDIA_PROFILE = {
   "title": "SOCIAL_MEDIA_PROFILE",
