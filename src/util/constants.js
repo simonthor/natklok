@@ -10,10 +10,26 @@ export const BLACK = "#111111";
 export const WHITE = "#FFFFFF";
 
 // Profiles
-export const BANK_PROFILE = "BANK_PROFILE";
-export const GAMING_PROFILE = "GAMING_PROFILE";
-export const STREAMING_PROFILE = "STREAMING_PROFILE";
-export const SOCIAL_MEDIA_PROFILE = "SOCIAL_MEDIA_PROFILE";
+export const BANK_PROFILE = {
+  "title": "BANK_PROFILE",
+  "color": "#0EE08C",
+  "dark": true
+};
+export const GAMING_PROFILE = {
+  "title": "GAMING_PROFILE",
+  "color": "#FDCF35",
+  "dark": true
+};
+export const STREAMING_PROFILE = {
+  "title": "STREAMING_PROFILE",
+  "color": "#FB733F",
+  "dark": false
+};
+export const SOCIAL_MEDIA_PROFILE = {
+  "title": "SOCIAL_MEDIA_PROFILE",
+  "color": "#FF3854",
+  "dark": false
+};
 export const GENERAL_PROFILE = "GENERAL_PROFILE";
 
 // Categories

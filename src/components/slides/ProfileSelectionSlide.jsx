@@ -3,6 +3,15 @@ import React from "react";
 import { withTranslation } from "react-i18next";
 import ReactReveal from "react-reveal/Fade";
 
+import AccountBalanceWalletOutlinedIcon from '@material-ui/icons/AccountBalanceWalletOutlined';
+import SportsEsportsOutlinedIcon from '@material-ui/icons/SportsEsportsOutlined';
+import MovieOutlinedIcon from '@material-ui/icons/MovieOutlined';
+import ShareOutlinedIcon from '@material-ui/icons/ShareOutlined';
+import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
+import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
+import MovieIcon from '@material-ui/icons/Movie';
+import ShareIcon from '@material-ui/icons/Share';
+
 // Custom components
 import { AlignCenter, StyledButton } from "../general";
 import {
@@ -39,25 +48,41 @@ const ProfileSelectionSlide = ({
                 t={t}
                 profileState={profileState}
                 handleChange={handleProfileCheckboxChecked}
-                name={BANK_PROFILE}
+                name={BANK_PROFILE.title}
+                icon={<AccountBalanceWalletOutlinedIcon />}
+                checkedIcon={<AccountBalanceWalletIcon style={{color: "rgba(0,0,0,0.7)"}}/>}
+                color={BANK_PROFILE.color}
+                dark={BANK_PROFILE.dark}
               />
               <ProfilCheckbox
                 t={t}
                 profileState={profileState}
                 handleChange={handleProfileCheckboxChecked}
-                name={GAMING_PROFILE}
+                name={GAMING_PROFILE.title}
+                icon={<SportsEsportsOutlinedIcon />}
+                checkedIcon={<SportsEsportsIcon style={{color: "rgba(0,0,0,0.7)"}}/>}
+                color={GAMING_PROFILE.color}
+                dark={GAMING_PROFILE.dark}
               />
               <ProfilCheckbox
                 t={t}
                 profileState={profileState}
                 handleChange={handleProfileCheckboxChecked}
-                name={STREAMING_PROFILE}
+                name={STREAMING_PROFILE.title}
+                icon={<MovieOutlinedIcon />}
+                checkedIcon={<MovieIcon style={{color: "rgba(255,255,255,0.8)"}}/>}
+                color={STREAMING_PROFILE.color}
+                dark={STREAMING_PROFILE.dark}
               />
               <ProfilCheckbox
                 t={t}
                 profileState={profileState}
                 handleChange={handleProfileCheckboxChecked}
-                name={SOCIAL_MEDIA_PROFILE}
+                name={SOCIAL_MEDIA_PROFILE.title}
+                icon={<ShareOutlinedIcon />}
+                checkedIcon={<ShareIcon style={{color: "rgba(255,255,255,0.8)"}}/>}
+                color={SOCIAL_MEDIA_PROFILE.color}
+                dark={SOCIAL_MEDIA_PROFILE.dark}
               />
             </Grid>
             <Grid
@@ -78,15 +103,16 @@ const ProfileSelectionSlide = ({
   );
 };
 
-const ProfilCheckbox = ({ profileState, handleChange, name, t }) => {
+const ProfilCheckbox = ({ profileState, handleChange, name, icon, checkedIcon, color, dark, t }) => {
   return (
     <Grid item xs={12} sm={12} md={6}>
       <div
         style={{
-          background: profileState[name] ? "#E2147E" : "rgba(0, 0, 0, 0.2)",
+          background: profileState[name] ? color : "rgba(0, 0, 0, 0.2)",
           borderRadius: 8,
           width: "100%",
-          padding: "5px 0"
+          padding: "5px 0",
+          color: profileState[name]? dark? "rgba(0, 0, 0, 0.7)" : "rgba(255, 255, 255, 0.8)" : "white",
         }}
       >
         <FormControlLabel
@@ -95,10 +121,12 @@ const ProfilCheckbox = ({ profileState, handleChange, name, t }) => {
               checked={profileState[name]}
               onChange={handleChange}
               name={name}
+              icon={icon}
+              checkedIcon={checkedIcon}
               style={{color: "white"}}
             />
           }
-          style={{ paddingLeft: 12 }}
+          style={{ paddingLeft: 5, marginLeft: 0, width: "100%" }}
           label={t("profileSelection.profiles." + name)}
         />
       </div>
