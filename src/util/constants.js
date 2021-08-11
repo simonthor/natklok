@@ -81,9 +81,10 @@ export const QUESTIONS = [
     type: PASSWORD_INPUT,
     forProfile: GENERAL_PROFILE,
     title: "questions.passwordCheck.title",
+    profileBasedTitleVars: ["profileBasedService"],
     text: "questions.passwordCheck.text",
     moreInfo: "questions.passwordCheck.moreInfo",
-    emojis: ["🔒", "🔑"],
+    emojis: ["📱", "🔒"],
     readMoreLink:
       "https://sakerhetskollen.se/testa-din-sakerhet/ar-du-saker-pa-ditt-losenord",
     options: [
@@ -94,6 +95,32 @@ export const QUESTIONS = [
       },
       { text: "questions.publicWifi.option3", score: 0.7 },
     ],
+    profileBasedService: {
+      BANK_PROFILE: {
+        name: "questions.passwordCheck.profileBasedService.BANK_PROFILE",
+        color: "#0abf53",
+        secondColor: "#fff",
+        thirdColor: "#00112c"
+      },
+      GAMING_PROFILE: {
+        name: "questions.passwordCheck.profileBasedService.GAMING_PROFILE",
+        color: "#2a475e",
+        secondColor: "#c7d5e0",
+        thirdColor: "#66c0f4"
+      },
+      STREAMING_PROFILE: {
+        name: "questions.passwordCheck.profileBasedService.STREAMING_PROFILE",
+        color: "#f3f6f8",
+        secondColor: "#282828",
+        thirdColor: "#ff0000"
+      },
+      SOCIAL_MEDIA_PROFILE: {
+        name: "questions.passwordCheck.profileBasedService.SOCIAL_MEDIA_PROFILE",
+        color: "#f5f8fa",
+        secondColor: "#14171a",
+        thirdColor: "#1da1f2"
+      }
+    }
   },
   {
     category: PUBLIC_WIFI_QUESTION,

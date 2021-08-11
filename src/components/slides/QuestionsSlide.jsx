@@ -5,10 +5,15 @@ import SwipeableViews from "react-swipeable-views";
 import stringEntropy from "fast-password-entropy";
 
 // Custom components
-import { AlignCenter, Fade, StyledButton, StyledMarkdown, StyledTextField } from "../general";
+import {
+  AlignCenter,
+  Fade,
+  StyledButton,
+  StyledMarkdown,
+  StyledTextField,
+} from "../general";
 import AnswerFeedback from "./AnswerFeedback";
 import ReactReveal from "react-reveal/Fade";
-import { Facebook, Twitter, Instagram } from "@material-ui/icons";
 import StyledLink from "../general/StyledLink";
 import {
   YES_NO,
@@ -47,10 +52,11 @@ const Questions = ({
   nextSlide,
   questions,
   score,
+  profileStates,
   increaseScore,
   setCurrentQuestionIndex,
   setconfettiRun,
-  setconfettiRecycle
+  setconfettiRecycle,
 }) => {
   const [questionIndex, setQuestionIndex] = useState(0);
 
@@ -78,6 +84,7 @@ const Questions = ({
             amountOfQuestions={questions.length}
             questionData={questionData}
             nextQuestion={nextQuestion}
+            profileStates={profileStates}
             handleIncrementScore={handleIncrementScore}
             setconfettiRun={setconfettiRun}
             setconfettiRecycle={setconfettiRecycle}
@@ -88,18 +95,19 @@ const Questions = ({
   );
 };
 
-const AnswerOptions = ({ t, questionData, onSelectAnswer }) => {
+//The Question slide is divided into a Question (header) section and an AnswerOptions (body) section
+const AnswerOptions = ({ t, questionData, onSelectAnswer, profileForQuestion }) => {
   if (questionData.type === YES_NO) {
     return (
       <>
         <StyledButton
-          style={{ margin: "6px 0",width: "100%" }}
+          style={{ margin: "6px 0", width: "100%" }}
           onClick={() => onSelectAnswer(questionData.yes_score)}
         >
           {t("general.yes")}
         </StyledButton>
         <StyledButton
-          style={{ margin: "6px 0",width: "100%" }}
+          style={{ margin: "6px 0", width: "100%" }}
           onClick={() => onSelectAnswer(questionData.no_score)}
         >
           {t("general.no")}
@@ -111,7 +119,10 @@ const AnswerOptions = ({ t, questionData, onSelectAnswer }) => {
       <>
         {questionData.options.map((option) => (
           <div style={{ margin: "6px 0" }}>
-            <StyledButton onClick={() => onSelectAnswer(option.score)} style={{width: "100%", textAlign: "center"}}>
+            <StyledButton
+              onClick={() => onSelectAnswer(option.score)}
+              style={{ width: "100%", textAlign: "center" }}
+            >
               {t(option.text)}
             </StyledButton>
           </div>
@@ -119,16 +130,20 @@ const AnswerOptions = ({ t, questionData, onSelectAnswer }) => {
       </>
     );
   } else if (questionData.type === PASSWORD_INPUT) {
-    return <PasswordCheck onSelectAnswer={onSelectAnswer} t={t} />;
+    return <PasswordCheck onSelectAnswer={onSelectAnswer} questionData={questionData} profileForQuestion={profileForQuestion} t={t} />;
   }
 };
 
-const PasswordCheck = ({ t, onSelectAnswer }) => {
+// Type: Interactive question
+// Name: Logging in safe
+// Description: A login form customized to fit the profile, which tests the user for the strength of their password.
+const PasswordCheck = ({ t, profileForQuestion, questionData, onSelectAnswer }) => {
   const [password, setPassword] = useState("");
+  const service = t(questionData.profileBasedService[profileForQuestion].name).split(" ").splice(-1);
+
   const onChange = (e) => {
     setPassword(e.target.value);
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     //console.log(stringEntropy(password));
@@ -157,59 +172,105 @@ const PasswordCheck = ({ t, onSelectAnswer }) => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-    >
-      <TextField
-        id="disable-pwd-mgr-1"
-        name="disable-pwd-mgr-1"
-        value="disable-pwd-mgr-1"
-        type="password"
-        style={{ display: "none" }}
-      />
-      <TextField
-        id="disable-pwd-mgr-2"
-        name="disable-pwd-mgr-2"
-        value="disable-pwd-mgr-2"
-        type="password"
-        style={{ display: "none" }}
-      />
-      <TextField
-        id="disable-pwd-mgr-3"
-        name="disable-pwd-mgr-3"
-        value="disable-pwd-mgr-3"
-        type="password"
-        style={{ display: "none" }}
-      />
-      <StyledTextField
-        inputProps={{ maxLength: 14 }}
-        onChange={onChange}
-        margin="normal"
-        fullWidth
-        autoFocus={true}
-        type="password"
-        variant="filled"
-        label={t("questions.passwordCheck.inputLabel")}
-      />
-      <button
-        type="submit"
-        style={{
-          borderRadius: 4,
-          cursor: "pointer",
-          fontSize: "1.1em",
-          background: PALEBLUE,
-          color: PURPLE,
-          padding: "14px 50px",
-          fontWeight: "800",
-          display: "inline-block",
-          margin: 0,
-          transition: "0.3s ease-in-out",
-          border: "none",
-        }}
-      >
-        {t("general.next")}
-      </button>
-    </form>
+    <>
+      <Grid container justify="center">
+        <Grid item xs={12} sm={12} md={11} style={{
+          background: questionData.profileBasedService[profileForQuestion].color,
+          padding: 30,
+          marginTop: 30,
+          borderRadius: 8,
+          position: "relative",
+          boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.2)",
+        }}>
+          <span style={{
+            textTransform: "uppercase",
+            fontWeight: "bold",
+            fontFamily: "sans-serif",
+            letterSpacing: -3,
+            fontSize: "1.8em",
+            color: questionData.profileBasedService[profileForQuestion].thirdColor
+          }}>{service}</span>
+          <span style={{
+            marginLeft: 10,
+            color: questionData.profileBasedService[profileForQuestion].thirdColor
+          }}>{questionData}</span>
+          <h2 style={{color: questionData.profileBasedService[profileForQuestion].thirdColor}}>Skapa ett konto</h2>
+          <form onSubmit={handleSubmit}>
+            <StyledTextField
+              margin="normal"
+              fullWidth
+              disabled
+              defaultValue="bamse@ssf.se"
+              variant="filled"
+              label="Ange mejladress"
+              style={{ marginTop: 5}}
+              color={questionData.profileBasedService[profileForQuestion].secondColor}
+            />
+            <TextField
+              id="disable-pwd-mgr-1"
+              name="disable-pwd-mgr-1"
+              value="disable-pwd-mgr-1"
+              type="password"
+              style={{ display: "none" }}
+            />
+            <TextField
+              id="disable-pwd-mgr-2"
+              name="disable-pwd-mgr-2"
+              value="disable-pwd-mgr-2"
+              type="password"
+              style={{ display: "none" }}
+            />
+            <TextField
+              id="disable-pwd-mgr-3"
+              name="disable-pwd-mgr-3"
+              value="disable-pwd-mgr-3"
+              type="password"
+              style={{ display: "none" }}
+            />
+            <StyledTextField
+              inputProps={{ maxLength: 14 }}
+              onChange={onChange}
+              margin="normal"
+              fullWidth
+              autoFocus={true}
+              type="password"
+              variant="filled"
+              label={t("questions.passwordCheck.inputLabel")}
+              color={questionData.profileBasedService[profileForQuestion].secondColor}
+            />
+            <StyledTextField
+              inputProps={{ maxLength: 14 }}
+              onChange={onChange}
+              margin="normal"
+              fullWidth
+              type="password"
+              variant="filled"
+              label={t("questions.passwordCheck.confirmLabel")}
+              color={questionData.profileBasedService[profileForQuestion].secondColor}
+            />
+            <button
+              type="submit"
+              style={{
+                width: "100%",
+                borderRadius: 5,
+                cursor: "pointer",
+                background: questionData.profileBasedService[profileForQuestion].thirdColor,
+                color: questionData.profileBasedService[profileForQuestion].color,
+                fontSize: "1.1em",
+                padding: "15px 0",
+                fontWeight: "800",
+                display: "inline-block",
+                margin: "20px 0 0 0",
+                transition: "0.3s ease-in-out",
+                border: "none",
+              }}
+            >
+              {t("general.next")}
+            </button>
+          </form>
+        </Grid>
+      </Grid>
+    </>
   );
 };
 
@@ -219,10 +280,11 @@ const Question = ({
   index,
   amountOfQuestions,
   questionData,
+  profileStates,
   nextQuestion,
   handleIncrementScore,
   setconfettiRun,
-  setconfettiRecycle
+  setconfettiRecycle,
 }) => {
   const [questionResult, setQuestionResult] = useState(null);
   const [questionResultDesc, setQuestionResultDesc] = useState(null);
@@ -232,6 +294,19 @@ const Question = ({
     Math.random() > 0.5 ? "row" : "row-reverse"
   );
   const [emojiArt] = useState(generateEmojiArt(questionData.emojis));
+
+  let chosenProfiles = [];
+  for(var i in profileStates)
+    chosenProfiles.push(i);
+  chosenProfiles.shift();
+  const profileForQuestion = chosenProfiles[Math.floor(Math.random()*chosenProfiles.length)];
+
+  let questionTitle = t(questionData.title)
+  if (questionData.profileBasedTitleVars !== undefined) {
+    questionData.profileBasedTitleVars.forEach((value) => {
+      questionTitle = questionTitle.replace("{" + value + "}", t(questionData[value][profileForQuestion].name));
+    });
+  }
 
   const last = index + 1 === amountOfQuestions;
   const showTextAfterTime = t(questionData.title).length / 25;
@@ -301,8 +376,14 @@ const Question = ({
                 <Fade>
                   <Grid container>
                     <Grid item xs={12}>
-                      <h1 style={{ lineHeight:"1.3", fontSize: "1.5em", marginBottom: 0 }}>
-                        {t(questionData.title)}
+                      <h1
+                        style={{
+                          lineHeight: "1.3",
+                          fontSize: "1.5em",
+                          marginBottom: 0,
+                        }}
+                      >
+                        {questionTitle}
                       </h1>
                     </Grid>
                   </Grid>
@@ -317,6 +398,7 @@ const Question = ({
                   <AnswerOptions
                     t={t}
                     questionData={questionData}
+                    profileForQuestion={profileForQuestion}
                     onSelectAnswer={onSelectAnswer}
                   />
                 </ReactReveal>

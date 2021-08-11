@@ -68,10 +68,19 @@
       "option3": "They can see everything I do."
     },
     "passwordCheck": {
-      "title": "Create the strongest password",
-      "text": "You can use 14 characters to create such a hard-cracked password as possible. Bonus points if it is easy to remember too!",
+      "title": "You are creating a new account at {profileBasedService}, how can you do that as safely as possible?",
+      "text": "",
+      "profileBasedService": {
+        "BANK_PROFILE": "the financial manager Blanco",
+        "GAMING_PROFILE": "the game vendor Yumpu",
+        "STREAMING_PROFILE": "the streaming service Oslagbar",
+        "SOCIAL_MEDIA_PROFILE": "the social media platform Kvitter"
+      },
       "moreInfo": "With the help of special characters, longer passwords, unusual words, etc. you make it much harder to crack your password. ",
-      "inputLabel": "Write your password"
+      "serviceSlogan": "Everything, in the same place.",
+      "enterEmailLabel": "E-mail address",
+      "inputLabel": "Enter new password",
+      "confirmLabel": "Confirm your password"
     }
   },
   "result":{

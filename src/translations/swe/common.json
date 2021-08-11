@@ -68,10 +68,19 @@
       "option3": "De kan se allt jag gör."
     },
     "passwordCheck": {
-      "title": "Skapa det starkaste lösenordet",
-      "text": "Du har 14 karaktärer på dig att skapa ett så svår-knäckt lösenord som möjligt. Bonus-poäng ifall det är enkelt att komma ihåg också!",
+      "title": "Du ska skapa ett konto hos {profileBasedService}, hur gör du för att vara så säker som möjligt?",
+      "profileBasedService": {
+        "BANK_PROFILE": "finansförvaltaren Blanco",
+        "GAMING_PROFILE": "spelförsäljaren Yumpu",
+        "STREAMING_PROFILE": "streamingtjänsten Oslagbar",
+        "SOCIAL_MEDIA_PROFILE": "sociala-media-plattformen Kvitter"
+      },
+      "text": "",
       "moreInfo": "Med hjälp av speciella karaktärer, längre lösenord, ovanliga ord, mm. gör du det mycket svårare att knäcka ditt lösenord. ",
-      "inputLabel": "Skriv ditt lösenord"
+      "serviceSlogan": "Allting samlat.",
+      "enterEmailLabel": "Ange e-postadress",
+      "inputLabel": "Skriv ditt lösenord",
+      "confirmLabel": "Bekräfta ditt lösenord"
     }
   },
   "result":{
