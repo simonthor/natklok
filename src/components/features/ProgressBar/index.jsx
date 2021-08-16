@@ -2,7 +2,7 @@ import { Grid } from "@material-ui/core";
 import React from "react";
 import CurrentBlock from "./CurrentBlock";
 
-const ProgressBar = ({ t, currentQuestionIndex = 1, totalQuestions = 1 }) => {
+const ProgressBar = ({ t, currentQuestionIndex = 1, totalQuestions = 1, height = 6, lineWidth = 2 }) => {
   const CompletedBlocks = () => {
     return [...Array(currentQuestionIndex - 1)].map((e, i) => (
       <div
@@ -25,7 +25,7 @@ const ProgressBar = ({ t, currentQuestionIndex = 1, totalQuestions = 1 }) => {
     <Grid
       container
       style={{
-        height: 6,
+        height,
         overflow: "hidden",
         display: "grid",
         gridTemplateColumns: "repeat(auto-fit, minmax(0, 1fr))",
@@ -33,7 +33,7 @@ const ProgressBar = ({ t, currentQuestionIndex = 1, totalQuestions = 1 }) => {
       }}
     >
       <CompletedBlocks />
-      <CurrentBlock />
+      <CurrentBlock lineWidth={lineWidth} />
       <UnCompletedBlocks />
     </Grid>
   );

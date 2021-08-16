@@ -1,6 +1,6 @@
 import React from "react";
 
-const CurrentBlock = () => {
+const CurrentBlock = ({ lineWidth = 2}) => {
   return (
     <div
       style={{
@@ -19,7 +19,7 @@ const CurrentBlock = () => {
           top: 0,
           left: "-100%",
           width: "100%",
-          height: 2,
+          height: lineWidth,
           background: "linear-gradient(90deg, transparent, #fff)",
           animation: "progressBarAnimationTop 4s linear infinite",
         }}
@@ -31,7 +31,7 @@ const CurrentBlock = () => {
           right: 0,
           top: "-100%",
           height: "100%",
-          width: 2,
+          width: lineWidth,
           background: "linear-gradient(180deg, transparent, #fff)",
           animation: "progressBarAnimationRight 4s linear infinite",
           animationDelay: "1s",
@@ -44,7 +44,7 @@ const CurrentBlock = () => {
           bottom: 0,
           right: "-100%",
           width: "100%",
-          height: 2,
+          height: lineWidth,
           background: "linear-gradient(270deg, transparent, #fff)",
           animation: "progressBarAnimationBottom 4s linear infinite",
           animationDelay: "2s",
@@ -57,7 +57,7 @@ const CurrentBlock = () => {
           left: 0,
           bottom: "-100%",
           height: "100%",
-          width: 2,
+          width: lineWidth,
           background: "linear-gradient(0deg, transparent, #fff)",
           animation: "progressBarAnimationLeft 4s linear infinite",
           animationDelay: "3s",
