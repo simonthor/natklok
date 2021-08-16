@@ -7,7 +7,7 @@ import {
   Radio,
 } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
-import { PINK, PURPLE, WHITE } from "../../util/constants";
+import { PINK, PURPLE, WHITE } from "util/constants";
 import i18next from "i18next";
 import { withTranslation } from "react-i18next";
 import TranslateOutlinedIcon from "@material-ui/icons/TranslateOutlined";

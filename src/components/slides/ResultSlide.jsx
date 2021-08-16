@@ -3,11 +3,11 @@ import React, { useEffect, useState } from "react";
 import { withTranslation } from "react-i18next";
 
 // Custom components
-import { AlignCenter, Fade } from "../general";
+import { AlignCenter, Fade } from "components/general";
 
-import gauge_img from "../../assets/gauge.png";
-import pointer_img from "../../assets/pointer.png";
-import StyledLink from "../general/StyledLink";
+import gauge_img from "assets/gauge.png";
+import pointer_img from "assets/pointer.png";
+import StyledLink from "components/general/StyledLink";
 import { Facebook, Instagram, Twitter } from "@material-ui/icons";
 
 const clamp = (value, max) => {

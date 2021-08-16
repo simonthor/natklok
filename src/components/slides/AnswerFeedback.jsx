@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { withTranslation } from "react-i18next";
 import Fade from "react-reveal/Fade";
-import { StyledButton, StyledMarkdown } from "../general";
+import { StyledButton, StyledMarkdown } from "components/general";
 import { Grid } from "@material-ui/core";
 import WhatshotIcon from "@material-ui/icons/Whatshot";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import SocialShare from "../features/SocialShare";
-import { WHITE, PALEBLUE, PURPLE } from "../../util/constants";
+import SocialShare from "components/features/SocialShare";
+import { WHITE, PALEBLUE, PURPLE } from "util/constants";
 
 const AnswerFeedbackSlide = ({
   t,

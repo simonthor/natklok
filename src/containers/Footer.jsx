@@ -4,9 +4,9 @@ import React from "react";
 import { withTranslation } from "react-i18next";
 import InstagramIcon from "@material-ui/icons/Instagram";
 // Custom
-import { AlignCenter } from "../components/general";
+import { AlignCenter } from "components/general";
 import { Facebook, Twitter } from "@material-ui/icons";
-import ProgressBar from "../components/features/ProgressBar";
+import ProgressBar from "components/features/ProgressBar";
 
 const Footer = ({ t, currentQuestion, totalQuestions, isFinished, style }) => {
     return (

@@ -7,9 +7,9 @@ import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 
 // Custom components
 import { AlignCenter, Logo, StyledNavLink } from "../components/general";
-import ProgressBar from "../components/features/ProgressBar";
-import Mainlogo from "../assets/sakerhetskontrollen-logo.svg";
-import LangChooser from "../components/features/LangChooser";
+import ProgressBar from "components/features/ProgressBar";
+import Mainlogo from "assets/sakerhetskontrollen-logo.svg";
+import LangChooser from "components/features/LangChooser";
 
 const Header = ({ t, currentQuestionIndex, totalQuestions, isFinished }) => {
   const ContentBeforeStart = () => (

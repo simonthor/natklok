@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { PURPLE,PALEBLUE } from "../../util/constants";
+import { PURPLE,PALEBLUE } from "util/constants";
 
 
 export default ({
