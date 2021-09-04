@@ -2,7 +2,7 @@ import { Grid, Hidden, Input, TextField } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { withTranslation } from "react-i18next";
 import SwipeableViews from "react-swipeable-views";
-import stringEntropy from "fast-password-entropy";
+import PwdSecurityModal from "../features/PwdSecurity";
 
 // Custom components
 import {
@@ -96,7 +96,7 @@ const Questions = ({
 };
 
 //The Question slide is divided into a Question (header) section and an AnswerOptions (body) section
-const AnswerOptions = ({ t, questionData, onSelectAnswer, profileForQuestion }) => {
+const AnswerOptions = ({ t, questionData, onSelectAnswer, profileForQuestion, setChangedTitle }) => {
   if (questionData.type === YES_NO) {
     return (
       <>
@@ -130,148 +130,75 @@ const AnswerOptions = ({ t, questionData, onSelectAnswer, profileForQuestion }) 
       </>
     );
   } else if (questionData.type === PASSWORD_INPUT) {
-    return <PasswordCheck onSelectAnswer={onSelectAnswer} questionData={questionData} profileForQuestion={profileForQuestion} t={t} />;
+  return <PasswordCheck onSelectAnswer={onSelectAnswer} questionData={questionData} profileForQuestion={profileForQuestion} t={t} setChangedTitle={setChangedTitle} />;
   }
 };
 
 // Type: Interactive question
 // Name: Logging in safe
 // Description: A login form customized to fit the profile, which tests the user for the strength of their password.
-const PasswordCheck = ({ t, profileForQuestion, questionData, onSelectAnswer }) => {
+const PasswordCheck = ({ t, profileForQuestion, questionData, onSelectAnswer, setChangedTitle }) => {
   const [password, setPassword] = useState("");
-  const service = t(questionData.profileBasedService[profileForQuestion].name).split(" ").splice(-1);
-
-  const onChange = (e) => {
-    setPassword(e.target.value);
-  };
+  const [showSecond, setShowSecond] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
-    //console.log(stringEntropy(password));
-    let score = stringEntropy(password) / 92; // 92 seems to be the max for 14 chars
+    //console.log(score);
+    let score = Math.random(0,1); // 92 seems to be the max for 14 chars
     if (score > 0.8) {
       onSelectAnswer(
         score,
-        "Utmärkt lösenord! (" + stringEntropy(password) + "/95 entropi)"
+        "Utmärkt lösenord! (" + score + "/95 entropi)"
       );
     } else if (score > 0.6) {
       onSelectAnswer(
         score,
-        "Bra lösenord! (" + stringEntropy(password) + "/95 entropi)"
+        "Bra lösenord! (" + score + "/95 entropi)"
       );
     } else if (score > 0.4) {
       onSelectAnswer(
         score,
-        "Helt okej lösenord. (" + stringEntropy(password) + "/95 entropi)"
+        "Helt okej lösenord. (" + score + "/95 entropi)"
       );
     } else {
       onSelectAnswer(
         score,
-        "Dåligt lösenord... (" + stringEntropy(password) + "/95 entropi)"
+        "Dåligt lösenord... (" + score + "/95 entropi)"
       );
     }
   };
+  const handleClick = () => {
+    setChangedTitle(t("questions.passwordCheck.secondTitle").replace("{password}", password));
+    setShowSecond(true);
+  };
 
-  return (
-    <>
-      <Grid container justify="center">
-        <Grid item xs={12} sm={12} md={11} style={{
-          background: questionData.profileBasedService[profileForQuestion].color,
-          padding: 30,
-          marginTop: 30,
-          borderRadius: 8,
-          position: "relative",
-          boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.2)",
-        }}>
-          <span style={{
-            textTransform: "uppercase",
-            fontWeight: "bold",
-            fontFamily: "sans-serif",
-            letterSpacing: -3,
-            fontSize: "1.8em",
-            color: questionData.profileBasedService[profileForQuestion].thirdColor
-          }}>{service}</span>
-          <span style={{
-            marginLeft: 10,
-            color: questionData.profileBasedService[profileForQuestion].thirdColor
-          }}>{questionData}</span>
-          <h2 style={{color: questionData.profileBasedService[profileForQuestion].thirdColor}}>Skapa ett konto</h2>
-          <form onSubmit={handleSubmit}>
-            <StyledTextField
-              margin="normal"
-              fullWidth
-              disabled
-              defaultValue="bamse@ssf.se"
-              variant="filled"
-              label="Ange mejladress"
-              style={{ marginTop: 5}}
-              color={questionData.profileBasedService[profileForQuestion].secondColor}
-            />
-            <TextField
-              id="disable-pwd-mgr-1"
-              name="disable-pwd-mgr-1"
-              value="disable-pwd-mgr-1"
-              type="password"
-              style={{ display: "none" }}
-            />
-            <TextField
-              id="disable-pwd-mgr-2"
-              name="disable-pwd-mgr-2"
-              value="disable-pwd-mgr-2"
-              type="password"
-              style={{ display: "none" }}
-            />
-            <TextField
-              id="disable-pwd-mgr-3"
-              name="disable-pwd-mgr-3"
-              value="disable-pwd-mgr-3"
-              type="password"
-              style={{ display: "none" }}
-            />
-            <StyledTextField
-              inputProps={{ maxLength: 14 }}
-              onChange={onChange}
-              margin="normal"
-              fullWidth
-              autoFocus={true}
-              type="password"
-              variant="filled"
-              label={t("questions.passwordCheck.inputLabel")}
-              color={questionData.profileBasedService[profileForQuestion].secondColor}
-            />
-            <StyledTextField
-              inputProps={{ maxLength: 14 }}
-              onChange={onChange}
-              margin="normal"
-              fullWidth
-              type="password"
-              variant="filled"
-              label={t("questions.passwordCheck.confirmLabel")}
-              color={questionData.profileBasedService[profileForQuestion].secondColor}
-            />
-            <button
-              type="submit"
-              style={{
-                width: "100%",
-                borderRadius: 5,
-                cursor: "pointer",
-                background: questionData.profileBasedService[profileForQuestion].thirdColor,
-                color: questionData.profileBasedService[profileForQuestion].color,
-                fontSize: "1.1em",
-                padding: "15px 0",
-                fontWeight: "800",
-                display: "inline-block",
-                margin: "20px 0 0 0",
-                transition: "0.3s ease-in-out",
-                border: "none",
-              }}
+  if (showSecond) {
+    return (
+      <>
+        {questionData.options.map((option) => (
+          <div style={{ margin: "6px 0" }}>
+            <StyledButton
+              onClick={() => onSelectAnswer(option.score)}
+              style={{ width: "100%", textAlign: "center" }}
             >
-              {t("general.next")}
-            </button>
-          </form>
-        </Grid>
-      </Grid>
-    </>
-  );
+              {t(option.text)}
+            </StyledButton>
+          </div>
+        ))}
+      </>
+    );
+  } else {
+    return(
+      <>
+      <PwdSecurityModal t={t} profileForQuestion={profileForQuestion} questionData={questionData} setPassword={setPassword} />
+      <StyledButton
+        style={{ margin: "20px 0", width: "100%", textAlign: "center" }}
+        disabled={password.length > 0 ? false : true}
+        onClick={handleClick}
+      >{t("test.nextQuestion")}
+      </StyledButton>
+      </>
+    );
+  };
 };
 
 const Question = ({
@@ -286,6 +213,7 @@ const Question = ({
   setconfettiRun,
   setconfettiRecycle,
 }) => {
+  const [changedTitle, setChangedTitle] = useState(null);
   const [questionResult, setQuestionResult] = useState(null);
   const [questionResultDesc, setQuestionResultDesc] = useState(null);
   const [questionOpened, setQuestionOpened] = useState(false);
@@ -301,7 +229,7 @@ const Question = ({
   chosenProfiles.shift();
   const profileForQuestion = chosenProfiles[Math.floor(Math.random()*chosenProfiles.length)];
 
-  let questionTitle = t(questionData.title)
+  let questionTitle = t(questionData.title);
   if (questionData.profileBasedTitleVars !== undefined) {
     questionData.profileBasedTitleVars.forEach((value) => {
       questionTitle = questionTitle.replace("{" + value + "}", t(questionData[value][profileForQuestion].name));
@@ -309,7 +237,7 @@ const Question = ({
   }
 
   const last = index + 1 === amountOfQuestions;
-  const showTextAfterTime = t(questionData.title).length / 25;
+  const showTextAfterTime = 0;
   let streak = 0;
 
   const onSelectAnswer = (addedScore, resultText = "") => {
@@ -383,7 +311,7 @@ const Question = ({
                           marginBottom: 0,
                         }}
                       >
-                        {questionTitle}
+                        {changedTitle !== null ? changedTitle : questionTitle}
                       </h1>
                     </Grid>
                   </Grid>
@@ -400,6 +328,7 @@ const Question = ({
                     questionData={questionData}
                     profileForQuestion={profileForQuestion}
                     onSelectAnswer={onSelectAnswer}
+                    setChangedTitle={setChangedTitle}
                   />
                 </ReactReveal>
               ) : null}

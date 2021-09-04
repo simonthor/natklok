@@ -87,14 +87,6 @@ export const QUESTIONS = [
     emojis: ["📱", "🔒"],
     readMoreLink:
       "https://sakerhetskollen.se/testa-din-sakerhet/ar-du-saker-pa-ditt-losenord",
-    options: [
-      { text: "questions.publicWifi.option1", score: 0 },
-      {
-        text: "questions.publicWifi.option2",
-        score: 1,
-      },
-      { text: "questions.publicWifi.option3", score: 0.7 },
-    ],
     profileBasedService: {
       BANK_PROFILE: {
         name: "questions.passwordCheck.profileBasedService.BANK_PROFILE",
@@ -120,7 +112,15 @@ export const QUESTIONS = [
         secondColor: "#14171a",
         thirdColor: "#1da1f2"
       }
-    }
+    },
+    options: [
+      { text: "questions.passwordCheck.option1", score: 1 },
+      {
+        text: "questions.passwordCheck.option2",
+        score: 0.7,
+      },
+      { text: "questions.passwordCheck.option3", score: 0 },
+    ]
   },
   {
     category: PUBLIC_WIFI_QUESTION,

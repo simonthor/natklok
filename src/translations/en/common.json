@@ -68,7 +68,7 @@
       "option3": "They can see everything I do."
     },
     "passwordCheck": {
-      "title": "You are creating a new account at {profileBasedService}, how can you do that as safely as possible?",
+      "title": "A hacker manages to break your password for {profileBasedService} after 10 years. What could have been your password?",
       "text": "",
       "profileBasedService": {
         "BANK_PROFILE": "the financial manager Blanco",
@@ -76,11 +76,14 @@
         "STREAMING_PROFILE": "the streaming service Oslagbar",
         "SOCIAL_MEDIA_PROFILE": "the social media platform Kvitter"
       },
+      "secondTitle": "You entered the password {password}. Do you regurlarly use secure passwords like this?",
+      "option1": "Of course, and my passwords are stored securely",
+      "option2": "I have a secure password that I use for more than 1 service",
+      "option3": "I tend to not use secure passwords when I don't have to",
       "moreInfo": "With the help of special characters, longer passwords, unusual words, etc. you make it much harder to crack your password. ",
-      "serviceSlogan": "Everything, in the same place.",
-      "enterEmailLabel": "E-mail address",
-      "inputLabel": "Enter new password",
-      "confirmLabel": "Confirm your password"
+      "inputPlaceholder": "Start typing password...",
+      "resultPrefix": "It would take a hacker",
+      "resultSuffix": "to break your password."
     }
   },
   "result":{

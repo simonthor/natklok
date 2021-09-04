@@ -68,7 +68,7 @@
       "option3": "De kan se allt jag gör."
     },
     "passwordCheck": {
-      "title": "Du ska skapa ett konto hos {profileBasedService}, hur gör du för att vara så säker som möjligt?",
+      "title": "Efter 10 år lyckas en hackare knäcka lösenordet till ditt konto hos {profileBasedService}. Vad kan ditt lösenord ha varit?",
       "profileBasedService": {
         "BANK_PROFILE": "finansförvaltaren Blanco",
         "GAMING_PROFILE": "spelförsäljaren Yumpu",
@@ -76,11 +76,14 @@
         "SOCIAL_MEDIA_PROFILE": "sociala-media-plattformen Kvitter"
       },
       "text": "",
+      "secondTitle": "Du skrev in losenordet {password}. Brukar du anvanda sakra losenord som detta?",
+      "option1": "Saklart, och mina losenord forvaras sakert",
+      "option2": "Jag har sakra losenord, men anvander dem for mer an ett konto",
+      "option3": "Jag tenderar att inte anvanda sakra losenord nar jag inte ar tvungen",
       "moreInfo": "Med hjälp av speciella karaktärer, längre lösenord, ovanliga ord, mm. gör du det mycket svårare att knäcka ditt lösenord. ",
-      "serviceSlogan": "Allting samlat.",
-      "enterEmailLabel": "Ange e-postadress",
-      "inputLabel": "Skriv ditt lösenord",
-      "confirmLabel": "Bekräfta ditt lösenord"
+      "inputPlaceholder": "Börja skriv lösenord...",
+      "resultPrefix": "Det skulle ta en hackare",
+      "resultSuffix": "att knäcka ditt lösenord."
     }
   },
   "result":{
