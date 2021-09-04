@@ -140,34 +140,32 @@ const AnswerOptions = ({ t, questionData, onSelectAnswer, profileForQuestion, se
 const PasswordCheck = ({ t, profileForQuestion, questionData, onSelectAnswer, setChangedTitle }) => {
   const [password, setPassword] = useState("");
   const [showSecond, setShowSecond] = useState(false);
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    //console.log(score);
-    let score = Math.random(0,1); // 92 seems to be the max for 14 chars
-    if (score > 0.8) {
+  const [pwdIsSecure, setPwdIsSecure] = useState(null);
+  const handleSubmit = (score) => {
+    if (score > 0.8 && pwdIsSecure) {
       onSelectAnswer(
         score,
-        "Utmärkt lösenord! (" + score + "/95 entropi)"
+        t("questions.passwordCheck.result0")
+      );
+    } else if (score > 0.8) {
+      onSelectAnswer(
+        score,
+        t("questions.passwordCheck.result1")
       );
     } else if (score > 0.6) {
       onSelectAnswer(
         score,
-        "Bra lösenord! (" + score + "/95 entropi)"
-      );
-    } else if (score > 0.4) {
-      onSelectAnswer(
-        score,
-        "Helt okej lösenord. (" + score + "/95 entropi)"
+        t("questions.passwordCheck.result2")
       );
     } else {
       onSelectAnswer(
         score,
-        "Dåligt lösenord... (" + score + "/95 entropi)"
+        t("questions.passwordCheck.result3")
       );
     }
   };
   const handleClick = () => {
-    setChangedTitle(t("questions.passwordCheck.secondTitle").replace("{password}", password));
+    setChangedTitle(pwdIsSecure ? t("questions.passwordCheck.secondTitle").replace("{password}", password) : t("questions.passwordCheck.secondTitleUnsecurePwd"));
     setShowSecond(true);
   };
 
@@ -177,7 +175,7 @@ const PasswordCheck = ({ t, profileForQuestion, questionData, onSelectAnswer, se
         {questionData.options.map((option) => (
           <div style={{ margin: "6px 0" }}>
             <StyledButton
-              onClick={() => onSelectAnswer(option.score)}
+              onClick={() => handleSubmit(option.score)}
               style={{ width: "100%", textAlign: "center" }}
             >
               {t(option.text)}
@@ -189,7 +187,7 @@ const PasswordCheck = ({ t, profileForQuestion, questionData, onSelectAnswer, se
   } else {
     return(
       <>
-      <PwdSecurityModal t={t} profileForQuestion={profileForQuestion} questionData={questionData} setPassword={setPassword} />
+      <PwdSecurityModal t={t} profileForQuestion={profileForQuestion} questionData={questionData} setPassword={setPassword} setPwdIsSecure={setPwdIsSecure} />
       <StyledButton
         style={{ margin: "20px 0", width: "100%", textAlign: "center" }}
         disabled={password.length > 0 ? false : true}
@@ -241,9 +239,10 @@ const Question = ({
   let streak = 0;
 
   const onSelectAnswer = (addedScore, resultText = "") => {
+    console.log(addedScore, resultText);
     if (questionResult === null) {
       var res = "";
-      if (resultText != "") {
+      if (resultText !== "") {
         res = resultText;
       } else if (addedScore > 0.8) {
         res = t("test.correctAnswer");

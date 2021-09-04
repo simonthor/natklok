@@ -12,7 +12,8 @@ const PwdSecurityModal = ({
     t,
     profileForQuestion,
     questionData,
-    setPassword
+    setPassword,
+    setPwdIsSecure
 }) => {
     const [pwd, setPwd] = useState("");
     const [pwdTime, setPwdTime] = useState("");
@@ -40,6 +41,7 @@ const PwdSecurityModal = ({
         setPwdTime(res.time);
         setNotice(res.level);
         setChecks(res.checks);
+        setPwdIsSecure(res.time.includes("years"))
     };
 
     return (
