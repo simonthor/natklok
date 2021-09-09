@@ -10,8 +10,8 @@ const Loading = () => {
         textAlign: "center",
         flex: 1,
         background: PURPLE,
-        height: (HEIGHT === 0) ? 0 : HEIGHT,
-        paddingTop: (HEIGHT === 0) ? 0 : HEIGHT / 3,
+        height: HEIGHT === 0 ? 0 : HEIGHT,
+        paddingTop: HEIGHT === 0 ? 0 : HEIGHT / 3,
       }}
     >
       <Logo />

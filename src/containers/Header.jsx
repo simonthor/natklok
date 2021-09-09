@@ -3,7 +3,7 @@ import { withTranslation } from "react-i18next";
 // Material UI
 import Grid from "@material-ui/core/Grid";
 import StarOutlineRoundedIcon from "@material-ui/icons/StarOutlineRounded";
-import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
+import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 
 // Custom components
 import { AlignCenter, Logo, StyledNavLink } from "../components/general";
@@ -40,16 +40,12 @@ const Header = ({ t, currentQuestionIndex, totalQuestions, isFinished }) => {
         </p>
       </div>
       <div>
-        <LangChooser/>
+        <LangChooser />
       </div>
     </>
   );
 
-  const ContentAfterStart = ({
-    t,
-    currentQuestionIndex,
-    totalQuestions
-  }) => (
+  const ContentAfterStart = ({ t, currentQuestionIndex, totalQuestions }) => (
     <>
       {/*TODO: Implement auto-resume. When user clicks 'Return to Start' and then clicks 'Start' again, the quiz resumes from last answered question.*/}
       <div style={{ lineHeight: 1 }}>
@@ -72,14 +68,23 @@ const Header = ({ t, currentQuestionIndex, totalQuestions, isFinished }) => {
             fontWeight: "bold",
           }}
         >
-          <NavigateBeforeIcon style={{
-            height: 20,
-            margin: "-2px -2px -5px -8px"
-          }}/>
+          <NavigateBeforeIcon
+            style={{
+              height: 20,
+              margin: "-2px -2px -5px -8px",
+            }}
+          />
           Start
         </p>
       </div>
-      <div style={{ width: 110, display: "flex", justifyContent: "center", alignItems: "center" }}>
+      <div
+        style={{
+          width: 110,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <img
           style={{
             position: "relative",
@@ -103,7 +108,7 @@ const Header = ({ t, currentQuestionIndex, totalQuestions, isFinished }) => {
             fontSize: "1.5em",
             display: "inline-block",
             margin: 5,
-            fontWeight: "bold"
+            fontWeight: "bold",
           }}
         >
           {totalQuestions - currentQuestionIndex + 1}
@@ -122,7 +127,7 @@ const Header = ({ t, currentQuestionIndex, totalQuestions, isFinished }) => {
         </p>
       </div>
     </>
-  )
+  );
 
   return (
     <div>
@@ -137,9 +142,9 @@ const Header = ({ t, currentQuestionIndex, totalQuestions, isFinished }) => {
           }}
         >
           {currentQuestionIndex === 0 ? (
-            <ContentBeforeStart/>
+            <ContentBeforeStart />
           ) : (
-            <ContentAfterStart 
+            <ContentAfterStart
               t={t}
               currentQuestionIndex={currentQuestionIndex}
               totalQuestions={totalQuestions}
@@ -147,7 +152,12 @@ const Header = ({ t, currentQuestionIndex, totalQuestions, isFinished }) => {
           )}
         </div>
       </AlignCenter>
-      {currentQuestionIndex !== 0 ? <ProgressBar currentQuestionIndex={currentQuestionIndex} totalQuestions={totalQuestions}/> : null}
+      {currentQuestionIndex !== 0 ? (
+        <ProgressBar
+          currentQuestionIndex={currentQuestionIndex}
+          totalQuestions={totalQuestions}
+        />
+      ) : null}
     </div>
   );
 };

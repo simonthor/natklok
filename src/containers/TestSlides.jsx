@@ -19,13 +19,13 @@ import ResultSlide from "../components/slides/ResultSlide";
 import ProfileSelectionSlide from "../components/slides/ProfileSelectionSlide";
 import QuestionsSlide from "../components/slides/QuestionsSlide";
 
-const TestSlides = ({ 
-  t, 
-  setCurrentQuestionIndex, 
-  setTotalQuestions, 
-  setIsFinished, 
-  setconfettiRun, 
-  setconfettiRecycle 
+const TestSlides = ({
+  t,
+  setCurrentQuestionIndex,
+  setTotalQuestions,
+  setIsFinished,
+  setconfettiRun,
+  setconfettiRecycle,
 }) => {
   const [slideIndex, setSlideIndex] = useState(0);
   const [questions, setQuestions] = useState([]);
@@ -65,17 +65,19 @@ const TestSlides = ({
   };
 
   return (
-    <div style={{ 
-      height: (HEIGHT === 0) ? "100%" : HEIGHT,
-      display: "flex",
-      flexDirection: "row",
-      flexWrap: "wrap",
-      justifyContent: "center",
-      alignItems: "center",
-      position: "relative",
-      overflow: "hidden"
-    }}
-    id="formContainer">
+    <div
+      style={{
+        height: HEIGHT === 0 ? "100%" : HEIGHT,
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "wrap",
+        justifyContent: "center",
+        alignItems: "center",
+        position: "relative",
+        overflow: "hidden",
+      }}
+      id="formContainer"
+    >
       <SwipeableViews index={slideIndex}>
         <ProfileSelectionSlide
           t={t}

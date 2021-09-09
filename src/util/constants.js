@@ -11,24 +11,24 @@ export const WHITE = "#FFFFFF";
 
 // Profiles
 export const BANK_PROFILE = {
-  "title": "BANK_PROFILE",
-  "color": "#0EE08C",
-  "dark": true
+  title: "BANK_PROFILE",
+  color: "#0EE08C",
+  dark: true,
 };
 export const GAMING_PROFILE = {
-  "title": "GAMING_PROFILE",
-  "color": "#FDCF35",
-  "dark": true
+  title: "GAMING_PROFILE",
+  color: "#FDCF35",
+  dark: true,
 };
 export const STREAMING_PROFILE = {
-  "title": "STREAMING_PROFILE",
-  "color": "#FB733F",
-  "dark": true
+  title: "STREAMING_PROFILE",
+  color: "#FB733F",
+  dark: true,
 };
 export const SOCIAL_MEDIA_PROFILE = {
-  "title": "SOCIAL_MEDIA_PROFILE",
-  "color": "#FF3854",
-  "dark": false
+  title: "SOCIAL_MEDIA_PROFILE",
+  color: "#FF3854",
+  dark: false,
 };
 export const GENERAL_PROFILE = "GENERAL_PROFILE";
 
@@ -92,26 +92,26 @@ export const QUESTIONS = [
         name: "questions.passwordCheck.profileBasedService.BANK_PROFILE",
         color: "#0abf53",
         secondColor: "#fff",
-        thirdColor: "#00112c"
+        thirdColor: "#00112c",
       },
       GAMING_PROFILE: {
         name: "questions.passwordCheck.profileBasedService.GAMING_PROFILE",
         color: "#2a475e",
         secondColor: "#c7d5e0",
-        thirdColor: "#66c0f4"
+        thirdColor: "#66c0f4",
       },
       STREAMING_PROFILE: {
         name: "questions.passwordCheck.profileBasedService.STREAMING_PROFILE",
         color: "#f3f6f8",
         secondColor: "#282828",
-        thirdColor: "#ff0000"
+        thirdColor: "#ff0000",
       },
       SOCIAL_MEDIA_PROFILE: {
         name: "questions.passwordCheck.profileBasedService.SOCIAL_MEDIA_PROFILE",
         color: "#f5f8fa",
         secondColor: "#14171a",
-        thirdColor: "#1da1f2"
-      }
+        thirdColor: "#1da1f2",
+      },
     },
     options: [
       { text: "questions.passwordCheck.option1", score: 1 },
@@ -120,7 +120,7 @@ export const QUESTIONS = [
         score: 0.7,
       },
       { text: "questions.passwordCheck.option3", score: 0 },
-    ]
+    ],
   },
   {
     category: PUBLIC_WIFI_QUESTION,
