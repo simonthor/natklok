@@ -35,16 +35,20 @@ export const GENERAL_PROFILE = "GENERAL_PROFILE";
 // Categories
 export const SHARED_PASSWORD_QUESTION = "SHARED_PASSWORD_QUESTION";
 export const PUBLIC_WIFI_QUESTION = "PUBLIC_WIFI_QUESTION";
+export const FAKE_WEBSITE = "FAKE_WEBSITE";
 export const PASSWORD_STRENGTH_QUESTION = "PASSWORD_STRENGTH_QUESTION";
 export const WIFI_ON_QUESTION = "WIFI_ON_QUESTION";
+export const ROMANCE_SCAM = "ROMANCE_SCAM";
 
 // Question types
 export const YES_NO = "YES_NO";
 export const SEVERAL_OPTION = "SEVERAL_OPTION";
 export const PASSWORD_INPUT = "PASSWORD_INPUT";
+export const CHAT = "CHAT";
 
 export const QUESTIONS = [
   {
+    id: 1,
     category: SHARED_PASSWORD_QUESTION,
     type: SEVERAL_OPTION,
     forProfile: GAMING_PROFILE,
@@ -64,6 +68,7 @@ export const QUESTIONS = [
     ],
   },
   {
+    id: 2,
     category: SHARED_PASSWORD_QUESTION,
     type: YES_NO,
     forProfile: SOCIAL_MEDIA_PROFILE,
@@ -77,6 +82,23 @@ export const QUESTIONS = [
     no_score: 1,
   },
   {
+    id: 3,
+    category: ROMANCE_SCAM,
+    type: CHAT,
+    forProfile: GENERAL_PROFILE,
+    title: "questions.romanceScamChat.title",
+    text: "questions.romanceScamChat.text",
+    moreInfo: "questions.romanceScamChat.moreInfo",
+    emojis: ["☕", "📶"],
+    readMoreLink:
+      "https://sakerhetskollen.se/testa-din-sakerhet/ar-du-saker-pa-ditt-losenord",
+    options: [
+      { text: "questions.romanceScamChat.bad", score: 0 },
+      { text: "questions.romanceScamChat.good", score: 1 },
+    ],
+  },
+  {
+    id: 4,
     category: PASSWORD_STRENGTH_QUESTION,
     type: PASSWORD_INPUT,
     forProfile: GENERAL_PROFILE,
@@ -96,6 +118,7 @@ export const QUESTIONS = [
     ],
   },
   {
+    id: 5,
     category: PUBLIC_WIFI_QUESTION,
     type: SEVERAL_OPTION,
     forProfile: GENERAL_PROFILE,
@@ -113,5 +136,17 @@ export const QUESTIONS = [
       },
       { text: "questions.publicWifi.option3", score: 0.7 },
     ],
+  },
+  {
+    id: 6,
+    category: FAKE_WEBSITE,
+    type: FAKE_WEBSITE,
+    forProfile: GENERAL_PROFILE,
+    title: "questions.fakeWebsite.title",
+    text: "questions.fakeWebsite.text",
+    moreInfo: "questions.fakeWebsite.moreInfo",
+    emojis: ["☕", "📶"],
+    readMoreLink:
+      "https://sakerhetskollen.se/testa-din-sakerhet/ar-du-saker-pa-ditt-losenord",
   },
 ];

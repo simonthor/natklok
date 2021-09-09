@@ -11,7 +11,6 @@ import getWindowSize from "../util/getWindowSize.js";
 
 // Lazy loading
 const Header = lazy(() => import("../containers/Header"));
-const Footer = lazy(() => import("../containers/Footer"));
 
 const Boiler = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -19,7 +18,13 @@ const Boiler = () => {
   const [isFinished, setIsFinished] = useState(false);
   const [confettiRecycle, setconfettiRecycle] = useState(true);
   const [confettiRun, setconfettiRun] = useState(false);
+
   const windowSize = getWindowSize();
+
+  const resetQuizData = () => {
+    setCurrentQuestionIndex(0)
+    setIsFinished(false)
+  }
 
   return (
     <Suspense fallback={<Loading />}>
@@ -51,19 +56,25 @@ const Boiler = () => {
           isFinished={isFinished}
         />
         <Switch>
-          <Route path="/" exact render={() => <Welcome />} />
+          <Route path="/" exact render={() => {
+            resetQuizData()
+            return(
+              <Welcome />
+            )
+          }} 
+          />
           <Route
             path="/test"
-            exact
             render={() => (
-              <TestSlides
-                setCurrentQuestionIndex={setCurrentQuestionIndex}
-                setTotalQuestions={setTotalQuestions}
-                setIsFinished={setIsFinished}
-                setconfettiRecycle={setconfettiRecycle}
-                setconfettiRun={setconfettiRun}
+                <TestSlides
+                  setCurrentQuestionIndex={setCurrentQuestionIndex}
+                  setTotalQuestions={setTotalQuestions}
+                  setIsFinished={setIsFinished}
+                  setconfettiRecycle={setconfettiRecycle}
+                  setconfettiRun={setconfettiRun}
               />
-            )}
+              )
+            }
           />
           <Route render={(props) => <Redirect to="/" />} />
         </Switch>

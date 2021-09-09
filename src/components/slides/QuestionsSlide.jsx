@@ -1,23 +1,30 @@
-import { Grid, Hidden, Input, TextField } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { withTranslation } from "react-i18next";
 import SwipeableViews from "react-swipeable-views";
-import stringEntropy from "fast-password-entropy";
 
 // Custom components
-import { AlignCenter, Fade, StyledButton, StyledMarkdown, StyledTextField } from "../general";
+import {
+  AlignCenter,
+  Fade,
+  StyledButton,
+  StyledMarkdown,
+  StyledTextField,
+} from "../general";
 import AnswerFeedback from "./AnswerFeedback";
 import ReactReveal from "react-reveal/Fade";
-import { Facebook, Twitter, Instagram } from "@material-ui/icons";
-import StyledLink from "../general/StyledLink";
 import {
   YES_NO,
   SEVERAL_OPTION,
-  HEIGHT,
   PASSWORD_INPUT,
   PALEBLUE,
   PURPLE,
+  CHAT,
+  QUESTIONS,
+  FAKE_WEBSITE,
 } from "../../util/constants";
+import RomanceChat from "../dynamicQuestions/RomanceChat";
+import FakeWebsite from "../dynamicQuestions/FakeWebsite";
 
 // Deprecated: Emoji art used in Yes/No & Multiple choice questions
 const generateEmojiArt = (arrayOfEmojis) => {
@@ -50,7 +57,8 @@ const Questions = ({
   increaseScore,
   setCurrentQuestionIndex,
   setconfettiRun,
-  setconfettiRecycle
+  setconfettiRecycle,
+  linkToEntireQuiz,
 }) => {
   const [questionIndex, setQuestionIndex] = useState(0);
 
@@ -81,6 +89,7 @@ const Questions = ({
             handleIncrementScore={handleIncrementScore}
             setconfettiRun={setconfettiRun}
             setconfettiRecycle={setconfettiRecycle}
+            linkToEntireQuiz={linkToEntireQuiz}
           />
         </div>
       ))}
@@ -89,17 +98,33 @@ const Questions = ({
 };
 
 const AnswerOptions = ({ t, questionData, onSelectAnswer }) => {
-  if (questionData.type === YES_NO) {
+  if (questionData.type === CHAT) {
+    return (
+      <RomanceChat
+        t={t}
+        options={questionData.options}
+        onSelectAnswer={onSelectAnswer}
+      />
+    );
+  } else if (questionData.type === FAKE_WEBSITE) {
+    return (
+      <FakeWebsite
+        t={t}
+        options={questionData.options}
+        onSelectAnswer={onSelectAnswer}
+      />
+    );
+  } else if (questionData.type === YES_NO) {
     return (
       <>
         <StyledButton
-          style={{ margin: "6px 0",width: "100%" }}
+          style={{ margin: "6px 0", width: "100%" }}
           onClick={() => onSelectAnswer(questionData.yes_score)}
         >
           {t("general.yes")}
         </StyledButton>
         <StyledButton
-          style={{ margin: "6px 0",width: "100%" }}
+          style={{ margin: "6px 0", width: "100%" }}
           onClick={() => onSelectAnswer(questionData.no_score)}
         >
           {t("general.no")}
@@ -111,106 +136,20 @@ const AnswerOptions = ({ t, questionData, onSelectAnswer }) => {
       <>
         {questionData.options.map((option) => (
           <div style={{ margin: "6px 0" }}>
-            <StyledButton onClick={() => onSelectAnswer(option.score)} style={{width: "100%", textAlign: "center"}}>
+            <StyledButton
+              onClick={() => onSelectAnswer(option.score)}
+              style={{ width: "100%", textAlign: "center" }}
+            >
               {t(option.text)}
             </StyledButton>
           </div>
         ))}
       </>
     );
-  } else if (questionData.type === PASSWORD_INPUT) {
-    return <PasswordCheck onSelectAnswer={onSelectAnswer} t={t} />;
+  } else {
+    alert("Error: No suitable question type found.");
+    return null;
   }
-};
-
-const PasswordCheck = ({ t, onSelectAnswer }) => {
-  const [password, setPassword] = useState("");
-  const onChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    //console.log(stringEntropy(password));
-    let score = stringEntropy(password) / 92; // 92 seems to be the max for 14 chars
-    if (score > 0.8) {
-      onSelectAnswer(
-        score,
-        "Utmärkt lösenord! (" + stringEntropy(password) + "/95 entropi)"
-      );
-    } else if (score > 0.6) {
-      onSelectAnswer(
-        score,
-        "Bra lösenord! (" + stringEntropy(password) + "/95 entropi)"
-      );
-    } else if (score > 0.4) {
-      onSelectAnswer(
-        score,
-        "Helt okej lösenord. (" + stringEntropy(password) + "/95 entropi)"
-      );
-    } else {
-      onSelectAnswer(
-        score,
-        "Dåligt lösenord... (" + stringEntropy(password) + "/95 entropi)"
-      );
-    }
-  };
-
-  return (
-    <form
-      onSubmit={handleSubmit}
-    >
-      <TextField
-        id="disable-pwd-mgr-1"
-        name="disable-pwd-mgr-1"
-        value="disable-pwd-mgr-1"
-        type="password"
-        style={{ display: "none" }}
-      />
-      <TextField
-        id="disable-pwd-mgr-2"
-        name="disable-pwd-mgr-2"
-        value="disable-pwd-mgr-2"
-        type="password"
-        style={{ display: "none" }}
-      />
-      <TextField
-        id="disable-pwd-mgr-3"
-        name="disable-pwd-mgr-3"
-        value="disable-pwd-mgr-3"
-        type="password"
-        style={{ display: "none" }}
-      />
-      <StyledTextField
-        inputProps={{ maxLength: 14 }}
-        onChange={onChange}
-        margin="normal"
-        fullWidth
-        autoFocus={true}
-        type="password"
-        variant="filled"
-        label={t("questions.passwordCheck.inputLabel")}
-      />
-      <button
-        type="submit"
-        style={{
-          borderRadius: 4,
-          cursor: "pointer",
-          fontSize: "1.1em",
-          background: PALEBLUE,
-          color: PURPLE,
-          padding: "14px 50px",
-          fontWeight: "800",
-          display: "inline-block",
-          margin: 0,
-          transition: "0.3s ease-in-out",
-          border: "none",
-        }}
-      >
-        {t("general.next")}
-      </button>
-    </form>
-  );
 };
 
 const Question = ({
@@ -222,7 +161,8 @@ const Question = ({
   nextQuestion,
   handleIncrementScore,
   setconfettiRun,
-  setconfettiRecycle
+  setconfettiRecycle,
+  linkToEntireQuiz,
 }) => {
   const [questionResult, setQuestionResult] = useState(null);
   const [questionResultDesc, setQuestionResultDesc] = useState(null);
@@ -293,15 +233,23 @@ const Question = ({
             title={questionResult}
             desc={t(questionData.moreInfo)}
             bodyMarkdown={null}
+            linkToEntireQuiz={linkToEntireQuiz}
+            questionId={questionData.id}
           />
         ) : (
           <Grid container direction={questionPicture} justify="center">
-            <Grid item sm={12} md={6} style={{ textAlign: "start" }}>
+            <Grid item sm={12} style={{ textAlign: "start" }}>
               {questionOpened === true ? (
                 <Fade>
                   <Grid container>
                     <Grid item xs={12}>
-                      <h1 style={{ lineHeight:"1.3", fontSize: "1.5em", marginBottom: 0 }}>
+                      <h1
+                        style={{
+                          lineHeight: "1.3",
+                          fontSize: "1.5em",
+                          margin: 0,
+                        }}
+                      >
                         {t(questionData.title)}
                       </h1>
                     </Grid>

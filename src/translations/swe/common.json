@@ -3,11 +3,17 @@
     "next": "Nästa",
     "madeByDU": "Ett quiz gjort i samarbete med",
     "shareTest": "Dela detta test",
-    "shareQuestion": "Dela denna fråga",
+    "shareQuestion": "Kopiera länken till frågan",
+    "copied": "Kopierad! Nu kan du dela länken på sociala medier eller med vänner.",
     "questionsLeft": "frågor kvar",
     "questionLeft": "fråga kvar!",
     "yes": "Ja",
     "no": "Nej"
+  },
+  "error": {
+    "somethingWentWrong": "Oops, något gick fel...",
+    "couldntFindQuestion": "Vi hittade inte frågan du letade efter.",
+    "returnWelcome": "Ta mig till startsidan"
   },
   "meta": {
     "keywords": "Keyword1, Keyword2, Keyword3",
@@ -43,13 +49,15 @@
     "good": "Bra",
     "meh": "Sådär",
     "bad": "Dåligt",
-    "pressToReadMore": "Läs mer här"
+    "pressToReadMore": "Läs mer här",
+    "doTheTestTitle": "Hur säker är du online?",
+    "doTheTestDesc": "Ta reda på svaret genom att göra hela quizet!"
   },
   "questions": {
     "csgoSkin": {
       "title": "Du hittar det perfekta CSGO skin:et online...",
       "text": "Med ditt steam-konto kan du logga in på en hemsida som heter 'csgoskins.cz' för att få tag på den. **Är detta en bra idé?**",
-      "moreInfo":  "Om du inte loggar in genom steam kan hackers se ditt lösenord och ta över ditt steamkonto.",
+      "moreInfo": "Om du inte loggar in genom steam kan hackers se ditt lösenord och ta över ditt steamkonto.",
       "option1": "Det borde vara lugnt",
       "option2": "Om jag länkas vidare till Steams sida är det okej",
       "option3": "Jag borde försöka hitta skin:et någon annanstans"
@@ -72,9 +80,27 @@
       "text": "Du har 14 karaktärer på dig att skapa ett så svår-knäckt lösenord som möjligt. Bonus-poäng ifall det är enkelt att komma ihåg också!",
       "moreInfo": "Med hjälp av speciella karaktärer, längre lösenord, ovanliga ord, mm. gör du det mycket svårare att knäcka ditt lösenord. ",
       "inputLabel": "Skriv ditt lösenord"
+    },
+    "romanceScamChat": {
+      "title": "Din barndomsvän kontaktar dig.",
+      "text": "Efter att ni har skrivit i några veckor får du detta meddelande.",
+      "moreInfo": "Du ska aldrig skicka pengar till någon du inte känner väl, oavsett påstådd orsak.",
+      "good": "Hejdå 💩👎",
+      "bad": "Sure, swishar på direkten 💸👍",
+      "yourAnswer": "Vad svarar du?",
+      "chat1": "Något allvarligt har hänt...",
+      "chat2": "Oj, Vadå? ",
+      "chat3": "Bilen har gått sönder och jag är helt vilse, behöver lite pengar för reperationer...",
+      "chat4": "Kan du swisha 3000 kr?",
+      "chat5": "Lovar att skicka tillbaka pengarna imorgon när detta är löst!"
+    },
+    "fakeWebsite": {
+      "title": "Finn fem fel med hemsidan.",
+      "text": "Klicka på saker du tycker ser misstänksamma ut",
+      "moreInfo": "Det finns många tricks för lura dig..."
     }
   },
-  "result":{
+  "result": {
     "firstPlaceTitle": "Imponerande!",
     "firstPlaceDesc": "Du kan mycket när det kommer till säkerhet online, men du kan alltid lära dig mer!",
     "secondPlaceTitle": "Inte bra, inte dåligt",

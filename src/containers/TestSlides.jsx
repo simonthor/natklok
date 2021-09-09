@@ -18,6 +18,10 @@ import getPretendScore from "../util/getPretendScore";
 import ResultSlide from "../components/slides/ResultSlide";
 import ProfileSelectionSlide from "../components/slides/ProfileSelectionSlide";
 import QuestionsSlide from "../components/slides/QuestionsSlide";
+import { getQuestionFromId } from "../util/getQuestionFromId";
+import QuestionNotFound from "../components/slides/QuestionNotFound";
+import { useLocation } from "react-router-dom";
+
 
 const TestSlides = ({ 
   t, 
@@ -29,6 +33,8 @@ const TestSlides = ({
 }) => {
   const [slideIndex, setSlideIndex] = useState(0);
   const [questions, setQuestions] = useState([]);
+  const [foundQuerySearchQuestion, setFoundQuerySearchQuestion] = useState(false);
+  const [checkedQuery, setCheckedQuery] = useState(false);
   const [score, setScore] = useState(0);
   const [maxScore, setMaxScore] = useState(0);
   const [testFinished, setTestFinished] = useState(false);
@@ -38,6 +44,23 @@ const TestSlides = ({
     [STREAMING_PROFILE]: false,
     [SOCIAL_MEDIA_PROFILE]: false,
   });
+  const location = useLocation(); 
+
+  if(checkedQuery === false){
+    setCheckedQuery(true)
+
+    let questionId = new URLSearchParams(location.search).get("id")
+    if(questionId !== null){
+      var questionData = getQuestionFromId(questionId)
+      if(questionData !== null){
+        setFoundQuerySearchQuestion(true)
+        setQuestions([questionData])
+        setSlideIndex(1);
+      }else{
+        return <QuestionNotFound/>
+      }
+    }
+  }
 
   const handleProfileCheckboxChecked = (event) => {
     setState({ ...profileState, [event.target.name]: event.target.checked });
@@ -48,14 +71,16 @@ const TestSlides = ({
   };
 
   const nextSlide = () => {
-    console.log(slideIndex);
-    if (slideIndex === 0) {
-      let generated_questions = generateQuestions(profileState);
-      let maxScore = getMaxScore(generated_questions);
-      setQuestions(generated_questions);
-      setMaxScore(maxScore);
-      setTotalQuestions(generated_questions.length);
-      setCurrentQuestionIndex(1);
+    if (slideIndex === 0 ) {
+      if(foundQuerySearchQuestion === false){
+        let generated_questions = generateQuestions(profileState);
+        let maxScore = getMaxScore(generated_questions);
+        setQuestions(generated_questions);
+        setMaxScore(maxScore);
+        setTotalQuestions(generated_questions.length);
+        setCurrentQuestionIndex(1);
+      }
+
       document.getElementById("formContainer").style.background = "none";
     } else if (slideIndex === 1) {
       setTestFinished(true);
@@ -65,24 +90,31 @@ const TestSlides = ({
   };
 
   return (
-    <div style={{ 
-      height: (HEIGHT === 0) ? "100%" : HEIGHT,
-      display: "flex",
-      flexDirection: "row",
-      flexWrap: "wrap",
-      justifyContent: "center",
-      alignItems: "center",
-      position: "relative",
-      overflow: "hidden"
-    }}
-    id="formContainer">
+    <div 
+      style={{ 
+        height: (HEIGHT === 0) ? "100%" : HEIGHT,
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "wrap",
+        justifyContent: "center",
+        alignItems: "center",
+        position: "relative",
+        overflow: "hidden"
+      }}
+      id="formContainer"
+    >
       <SwipeableViews index={slideIndex}>
-        <ProfileSelectionSlide
-          t={t}
-          nextSlide={nextSlide}
-          handleProfileCheckboxChecked={handleProfileCheckboxChecked}
-          profileState={profileState}
-        />
+
+        {/* Only show profile selection if we have generated the quiz */}
+        {foundQuerySearchQuestion !== true ? (
+          <ProfileSelectionSlide
+            t={t}
+            nextSlide={nextSlide}
+            handleProfileCheckboxChecked={handleProfileCheckboxChecked}
+            profileState={profileState}
+          />
+        ): null}
+        
         <QuestionsSlide
           t={t}
           nextSlide={nextSlide}
@@ -92,12 +124,15 @@ const TestSlides = ({
           increaseScore={increaseScore}
           setconfettiRun={setconfettiRun}
           setconfettiRecycle={setconfettiRecycle}
+          linkToEntireQuiz={foundQuerySearchQuestion}
         />
+
         <ResultSlide
           score={score}
           maxScore={maxScore}
           testFinished={testFinished}
         />
+
       </SwipeableViews>
     </div>
   );

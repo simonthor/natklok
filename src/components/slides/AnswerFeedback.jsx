@@ -3,6 +3,7 @@ import { withTranslation } from "react-i18next";
 import Fade from "react-reveal/Fade";
 import { StyledButton, StyledMarkdown } from "../general";
 import { Grid } from "@material-ui/core";
+import { useHistory } from 'react-router-dom';
 import WhatshotIcon from "@material-ui/icons/Whatshot";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import SocialShare from "../features/SocialShare";
@@ -16,8 +17,11 @@ const AnswerFeedbackSlide = ({
   isLastQuestion,
   title,
   desc,
-  bodyMarkdown,
+  questionId,
+  linkToEntireQuiz,
 }) => {
+  const history = useHistory(); 
+
   return (
     <>
       <Grid container style={{ textAlign: "left" }}>
@@ -108,21 +112,42 @@ const AnswerFeedbackSlide = ({
       </Grid>
       </Grid>
       <Fade bottom delay={800}>
-        <Grid container justify="center" alignItems="center">
-          <Grid item xs={12}>
-            <Grid container justify="center" alignItems="center">
-              <Grid item xs={12} sm={12} md={8} lg={6}>
-                <StyledButton
-                  style={{ margin: "6px 0", width: "100%"}}
-                  onClick={nextQuestion}
-                >{t(isLastQuestion === true ? "test.result" : "test.nextQuestion")}
-                </StyledButton>
+        <Grid container justify="center" alignItems="center" direction="column">
+          {linkToEntireQuiz === false ? (
+            <>
+              <Grid container justify="center" alignItems="center">
+                <Grid item xs={12} sm={12} md={8} lg={6}>
+                  <StyledButton
+                    style={{ margin: "6px 0", width: "100%"}}
+                    onClick={nextQuestion}
+                  >
+                    {t(isLastQuestion === true ? "test.result" : "test.nextQuestion")}
+                  </StyledButton>
+                </Grid>
               </Grid>
-            </Grid>
-          </Grid>
-          <Grid item xs={12}>
-            <SocialShare shareText={t("general.shareQuestion")} style={{marginTop: 0}}/>
-          </Grid>
+              <SocialShare questionId={questionId} shareText={t("general.shareQuestion")} style={{marginTop: 0}}/>
+            </>
+          ) : (
+            <>
+              <h2 style={{marginBottom: 0}}>
+                {t("test.doTheTestTitle")}
+              </h2>
+              <p style={{marginTop: 6}}>
+                {t("test.doTheTestDesc")}
+              </p>
+              <StyledButton
+                style={{ margin: "6px 0", width: "100%"}}
+                onClick={() => {
+                  history.push("/test")
+                  // TODO: Just reset state instead
+                  window.location.reload(false)
+                }}
+              >
+                {t("welcome.test")}
+              </StyledButton>
+            </>
+          )}
+
         </Grid>
       </Fade>
     </>
