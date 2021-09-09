@@ -22,18 +22,18 @@ import { getQuestionFromId } from "../util/getQuestionFromId";
 import QuestionNotFound from "../components/slides/QuestionNotFound";
 import { useLocation } from "react-router-dom";
 
-
-const TestSlides = ({ 
-  t, 
-  setCurrentQuestionIndex, 
-  setTotalQuestions, 
-  setIsFinished, 
-  setconfettiRun, 
-  setconfettiRecycle 
+const TestSlides = ({
+  t,
+  setCurrentQuestionIndex,
+  setTotalQuestions,
+  setIsFinished,
+  setconfettiRun,
+  setconfettiRecycle,
 }) => {
   const [slideIndex, setSlideIndex] = useState(0);
   const [questions, setQuestions] = useState([]);
-  const [foundQuerySearchQuestion, setFoundQuerySearchQuestion] = useState(false);
+  const [foundQuerySearchQuestion, setFoundQuerySearchQuestion] =
+    useState(false);
   const [checkedQuery, setCheckedQuery] = useState(false);
   const [score, setScore] = useState(0);
   const [maxScore, setMaxScore] = useState(0);
@@ -44,20 +44,20 @@ const TestSlides = ({
     [STREAMING_PROFILE]: false,
     [SOCIAL_MEDIA_PROFILE]: false,
   });
-  const location = useLocation(); 
+  const location = useLocation();
 
-  if(checkedQuery === false){
-    setCheckedQuery(true)
+  if (checkedQuery === false) {
+    setCheckedQuery(true);
 
-    let questionId = new URLSearchParams(location.search).get("id")
-    if(questionId !== null){
-      var questionData = getQuestionFromId(questionId)
-      if(questionData !== null){
-        setFoundQuerySearchQuestion(true)
-        setQuestions([questionData])
+    let questionId = new URLSearchParams(location.search).get("id");
+    if (questionId !== null) {
+      var questionData = getQuestionFromId(questionId);
+      if (questionData !== null) {
+        setFoundQuerySearchQuestion(true);
+        setQuestions([questionData]);
         setSlideIndex(1);
-      }else{
-        return <QuestionNotFound/>
+      } else {
+        return <QuestionNotFound />;
       }
     }
   }
@@ -71,8 +71,8 @@ const TestSlides = ({
   };
 
   const nextSlide = () => {
-    if (slideIndex === 0 ) {
-      if(foundQuerySearchQuestion === false){
+    if (slideIndex === 0) {
+      if (foundQuerySearchQuestion === false) {
         let generated_questions = generateQuestions(profileState);
         let maxScore = getMaxScore(generated_questions);
         setQuestions(generated_questions);
@@ -90,21 +90,18 @@ const TestSlides = ({
   };
 
   return (
-    <div 
-      style={{ 
-        height: (HEIGHT === 0) ? "100%" : HEIGHT,
-        display: "flex",
-        flexDirection: "row",
-        flexWrap: "wrap",
-        justifyContent: "center",
-        alignItems: "center",
-        position: "relative",
-        overflow: "hidden"
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
       }}
       id="formContainer"
     >
-      <SwipeableViews index={slideIndex}>
-
+      <SwipeableViews
+        index={slideIndex}
+        style={{ background: "red" }}
+        id="testSlides"
+      >
         {/* Only show profile selection if we have generated the quiz */}
         {foundQuerySearchQuestion !== true ? (
           <ProfileSelectionSlide
@@ -113,13 +110,14 @@ const TestSlides = ({
             handleProfileCheckboxChecked={handleProfileCheckboxChecked}
             profileState={profileState}
           />
-        ): null}
-        
+        ) : null}
+
         <QuestionsSlide
           t={t}
           nextSlide={nextSlide}
           setCurrentQuestionIndex={setCurrentQuestionIndex}
           questions={questions}
+          profileStates={profileState}
           score={score}
           increaseScore={increaseScore}
           setconfettiRun={setconfettiRun}
@@ -132,7 +130,6 @@ const TestSlides = ({
           maxScore={maxScore}
           testFinished={testFinished}
         />
-
       </SwipeableViews>
     </div>
   );

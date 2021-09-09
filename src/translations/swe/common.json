@@ -25,7 +25,9 @@
   "welcome": {
     "title": "Sakerhetskontrollen",
     "desc": "Hur säkra är dina internetvanor?",
-    "test": "STARTA TESTET"
+    "test": "STARTA TESTET",
+    "aboutTitle": "Om testet",
+    "aboutContent": "Lorem ipsum <b>dolor sit amet.</b> <br/><br/> <img style='width:100%;' src='https://cdn.sanity.io/images/06lnne29/redesign-prod/7634580c0b45501d41c61b9abc6e008336351f42-1200x630.jpg?w=2000&auto=format' alt=''/> <br/><br/> <b>Consectetur</b>   adipiscing elit. Curabitur ipsum ipsum, fringilla ut ultricies at, maximus vitae dui. <br/><br/> Vestibulum pharetra pellentesque lobortis. <b>In pulvinar dolor et convallis dignissim.</b> nec odio risus. Fusce auctor volutpat nibh, ac laoreet dui hendrerit vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br/><br/> Curabitur ipsum ipsum, fringilla ut ultricies at, maximus vitae dui. Nam commodo porttitor urna imperdiet imperdiet. Vestibulum pharetra pellentesque lobortis. In pulvinar dolor et convallis dignissim. Donec nec odio risus. Fusce auctor volutpat nibh, ac laoreet dui hendrerit vitae."
   },
   "profileSelection": {
     "title": "Skapa din digitala profil",
@@ -76,10 +78,28 @@
       "option3": "De kan se allt jag gör."
     },
     "passwordCheck": {
-      "title": "Skapa det starkaste lösenordet",
-      "text": "Du har 14 karaktärer på dig att skapa ett så svår-knäckt lösenord som möjligt. Bonus-poäng ifall det är enkelt att komma ihåg också!",
+      "title": "Efter 10 år lyckas en hackare knäcka lösenordet till ditt konto hos {profileBasedService}. Vad kan ditt lösenord ha varit?",
+      "profileBasedService": {
+        "BANK_PROFILE": "finansförvaltaren Blanco",
+        "GAMING_PROFILE": "spelförsäljaren Yumpu",
+        "STREAMING_PROFILE": "streamingtjänsten Oslagbar",
+        "SOCIAL_MEDIA_PROFILE": "sociala-media-plattformen Kvitter"
+      },
+      "text": "",
+      "secondTitle": "Du skrev in lösenordet {password}. Brukar du använda säkra lösenord som detta?",
+      "secondTitleUnsecurePwd": "Det var ett ganska dåligt losenord. Om vi bortser fran det, brukar du använda dig av säkra lösenord?",
+      "option1": "Saklart, och mina lösenord förvaras säkert",
+      "option2": "Jag har säkra lösenord, men använder dem för mer an ett konto",
+      "option3": "Jag tenderar att inte anvanda säkra lösenord när jag inte är tvungen",
+      "result0": "Du verkar ha stenkoll på hanteringen av lösenord.",
+      "result1": "Du angav ett kasst losenord, men lösenord kan du hantera.",
+      "result2": "Njaa, lösenord ska vara unika for varje tjänst.",
+      "result3": "Inte bra, du kan utsattas for bedrägerier när som helst.",
       "moreInfo": "Med hjälp av speciella karaktärer, längre lösenord, ovanliga ord, mm. gör du det mycket svårare att knäcka ditt lösenord. ",
-      "inputLabel": "Skriv ditt lösenord"
+      "inputLabel": "Skriv ditt lösenord",
+      "inputPlaceholder": "Börja skriv lösenord...",
+      "resultPrefix": "Det skulle ta en hackare",
+      "resultSuffix": "att knäcka ditt lösenord."
     },
     "romanceScamChat": {
       "title": "Din barndomsvän kontaktar dig.",
