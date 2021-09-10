@@ -10,6 +10,7 @@ import { AlignCenter, Logo, StyledNavLink } from "../components/general";
 import ProgressBar from "../components/features/ProgressBar";
 import Mainlogo from "../assets/sakerhetskontrollen-logo.svg";
 import LangChooser from "../components/features/LangChooser";
+import { useHistory } from "react-router-dom";
 
 const Header = ({ t, currentQuestionIndex, totalQuestions, isFinished }) => {
   const ContentBeforeStart = () => (
@@ -45,98 +46,108 @@ const Header = ({ t, currentQuestionIndex, totalQuestions, isFinished }) => {
     </>
   );
 
-  const ContentAfterStart = ({ t, currentQuestionIndex, totalQuestions }) => (
-    <>
-      {/*TODO: Implement auto-resume. When user clicks 'Return to Start' and then clicks 'Start' again, the quiz resumes from last answered question.*/}
-      <div style={{ lineHeight: 1 }}>
-        <p
-          style={{
-            fontSize: "0.7em",
-            display: "block",
-            width: "100%",
-            margin: 0,
+  const ContentAfterStart = ({ t, currentQuestionIndex, totalQuestions }) => {
+    const history = useHistory();
+    return (
+      <>
+        {/*TODO: Implement auto-resume. When user clicks 'Return to Start' and then clicks 'Start' again, the quiz resumes from last answered question.*/}
+        <div
+          style={{ lineHeight: 1, cursor: "pointer" }}
+          onClick={() => {
+            history.push("/");
           }}
         >
-          Tillbaks till
-        </p>
-        <p
-          style={{
-            fontSize: "0.8em",
-            display: "block",
-            width: "100%",
-            margin: 0,
-            fontWeight: "bold",
-          }}
-        >
-          <NavigateBeforeIcon
+          <p
             style={{
-              height: 20,
-              margin: "-2px -2px -5px -8px",
+              fontSize: "0.7em",
+              display: "block",
+              width: "100%",
+              margin: 0,
             }}
+          >
+            Tillbaks till
+          </p>
+          <p
+            style={{
+              fontSize: "0.8em",
+              display: "block",
+              width: "100%",
+              margin: 0,
+              fontWeight: "bold",
+            }}
+          >
+            <NavigateBeforeIcon
+              style={{
+                height: 20,
+                margin: "-2px -2px -5px -8px",
+              }}
+            />
+            Start
+          </p>
+        </div>
+
+        <div
+          style={{
+            width: 110,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <img
+            style={{
+              position: "relative",
+              width: "100%",
+              height: "100%",
+            }}
+            alt="Säkerhetskontrollen"
+            src={Mainlogo}
           />
-          Start
-        </p>
-      </div>
-      <div
-        style={{
-          width: 110,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <img
+        </div>
+        <div
           style={{
-            position: "relative",
-            width: "100%",
-            height: "100%",
-          }}
-          alt="Säkerhetskontrollen"
-          src={Mainlogo}
-        />
-      </div>
-      <div
-        style={{
-          lineHeight: 1,
-          display: "flex",
-          flexWrap: "nowrap",
-          alignItems: "center",
-        }}
-      >
-        <p
-          style={{
-            fontSize: "1.5em",
-            display: "inline-block",
-            margin: 5,
-            fontWeight: "bold",
+            lineHeight: 1,
+            display: "flex",
+            flexWrap: "nowrap",
+            alignItems: "center",
           }}
         >
-          {totalQuestions - currentQuestionIndex + 1}
-        </p>
-        <p
-          style={{
-            fontSize: "0.6em",
-            display: "block",
-            width: 5,
-            margin: "0 20px 0 0",
-          }}
-        >
-          {totalQuestions - currentQuestionIndex + 1 === 1
-            ? t("general.questionLeft")
-            : t("general.questionsLeft")}
-        </p>
-      </div>
-    </>
-  );
+          <p
+            style={{
+              fontSize: "1.5em",
+              display: "inline-block",
+              margin: 5,
+              fontWeight: "bold",
+            }}
+          >
+            {totalQuestions - currentQuestionIndex + 1}
+          </p>
+          <p
+            style={{
+              fontSize: "0.6em",
+              display: "block",
+              width: 5,
+              margin: "0 20px 0 0",
+            }}
+          >
+            {totalQuestions - currentQuestionIndex + 1 === 1
+              ? t("general.questionLeft")
+              : t("general.questionsLeft")}
+          </p>
+        </div>
+      </>
+    );
+  };
 
   return (
     <div>
-      <AlignCenter>
+      <AlignCenter marginTop={false} row>
         <div
           style={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
+
             width: "100%",
             padding: "8px 0",
           }}

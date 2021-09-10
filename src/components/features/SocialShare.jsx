@@ -21,6 +21,8 @@ const SocialShare = ({ shareText, style, questionId, t }) => {
         justifyContent: "center",
         flexDirection: "column",
         textAlign: "center",
+        opacity: 0.8,
+        fontSize: "0.8em",
       }}
     >
       <div

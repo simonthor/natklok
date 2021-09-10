@@ -10,13 +10,14 @@ const MoreInfoModal = ({ title, content }) => {
   const toggleExpand = () => setaboutExpanded(!aboutExpanded);
 
   return (
-    <div style={{ position: "absolute", zIndex: 100, bottom: 0 }}>
+    <div
+      style={{ position: "absolute", zIndex: 100, bottom: 0, width: "100%" }}
+    >
       <BottomFade>
         <div
           style={{
             background: WHITE,
             color: PURPLE,
-
             transititon: "height 0.5s",
             height: aboutExpanded ? "auto" : 38,
             overflow: "hidden",
@@ -44,7 +45,7 @@ const MoreInfoModal = ({ title, content }) => {
             style={{
               padding: "10px 20px 20px 20px",
               overflow: "scroll",
-              height: "80vh",
+              height: "70vh",
             }}
           >
             <HTMLRenderer>{content}</HTMLRenderer>

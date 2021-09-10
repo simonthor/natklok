@@ -21,7 +21,6 @@ import {
   SOCIAL_MEDIA_PROFILE,
   PURPLE,
 } from "../../util/constants";
-import { BorderColor } from "@material-ui/icons";
 
 const ProfileSelectionSlide = ({
   t,
@@ -30,8 +29,8 @@ const ProfileSelectionSlide = ({
   handleProfileCheckboxChecked,
 }) => {
   return (
-    <ReactReveal>
-      <AlignCenter>
+    <AlignCenter>
+      <ReactReveal>
         <Grid
           container
           direction="column"
@@ -52,7 +51,7 @@ const ProfileSelectionSlide = ({
           </p>
         </Grid>
         <Grid container alignItems="center" justify="center">
-          <Grid item xs={11} sm={12} md={8} lg={6} xl={6}>
+          <Grid item xs={12} sm={12} md={11} lg={10} xl={9}>
             <Grid container xs={12} spacing={1}>
               <ProfilCheckbox
                 t={t}
@@ -118,8 +117,8 @@ const ProfileSelectionSlide = ({
             </Grid>
           </Grid>
         </Grid>
-      </AlignCenter>
-    </ReactReveal>
+      </ReactReveal>
+    </AlignCenter>
   );
 };
 

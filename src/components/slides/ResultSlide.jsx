@@ -68,7 +68,7 @@ const ResultSlide = ({ t, score, maxScore, testFinished }) => {
   ]);
 
   return (
-    <AlignCenter>
+    <>
       <Grid
         item
         xs={12}
@@ -138,7 +138,7 @@ const ResultSlide = ({ t, score, maxScore, testFinished }) => {
           </Fade>
         ) : null}
       </Grid>
-    </AlignCenter>
+    </>
   );
 };
 
@@ -175,7 +175,7 @@ const ReadMore = ({ emoji, title, desc }) => {
         <p style={{ fontWeight: 600, margin: "0 0 4px 0" }}>{title}</p>
         <p style={{ margin: "0 0 4px 0" }}>{desc}</p>
         <StyledLink colored style={{ margin: 0 }}>
-          Läs mer här
+          Tryck här för att läsa mer
         </StyledLink>
       </div>
     </div>

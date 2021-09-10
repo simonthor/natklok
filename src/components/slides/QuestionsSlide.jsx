@@ -71,11 +71,12 @@ const Questions = ({
   return (
     <SwipeableViews
       index={questionIndex}
-      style={{ height: "100%", display: "flex" }}
+      style={{ height: "100%" }}
+      containerStyle={{ height: "100%" }}
       id="questionsSlide"
     >
       {questions.map((questionData, index) => (
-        <div key={index} id="question" style={{ height: "100%" }}>
+        <div key={index} id="questionContainer" style={{ height: "100%" }}>
           <Question
             t={t}
             currentIndex={questionIndex}
@@ -221,7 +222,7 @@ const PasswordCheck = ({
     );
   } else {
     return (
-      <div style={{ background: "green" }}>
+      <div>
         <PwdSecurityModal
           t={t}
           profileForQuestion={profileForQuestion}
@@ -347,7 +348,7 @@ const Question = ({
           questionId={questionData.id}
         />
       ) : (
-        <AlignCenter style={{ height: "100%" }}>
+        <AlignCenter withMaxWidth>
           {questionOpened === true ? (
             <h2 style={{ minWidth: "100%", width: 0 }}>
               {changedTitle !== null ? changedTitle : questionTitle}
@@ -355,7 +356,7 @@ const Question = ({
           ) : null}
 
           {timeSinceOpened > showTextAfterTime ? (
-            <div style={{ background: "yellow" }}>
+            <>
               <HTMLRenderer style={{ marginBottom: 20 }}>
                 {t(questionData.text)}
               </HTMLRenderer>
@@ -366,7 +367,7 @@ const Question = ({
                 onSelectAnswer={onSelectAnswer}
                 setChangedTitle={setChangedTitle}
               />
-            </div>
+            </>
           ) : null}
         </AlignCenter>
       )}

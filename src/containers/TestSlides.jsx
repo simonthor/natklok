@@ -90,16 +90,15 @@ const TestSlides = ({
   };
 
   return (
-    <div
-      style={{
-        width: "100%",
-        height: "100%",
-      }}
-      id="formContainer"
-    >
+    <div id="formContainer">
       <SwipeableViews
         index={slideIndex}
-        style={{ background: "red" }}
+        style={{
+          maxWidth: "100vw",
+          minHeight: "100%",
+          height: 0,
+        }}
+        containerStyle={{ height: "100%" }}
         id="testSlides"
       >
         {/* Only show profile selection if we have generated the quiz */}
