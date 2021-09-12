@@ -68,10 +68,27 @@
       "option3": "They can see everything I do."
     },
     "passwordCheck": {
-      "title": "Create the strongest password",
-      "text": "You can use 14 characters to create such a hard-cracked password as possible. Bonus points if it is easy to remember too!",
+      "title": "A hacker manages to break your password for {profileBasedService} after 10 years. What could have been your password?",
+      "text": "",
+      "profileBasedService": {
+        "BANK_PROFILE": "the financial manager Blanco",
+        "GAMING_PROFILE": "the game vendor Yumpu",
+        "STREAMING_PROFILE": "the streaming service Oslagbar",
+        "SOCIAL_MEDIA_PROFILE": "the social media platform Kvitter"
+      },
+      "secondTitle": "You entered the password {password}. Do you regurlarly use secure passwords like this?",
+      "secondTitleUnsecurePwd": "That was a quite bad password. Other than in this quiz, do you use secure passwords?",
+      "option1": "Of course, and my passwords are stored securely",
+      "option2": "I have a secure password that I use for more than 1 service",
+      "option3": "I tend to not use secure passwords when I don't have to",
+      "result0": "You seem to know your way around password management.",
+      "result1": "Your password sucked, but otherwise you seem to use secure passwords.",
+      "result2": "Passwords should be unique for every service.",
+      "result3": "Not good, you could be the victim of fraud at any moment.",
       "moreInfo": "With the help of special characters, longer passwords, unusual words, etc. you make it much harder to crack your password. ",
-      "inputLabel": "Write your password"
+      "inputPlaceholder": "Start typing password...",
+      "resultPrefix": "It would take a hacker",
+      "resultSuffix": "to break your password."
     }
   },
   "result":{

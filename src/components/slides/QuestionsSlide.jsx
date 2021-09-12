@@ -2,7 +2,7 @@ import { Grid, Hidden, Input, TextField } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { withTranslation } from "react-i18next";
 import SwipeableViews from "react-swipeable-views";
-import stringEntropy from "fast-password-entropy";
+import PwdSecurityModal from "../features/PwdSecurity";
 
 // Custom components
 import { AlignCenter, Fade, StyledButton, StyledMarkdown, StyledTextField } from "components/general";
@@ -47,10 +47,11 @@ const Questions = ({
   nextSlide,
   questions,
   score,
+  profileStates,
   increaseScore,
   setCurrentQuestionIndex,
   setconfettiRun,
-  setconfettiRecycle
+  setconfettiRecycle,
 }) => {
   const [questionIndex, setQuestionIndex] = useState(0);
 
@@ -78,6 +79,7 @@ const Questions = ({
             amountOfQuestions={questions.length}
             questionData={questionData}
             nextQuestion={nextQuestion}
+            profileStates={profileStates}
             handleIncrementScore={handleIncrementScore}
             setconfettiRun={setconfettiRun}
             setconfettiRecycle={setconfettiRecycle}
@@ -88,18 +90,19 @@ const Questions = ({
   );
 };
 
-const AnswerOptions = ({ t, questionData, onSelectAnswer }) => {
+//The Question slide is divided into a Question (header) section and an AnswerOptions (body) section
+const AnswerOptions = ({ t, questionData, onSelectAnswer, profileForQuestion, setChangedTitle }) => {
   if (questionData.type === YES_NO) {
     return (
       <>
         <StyledButton
-          style={{ margin: "6px 0",width: "100%" }}
+          style={{ margin: "6px 0", width: "100%" }}
           onClick={() => onSelectAnswer(questionData.yes_score)}
         >
           {t("general.yes")}
         </StyledButton>
         <StyledButton
-          style={{ margin: "6px 0",width: "100%" }}
+          style={{ margin: "6px 0", width: "100%" }}
           onClick={() => onSelectAnswer(questionData.no_score)}
         >
           {t("general.no")}
@@ -111,7 +114,10 @@ const AnswerOptions = ({ t, questionData, onSelectAnswer }) => {
       <>
         {questionData.options.map((option) => (
           <div style={{ margin: "6px 0" }}>
-            <StyledButton onClick={() => onSelectAnswer(option.score)} style={{width: "100%", textAlign: "center"}}>
+            <StyledButton
+              onClick={() => onSelectAnswer(option.score)}
+              style={{ width: "100%", textAlign: "center" }}
+            >
               {t(option.text)}
             </StyledButton>
           </div>
@@ -119,98 +125,73 @@ const AnswerOptions = ({ t, questionData, onSelectAnswer }) => {
       </>
     );
   } else if (questionData.type === PASSWORD_INPUT) {
-    return <PasswordCheck onSelectAnswer={onSelectAnswer} t={t} />;
+  return <PasswordCheck onSelectAnswer={onSelectAnswer} questionData={questionData} profileForQuestion={profileForQuestion} t={t} setChangedTitle={setChangedTitle} />;
   }
 };
 
-const PasswordCheck = ({ t, onSelectAnswer }) => {
+// Type: Interactive question
+// Name: Logging in safe
+// Description: A login form customized to fit the profile, which tests the user for the strength of their password.
+const PasswordCheck = ({ t, profileForQuestion, questionData, onSelectAnswer, setChangedTitle }) => {
   const [password, setPassword] = useState("");
-  const onChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    //console.log(stringEntropy(password));
-    let score = stringEntropy(password) / 92; // 92 seems to be the max for 14 chars
-    if (score > 0.8) {
+  const [showSecond, setShowSecond] = useState(false);
+  const [pwdIsSecure, setPwdIsSecure] = useState(null);
+  const handleSubmit = (score) => {
+    if (score > 0.8 && pwdIsSecure) {
       onSelectAnswer(
         score,
-        "Utmärkt lösenord! (" + stringEntropy(password) + "/95 entropi)"
+        t("questions.passwordCheck.result0")
+      );
+    } else if (score > 0.8) {
+      onSelectAnswer(
+        score,
+        t("questions.passwordCheck.result1")
       );
     } else if (score > 0.6) {
       onSelectAnswer(
         score,
-        "Bra lösenord! (" + stringEntropy(password) + "/95 entropi)"
-      );
-    } else if (score > 0.4) {
-      onSelectAnswer(
-        score,
-        "Helt okej lösenord. (" + stringEntropy(password) + "/95 entropi)"
+        t("questions.passwordCheck.result2")
       );
     } else {
       onSelectAnswer(
         score,
-        "Dåligt lösenord... (" + stringEntropy(password) + "/95 entropi)"
+        t("questions.passwordCheck.result3")
       );
     }
   };
+  const handleClick = () => {
+    setChangedTitle(pwdIsSecure ? t("questions.passwordCheck.secondTitle").replace("{password}", password) : t("questions.passwordCheck.secondTitleUnsecurePwd"));
+    setShowSecond(true);
+  };
 
-  return (
-    <form
-      onSubmit={handleSubmit}
-    >
-      <TextField
-        id="disable-pwd-mgr-1"
-        name="disable-pwd-mgr-1"
-        value="disable-pwd-mgr-1"
-        type="password"
-        style={{ display: "none" }}
-      />
-      <TextField
-        id="disable-pwd-mgr-2"
-        name="disable-pwd-mgr-2"
-        value="disable-pwd-mgr-2"
-        type="password"
-        style={{ display: "none" }}
-      />
-      <TextField
-        id="disable-pwd-mgr-3"
-        name="disable-pwd-mgr-3"
-        value="disable-pwd-mgr-3"
-        type="password"
-        style={{ display: "none" }}
-      />
-      <StyledTextField
-        inputProps={{ maxLength: 14 }}
-        onChange={onChange}
-        margin="normal"
-        fullWidth
-        autoFocus={true}
-        type="password"
-        variant="filled"
-        label={t("questions.passwordCheck.inputLabel")}
-      />
-      <button
-        type="submit"
-        style={{
-          borderRadius: 4,
-          cursor: "pointer",
-          fontSize: "1.1em",
-          background: PALEBLUE,
-          color: PURPLE,
-          padding: "14px 50px",
-          fontWeight: "800",
-          display: "inline-block",
-          margin: 0,
-          transition: "0.3s ease-in-out",
-          border: "none",
-        }}
-      >
-        {t("general.next")}
-      </button>
-    </form>
-  );
+  if (showSecond) {
+    return (
+      <>
+        {questionData.options.map((option) => (
+          <div style={{ margin: "6px 0" }}>
+            <StyledButton
+              onClick={() => handleSubmit(option.score)}
+              style={{ width: "100%", textAlign: "center" }}
+            >
+              {t(option.text)}
+            </StyledButton>
+          </div>
+        ))}
+      </>
+    );
+  } else {
+    return(
+      <>
+      <PwdSecurityModal t={t} profileForQuestion={profileForQuestion} questionData={questionData} setPassword={setPassword} setPwdIsSecure={setPwdIsSecure} />
+      <StyledButton
+        style={{ margin: "20px 0", width: "100%", textAlign: "center" }}
+        disabled={password.length > 0 ? false : true}
+        onClick={handleClick}
+      >{t("test.nextQuestion")}
+      </StyledButton>
+      </>
+    );
+  };
 };
 
 const Question = ({
@@ -219,11 +200,13 @@ const Question = ({
   index,
   amountOfQuestions,
   questionData,
+  profileStates,
   nextQuestion,
   handleIncrementScore,
   setconfettiRun,
-  setconfettiRecycle
+  setconfettiRecycle,
 }) => {
+  const [changedTitle, setChangedTitle] = useState(null);
   const [questionResult, setQuestionResult] = useState(null);
   const [questionResultDesc, setQuestionResultDesc] = useState(null);
   const [questionOpened, setQuestionOpened] = useState(false);
@@ -233,14 +216,28 @@ const Question = ({
   );
   const [emojiArt] = useState(generateEmojiArt(questionData.emojis));
 
+  let chosenProfiles = [];
+  for(var i in profileStates)
+    chosenProfiles.push(i);
+  chosenProfiles.shift();
+  const profileForQuestion = chosenProfiles[Math.floor(Math.random()*chosenProfiles.length)];
+
+  let questionTitle = t(questionData.title);
+  if (questionData.profileBasedTitleVars !== undefined) {
+    questionData.profileBasedTitleVars.forEach((value) => {
+      questionTitle = questionTitle.replace("{" + value + "}", t(questionData[value][profileForQuestion].name));
+    });
+  }
+
   const last = index + 1 === amountOfQuestions;
-  const showTextAfterTime = t(questionData.title).length / 25;
+  const showTextAfterTime = 0;
   let streak = 0;
 
   const onSelectAnswer = (addedScore, resultText = "") => {
+    console.log(addedScore, resultText);
     if (questionResult === null) {
       var res = "";
-      if (resultText != "") {
+      if (resultText !== "") {
         res = resultText;
       } else if (addedScore > 0.8) {
         res = t("test.correctAnswer");
@@ -301,8 +298,14 @@ const Question = ({
                 <Fade>
                   <Grid container>
                     <Grid item xs={12}>
-                      <h1 style={{ lineHeight:"1.3", fontSize: "1.5em", marginBottom: 0 }}>
-                        {t(questionData.title)}
+                      <h1
+                        style={{
+                          lineHeight: "1.3",
+                          fontSize: "1.5em",
+                          marginBottom: 0,
+                        }}
+                      >
+                        {changedTitle !== null ? changedTitle : questionTitle}
                       </h1>
                     </Grid>
                   </Grid>
@@ -317,7 +320,9 @@ const Question = ({
                   <AnswerOptions
                     t={t}
                     questionData={questionData}
+                    profileForQuestion={profileForQuestion}
                     onSelectAnswer={onSelectAnswer}
+                    setChangedTitle={setChangedTitle}
                   />
                 </ReactReveal>
               ) : null}

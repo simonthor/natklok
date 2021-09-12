@@ -114,6 +114,7 @@ const ProfilCheckbox = ({ profileState, handleChange, name, icon, checkedIcon, c
           width: "100%",
           padding: "3px 0",
           color: profileState[name]? dark? "rgba(0, 0, 0, 0.7)" : "rgba(255, 255, 255, 0.8)" : "white",
+          boxSizing: "border-box",
           transition: "all 0.2s",
         }}
       >

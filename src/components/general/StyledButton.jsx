@@ -7,6 +7,7 @@ export default ({
   style,
   color = PALEBLUE,
   onClick,
+  disabled = false,
   cinematicColor
 }) => {
   const [hoveringOver, setHoveringOver] = useState(false);
@@ -29,14 +30,14 @@ export default ({
     <div
       onMouseEnter={() => handleMouseChange(true)}
       onMouseLeave={() => handleMouseChange(false)}
-      onClick={onClick}
+      onClick={disabled ? null : onClick}
       style={{
         borderRadius: 4,
         cursor: "pointer",
         fontSize: "1.1em",
-        background: color,
-        filter: hoveringOver ? "brightness(1.05)" : "none",
-        scale: hoveringOver ? "1.03" : "1",
+        background: !disabled ? color : "#3c3abb",
+        filter: hoveringOver && !disabled ? "brightness(1.05)" : "none",
+        scale: hoveringOver && !disabled ? "1.03" : "1",
         color: PURPLE,
         padding: "14px 40px",
         fontWeight: "800",

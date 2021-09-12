@@ -88,6 +88,7 @@ const TestSlides = ({
           nextSlide={nextSlide}
           setCurrentQuestionIndex={setCurrentQuestionIndex}
           questions={questions}
+          profileStates={profileState}
           score={score}
           increaseScore={increaseScore}
           setconfettiRun={setconfettiRun}

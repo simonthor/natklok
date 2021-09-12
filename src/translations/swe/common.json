@@ -68,10 +68,27 @@
       "option3": "De kan se allt jag gör."
     },
     "passwordCheck": {
-      "title": "Skapa det starkaste lösenordet",
-      "text": "Du har 14 karaktärer på dig att skapa ett så svår-knäckt lösenord som möjligt. Bonus-poäng ifall det är enkelt att komma ihåg också!",
+      "title": "Efter 10 år lyckas en hackare knäcka lösenordet till ditt konto hos {profileBasedService}. Vad kan ditt lösenord ha varit?",
+      "profileBasedService": {
+        "BANK_PROFILE": "finansförvaltaren Blanco",
+        "GAMING_PROFILE": "spelförsäljaren Yumpu",
+        "STREAMING_PROFILE": "streamingtjänsten Oslagbar",
+        "SOCIAL_MEDIA_PROFILE": "sociala-media-plattformen Kvitter"
+      },
+      "text": "",
+      "secondTitle": "Du skrev in losenordet {password}. Brukar du anvanda sakra losenord som detta?",
+      "secondTitleUnsecurePwd": "Det var ett ganska daligt losenord. Om vi bortser fran det, brukar du anvanda dig av sakra losenord?",
+      "option1": "Saklart, och mina losenord forvaras sakert",
+      "option2": "Jag har sakra losenord, men anvander dem for mer an ett konto",
+      "option3": "Jag tenderar att inte anvanda sakra losenord nar jag inte ar tvungen",
+      "result0": "Du verkar ha stenkoll pa hanteringen av losenord.",
+      "result1": "Du angav ett kasst losenord, men losenord kan du hantera.",
+      "result2": "Njaa, losenord ska vara unika for varje tjanst.",
+      "result3": "Inte bra, du kan utsattas for bedragerier nar som helst.",
       "moreInfo": "Med hjälp av speciella karaktärer, längre lösenord, ovanliga ord, mm. gör du det mycket svårare att knäcka ditt lösenord. ",
-      "inputLabel": "Skriv ditt lösenord"
+      "inputPlaceholder": "Börja skriv lösenord...",
+      "resultPrefix": "Det skulle ta en hackare",
+      "resultSuffix": "att knäcka ditt lösenord."
     }
   },
   "result":{

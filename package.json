@@ -8,7 +8,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "fast-password-entropy": "^1.1.1",
+    "hsimp-purescript": "^0.2.1",
     "i18next": "^19.6.0",
     "react": "^16.13.1",
     "react-confetti": "^6.0.1",
