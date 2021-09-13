@@ -13,8 +13,8 @@ import { withTranslation } from "react-i18next";
 import TranslateOutlinedIcon from "@material-ui/icons/TranslateOutlined";
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
+import { useTranslation } from "react-i18next";
 
-//TODO: Fix Radio buttons not updating bug
 //TODO: Fix setIsOpen firing when user changes language bug
 
 const theme = createMuiTheme({
@@ -109,6 +109,8 @@ function RadioButtonsGroup() {
     i18next.changeLanguage(event.target.value);
   };
 
+  const {i18n: {language}} = useTranslation()
+
   return (
     <div style={{
       position: "relative",
@@ -133,7 +135,7 @@ function RadioButtonsGroup() {
             <ThemeProvider theme={theme}>
               <FormControl component="fieldset">
               <FormLabel component="legend" className={classes.legend}>Change language</FormLabel>
-              <RadioGroup aria-label="language" name="lang1" defaultValue="swe" onChange={handleChange}>
+              <RadioGroup aria-label="language" name="lang1" defaultValue={language} onChange={handleChange}>
                   <FormControlLabel value="swe" control={<StyledRadio />} label="Svenska - SV"/>
                   <FormControlLabel value="en" control={<StyledRadio />} label="English - EN"/>
               </RadioGroup>
