@@ -1,10 +1,27 @@
-import React from 'react';
-import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import { PALEBLUE, WHITE } from "util/constants";
+import React from "react";
+import {
+  createTheme,
+  makeStyles,
+  ThemeProvider,
+} from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import { WHITE } from "util/constants";
 
-export default ({ inputProps, onChange, margin, fullWidth, autoFocus, type, variant, label, disabled, defaultValue, color = "#fff", style }) => {
-  const theme = createMuiTheme({
+export default ({
+  inputProps,
+  onChange,
+  margin,
+  fullWidth,
+  autoFocus,
+  type,
+  variant,
+  label,
+  disabled,
+  defaultValue,
+  color = "#fff",
+  style,
+}) => {
+  const theme = createTheme({
     palette: {
       primary: {
         main: color,
@@ -18,18 +35,18 @@ export default ({ inputProps, onChange, margin, fullWidth, autoFocus, type, vari
   const useStyles = makeStyles({
     root: {
       "& .Mui-focused": {
-        color: color
-      },
-      "& .Mui-disabled": {
-        color: color
-      },
-      '& label': {
         color: color,
       },
-      '& .MuiInput-underline:after': {
+      "& .Mui-disabled": {
+        color: color,
+      },
+      "& label": {
+        color: color,
+      },
+      "& .MuiInput-underline:after": {
         borderBottomColor: color,
       },
-    }
+    },
   });
   const classes = useStyles();
 
@@ -48,11 +65,11 @@ export default ({ inputProps, onChange, margin, fullWidth, autoFocus, type, vari
         disabled={disabled}
         style={{
           color: WHITE,
-          ...style
+          ...style,
         }}
         color="primary"
         className={classes.root}
       />
     </ThemeProvider>
   );
-}
+};

@@ -4,7 +4,8 @@ import getPretendScore from "./getPretendScore";
 export const getMaxScore = (questions) => {
   let maxScore = 0;
   questions.forEach((question) => {
-    if (question.type === YES_NO) {
+    maxScore += 1;
+    /*if (question.type === YES_NO) {
       if (question.yes_score > question.no_score) {
         maxScore += getPretendScore(question.yes_score);
       } else {
@@ -18,7 +19,9 @@ export const getMaxScore = (questions) => {
         }
       });
       maxScore += getPretendScore(maxOptionScore);
-    }
+    }else{
+
+    }*/
   });
   console.log("maxScore is: ", maxScore);
   return maxScore;

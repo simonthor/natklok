@@ -1,0 +1,19 @@
+.items {
+  list-style: none;
+  padding-left: 0;
+}
+
+.items li {
+  display: flex;
+  align-items: center;
+  border: solid 2px #d0d0d0;
+  border-radius: 0.2em;
+  padding: 0.5em 0.8em 0.5em 0.5em;
+  margin-bottom: 1em;
+}
+
+.items p {
+  max-width: none;
+  font-weight: bold;
+  margin: 0;
+}

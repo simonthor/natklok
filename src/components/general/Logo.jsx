@@ -1,18 +1,10 @@
 import React from "react";
+import Mainlogo from "../../assets/sakerhetskontrollen-logo.svg";
+
 
 const Logo = ({ large }) => {
   return (
-    <i
-      style={{
-        fontSize: large ? "2em" : "1.2em",
-        fontFamily: "Courier New",
-        fontWeight: 700,
-        color: "white",
-        textShadow: "1px 1px #8da6eb",
-      }}
-    >
-      SäkerhetsKontrollen
-    </i>
+    <img style={{width:200}} src={Mainlogo} alt="sakerhetskontrollen"/>
   );
 };
 

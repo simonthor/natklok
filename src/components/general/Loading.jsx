@@ -1,7 +1,7 @@
 import React from "react";
 // Custom
 import { Logo } from ".";
-import { HEIGHT, PURPLE } from "util/constants";
+import { PURPLE } from "util/constants";
 
 const Loading = () => {
   return (
@@ -10,8 +10,9 @@ const Loading = () => {
         textAlign: "center",
         flex: 1,
         background: PURPLE,
-        height: (HEIGHT === 0) ? 0 : HEIGHT,
-        paddingTop: (HEIGHT === 0) ? 0 : HEIGHT / 3,
+        height: "100vh",
+        width: "100vw",
+        paddingTop: "30%",
       }}
     >
       <Logo />

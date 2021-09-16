@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap&family=Bowlby+One+SC');
+@import url("https://fonts.googleapis.com/css2?family=Bungee&display=swap&family=Bowlby+One+SC");
 
 body {
   margin: 0;
@@ -6,4 +6,9 @@ body {
     Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji,
     Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
   color: white;
+  background-color: #292881;
+}
+
+p {
+  font-size: 1.1em;
 }
