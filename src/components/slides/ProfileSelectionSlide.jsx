@@ -19,7 +19,7 @@ import {
   GAMING_PROFILE,
   STREAMING_PROFILE,
   SOCIAL_MEDIA_PROFILE,
-  PURPLE,
+  PROFILE_STYLING,
 } from "../../util/constants";
 
 const ProfileSelectionSlide = ({
@@ -57,49 +57,49 @@ const ProfileSelectionSlide = ({
                 t={t}
                 profileState={profileState}
                 handleChange={handleProfileCheckboxChecked}
-                name={BANK_PROFILE.title}
+                name={BANK_PROFILE}
                 icon={<AccountBalanceWalletOutlinedIcon />}
                 checkedIcon={
                   <AccountBalanceWalletIcon
                     style={{ color: "rgba(0,0,0,0.7)" }}
                   />
                 }
-                color={BANK_PROFILE.color}
-                dark={BANK_PROFILE.dark}
+                color={PROFILE_STYLING[BANK_PROFILE].color}
+                dark={PROFILE_STYLING[BANK_PROFILE].dark}
               />
               <ProfilCheckbox
                 t={t}
                 profileState={profileState}
                 handleChange={handleProfileCheckboxChecked}
-                name={GAMING_PROFILE.title}
+                name={GAMING_PROFILE}
                 icon={<SportsEsportsOutlinedIcon />}
                 checkedIcon={
                   <SportsEsportsIcon style={{ color: "rgba(0,0,0,0.7)" }} />
                 }
-                color={GAMING_PROFILE.color}
-                dark={GAMING_PROFILE.dark}
+                color={PROFILE_STYLING[GAMING_PROFILE].color}
+                dark={PROFILE_STYLING[GAMING_PROFILE].dark}
               />
               <ProfilCheckbox
                 t={t}
                 profileState={profileState}
                 handleChange={handleProfileCheckboxChecked}
-                name={STREAMING_PROFILE.title}
+                name={STREAMING_PROFILE}
                 icon={<MovieOutlinedIcon />}
                 checkedIcon={<MovieIcon style={{ color: "rgba(0,0,0,0.7)" }} />}
-                color={STREAMING_PROFILE.color}
-                dark={STREAMING_PROFILE.dark}
+                color={PROFILE_STYLING[STREAMING_PROFILE].color}
+                dark={PROFILE_STYLING[STREAMING_PROFILE].dark}
               />
               <ProfilCheckbox
                 t={t}
                 profileState={profileState}
                 handleChange={handleProfileCheckboxChecked}
-                name={SOCIAL_MEDIA_PROFILE.title}
+                name={SOCIAL_MEDIA_PROFILE}
                 icon={<ShareOutlinedIcon />}
                 checkedIcon={
                   <ShareIcon style={{ color: "rgba(255,255,255,0.8)" }} />
                 }
-                color={SOCIAL_MEDIA_PROFILE.color}
-                dark={SOCIAL_MEDIA_PROFILE.dark}
+                color={PROFILE_STYLING[SOCIAL_MEDIA_PROFILE].color}
+                dark={PROFILE_STYLING[SOCIAL_MEDIA_PROFILE].dark}
               />
             </Grid>
             <Grid
@@ -137,7 +137,7 @@ const ProfilCheckbox = ({
       <div
         style={{
           background: profileState[name] ? color : "rgba(0, 0, 0, 0.2)",
-          borderRadius: 8,
+          borderRadius: 12,
           border: profileState[name]
             ? "4px solid rgba(0, 0, 0, 0.2)"
             : "4px solid transparent",

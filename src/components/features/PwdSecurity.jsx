@@ -11,7 +11,7 @@ import { GENERAL_PROFILE, SOCIAL_MEDIA_PROFILE } from "../../util/constants";
 
 const PwdSecurityModal = ({
   t,
-  profileForQuestion = SOCIAL_MEDIA_PROFILE.title,
+  profileForQuestion = SOCIAL_MEDIA_PROFILE,
   questionData,
   setPassword,
   setPwdIsSecure,
@@ -20,10 +20,9 @@ const PwdSecurityModal = ({
   const [pwdTime, setPwdTime] = useState("");
   const [notice, setNotice] = useState("");
   const [checks, setChecks] = useState({});
-
-  const service = t(questionData.profileBasedService[profileForQuestion].name)
-    .split(" ")
-    .splice(-1);
+  const [profileBasedService] = useState(
+    questionData.profileBasedService[profileForQuestion]
+  );
 
   const config = {
     calculationsPerSecond: 40e9,
@@ -51,8 +50,7 @@ const PwdSecurityModal = ({
     <>
       <div
         style={{
-          background:
-            questionData.profileBasedService[profileForQuestion].color,
+          background: profileBasedService.color,
           padding: 10,
           borderRadius: 8,
           position: "relative",
@@ -66,17 +64,15 @@ const PwdSecurityModal = ({
             fontFamily: "sans-serif",
             letterSpacing: -3,
             fontSize: "1.8em",
-            color:
-              questionData.profileBasedService[profileForQuestion].thirdColor,
+            color: profileBasedService.thirdColor,
           }}
         >
-          {service}
+          {t(profileBasedService.name).split(" ").splice(-1)}
         </span>
         <span
           style={{
             marginLeft: 10,
-            color:
-              questionData.profileBasedService[profileForQuestion].thirdColor,
+            color: profileBasedService.thirdColor,
           }}
         >
           Allt samlat.
@@ -88,22 +84,19 @@ const PwdSecurityModal = ({
           autoFocus
           variant="filled"
           label={t("questions.passwordCheck.inputPlaceholder")}
-          color={
-            questionData.profileBasedService[profileForQuestion].secondColor
-          }
+          color={profileBasedService.secondColor}
         />
         <div
           style={{
             borderRadius: 5,
-            background:
-              questionData.profileBasedService[profileForQuestion].thirdColor,
-            color: questionData.profileBasedService[profileForQuestion].color,
+            background: profileBasedService.thirdColor,
+            color: profileBasedService.color,
             fontSize: "0.8em",
-            padding: "15px",
-            margin: "15px 0 0 0",
+            padding: "15px 0",
             transition: "0.3s ease-in-out",
             border: "none",
             textAlign: "center",
+            width: "100%",
             display: pwd === "" ? "none" : "inline-block",
           }}
         >
@@ -131,8 +124,7 @@ const PwdSecurityModal = ({
             textAlign: "center",
             fontSize: "0.7em",
             opacity: "0.7",
-            color:
-              questionData.profileBasedService[profileForQuestion].thirdColor,
+            color: profileBasedService.thirdColor,
             lineHeight: 1,
           }}
         >

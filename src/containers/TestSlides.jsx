@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { withTranslation } from "react-i18next";
-import SwipeableViews from "react-swipeable-views";
+import Fade from "react-reveal/Fade";
 
 // Custom
 import {
@@ -8,13 +8,10 @@ import {
   GAMING_PROFILE,
   STREAMING_PROFILE,
   SOCIAL_MEDIA_PROFILE,
-  HEIGHT,
-  PURPLE,
 } from "../util/constants";
 
 import { generateQuestions } from "../util/generateQuestions";
 import { getMaxScore } from "../util/getMaxScore";
-import getPretendScore from "../util/getPretendScore";
 import ResultSlide from "../components/slides/ResultSlide";
 import ProfileSelectionSlide from "../components/slides/ProfileSelectionSlide";
 import QuestionsSlide from "../components/slides/QuestionsSlide";
@@ -29,14 +26,16 @@ const TestSlides = ({
   setIsFinished,
   setconfettiRun,
   setconfettiRecycle,
+  increaseStarAmount,
+  starAmount,
 }) => {
   const [slideIndex, setSlideIndex] = useState(0);
   const [questions, setQuestions] = useState([]);
   const [foundQuerySearchQuestion, setFoundQuerySearchQuestion] =
     useState(false);
   const [checkedQuery, setCheckedQuery] = useState(false);
-  const [score, setScore] = useState(0);
-  const [maxScore, setMaxScore] = useState(0);
+  const [maxStarAmount, setMaxStarAmount] = useState(0);
+  const [streak, setStreak] = useState(0);
   const [testFinished, setTestFinished] = useState(false);
   const [profileState, setState] = useState({
     [BANK_PROFILE]: false,
@@ -66,18 +65,15 @@ const TestSlides = ({
     setState({ ...profileState, [event.target.name]: event.target.checked });
   };
 
-  const increaseScore = (inc) => {
-    setScore(Number(score) + getPretendScore(inc));
-  };
-
   const nextSlide = () => {
     if (slideIndex === 0) {
+      // Do this if we should run the test as normal
       if (foundQuerySearchQuestion === false) {
-        let generated_questions = generateQuestions(profileState);
-        let maxScore = getMaxScore(generated_questions);
-        setQuestions(generated_questions);
-        setMaxScore(maxScore);
-        setTotalQuestions(generated_questions.length);
+        let generatedQuestions = generateQuestions(profileState);
+        let maxScore = getMaxScore(generatedQuestions);
+        setQuestions(generatedQuestions);
+        setMaxStarAmount(maxScore);
+        setTotalQuestions(generatedQuestions.length);
         setCurrentQuestionIndex(1);
       }
 
@@ -91,18 +87,15 @@ const TestSlides = ({
 
   return (
     <div id="formContainer">
-      <SwipeableViews
+      <div
         index={slideIndex}
         style={{
           maxWidth: "100vw",
-          minHeight: "100%",
-          height: 0,
+          height: "100%",
         }}
-        containerStyle={{ height: "100%" }}
-        id="testSlides"
       >
         {/* Only show profile selection if we have generated the quiz */}
-        {foundQuerySearchQuestion !== true ? (
+        {foundQuerySearchQuestion !== true && slideIndex === 0 ? (
           <ProfileSelectionSlide
             t={t}
             nextSlide={nextSlide}
@@ -111,25 +104,30 @@ const TestSlides = ({
           />
         ) : null}
 
-        <QuestionsSlide
-          t={t}
-          nextSlide={nextSlide}
-          setCurrentQuestionIndex={setCurrentQuestionIndex}
-          questions={questions}
-          profileStates={profileState}
-          score={score}
-          increaseScore={increaseScore}
-          setconfettiRun={setconfettiRun}
-          setconfettiRecycle={setconfettiRecycle}
-          linkToEntireQuiz={foundQuerySearchQuestion}
-        />
+        {slideIndex === 1 && (
+          <QuestionsSlide
+            t={t}
+            nextSlide={nextSlide}
+            setCurrentQuestionIndex={setCurrentQuestionIndex}
+            questions={questions}
+            profileStates={profileState}
+            increaseStarAmount={increaseStarAmount}
+            setconfettiRun={setconfettiRun}
+            setconfettiRecycle={setconfettiRecycle}
+            linkToEntireQuiz={foundQuerySearchQuestion}
+            setStreak={setStreak}
+            streak={streak}
+          />
+        )}
 
-        <ResultSlide
-          score={score}
-          maxScore={maxScore}
-          testFinished={testFinished}
-        />
-      </SwipeableViews>
+        {slideIndex === 2 && (
+          <ResultSlide
+            starAmount={starAmount}
+            maxStarAmount={maxStarAmount}
+            testFinished={testFinished}
+          />
+        )}
+      </div>
     </div>
   );
 };

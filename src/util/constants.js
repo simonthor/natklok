@@ -10,27 +10,30 @@ export const BLACK = "#111111";
 export const WHITE = "#FFFFFF";
 
 // Profiles
-export const BANK_PROFILE = {
-  title: "BANK_PROFILE",
-  color: "#0EE08C",
-  dark: true,
-};
-export const GAMING_PROFILE = {
-  title: "GAMING_PROFILE",
-  color: "#FDCF35",
-  dark: true,
-};
-export const STREAMING_PROFILE = {
-  title: "STREAMING_PROFILE",
-  color: "#FB733F",
-  dark: true,
-};
-export const SOCIAL_MEDIA_PROFILE = {
-  title: "SOCIAL_MEDIA_PROFILE",
-  color: "#FF3854",
-  dark: false,
-};
+export const BANK_PROFILE = "BANK_PROFILE";
+export const GAMING_PROFILE = "GAMING_PROFILE";
+export const STREAMING_PROFILE = "STREAMING_PROFILE";
+export const SOCIAL_MEDIA_PROFILE = "SOCIAL_MEDIA_PROFILE";
 export const GENERAL_PROFILE = "GENERAL_PROFILE";
+
+export const PROFILE_STYLING = {
+  BANK_PROFILE: {
+    color: "#0EE08C",
+    dark: true,
+  },
+  GAMING_PROFILE: {
+    color: "#FDCF35",
+    dark: true,
+  },
+  STREAMING_PROFILE: {
+    color: "#FB733F",
+    dark: true,
+  },
+  SOCIAL_MEDIA_PROFILE: {
+    color: "#FF3854",
+    dark: false,
+  },
+};
 
 // Categories
 export const SHARED_PASSWORD_QUESTION = "SHARED_PASSWORD_QUESTION";
@@ -39,13 +42,17 @@ export const FAKE_WEBSITE_QUESTION = "FAKE_WEBSITE_QUESTION";
 export const PASSWORD_STRENGTH_QUESTION = "PASSWORD_STRENGTH_QUESTION";
 export const WIFI_ON_QUESTION = "WIFI_ON_QUESTION";
 export const ROMANCE_SCAM = "ROMANCE_SCAM";
+export const USE_SAME_PASSWORD = "USE_SAME_PASSWORD";
+export const RANK_PASSWORDS = "RANK_PASSWORDS";
 
 // Question types
 export const YES_NO = "YES_NO";
+export const DRAG_TO_TRASH = "DRAG_TO_TRASH";
 export const SEVERAL_OPTION = "SEVERAL_OPTION";
 export const PASSWORD_INPUT = "PASSWORD_INPUT";
 export const CHAT = "CHAT";
 export const FAKE_WEBSITE = "FAKE_WEBSITE";
+export const ORDER = "ORDER";
 
 export const QUESTIONS = [
   {
@@ -63,7 +70,7 @@ export const QUESTIONS = [
       { text: "questions.csgoSkin.option1", score: 0 },
       {
         text: "questions.csgoSkin.option2",
-        score: 0.8,
+        score: 0,
       },
       { text: "questions.csgoSkin.option3", score: 1 },
     ],
@@ -140,7 +147,7 @@ export const QUESTIONS = [
       { text: "questions.passwordCheck.option1", score: 1 },
       {
         text: "questions.passwordCheck.option2",
-        score: 0.7,
+        score: 0,
       },
       { text: "questions.passwordCheck.option3", score: 0 },
     ],
@@ -162,7 +169,7 @@ export const QUESTIONS = [
         text: "questions.publicWifi.option2",
         score: 1,
       },
-      { text: "questions.publicWifi.option3", score: 0.7 },
+      { text: "questions.publicWifi.option3", score: 0 },
     ],
   },
   {
@@ -176,5 +183,33 @@ export const QUESTIONS = [
     emojis: ["☕", "📶"],
     readMoreLink:
       "https://sakerhetskollen.se/testa-din-sakerhet/ar-du-saker-pa-ditt-losenord",
+  },
+  {
+    id: 7,
+    category: USE_SAME_PASSWORD,
+    type: DRAG_TO_TRASH,
+    forProfile: GENERAL_PROFILE,
+    title: "questions.trashSamePassword.title",
+    text: "questions.trashSamePassword.text",
+    moreInfo: "questions.trashSamePassword.moreInfo",
+    dragToTrashText: "questions.trashSamePassword.dragToTrashText",
+  },
+  {
+    id: 8,
+    category: RANK_PASSWORDS,
+    type: ORDER,
+    forProfile: GENERAL_PROFILE,
+    title: "questions.rankpasswords.title",
+    text: "questions.rankpasswords.text",
+    moreInfo: "questions.rankpasswords.moreInfo",
+    best: "questions.rankpasswords.best",
+    worst: "questions.rankpasswords.worst",
+    options: [
+      { text: "abc123", id: "1" },
+      { text: "mångabäckarsmågrodorna", id: "2" },
+      { text: "sommar2021!", id: "3" },
+      { text: "{wz_kjq?ycl&aP#/", id: "4" },
+    ],
+    correctIdOrder: ["4", "3", "2", "1"],
   },
 ];

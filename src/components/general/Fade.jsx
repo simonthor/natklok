@@ -8,12 +8,12 @@ import getWindowSize from "../../util/getWindowSize";
   20% of the children component. On small screen the animation is removed 
   however, since it looks bad and ruins the user experience in my opinion. 
 */
-const BottomFade = ({ fadeOnMobile = false, children, style }) => {
+const BottomFade = ({ fadeOnMobile = false, children, style, delay }) => {
   const windowSize = getWindowSize();
   if (windowSize.width < 300) {
     if (fadeOnMobile === true) {
       return (
-        <Fade style={style} bottom>
+        <Fade style={style} delay={delay} bottom>
           {children}
         </Fade>
       );
@@ -22,7 +22,7 @@ const BottomFade = ({ fadeOnMobile = false, children, style }) => {
     }
   } else {
     return (
-      <Fade style={style} bottom>
+      <Fade style={style} delay={delay} bottom>
         {children}
       </Fade>
     );

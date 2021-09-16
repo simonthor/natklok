@@ -15,9 +15,12 @@ const AlignCenter = ({
     alignItems="center"
     justify="center"
     key={key}
-    style={{ paddingTop: marginTop && "5vh" }}
+    style={{
+      paddingTop: marginTop && "5vh",
+      width: withMaxWidth ? "100%" : "auto",
+    }}
   >
-    <Grid item xs={11} sm={10} md={9} lg={8} xl={9}>
+    <Grid item xs={11} sm={10} md={9} lg={8} xl={9} style={{ width: "100%" }}>
       <Grid
         container
         direction={row === true ? "row" : "column"}
@@ -25,7 +28,7 @@ const AlignCenter = ({
         alignItems="center"
       >
         {withMaxWidth === true ? (
-          <Grid style={{ maxWidth: 500 }}>{children}</Grid>
+          <Grid style={{ maxWidth: 600, width: "100%" }}>{children}</Grid>
         ) : (
           <>{children}</>
         )}

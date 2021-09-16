@@ -1,4 +1,3 @@
-import { Grid } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { withTranslation } from "react-i18next";
 import SwipeableViews from "react-swipeable-views";
@@ -7,51 +6,33 @@ import PwdSecurityModal from "../features/PwdSecurity";
 // Custom components
 import { AlignCenter, Fade, StyledButton, HTMLRenderer } from "../general";
 import AnswerFeedback from "./AnswerFeedback";
-import ReactReveal from "react-reveal/Fade";
 import {
-  YES_NO,
   SEVERAL_OPTION,
   PASSWORD_INPUT,
   CHAT,
   FAKE_WEBSITE,
+  DRAG_TO_TRASH,
+  ORDER,
 } from "../../util/constants";
 import RomanceChat from "../dynamicQuestions/RomanceChat";
 import FakeWebsite from "../dynamicQuestions/FakeWebsite";
-
-// Deprecated: Emoji art used in Yes/No & Multiple choice questions
-const generateEmojiArt = (arrayOfEmojis) => {
-  let emojiArt = [];
-  let style = "random";
-
-  if (style === "random") {
-    for (let i = 0; i < arrayOfEmojis.length; i++) {
-      const emoji = arrayOfEmojis[i];
-      const amountOfEmoji = Math.random() * (15 / arrayOfEmojis.length);
-      for (let j = 0; j < amountOfEmoji; j++) {
-        const top = Math.random() * 80 + "%";
-        const left = Math.random() * 80 + "%";
-        const fontSize = Math.random() * 18 + 18;
-        const rot = Math.random() * 100 - 50;
-        emojiArt.push({ emoji, top, left, fontSize, rot });
-      }
-    }
-  }
-
-  return emojiArt;
-};
+import OrderQuestion from "../dynamicQuestions/OrderQuestion";
+import YesNoWrapper from "../features/YesNoWrapper";
+import DragToTrash from "../dynamicQuestions/DragToTrash";
 
 // Component that layers all the questions
 const Questions = ({
   t,
   nextSlide,
   questions,
-  score,
   profileStates,
-  increaseScore,
+  increaseStarAmount,
   setCurrentQuestionIndex,
   setconfettiRun,
   setconfettiRecycle,
   linkToEntireQuiz,
+  setStreak,
+  streak,
 }) => {
   const [questionIndex, setQuestionIndex] = useState(0);
 
@@ -64,35 +45,32 @@ const Questions = ({
     }
   };
 
-  const handleIncrementScore = (score) => {
-    increaseScore(score);
-  };
-
   return (
-    <SwipeableViews
-      index={questionIndex}
-      style={{ height: "100%" }}
-      containerStyle={{ height: "100%" }}
-      id="questionsSlide"
-    >
+    <div style={{ height: "100%" }}>
       {questions.map((questionData, index) => (
-        <div key={index} id="questionContainer" style={{ height: "100%" }}>
-          <Question
-            t={t}
-            currentIndex={questionIndex}
-            index={index}
-            amountOfQuestions={questions.length}
-            questionData={questionData}
-            nextQuestion={nextQuestion}
-            profileStates={profileStates}
-            handleIncrementScore={handleIncrementScore}
-            setconfettiRun={setconfettiRun}
-            setconfettiRecycle={setconfettiRecycle}
-            linkToEntireQuiz={linkToEntireQuiz}
-          />
-        </div>
+        <>
+          {questionIndex === index && (
+            <div key={index} id="questionContainer" style={{ height: "100%" }}>
+              <Question
+                t={t}
+                currentIndex={questionIndex}
+                index={index}
+                amountOfQuestions={questions.length}
+                questionData={questionData}
+                nextQuestion={nextQuestion}
+                profileStates={profileStates}
+                increaseStarAmount={increaseStarAmount}
+                setconfettiRun={setconfettiRun}
+                setconfettiRecycle={setconfettiRecycle}
+                linkToEntireQuiz={linkToEntireQuiz}
+                setStreak={setStreak}
+                streak={streak}
+              />
+            </div>
+          )}
+        </>
       ))}
-    </SwipeableViews>
+    </div>
   );
 };
 
@@ -120,22 +98,13 @@ const AnswerOptions = ({
         onSelectAnswer={onSelectAnswer}
       />
     );
-  } else if (questionData.type === YES_NO) {
+  } else if (questionData.type === ORDER) {
     return (
-      <>
-        <StyledButton
-          style={{ margin: "6px 0", width: "100%" }}
-          onClick={() => onSelectAnswer(questionData.yes_score)}
-        >
-          {t("general.yes")}
-        </StyledButton>
-        <StyledButton
-          style={{ margin: "6px 0", width: "100%" }}
-          onClick={() => onSelectAnswer(questionData.no_score)}
-        >
-          {t("general.no")}
-        </StyledButton>
-      </>
+      <OrderQuestion
+        questionData={questionData}
+        t={t}
+        onSelectAnswer={onSelectAnswer}
+      />
     );
   } else if (questionData.type === SEVERAL_OPTION) {
     return (
@@ -152,6 +121,14 @@ const AnswerOptions = ({
         ))}
       </>
     );
+  } else if (questionData.type === DRAG_TO_TRASH) {
+    return (
+      <DragToTrash
+        questionData={questionData}
+        onSelectAnswer={onSelectAnswer}
+        t={t}
+      />
+    );
   } else if (questionData.type === PASSWORD_INPUT) {
     return (
       <PasswordCheck
@@ -163,7 +140,6 @@ const AnswerOptions = ({
       />
     );
   } else {
-    alert("Error: No suitable question type found.");
     return null;
   }
 };
@@ -207,7 +183,7 @@ const PasswordCheck = ({
 
   if (showSecond) {
     return (
-      <>
+      <Fade>
         {questionData.options.map((option) => (
           <div style={{ margin: "6px 0" }}>
             <StyledButton
@@ -218,7 +194,7 @@ const PasswordCheck = ({
             </StyledButton>
           </div>
         ))}
-      </>
+      </Fade>
     );
   } else {
     return (
@@ -250,20 +226,20 @@ const Question = ({
   questionData,
   profileStates,
   nextQuestion,
-  handleIncrementScore,
+  increaseStarAmount,
   setconfettiRun,
   setconfettiRecycle,
   linkToEntireQuiz,
+  setStreak,
+  streak,
+  setStarAmount,
 }) => {
   const [changedTitle, setChangedTitle] = useState(null);
   const [questionResult, setQuestionResult] = useState(null);
-  const [questionResultDesc, setQuestionResultDesc] = useState(null);
+  const [questionResultAdditionalText, setQuestionResultAdditionalText] =
+    useState("");
   const [questionOpened, setQuestionOpened] = useState(false);
   const [timeSinceOpened, setTimeSinceOpened] = useState(0);
-  const [questionPicture] = useState(
-    Math.random() > 0.5 ? "row" : "row-reverse"
-  );
-  const [emojiArt] = useState(generateEmojiArt(questionData.emojis));
 
   let chosenProfiles = [];
   for (var i in profileStates) chosenProfiles.push(i);
@@ -274,7 +250,6 @@ const Question = ({
   let questionTitle = t(questionData.title);
   if (questionData.profileBasedTitleVars !== undefined) {
     questionData.profileBasedTitleVars.forEach((value) => {
-      console.log(questionData[value][profileForQuestion]);
       if (questionData[value][profileForQuestion] !== undefined) {
         questionTitle = questionTitle.replace(
           "{" + value + "}",
@@ -285,16 +260,15 @@ const Question = ({
   }
 
   const last = index + 1 === amountOfQuestions;
-  const showTextAfterTime = 0;
-  let streak = 0;
+  let showTextAfterTime = 0.5 + questionTitle.length / 40;
+  if (questionData.type === PASSWORD_INPUT) {
+    showTextAfterTime = 0;
+  }
 
   const onSelectAnswer = (addedScore, resultText = "") => {
-    console.log(addedScore, resultText);
     if (questionResult === null) {
       var res = "";
-      if (resultText !== "") {
-        res = resultText;
-      } else if (addedScore > 0.8) {
+      if (addedScore > 0.8) {
         res = t("test.correctAnswer");
       } else if (addedScore > 0.5) {
         res = t("test.almostCorrectAnswer");
@@ -304,7 +278,8 @@ const Question = ({
         res = t("test.wrongAnswer");
       }
       setQuestionResult(res);
-      handleIncrementScore(addedScore);
+      increaseStarAmount(addedScore);
+      setQuestionResultAdditionalText(resultText);
     }
     if (addedScore > 0.3) {
       setconfettiRun(true);
@@ -315,9 +290,9 @@ const Question = ({
         setconfettiRun(false);
         setconfettiRecycle(true);
       }, 6000);
-      streak += 1;
+      setStreak(streak + 1);
     } else {
-      streak = 0;
+      setStreak(0);
     }
   };
 
@@ -333,43 +308,59 @@ const Question = ({
   }, [currentIndex, index, questionOpened, showTextAfterTime, timeSinceOpened]);
 
   return (
-    <div id="question" style={{ height: "100%" }}>
+    <div id="question" style={{ height: "100%", width: "100%" }}>
       {questionResult !== null ? (
         <AnswerFeedback
           t={t}
           nextQuestion={nextQuestion}
-          streak={null}
-          isCorrect={true}
+          streak={streak}
           isLastQuestion={last}
           title={questionResult}
-          desc={t(questionData.moreInfo)}
+          desc={t(questionData.moreInfo) + questionResultAdditionalText}
           bodyMarkdown={null}
           linkToEntireQuiz={linkToEntireQuiz}
           questionId={questionData.id}
         />
       ) : (
-        <AlignCenter withMaxWidth>
-          {questionOpened === true ? (
-            <h2 style={{ minWidth: "100%", width: 0 }}>
-              {changedTitle !== null ? changedTitle : questionTitle}
-            </h2>
-          ) : null}
+        <YesNoWrapper
+          questionData={questionData}
+          onSelectAnswer={onSelectAnswer}
+          showTextAfterTime={showTextAfterTime}
+          timeSinceOpened={timeSinceOpened}
+          t={t}
+        >
+          <AlignCenter withMaxWidth>
+            {questionOpened === true ? (
+              <Fade>
+                <h2
+                  style={{
+                    minWidth: "100%",
+                    width: 0,
+                    fontFamily: "Bowlby One SC, Arial, Helvetica, sans-serif",
+                    fontWeight: 400,
+                  }}
+                >
+                  {changedTitle !== null ? changedTitle : questionTitle}
+                </h2>
+              </Fade>
+            ) : null}
 
-          {timeSinceOpened > showTextAfterTime ? (
-            <>
-              <HTMLRenderer style={{ marginBottom: 20 }}>
-                {t(questionData.text)}
-              </HTMLRenderer>
-              <AnswerOptions
-                t={t}
-                questionData={questionData}
-                profileForQuestion={profileForQuestion}
-                onSelectAnswer={onSelectAnswer}
-                setChangedTitle={setChangedTitle}
-              />
-            </>
-          ) : null}
-        </AlignCenter>
+            {timeSinceOpened > showTextAfterTime ? (
+              <Fade>
+                <HTMLRenderer style={{ marginBottom: 20, fontSize: "1.1em" }}>
+                  {t(questionData.text)}
+                </HTMLRenderer>
+                <AnswerOptions
+                  t={t}
+                  questionData={questionData}
+                  profileForQuestion={profileForQuestion}
+                  onSelectAnswer={onSelectAnswer}
+                  setChangedTitle={setChangedTitle}
+                />
+              </Fade>
+            ) : null}
+          </AlignCenter>
+        </YesNoWrapper>
       )}
     </div>
   );

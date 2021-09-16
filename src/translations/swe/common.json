@@ -8,7 +8,8 @@
     "questionsLeft": "frågor kvar",
     "questionLeft": "fråga kvar!",
     "yes": "Ja",
-    "no": "Nej"
+    "no": "Nej",
+    "done": "Klar"
   },
   "error": {
     "somethingWentWrong": "Oops, något gick fel...",
@@ -45,6 +46,7 @@
     "result": "Se resultat",
     "correctAnswer": "Helt rätt!",
     "almostCorrectAnswer": "Typ rätt!",
+    "correctOrder": "Rätt ordning är: ",
     "acceptableAnswer": "Njaaaa..",
     "wrongAnswer": "Fel.",
     "excellent": "Utmärkt!",
@@ -58,7 +60,7 @@
   "questions": {
     "csgoSkin": {
       "title": "Du hittar det perfekta CSGO skin:et online...",
-      "text": "Med ditt steam-konto kan du logga in på en hemsida som heter 'csgoskins.cz' för att få tag på den. **Är detta en bra idé?**",
+      "text": "Med ditt steam-konto kan du logga in på en hemsida som heter 'csgoskins.cz' för att få tag på den. <b>Är detta en bra idé?</b>",
       "moreInfo": "Om du inte loggar in genom steam kan hackers se ditt lösenord och ta över ditt steamkonto.",
       "option1": "Det borde vara lugnt",
       "option2": "Om jag länkas vidare till Steams sida är det okej",
@@ -66,13 +68,13 @@
     },
     "fakeApp": {
       "title": "Din vän hittade en app där du kan se vilka som stalkar dig på instagram!",
-      "text": "Med ditt instagramkonto kan du logga in i en app som heter 'stalkwatcher' för att se vem som besöker ditt konto. **Är detta en bra idé?**",
+      "text": "Med ditt instagramkonto kan du logga in i en app som heter 'stalkwatcher' för att se vem som besöker ditt konto. <b>Är detta en bra idé?</b>",
       "moreInfo": "Om det inte är en inloggning via instagram kan hackare se ditt lösenord, kapa ditt konto och du kan förlora tillgång till ditt konto!"
     },
     "publicWifi": {
       "title": "Gratis wifi på kaféet",
-      "text": "Nice, alla älskar ju gratis saker! ** Men hur mycket av min surfning kan kaféet faktiskt se? **",
-      "moreInfo": "Med HTTPS är alla meddelanden eller lösenord du skickar säkra, men utan en VPN kan de som äger en router kan **alltid se vilken webbplatser du besöker.**",
+      "text": "Nice, alla älskar ju gratis saker! <b> Men hur mycket av din surfning kan kaféet faktiskt se? </b>",
+      "moreInfo": "Med HTTPS är alla meddelanden eller lösenord du skickar säkra, men utan en VPN kan de som äger en router kan <b>alltid se vilken webbplatser du besöker.</b>",
       "option1": "Jag är helt skyddad, även utan VPN.",
       "option2": "De kan bara se vissa saker jag gör",
       "option3": "De kan se allt jag gör."
@@ -87,7 +89,7 @@
       },
       "text": "",
       "secondTitle": "Du skrev in lösenordet {password}. Brukar du använda säkra lösenord som detta?",
-      "secondTitleUnsecurePwd": "Det var ett ganska dåligt losenord. Om vi bortser fran det, brukar du använda dig av säkra lösenord?",
+      "secondTitleUnsecurePwd": "Det var ett ganska dåligt lösenord. Om vi bortser fran det, brukar du använda dig av säkra lösenord?",
       "option1": "Saklart, och mina lösenord förvaras säkert",
       "option2": "Jag har säkra lösenord, men använder dem för mer an ett konto",
       "option3": "Jag tenderar att inte anvanda säkra lösenord när jag inte är tvungen",
@@ -104,7 +106,7 @@
     "romanceScamChat": {
       "title": "Din barndomsvän kontaktar dig.",
       "text": "Efter att ni har skrivit i några veckor får du detta meddelande.",
-      "moreInfo": "Du ska aldrig skicka pengar till någon du inte känner väl, oavsett påstådd orsak.",
+      "moreInfo": "Du ska aldrig skicka pengar till någon du inte känner väl, oavsett påstådd orsak. <b>Det kan vara en bedragare.</b>",
       "good": "Hejdå 💩👎",
       "bad": "Sure, swishar på direkten 💸👍",
       "yourAnswer": "Vad svarar du?",
@@ -115,12 +117,26 @@
       "chat5": "Lovar att skicka tillbaka pengarna imorgon när detta är löst!"
     },
     "fakeWebsite": {
-      "title": "Finn fem fel med hemsidan.",
+      "title": "Du råkar hamna på en scam-hemsida!",
       "text": "Klicka på saker du tycker ser misstänksamma ut",
       "moreInfo": "Det finns många tricks för lura dig..."
+    },
+    "trashSamePassword": {
+      "title": "Släng påståndet i soptunnan!",
+      "text": "",
+      "dragToTrashText": "'Så länge jag använder ett bra lösenord kan jag använda samma överallt.'",
+      "moreInfo": "<b>Använd alltid unika lösenord för varje tjänst du använder!</b> <br/><br/> För att inte glömma bort lösenord kan du använda en lösenordshanterare. Det finns många bra och Mac har en inbyggd som heter 'Keychain Access'."
+    },
+    "rankpasswords": {
+      "title": "Ranka lösenorden efter hur starka de är.",
+      "text": "",
+      "moreInfo": "Ju längre ju bättre. Använd även stora och små bokstäver - <i>det är lättare än du tror att skapa ett starkt lösenord!</i>",
+      "best": "Starkast",
+      "worst": "Svagast"
     }
   },
   "result": {
+    "correct": "rätt",
     "firstPlaceTitle": "Imponerande!",
     "firstPlaceDesc": "Du kan mycket när det kommer till säkerhet online, men du kan alltid lära dig mer!",
     "secondPlaceTitle": "Inte bra, inte dåligt",
@@ -128,6 +144,8 @@
     "thirdPlaceTitle": "Aj då...",
     "thirdPlaceDesc": "Du skulle behöva lära dig mer om digital säkerhet innan du råkar ut för en olycka!",
     "readMore": "Läs mer",
-    "yourScore": "Dina poäng:"
+    "yourScore": "Ditt result",
+    "redo": "Gör om testet",
+    "share": "Dela ditt resultat"
   }
 }
