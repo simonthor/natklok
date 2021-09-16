@@ -10,14 +10,14 @@ import {
   SOCIAL_MEDIA_PROFILE,
   HEIGHT,
   PURPLE,
-} from "../util/constants";
+} from "util/constants";
 
-import { generateQuestions } from "../util/generateQuestions";
-import { getMaxScore } from "../util/getMaxScore";
-import getPretendScore from "../util/getPretendScore";
-import ResultSlide from "../components/slides/ResultSlide";
-import ProfileSelectionSlide from "../components/slides/ProfileSelectionSlide";
-import QuestionsSlide from "../components/slides/QuestionsSlide";
+import { generateQuestions } from "util/generateQuestions";
+import { getMaxScore } from "util/getMaxScore";
+import getPretendScore from "util/getPretendScore";
+import ResultSlide from "components/slides/ResultSlide";
+import ProfileSelectionSlide from "components/slides/ProfileSelectionSlide";
+import QuestionsSlide from "components/slides/QuestionsSlide";
 
 const TestSlides = ({ 
   t, 

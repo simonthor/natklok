@@ -1,7 +1,7 @@
 import React from "react";
 // Custom
 import { Logo } from ".";
-import { HEIGHT, PURPLE } from "../../util/constants";
+import { HEIGHT, PURPLE } from "util/constants";
 
 const Loading = () => {
   return (

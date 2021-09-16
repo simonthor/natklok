@@ -1,7 +1,7 @@
 import React from 'react';
 import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import { PALEBLUE, WHITE } from "../../util/constants";
+import { PALEBLUE, WHITE } from "util/constants";
 
 export default ({ inputProps, onChange, margin, fullWidth, autoFocus, type, variant, label, disabled, defaultValue, color = "#fff", style }) => {
   const theme = createMuiTheme({

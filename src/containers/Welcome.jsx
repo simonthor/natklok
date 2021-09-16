@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 
 // Custom
-import { StyledButton } from "../components/general";
-import { BLUE, PURPLE, WHITE, HEIGHT } from "../util/constants";
-import Mainlogo from "../assets/sakerhetskontrollen-logo.svg";
-import ListOfReviews from "../components/features/ListOfReviews";
-import keyframes from "../keyframes.css";
-import SocialShare from "../components/features/SocialShare";
+import { StyledButton } from "components/general";
+import { BLUE, PURPLE, WHITE, HEIGHT } from "util/constants";
+import Mainlogo from "assets/sakerhetskontrollen-logo.svg";
+import ListOfReviews from "components/features/ListOfReviews";
+import keyframes from "keyframes.css";
+import SocialShare from "components/features/SocialShare";
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 

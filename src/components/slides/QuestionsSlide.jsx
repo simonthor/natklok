@@ -5,16 +5,11 @@ import SwipeableViews from "react-swipeable-views";
 import PwdSecurityModal from "../features/PwdSecurity";
 
 // Custom components
-import {
-  AlignCenter,
-  Fade,
-  StyledButton,
-  StyledMarkdown,
-  StyledTextField,
-} from "../general";
+import { AlignCenter, Fade, StyledButton, StyledMarkdown, StyledTextField } from "components/general";
 import AnswerFeedback from "./AnswerFeedback";
 import ReactReveal from "react-reveal/Fade";
-import StyledLink from "../general/StyledLink";
+import { Facebook, Twitter, Instagram } from "@material-ui/icons";
+import StyledLink from "components/general/StyledLink";
 import {
   YES_NO,
   SEVERAL_OPTION,
@@ -22,7 +17,7 @@ import {
   PASSWORD_INPUT,
   PALEBLUE,
   PURPLE,
-} from "../../util/constants";
+} from "util/constants";
 
 // Deprecated: Emoji art used in Yes/No & Multiple choice questions
 const generateEmojiArt = (arrayOfEmojis) => {
