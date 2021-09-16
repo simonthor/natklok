@@ -1,7 +1,7 @@
 import React from "react";
 import Fade from "react-reveal/Fade";
 // Custom
-import getWindowSize from "../../util/getWindowSize";
+import getWindowSize from "util/getWindowSize";
 
 /*
   This component makes children fade in from bottom when the user reaches

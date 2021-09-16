@@ -3,12 +3,11 @@ import React, { useEffect, useState } from "react";
 import { withTranslation } from "react-i18next";
 
 // Custom components
-import { AlignCenter, Fade, StyledButton } from "../general";
-
-import StyledLink from "../general/StyledLink";
+import { AlignCenter, Fade, StyledButton } from "components/general";
+import StyledLink from "components/general/StyledLink";
 import { Facebook, Instagram, Star, Twitter } from "@material-ui/icons";
 import { Link } from "react-router-dom";
-import { BLUE } from "../../util/constants";
+import { BLUE } from "util/constants";
 
 const getResultText = (t, starAmount, maxStarAmount) => {
   let title = "";

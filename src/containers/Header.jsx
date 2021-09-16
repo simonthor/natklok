@@ -4,22 +4,16 @@ import { withTranslation } from "react-i18next";
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 
 // Custom components
-import { AlignCenter } from "../components/general";
-import ProgressBar from "../components/features/ProgressBar";
-import Mainlogo from "../assets/sakerhetskontrollen-logo.svg";
-import StyledLink from "../components/general/StyledLink";
+import { AlignCenter } from "components/general";
+import ProgressBar from "components/features/ProgressBar";
+import Mainlogo from "assets/sakerhetskontrollen-logo.svg";
 
 import { useHistory } from "react-router-dom";
 import { Star } from "@material-ui/icons";
 import { Hidden } from "@material-ui/core";
+import StyledLink from "components/general/StyledLink";
 
-const Header = ({
-  t,
-  currentQuestionIndex,
-  totalQuestions,
-  isFinished,
-  starAmount,
-}) => {
+const Header = ({ t, currentQuestionIndex, totalQuestions, starAmount }) => {
   return (
     <div>
       <AlignCenter marginTop={false} row>

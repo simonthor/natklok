@@ -5,12 +5,13 @@ import { Link } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 
 // Custom
-import { StyledButton } from "../components/general";
-import { HEIGHT } from "../util/constants";
-import Mainlogo from "../assets/sakerhetskontrollen-logo.svg";
+import { StyledButton } from "components/general";
+import { HEIGHT } from "util/constants";
+import Mainlogo from "assets/sakerhetskontrollen-logo.svg";
+import SocialShare from "components/features/SocialShare";
+import MoreInfoModal from "components/features/MoreInfoModal";
 
-import SocialShare from "../components/features/SocialShare";
-import MoreInfoModal from "../components/features/MoreInfoModal";
+import "keyframes.css";
 
 const Welcome = ({ t, hasStarted }) => {
   const bgdRef = useRef(null);

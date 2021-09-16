@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { withTranslation } from "react-i18next";
-import SwipeableViews from "react-swipeable-views";
 import PwdSecurityModal from "../features/PwdSecurity";
 
 // Custom components
-import { AlignCenter, Fade, StyledButton, HTMLRenderer } from "../general";
+import {
+  AlignCenter,
+  Fade,
+  StyledButton,
+  HTMLRenderer,
+} from "components/general";
 import AnswerFeedback from "./AnswerFeedback";
 import {
   SEVERAL_OPTION,
@@ -13,12 +17,12 @@ import {
   FAKE_WEBSITE,
   DRAG_TO_TRASH,
   ORDER,
-} from "../../util/constants";
-import RomanceChat from "../dynamicQuestions/RomanceChat";
-import FakeWebsite from "../dynamicQuestions/FakeWebsite";
-import OrderQuestion from "../dynamicQuestions/OrderQuestion";
-import YesNoWrapper from "../features/YesNoWrapper";
-import DragToTrash from "../dynamicQuestions/DragToTrash";
+} from "util/constants";
+import RomanceChat from "components/dynamicQuestions/RomanceChat";
+import FakeWebsite from "components/dynamicQuestions/FakeWebsite";
+import OrderQuestion from "components/dynamicQuestions/OrderQuestion";
+import YesNoWrapper from "components/features/YesNoWrapper";
+import DragToTrash from "components/dynamicQuestions/DragToTrash";
 
 // Component that layers all the questions
 const Questions = ({

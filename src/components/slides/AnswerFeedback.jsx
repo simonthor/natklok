@@ -1,13 +1,13 @@
 import React from "react";
 import { withTranslation } from "react-i18next";
 import Fade from "react-reveal/Fade";
-import { StyledButton, HTMLRenderer, AlignCenter } from "../general";
+import { StyledButton, AlignCenter, HTMLRenderer } from "components/general";
 import { Grid } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import WhatshotIcon from "@material-ui/icons/Whatshot";
-import SocialShare from "../features/SocialShare";
-import { PALEBLUE, PURPLE } from "../../util/constants";
-import MoreInfoModal from "../features/MoreInfoModal";
+import SocialShare from "components/features/SocialShare";
+import MoreInfoModal from "components/features/MoreInfoModal";
+import { PALEBLUE, PURPLE } from "util/constants";
 
 const AnswerFeedback = ({
   t,

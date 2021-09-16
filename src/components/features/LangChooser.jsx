@@ -7,17 +7,17 @@ import {
   Radio,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { PINK, PURPLE, WHITE } from "../../util/constants";
+import { PINK, PURPLE, WHITE } from "util/constants";
 import i18next from "i18next";
 import { withTranslation } from "react-i18next";
 import TranslateOutlinedIcon from "@material-ui/icons/TranslateOutlined";
-import { createMuiTheme } from "@material-ui/core/styles";
+import { createTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 
 //TODO: Fix Radio buttons not updating bug
 //TODO: Fix setIsOpen firing when user changes language bug
 
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     body1: {
       fontSize: "0.87em",
@@ -154,11 +154,11 @@ function RadioButtonsGroup() {
               <RadioGroup
                 aria-label="language"
                 name="lang1"
-                defaultValue="sv"
+                defaultValue="swe"
                 onChange={handleChange}
               >
                 <FormControlLabel
-                  value="sv"
+                  value="swe"
                   control={<StyledRadio />}
                   label="Svenska - SV"
                 />
