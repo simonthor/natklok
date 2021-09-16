@@ -10,7 +10,10 @@
     "@testing-library/react": "^12.0.0",
     "@testing-library/user-event": "^13.2.1",
     "hsimp-purescript": "^0.2.1",
+    "husky": "^7.0.2",
     "i18next": "^19.6.0",
+    "lint-staged": "^11.1.2",
+    "prettier": "^2.4.0",
     "react": "^17.0.2",
     "react-beautiful-dnd": "^13.1.0",
     "react-confetti": "^6.0.1",
@@ -44,6 +47,16 @@
           "import/no-anonymous-default-export": "off"
         }
       }
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write"
     ]
   },
   "browserslist": {
