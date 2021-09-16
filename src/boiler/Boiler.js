@@ -121,7 +121,6 @@ const ThumbsDown = ({ showThumbsDown, setShowThumbsDown }) => {
   }, [showThumbsDown]);
 
   function playAnimation() {
-    console.log("THUMBS DOWN");
     setThumbOpacity(1);
     setThumbScale(3);
     setThumbLeft(window.innerWidth / 2 - 16);
