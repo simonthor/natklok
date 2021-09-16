@@ -96,13 +96,7 @@ const Questions = ({
 };
 
 //The Question slide is divided into a Question (header) section and an AnswerOptions (body) section
-const AnswerOptions = ({
-  t,
-  questionData,
-  onSelectAnswer,
-  profileForQuestion,
-  setChangedTitle,
-}) => {
+const AnswerOptions = ({ t, questionData, onSelectAnswer, profileForQuestion, setChangedTitle }) => {
   if (questionData.type === YES_NO) {
     return (
       <>
@@ -136,51 +130,42 @@ const AnswerOptions = ({
       </>
     );
   } else if (questionData.type === PASSWORD_INPUT) {
-    return (
-      <PasswordCheck
-        onSelectAnswer={onSelectAnswer}
-        questionData={questionData}
-        profileForQuestion={profileForQuestion}
-        t={t}
-        setChangedTitle={setChangedTitle}
-      />
-    );
+  return <PasswordCheck onSelectAnswer={onSelectAnswer} questionData={questionData} profileForQuestion={profileForQuestion} t={t} setChangedTitle={setChangedTitle} />;
   }
 };
 
 // Type: Interactive question
 // Name: Logging in safe
 // Description: A login form customized to fit the profile, which tests the user for the strength of their password.
-const PasswordCheck = ({
-  t,
-  profileForQuestion,
-  questionData,
-  onSelectAnswer,
-  setChangedTitle,
-}) => {
+const PasswordCheck = ({ t, profileForQuestion, questionData, onSelectAnswer, setChangedTitle }) => {
   const [password, setPassword] = useState("");
   const [showSecond, setShowSecond] = useState(false);
   const [pwdIsSecure, setPwdIsSecure] = useState(null);
   const handleSubmit = (score) => {
     if (score > 0.8 && pwdIsSecure) {
-      onSelectAnswer(score, t("questions.passwordCheck.result0"));
+      onSelectAnswer(
+        score,
+        t("questions.passwordCheck.result0")
+      );
     } else if (score > 0.8) {
-      onSelectAnswer(score, t("questions.passwordCheck.result1"));
+      onSelectAnswer(
+        score,
+        t("questions.passwordCheck.result1")
+      );
     } else if (score > 0.6) {
-      onSelectAnswer(score, t("questions.passwordCheck.result2"));
+      onSelectAnswer(
+        score,
+        t("questions.passwordCheck.result2")
+      );
     } else {
-      onSelectAnswer(score, t("questions.passwordCheck.result3"));
+      onSelectAnswer(
+        score,
+        t("questions.passwordCheck.result3")
+      );
     }
   };
   const handleClick = () => {
-    setChangedTitle(
-      pwdIsSecure
-        ? t("questions.passwordCheck.secondTitle").replace(
-            "{password}",
-            password
-          )
-        : t("questions.passwordCheck.secondTitleUnsecurePwd")
-    );
+    setChangedTitle(pwdIsSecure ? t("questions.passwordCheck.secondTitle").replace("{password}", password) : t("questions.passwordCheck.secondTitleUnsecurePwd"));
     setShowSecond(true);
   };
 
@@ -200,25 +185,18 @@ const PasswordCheck = ({
       </>
     );
   } else {
-    return (
+    return(
       <>
-        <PwdSecurityModal
-          t={t}
-          profileForQuestion={profileForQuestion}
-          questionData={questionData}
-          setPassword={setPassword}
-          setPwdIsSecure={setPwdIsSecure}
-        />
-        <StyledButton
-          style={{ margin: "20px 0", width: "100%", textAlign: "center" }}
-          disabled={password.length > 0 ? false : true}
-          onClick={handleClick}
-        >
-          {t("test.nextQuestion")}
-        </StyledButton>
+      <PwdSecurityModal t={t} profileForQuestion={profileForQuestion} questionData={questionData} setPassword={setPassword} setPwdIsSecure={setPwdIsSecure} />
+      <StyledButton
+        style={{ margin: "20px 0", width: "100%", textAlign: "center" }}
+        disabled={password.length > 0 ? false : true}
+        onClick={handleClick}
+      >{t("test.nextQuestion")}
+      </StyledButton>
       </>
     );
-  }
+  };
 };
 
 const Question = ({
@@ -244,18 +222,15 @@ const Question = ({
   const [emojiArt] = useState(generateEmojiArt(questionData.emojis));
 
   let chosenProfiles = [];
-  for (var i in profileStates) chosenProfiles.push(i);
+  for(var i in profileStates)
+    chosenProfiles.push(i);
   chosenProfiles.shift();
-  const profileForQuestion =
-    chosenProfiles[Math.floor(Math.random() * chosenProfiles.length)];
+  const profileForQuestion = chosenProfiles[Math.floor(Math.random()*chosenProfiles.length)];
 
   let questionTitle = t(questionData.title);
   if (questionData.profileBasedTitleVars !== undefined) {
     questionData.profileBasedTitleVars.forEach((value) => {
-      questionTitle = questionTitle.replace(
-        "{" + value + "}",
-        t(questionData[value][profileForQuestion].name)
-      );
+      questionTitle = questionTitle.replace("{" + value + "}", t(questionData[value][profileForQuestion].name));
     });
   }
 

@@ -49,7 +49,7 @@
     "csgoSkin": {
       "title": "Du hittar det perfekta CSGO skin:et online...",
       "text": "Med ditt steam-konto kan du logga in på en hemsida som heter 'csgoskins.cz' för att få tag på den. **Är detta en bra idé?**",
-      "moreInfo": "Om du inte loggar in genom steam kan hackers se ditt lösenord och ta över ditt steamkonto.",
+      "moreInfo":  "Om du inte loggar in genom steam kan hackers se ditt lösenord och ta över ditt steamkonto.",
       "option1": "Det borde vara lugnt",
       "option2": "Om jag länkas vidare till Steams sida är det okej",
       "option3": "Jag borde försöka hitta skin:et någon annanstans"
@@ -91,7 +91,7 @@
       "resultSuffix": "att knäcka ditt lösenord."
     }
   },
-  "result": {
+  "result":{
     "firstPlaceTitle": "Imponerande!",
     "firstPlaceDesc": "Du kan mycket när det kommer till säkerhet online, men du kan alltid lära dig mer!",
     "secondPlaceTitle": "Inte bra, inte dåligt",

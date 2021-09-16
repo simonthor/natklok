@@ -49,7 +49,7 @@
     "csgoSkin": {
       "title": "You found the perfect CSGO skin...",
       "text": "With your steam account you can log into a website called 'csgoskins.cz' get the skin you want. **Is this a good idea?**",
-      "moreInfo": "Unless it is a login through steam hackers can see your password and hijack your steam account and you could lose all your games!",
+      "moreInfo":  "Unless it is a login through steam hackers can see your password and hijack your steam account and you could lose all your games!",
       "option1": "Should be fine.",
       "option2": "If I'm redirected to steam's website during the login it should be fine.",
       "option3": "I'll get the skin somewhere else..."
@@ -91,7 +91,7 @@
       "resultSuffix": "to break your password."
     }
   },
-  "result": {
+  "result":{
     "firstPlaceTitle": "Impressive!",
     "firstPlaceDesc": "You know a lot when it comes to safety online, but there is always more to learn...",
     "secondPlaceTitle": "Not good, not bad",

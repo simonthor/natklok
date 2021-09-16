@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { PURPLE, PALEBLUE } from "../../util/constants";
+import { PURPLE,PALEBLUE } from "../../util/constants";
+
 
 export default ({
   children,
@@ -7,15 +8,14 @@ export default ({
   color = PALEBLUE,
   onClick,
   disabled = false,
-  cinematicColor,
+  cinematicColor
 }) => {
   const [hoveringOver, setHoveringOver] = useState(false);
 
   function handleMouseChange(isonTop) {
     if (isonTop) {
       if (cinematicColor) {
-        document.getElementById("bgd-container").style.background =
-          cinematicColor;
+        document.getElementById("bgd-container").style.background = cinematicColor;
       }
       setHoveringOver(true);
     } else {

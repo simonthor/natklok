@@ -32,57 +32,49 @@ const ProgressBar = ({ t, currentQuestionIndex = 1, totalQuestions = 1 }) => {
           overflow: "hidden",
         }}
       >
-        <span
-          style={{
-            position: "absolute",
-            display: "block",
-            top: 0,
-            left: "-100%",
-            width: "100%",
-            height: 2,
-            background: "linear-gradient(90deg, transparent, #fff)",
-            animation: "progressBarAnimationTop 4s linear infinite",
-          }}
-        ></span>
-        <span
-          style={{
-            position: "absolute",
-            display: "block",
-            right: 0,
-            top: "-100%",
-            height: "100%",
-            width: 2,
-            background: "linear-gradient(180deg, transparent, #fff)",
-            animation: "progressBarAnimationRight 4s linear infinite",
-            animationDelay: "1s",
-          }}
-        ></span>
-        <span
-          style={{
-            position: "absolute",
-            display: "block",
-            bottom: 0,
-            right: "-100%",
-            width: "100%",
-            height: 2,
-            background: "linear-gradient(270deg, transparent, #fff)",
-            animation: "progressBarAnimationBottom 4s linear infinite",
-            animationDelay: "2s",
-          }}
-        ></span>
-        <span
-          style={{
-            position: "absolute",
-            display: "block",
-            left: 0,
-            bottom: "-100%",
-            height: "100%",
-            width: 2,
-            background: "linear-gradient(0deg, transparent, #fff)",
-            animation: "progressBarAnimationLeft 4s linear infinite",
-            animationDelay: "3s",
-          }}
-        ></span>
+          <span style={{
+              position: "absolute",
+              display: "block",
+              top: 0,
+              left: "-100%",
+              width: "100%",
+              height: 2,
+              background: "linear-gradient(90deg, transparent, #fff)",
+              animation: "progressBarAnimationTop 4s linear infinite",
+          }}></span>
+          <span style={{
+              position: "absolute",
+              display: "block",
+              right: 0,
+              top: "-100%",
+              height: "100%",
+              width: 2,
+              background: "linear-gradient(180deg, transparent, #fff)",
+              animation: "progressBarAnimationRight 4s linear infinite",
+              animationDelay: "1s"
+          }}></span>
+          <span style={{
+              position: "absolute",
+              display: "block",
+              bottom: 0,
+              right: "-100%",
+              width: "100%",
+              height: 2,
+              background: "linear-gradient(270deg, transparent, #fff)",
+              animation: "progressBarAnimationBottom 4s linear infinite",
+              animationDelay: "2s"
+          }}></span>
+          <span style={{
+              position: "absolute",
+              display: "block",
+              left: 0,
+              bottom: "-100%",
+              height: "100%",
+              width: 2,
+              background: "linear-gradient(0deg, transparent, #fff)",
+              animation: "progressBarAnimationLeft 4s linear infinite",
+              animationDelay: "3s"
+          }}></span>
       </div>
     );
   };
@@ -99,7 +91,7 @@ const ProgressBar = ({ t, currentQuestionIndex = 1, totalQuestions = 1 }) => {
       }}
     >
       <CompletedBlocks />
-      <CurrentBlock />
+      <CurrentBlock/>
       <UnCompletedBlocks />
     </Grid>
   );

@@ -45,9 +45,9 @@ const Boiler = () => {
         }}
         id="bgd-container"
       >
-        <Header
-          currentQuestionIndex={currentQuestionIndex}
-          totalQuestions={totalQuestions}
+        <Header 
+          currentQuestionIndex={currentQuestionIndex} 
+          totalQuestions={totalQuestions} 
           isFinished={isFinished}
         />
         <Switch>
