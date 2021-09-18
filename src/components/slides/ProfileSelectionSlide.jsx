@@ -3,14 +3,14 @@ import React from "react";
 import { withTranslation } from "react-i18next";
 import ReactReveal from "react-reveal/Fade";
 
-import AccountBalanceWalletOutlinedIcon from '@material-ui/icons/AccountBalanceWalletOutlined';
-import SportsEsportsOutlinedIcon from '@material-ui/icons/SportsEsportsOutlined';
-import MovieOutlinedIcon from '@material-ui/icons/MovieOutlined';
-import ShareOutlinedIcon from '@material-ui/icons/ShareOutlined';
-import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
-import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
-import MovieIcon from '@material-ui/icons/Movie';
-import ShareIcon from '@material-ui/icons/Share';
+import AccountBalanceWalletOutlinedIcon from "@material-ui/icons/AccountBalanceWalletOutlined";
+import SportsEsportsOutlinedIcon from "@material-ui/icons/SportsEsportsOutlined";
+import MovieOutlinedIcon from "@material-ui/icons/MovieOutlined";
+import ShareOutlinedIcon from "@material-ui/icons/ShareOutlined";
+import AccountBalanceWalletIcon from "@material-ui/icons/AccountBalanceWallet";
+import SportsEsportsIcon from "@material-ui/icons/SportsEsports";
+import MovieIcon from "@material-ui/icons/Movie";
+import ShareIcon from "@material-ui/icons/Share";
 
 // Custom components
 import { AlignCenter, StyledButton } from "../general";
@@ -19,9 +19,8 @@ import {
   GAMING_PROFILE,
   STREAMING_PROFILE,
   SOCIAL_MEDIA_PROFILE,
-  PURPLE
+  PROFILE_STYLING,
 } from "../../util/constants";
-import { BorderColor } from "@material-ui/icons";
 
 const ProfileSelectionSlide = ({
   t,
@@ -30,90 +29,125 @@ const ProfileSelectionSlide = ({
   handleProfileCheckboxChecked,
 }) => {
   return (
-    <ReactReveal>
-      <AlignCenter>
+    <AlignCenter>
+      <ReactReveal>
         <Grid
           container
           direction="column"
           xs={12}
           style={{ textAlign: "center", margin: "0 0 20px 0" }}
         >
-          <h2 style={{ margin: "0 0 10px 0", fontSize: 31, fontFamily: "Bungee, Roboto, sans-serif" }}>{t("profileSelection.title")}</h2>
-          <p style={{ margin: "0 0 25px 0", fontSize: 19 }}>{t("profileSelection.subtitle")}</p>
+          <h2
+            style={{
+              margin: "0 0 10px 0",
+              fontSize: 31,
+              fontFamily: "Bungee, Roboto, sans-serif",
+            }}
+          >
+            {t("profileSelection.title")}
+          </h2>
+          <p style={{ margin: "0 0 25px 0", fontSize: 19, marginBottom: 0 }}>
+            {t("profileSelection.subtitle")}
+          </p>
         </Grid>
         <Grid container alignItems="center" justify="center">
-          <Grid item xs={11} sm={12} md={8} lg={6} xl={6}>
+          <Grid item xs={12} sm={12} md={11} lg={10} xl={9}>
             <Grid container xs={12} spacing={1}>
               <ProfilCheckbox
                 t={t}
                 profileState={profileState}
                 handleChange={handleProfileCheckboxChecked}
-                name={BANK_PROFILE.title}
+                name={BANK_PROFILE}
                 icon={<AccountBalanceWalletOutlinedIcon />}
-                checkedIcon={<AccountBalanceWalletIcon style={{color: "rgba(0,0,0,0.7)"}}/>}
-                color={BANK_PROFILE.color}
-                dark={BANK_PROFILE.dark}
+                checkedIcon={
+                  <AccountBalanceWalletIcon
+                    style={{ color: "rgba(0,0,0,0.7)" }}
+                  />
+                }
+                color={PROFILE_STYLING[BANK_PROFILE].color}
+                dark={PROFILE_STYLING[BANK_PROFILE].dark}
               />
               <ProfilCheckbox
                 t={t}
                 profileState={profileState}
                 handleChange={handleProfileCheckboxChecked}
-                name={GAMING_PROFILE.title}
+                name={GAMING_PROFILE}
                 icon={<SportsEsportsOutlinedIcon />}
-                checkedIcon={<SportsEsportsIcon style={{color: "rgba(0,0,0,0.7)"}}/>}
-                color={GAMING_PROFILE.color}
-                dark={GAMING_PROFILE.dark}
+                checkedIcon={
+                  <SportsEsportsIcon style={{ color: "rgba(0,0,0,0.7)" }} />
+                }
+                color={PROFILE_STYLING[GAMING_PROFILE].color}
+                dark={PROFILE_STYLING[GAMING_PROFILE].dark}
               />
               <ProfilCheckbox
                 t={t}
                 profileState={profileState}
                 handleChange={handleProfileCheckboxChecked}
-                name={STREAMING_PROFILE.title}
+                name={STREAMING_PROFILE}
                 icon={<MovieOutlinedIcon />}
-                checkedIcon={<MovieIcon style={{color: "rgba(0,0,0,0.7)"}}/>}
-                color={STREAMING_PROFILE.color}
-                dark={STREAMING_PROFILE.dark}
+                checkedIcon={<MovieIcon style={{ color: "rgba(0,0,0,0.7)" }} />}
+                color={PROFILE_STYLING[STREAMING_PROFILE].color}
+                dark={PROFILE_STYLING[STREAMING_PROFILE].dark}
               />
               <ProfilCheckbox
                 t={t}
                 profileState={profileState}
                 handleChange={handleProfileCheckboxChecked}
-                name={SOCIAL_MEDIA_PROFILE.title}
+                name={SOCIAL_MEDIA_PROFILE}
                 icon={<ShareOutlinedIcon />}
-                checkedIcon={<ShareIcon style={{color: "rgba(255,255,255,0.8)"}}/>}
-                color={SOCIAL_MEDIA_PROFILE.color}
-                dark={SOCIAL_MEDIA_PROFILE.dark}
+                checkedIcon={
+                  <ShareIcon style={{ color: "rgba(255,255,255,0.8)" }} />
+                }
+                color={PROFILE_STYLING[SOCIAL_MEDIA_PROFILE].color}
+                dark={PROFILE_STYLING[SOCIAL_MEDIA_PROFILE].dark}
               />
             </Grid>
             <Grid
               container
               direction="column"
               xs={12}
-              style={{ textAlign: "center", paddingRight: 8, marginTop: 20 }}
+              style={{ textAlign: "center", paddingRight: 8, marginTop: 10 }}
             >
-              <p style={{fontSize: 15}}>{t("profileSelection.desc")}</p>
+              <p style={{ fontSize: "0.7em", opacity: 0.8 }}>
+                {t("profileSelection.desc")}
+              </p>
               <StyledButton onClick={nextSlide}>
                 {t("general.next")}
               </StyledButton>
             </Grid>
           </Grid>
         </Grid>
-      </AlignCenter>
-    </ReactReveal>
+      </ReactReveal>
+    </AlignCenter>
   );
 };
 
-const ProfilCheckbox = ({ profileState, handleChange, name, icon, checkedIcon, color, dark, t }) => {
+const ProfilCheckbox = ({
+  profileState,
+  handleChange,
+  name,
+  icon,
+  checkedIcon,
+  color,
+  dark,
+  t,
+}) => {
   return (
     <Grid item xs={12} sm={12} md={6}>
       <div
         style={{
           background: profileState[name] ? color : "rgba(0, 0, 0, 0.2)",
-          borderRadius: 8,
-          border: profileState[name] ? "4px solid rgba(0, 0, 0, 0.2)" : "4px solid transparent",
+          borderRadius: 12,
+          border: profileState[name]
+            ? "4px solid rgba(0, 0, 0, 0.2)"
+            : "4px solid transparent",
           width: "100%",
           padding: "3px 0",
-          color: profileState[name]? dark? "rgba(0, 0, 0, 0.7)" : "rgba(255, 255, 255, 0.8)" : "white",
+          color: profileState[name]
+            ? dark
+              ? "rgba(0, 0, 0, 0.7)"
+              : "rgba(255, 255, 255, 0.8)"
+            : "white",
           boxSizing: "border-box",
           transition: "all 0.2s",
         }}
@@ -126,7 +160,7 @@ const ProfilCheckbox = ({ profileState, handleChange, name, icon, checkedIcon, c
               name={name}
               icon={icon}
               checkedIcon={checkedIcon}
-              style={{color: "white"}}
+              style={{ color: "white" }}
             />
           }
           style={{ paddingLeft: 5, marginLeft: 0, width: "100%" }}

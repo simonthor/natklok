@@ -6,5 +6,5 @@ export { default as DropDown } from "./DropDown";
 export { default as StyledButton } from "./StyledButton";
 export { default as AlignCenter } from "./AlignCenter";
 export { default as StyledNavLink } from "./StyledNavLink";
-export { default as StyledMarkdown } from "./StyledMarkdown";
+export { default as HTMLRenderer } from "./HTMLRenderer";
 export { default as StyledTextField } from "./StyledTextField";

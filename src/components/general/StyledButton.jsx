@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { PURPLE,PALEBLUE } from "../../util/constants";
-
+import { PURPLE, PALEBLUE } from "util/constants";
 
 export default ({
   children,
@@ -8,14 +7,15 @@ export default ({
   color = PALEBLUE,
   onClick,
   disabled = false,
-  cinematicColor
+  cinematicColor,
 }) => {
   const [hoveringOver, setHoveringOver] = useState(false);
 
   function handleMouseChange(isonTop) {
     if (isonTop) {
       if (cinematicColor) {
-        document.getElementById("bgd-container").style.background = cinematicColor;
+        document.getElementById("bgd-container").style.background =
+          cinematicColor;
       }
       setHoveringOver(true);
     } else {
@@ -27,28 +27,30 @@ export default ({
   }
 
   return (
-    <div
+    <button
       onMouseEnter={() => handleMouseChange(true)}
       onMouseLeave={() => handleMouseChange(false)}
       onClick={disabled ? null : onClick}
       style={{
-        borderRadius: 4,
+        borderRadius: 100,
         cursor: "pointer",
         fontSize: "1.1em",
         background: !disabled ? color : "#3c3abb",
-        filter: hoveringOver && !disabled ? "brightness(1.05)" : "none",
-        scale: hoveringOver && !disabled ? "1.03" : "1",
+        filter: hoveringOver && !disabled ? "brightness(1.16)" : "none",
+        transform: hoveringOver && !disabled ? "scale(1.03)" : "scale(1)",
         color: PURPLE,
         padding: "14px 40px",
+        border: "none",
         fontWeight: "800",
         display: "inline-block",
         margin: 0,
-        transition: "0.3s ease-in-out",
+        transition: "all 0.3s ease-in-out",
         boxSizing: "border-box",
+        textAlign: "center",
         ...style,
       }}
     >
       {children}
-    </div>
+    </button>
   );
 };

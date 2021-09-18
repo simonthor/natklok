@@ -3,24 +3,16 @@ import React, { useEffect, useState } from "react";
 import { withTranslation } from "react-i18next";
 
 // Custom components
-import { AlignCenter, Fade } from "../general";
+import { AlignCenter, Fade, StyledButton } from "components/general";
+import StyledLink from "components/general/StyledLink";
+import { Facebook, Instagram, Star, Twitter } from "@material-ui/icons";
+import { Link } from "react-router-dom";
+import { BLUE } from "util/constants";
 
-import gauge_img from "../../assets/gauge.png";
-import pointer_img from "../../assets/pointer.png";
-import StyledLink from "../general/StyledLink";
-import { Facebook, Instagram, Twitter } from "@material-ui/icons";
-
-const clamp = (value, max) => {
-  if (value > max) {
-    return max;
-  }
-  return value;
-};
-
-const getResultText = (t, score, maxScore) => {
+const getResultText = (t, starAmount, maxStarAmount) => {
   let title = "";
   let desc = "";
-  let percentCorrect = score / maxScore;
+  let percentCorrect = starAmount / maxStarAmount;
 
   if (percentCorrect > 0.8) {
     title = t("result.firstPlaceTitle");
@@ -36,108 +28,119 @@ const getResultText = (t, score, maxScore) => {
   return { title, desc };
 };
 
-const ResultSlide = ({ t, score, maxScore, testFinished }) => {
-  const [rotation, setRotation] = useState(-120);
-  const [elapsedTime, setElapsedTime] = useState(0);
-  const [animationDone, setAnimationDone] = useState(false);
-  const animationTime = 10 * (score / maxScore);
-  const timeoutStep = 0.1;
-  const resultTextObj = getResultText(t, score, maxScore);
-
-  useEffect(() => {
-    setTimeout(() => {
-      if (testFinished === true && animationDone === false) {
-        setElapsedTime(elapsedTime + timeoutStep);
-
-        let target_rot = (score / maxScore) * 220;
-        let new_rot = target_rot * (elapsedTime / animationTime);
-        setRotation(new_rot - 120);
-
-        if (elapsedTime > animationTime) {
-          setAnimationDone(true);
-        }
-      }
-    }, timeoutStep * 100);
-  }, [
-    animationDone,
-    animationTime,
-    elapsedTime,
-    maxScore,
-    score,
-    testFinished,
-  ]);
+const ResultSlide = ({
+  t,
+  starAmount = 12,
+  maxStarAmount = 12,
+  testFinished = true,
+}) => {
+  const resultTextObj = getResultText(t, starAmount, maxStarAmount);
+  const starAnimationTimeMS = 400 * maxStarAmount;
+  const achievedStars = [];
+  for (let i = 0; i < maxStarAmount; i++) {
+    let achieved = starAmount > i;
+    achievedStars.push(achieved);
+  }
 
   return (
-    <AlignCenter>
-      <Grid
-        item
-        xs={12}
-        sm={6}
-        style={{ textAlign: "center", paddingRight: 10,overflow: "hidden" }}
-        container
-        direction="column"
+    <AlignCenter marginTop={false} withMaxWidth style={{ width: "100vw" }}>
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+        }}
       >
-        <div
+        <h1
           style={{
-            height: 250,
-            width: "100%",
-            position: "relative",
+            margin: 8,
+            fontFamily: "Bowlby One SC, Arial, Helvetica, sans-serif",
           }}
         >
-          <img
-            style={{ position: "absolute", top: 0, left: "10%" }}
-            alt=""
-            src={gauge_img}
-          />
-          <img
-            style={{
-              position: "absolute",
-              top: 20,
-              left: "10%",
-              transform: "rotate(" + rotation + "deg)",
-            }}
-            alt=""
-            src={pointer_img}
-          />
-        </div>
-        <p style={{ margin: 8, opacity: 0.7 }}>{t("result.yourScore")}</p>
-        <h1 style={{ margin: 0 }}>
-          {clamp(
-            Number((score * elapsedTime) / animationTime).toFixed(1),
-            maxScore
-          )}
-          <span style={{ fontSize: "0.6em", opacity: 0.7 }}> /{maxScore}</span>
+          {t("result.yourScore")}
         </h1>
-        {animationDone ? (
-          <Fade>
-            <h2 style={{ margin: 2 }}>{resultTextObj.title}</h2>
-            <p style={{ margin: 2 }}>{resultTextObj.desc}</p>
-          </Fade>
-        ) : null}
-      </Grid>
-      <Grid item xs={12} sm={6} style={{ paddingLeft: 10 }}>
-        {animationDone ? (
-          <Fade>
-            <h3>Viktigt att du övar mer på:</h3>
-            <ReadMore
-              emoji="🔒"
-              title="Lösenord"
-              desc="Att få sitt lösenord kapat är ett av de vanligaste och mest förödande sakerna som kan hämta online. Du måste ha bättre koll på lösenord."
+        <div
+          style={{
+            background: "rgba(255,255,255,0.2)",
+            borderRadius: 10,
+            padding: 2,
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          {achievedStars.map((val, index) => (
+            <ResultStar
+              unlocked={val}
+              index={index}
+              starAmount={starAmount}
+              starAnimationTimeMS={starAnimationTimeMS}
+              testFinished={testFinished}
             />
-            <ReadMore
-              emoji="📶"
-              title="VPN"
-              desc="VPN:er är mycket användbara för många saker, men det löser inte alla ens säkerhetsproblem..."
-            />
-            <h3>Dela ditt resultat:</h3>
-            <div style={{ display: "flex", flexDirection: "row" }}>
-              <ShareLink icon={<Instagram style={{ fontSize: 32 }} />} />
-              <ShareLink icon={<Facebook style={{ fontSize: 32 }} />} />
-              <ShareLink icon={<Twitter style={{ fontSize: 32 }} />} />
+          ))}
+        </div>
+        <Fade delay={starAnimationTimeMS}>
+          <div style={{ marginTop: 32 }}>
+            <p
+              style={{
+                fontSize: "0.9em",
+                margin: 0,
+                opacity: 0.6,
+                fontWeight: 600,
+              }}
+            >
+              {starAmount + " / " + maxStarAmount + " " + t("result.correct")}
+            </p>
+            <h2 style={{ margin: "6px 0" }}>{resultTextObj.title}</h2>
+            <p style={{ margin: "6px 0" }}>{resultTextObj.desc}</p>
+            <Link to="/test">
+              <StyledButton style={{ margin: "8px 0" }}>
+                {t("result.redo")}
+              </StyledButton>
+            </Link>
+          </div>
+        </Fade>
+        <Fade delay={starAnimationTimeMS + 2000}>
+          <div style={{ margin: "12px 0" }}>
+            <h3 style={{ marginBottom: 2 }}>Dina svagheter</h3>
+            <Grid container>
+              <ReadMore
+                emoji="🔒"
+                title="Lösenord"
+                desc="Att få sitt lösenord kapat är ett av de vanligaste och mest förödande sakerna som kan hämta online. Du måste ha bättre koll på lösenord."
+              />
+              <ReadMore
+                emoji="📶"
+                title="VPN"
+                desc="VPN:er är mycket användbara för många saker, men det löser inte alla ens säkerhetsproblem..."
+              />
+            </Grid>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <p
+                style={{
+                  fontSize: "0.85em",
+                  margin: "18px 0 4px 0",
+                  opacity: 0.6,
+                }}
+              >
+                {t("result.share")}!
+              </p>
+              <div style={{ display: "flex", flexDirection: "row" }}>
+                <ShareLink icon={<Instagram style={{ fontSize: 28 }} />} />
+                <ShareLink icon={<Facebook style={{ fontSize: 28 }} />} />
+                <ShareLink icon={<Twitter style={{ fontSize: 28 }} />} />
+              </div>
             </div>
-          </Fade>
-        ) : null}
-      </Grid>
+          </div>
+        </Fade>
+      </div>
     </AlignCenter>
   );
 };
@@ -159,25 +162,103 @@ const ShareLink = ({ icon }) => (
 
 const ReadMore = ({ emoji, title, desc }) => {
   return (
-    <div
+    <Grid
+      item
       style={{
-        display: "flex",
-        flexDirection: "row",
-        border: "1px solid white",
-        borderRadius: 4,
-        width: "100%",
-        padding: 10,
-        margin: 10,
+        margin: "6px 0",
+        padding: "6px 12px 12px 12px",
+        background: "white",
+        borderRadius: 6,
       }}
     >
-      <span style={{ fontSize: 32, marginRight: 6 }}>{emoji}</span>
       <div>
-        <p style={{ fontWeight: 600, margin: "0 0 4px 0" }}>{title}</p>
-        <p style={{ margin: "0 0 4px 0" }}>{desc}</p>
-        <StyledLink colored style={{ margin: 0 }}>
-          Läs mer här
+        <p style={{ color: "black", fontWeight: 600, margin: "0 0 6px 0" }}>
+          <span style={{ marginRight: 6 }}>{emoji}</span>
+          {title}
+        </p>
+        <p style={{ color: "grey", margin: "0 0 6px 0", opacity: 0.8 }}>
+          {desc}
+        </p>
+        <StyledLink style={{ color: BLUE, margin: 0 }}>
+          Tryck här för att läsa mer
         </StyledLink>
       </div>
+    </Grid>
+  );
+};
+
+const ResultStar = ({
+  unlocked,
+  index,
+  starAmount,
+  starAnimationTimeMS,
+  testFinished,
+}) => {
+  // Star values
+  const [scale, setScale] = useState(1);
+  const [left, setLeft] = useState(window.innerWidth / 2);
+  const [top, setTop] = useState("40vh");
+  const [transition, setTransition] = useState("");
+  const [opacity, setOpacity] = useState(0);
+  const id = "resultStar" + index;
+  const flyAnimTime = 800;
+  const timeUntilStartAnim =
+    100 + (Number(index) / Number(starAmount)) * starAnimationTimeMS;
+
+  // Start the animation on mounted
+  useEffect(() => {
+    if (unlocked === true && testFinished === true) {
+      console.log("starting animation");
+      setTimeout(function () {
+        console.log("first");
+
+        const starAmountIcon = document.getElementById("starAmountIcon");
+        const starAmountIconRect = starAmountIcon.getBoundingClientRect();
+        setScale(1);
+        setOpacity(1);
+        setLeft(starAmountIconRect.left);
+        setTop(starAmountIconRect.top);
+
+        setTimeout(function () {
+          console.log("second");
+          const resultStar = document.getElementById(id);
+          const resultStarRect = resultStar.getBoundingClientRect();
+
+          setTransition(
+            "transform 1s cubic-bezier(.03,1.9,.63,1.95), left 1s cubic-bezier(.04,1.31,.71,1.05), top 1s ease-in-out"
+          );
+          setLeft(resultStarRect.left);
+          setTop(resultStarRect.top);
+          setScale(1.1);
+        }, flyAnimTime);
+      }, timeUntilStartAnim);
+    }
+  }, [
+    id,
+    index,
+    starAnimationTimeMS,
+    testFinished,
+    timeUntilStartAnim,
+    unlocked,
+  ]);
+
+  return (
+    <div key={index} id={id}>
+      {unlocked && (
+        <div
+          style={{
+            transition: transition,
+            position: "absolute",
+            transform: "scale(" + scale + ")",
+            left,
+            top,
+            opacity,
+          }}
+        >
+          <Star style={{ color: "yellow" }} />
+        </div>
+      )}
+      <Star style={{ color: "grey" }} />
     </div>
   );
 };
