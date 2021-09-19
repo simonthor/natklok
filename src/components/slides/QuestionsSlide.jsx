@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { withTranslation } from "react-i18next";
-import PwdSecurityModal from "features/PwdSecurity";
+import PwdSecurityModal from "components/features/PwdSecurity";
 
 // Custom components
 import AlignCenter from 'components/general/AlignCenter'
