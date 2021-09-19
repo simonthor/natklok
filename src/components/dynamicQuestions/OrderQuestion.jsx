@@ -4,7 +4,7 @@ import ExpandMore from "@material-ui/icons/ExpandMore";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 
 import "./OrderQuestion.css";
-import { StyledButton } from "../general";
+import StyledButton from 'components/general/StyledButton'
 
 const OrderQuestion = ({ questionData, t, onSelectAnswer }) => {
   const [options, setOptions] = useState(questionData.options);

@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { withTranslation } from "react-i18next";
-import PwdSecurityModal from "../features/PwdSecurity";
+import PwdSecurityModal from "features/PwdSecurity";
 
 // Custom components
-import {
-  AlignCenter,
-  Fade,
-  StyledButton,
-  HTMLRenderer,
-} from "components/general";
+import AlignCenter from 'components/general/AlignCenter'
+import Fade from 'components/general/Fade'
+import StyledButton from 'components/general/StyledButton'
+import HTMLRenderer from 'components/general/HTMLRenderer'
 import AnswerFeedback from "./AnswerFeedback";
 import {
   SEVERAL_OPTION,

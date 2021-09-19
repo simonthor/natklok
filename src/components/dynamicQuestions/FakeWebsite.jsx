@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Fade, StyledButton } from "../general";
+import StyledButton from 'components/general/StyledButton'
 
 const FakeWebsite = ({ options, onSelectAnswer, t }) => {
   const [scams, setScams] = useState({

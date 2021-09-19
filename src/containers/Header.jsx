@@ -4,7 +4,7 @@ import { withTranslation } from "react-i18next";
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 
 // Custom components
-import { AlignCenter } from "components/general";
+import AlignCenter from "components/general/AlignCenter";
 import ProgressBar from "components/features/ProgressBar";
 import Mainlogo from "assets/sakerhetskontrollen-logo.svg";
 

@@ -4,16 +4,16 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import Confetti from "react-confetti";
 
 // Custom components
-import { Loading } from "../components/general";
-import TestSlides from "../containers/TestSlides";
-import Welcome from "../containers/Welcome";
-import { PURPLE, HEIGHT } from "../util/constants";
-import getWindowSize from "../util/getWindowSize.js";
+import Loading from "components/general/Loading";
+import TestSlides from "containers/TestSlides";
+import Welcome from "containers/Welcome";
+import { PURPLE, HEIGHT } from "util/constants";
+import getWindowSize from "util/getWindowSize.js";
 import { ThumbDown } from "@material-ui/icons";
-import ResultSlide from "../components/slides/ResultSlide";
+import ResultSlide from "components/slides/ResultSlide";
 
 // Lazy loading
-const Header = lazy(() => import("../containers/Header"));
+const Header = lazy(() => import("containers/Header"));
 
 const Boiler = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);

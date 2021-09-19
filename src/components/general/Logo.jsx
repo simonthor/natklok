@@ -1,5 +1,5 @@
 import React from "react";
-import Mainlogo from "../../assets/sakerhetskontrollen-logo.svg";
+import Mainlogo from "assets/sakerhetskontrollen-logo.svg";
 
 
 const Logo = ({ large }) => {

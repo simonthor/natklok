@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { withTranslation } from "react-i18next";
-import { Grid } from "@material-ui/core";
-import getPwdSecurity from "../../util/getPwdSecurity";
+import getPwdSecurity from "util/getPwdSecurity";
 import language from "hsimp-purescript/language/english";
 import characterSets from "hsimp-purescript/data/character-sets";
 import common from "hsimp-purescript/data/common/top10k";
 import patterns from "hsimp-purescript/data/patterns";
-import { StyledTextField } from "../general";
-import { GENERAL_PROFILE, SOCIAL_MEDIA_PROFILE } from "../../util/constants";
+import StyledTextField from "general/StyledTextField";
+import { SOCIAL_MEDIA_PROFILE } from "util/constants";
 
 const PwdSecurityModal = ({
   t,

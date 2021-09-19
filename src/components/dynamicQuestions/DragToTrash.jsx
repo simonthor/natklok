@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import Draggable from "react-draggable"; // The default
 
-import { ArrowBack, Delete } from "@material-ui/icons";
+import Delete from "@material-ui/icons/Delete";
+import ArrowBack from "@material-ui/icons/ArrowBack";
+
 
 const DragToTrash = ({ questionData, onSelectAnswer, t }) => {
   const [isOverTrash, setIsOverTrash] = useState(false);
