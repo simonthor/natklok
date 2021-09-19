@@ -5,7 +5,7 @@ import language from "hsimp-purescript/language/english";
 import characterSets from "hsimp-purescript/data/character-sets";
 import common from "hsimp-purescript/data/common/top10k";
 import patterns from "hsimp-purescript/data/patterns";
-import StyledTextField from "general/StyledTextField";
+import StyledTextField from "components/general/StyledTextField";
 import { SOCIAL_MEDIA_PROFILE } from "util/constants";
 
 const PwdSecurityModal = ({
