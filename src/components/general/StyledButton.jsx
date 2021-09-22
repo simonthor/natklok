@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { PURPLE, PALEBLUE } from "util/constants";
 
-export default ({
+const StyledButton = ({
   children,
   style,
   color = PALEBLUE,
@@ -54,3 +54,5 @@ export default ({
     </button>
   );
 };
+
+export default StyledButton;

@@ -17,9 +17,9 @@ const YesNoWrapper = ({
 }) => {
   const handleUpdateIndex = (newIndex, lastestIndex) => {
     if (newIndex === 0) {
-      onSelectAnswer(questionData.yes_score);
-    } else if (newIndex === 2) {
       onSelectAnswer(questionData.no_score);
+    } else if (newIndex === 2) {
+      onSelectAnswer(questionData.yes_score);
     }
   };
 

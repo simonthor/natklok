@@ -38,10 +38,13 @@ export const PROFILE_STYLING = {
 // Categories
 export const SHARED_PASSWORD_QUESTION = "SHARED_PASSWORD_QUESTION";
 export const PUBLIC_WIFI_QUESTION = "PUBLIC_WIFI_QUESTION";
-export const FAKE_WEBSITE_QUESTION = "FAKE_WEBSITE_QUESTION";
+export const DECEIVE_WEBSITE = "DECEIVE_WEBSITE";
 export const PASSWORD_STRENGTH_QUESTION = "PASSWORD_STRENGTH_QUESTION";
 export const WIFI_ON_QUESTION = "WIFI_ON_QUESTION";
 export const ROMANCE_SCAM = "ROMANCE_SCAM";
+export const BLACKMAIL = "BLACKMAIL";
+export const REMOVE_PERSONAL_DATA = "REMOVE_PERSONAL_DATA";
+export const DONT_CLICK_LINK = "DONT_CLICK_LINK";
 export const USE_SAME_PASSWORD = "USE_SAME_PASSWORD";
 export const RANK_PASSWORDS = "RANK_PASSWORDS";
 
@@ -52,6 +55,7 @@ export const SEVERAL_OPTION = "SEVERAL_OPTION";
 export const PASSWORD_INPUT = "PASSWORD_INPUT";
 export const CHAT = "CHAT";
 export const FAKE_WEBSITE = "FAKE_WEBSITE";
+export const FAKE_DOMAIN = "FAKE_DOMAIN";
 export const ORDER = "ORDER";
 
 export const QUESTIONS = [
@@ -97,12 +101,21 @@ export const QUESTIONS = [
     title: "questions.romanceScamChat.title",
     text: "questions.romanceScamChat.text",
     moreInfo: "questions.romanceScamChat.moreInfo",
-    emojis: ["☕", "📶"],
+    evenMoreInfo: "questions.romanceScamChat.evenMoreInfo",
+    yourAnswer: "questions.romanceScamChat.yourAnswer",
+    from: "questions.romanceScamChat.from",
     readMoreLink:
       "https://sakerhetskollen.se/testa-din-sakerhet/ar-du-saker-pa-ditt-losenord",
     options: [
       { text: "questions.romanceScamChat.bad", score: 0 },
       { text: "questions.romanceScamChat.good", score: 1 },
+    ],
+    smses: [
+      { side: "left", text: "questions.romanceScamChat.chat1" },
+      { side: "right", text: "questions.romanceScamChat.chat2" },
+      { side: "left", text: "questions.romanceScamChat.chat3" },
+      { side: "left", text: "questions.romanceScamChat.chat4" },
+      { side: "left", text: "questions.romanceScamChat.chat5" },
     ],
   },
   {
@@ -174,7 +187,7 @@ export const QUESTIONS = [
   },
   {
     id: 6,
-    category: FAKE_WEBSITE_QUESTION,
+    category: DECEIVE_WEBSITE,
     type: FAKE_WEBSITE,
     forProfile: GENERAL_PROFILE,
     title: "questions.fakeWebsite.title",
@@ -211,5 +224,78 @@ export const QUESTIONS = [
       { text: "{wz_kjq?ycl&aP#/", id: "4" },
     ],
     correctIdOrder: ["4", "3", "2", "1"],
+  },
+  {
+    id: 9,
+    category: BLACKMAIL,
+    type: CHAT,
+    forProfile: GENERAL_PROFILE,
+    title: "questions.blackmailChat.title",
+    text: "questions.blackmailChat.text",
+    moreInfo: "questions.blackmailChat.moreInfo",
+    evenMoreInfo: "questions.blackmailChat.evenMoreInfo",
+    yourAnswer: "questions.blackmailChat.yourAnswer",
+    from: "questions.blackmailChat.from",
+    readMoreLink:
+      "https://sakerhetskollen.se/testa-din-sakerhet/ar-du-saker-pa-ditt-losenord",
+    options: [
+      { text: "questions.blackmailChat.bad", score: 0 },
+      { text: "questions.blackmailChat.good", score: 1 },
+    ],
+    smses: [
+      { side: "left", text: "questions.blackmailChat.chat1" },
+      { side: "left", image: "intim1" },
+      { side: "left", text: "questions.blackmailChat.chat2" },
+    ],
+  },
+  {
+    id: 10,
+    category: DONT_CLICK_LINK,
+    type: CHAT,
+    forProfile: GENERAL_PROFILE,
+    title: "questions.dontClickLinkPhoto.title",
+    text: "questions.dontClickLinkPhoto.text",
+    moreInfo: "questions.dontClickLinkPhoto.moreInfo",
+    evenMoreInfo: "questions.dontClickLinkPhoto.evenMoreInfo",
+    yourAnswer: "questions.dontClickLinkPhoto.yourAnswer",
+    from: "questions.dontClickLinkPhoto.from",
+    readMoreLink:
+      "https://sakerhetskollen.se/testa-din-sakerhet/ar-du-saker-pa-ditt-losenord",
+    options: [
+      { text: "questions.dontClickLinkPhoto.bad", score: 0 },
+      { text: "questions.dontClickLinkPhoto.good", score: 1 },
+    ],
+    smses: [
+      { side: "left", text: "questions.dontClickLinkPhoto.chat1" },
+      { side: "left", image: "dontClickVideo" },
+      { side: "left", text: "questions.dontClickLinkPhoto.chat2" },
+    ],
+  },
+  {
+    id: 11,
+    category: DECEIVE_WEBSITE,
+    type: FAKE_DOMAIN,
+    forProfile: GENERAL_PROFILE,
+    title: "questions.fakeDomain.title",
+    text: "questions.fakeDomain.text",
+    moreInfo: "questions.fakeDomain.moreInfo",
+    evenMoreInfo: "questions.fakeDomain.evenMoreInfo",
+  },
+  {
+    id: 12,
+    category: REMOVE_PERSONAL_DATA,
+    type: SEVERAL_OPTION,
+    forProfile: SOCIAL_MEDIA_PROFILE,
+    title: "questions.embarrasingData.title",
+    text: "questions.embarrasingData.text",
+    moreInfo: "questions.embarrasingData.moreInfo",
+    options: [
+      { text: "questions.embarrasingData.option1", score: 0 },
+      {
+        text: "questions.embarrasingData.option2",
+        score: 0,
+      },
+      { text: "questions.embarrasingData.option3", score: 1 },
+    ],
   },
 ];

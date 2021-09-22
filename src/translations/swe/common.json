@@ -9,7 +9,8 @@
     "questionLeft": "fråga kvar!",
     "yes": "Ja",
     "no": "Nej",
-    "done": "Klar"
+    "done": "Klar",
+    "close": "Stäng"
   },
   "error": {
     "somethingWentWrong": "Oops, något gick fel...",
@@ -24,11 +25,11 @@
     "aboutDesc": "About The best react website template"
   },
   "welcome": {
-    "title": "Sakerhetskontrollen",
+    "title": "Säkerhetskontrollen",
     "desc": "Hur säkra är dina internetvanor?",
     "test": "STARTA TESTET",
     "aboutTitle": "Om testet",
-    "aboutContent": "Lorem ipsum <b>dolor sit amet.</b> <br/><br/> <img style='width:100%;' src='https://cdn.sanity.io/images/06lnne29/redesign-prod/7634580c0b45501d41c61b9abc6e008336351f42-1200x630.jpg?w=2000&auto=format' alt=''/> <br/><br/> <b>Consectetur</b>   adipiscing elit. Curabitur ipsum ipsum, fringilla ut ultricies at, maximus vitae dui. <br/><br/> Vestibulum pharetra pellentesque lobortis. <b>In pulvinar dolor et convallis dignissim.</b> nec odio risus. Fusce auctor volutpat nibh, ac laoreet dui hendrerit vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br/><br/> Curabitur ipsum ipsum, fringilla ut ultricies at, maximus vitae dui. Nam commodo porttitor urna imperdiet imperdiet. Vestibulum pharetra pellentesque lobortis. In pulvinar dolor et convallis dignissim. Donec nec odio risus. Fusce auctor volutpat nibh, ac laoreet dui hendrerit vitae."
+    "aboutContent": "Säkerhetskontrollen är ett test gjort av Säkerhetskollen och Digital Ungdom. "
   },
   "profileSelection": {
     "title": "Skapa din digitala profil",
@@ -53,7 +54,7 @@
     "good": "Bra",
     "meh": "Sådär",
     "bad": "Dåligt",
-    "pressToReadMore": "Läs mer om detta",
+    "pressToReadMore": "Läs mer",
     "doTheTestTitle": "Hur säker är du online?",
     "doTheTestDesc": "Ta reda på svaret genom att göra hela quizet!"
   },
@@ -80,14 +81,14 @@
       "option3": "De kan se allt jag gör."
     },
     "passwordCheck": {
-      "title": "Efter 10 år lyckas en hackare knäcka lösenordet till ditt konto hos {profileBasedService}. Vad kan lösenordet ha varit?",
+      "title": "Du skapar ett konto hos {profileBasedService}...",
       "profileBasedService": {
         "BANK_PROFILE": "finansförvaltaren Blanco",
         "GAMING_PROFILE": "spelförsäljaren Yumpu",
         "STREAMING_PROFILE": "streamingtjänsten Oslagbar",
         "SOCIAL_MEDIA_PROFILE": "sociala-media-plattformen Kvitter"
       },
-      "text": "",
+      "text": "Försök skapa ett lösenord som skulle ta ungefär 10 år att hacka.",
       "secondTitle": "Du skrev in lösenordet {password}. Brukar du använda säkra lösenord som detta?",
       "secondTitleUnsecurePwd": "Det var ett ganska dåligt lösenord. Om vi bortser fran det, brukar du använda dig av säkra lösenord?",
       "option1": "Saklart, och mina lösenord förvaras säkert",
@@ -107,6 +108,8 @@
       "title": "Din barndomsvän kontaktar dig.",
       "text": "Efter att ni har skrivit i några veckor får du detta meddelande.",
       "moreInfo": "Du ska aldrig skicka pengar till någon du inte känner väl, oavsett påstådd orsak. <b>Det kan vara en bedragare.</b>",
+      "evenMoreInfo": "<h2>Var aktsam när någon ber om pengar</h2> Det behöver inte vara en 'barndomsvän' som skriver. Det kan vara någon som hackat sig in på en av dina familjemedlemmars konto och påstår sig vara dem.</br></br> Det kan även vara fallet att någon som du dejtat online under en längre period ber om pengar för ett visum eller en flygbiljett för att träffa dig. <b>Detta kallas romansbedrageri.</b> <h2>Ring upp</h2> Innan du gör något vid en förfrågan från en ”vän” ska du alltid bekräfta att det verkligen är personen som hen utger sig för att vara. Ring upp hen direkt och stäm av, för aldrig över några pengar på direkt uppmaning via sociala medier.",
+      "from": "Barndomsvän",
       "good": "Hejdå 💩👎",
       "bad": "Sure, swishar på direkten 💸👍",
       "yourAnswer": "Vad svarar du?",
@@ -119,7 +122,7 @@
     "fakeWebsite": {
       "title": "Du råkar hamna på en scam-hemsida!",
       "text": "Klicka på saker du tycker ser misstänksamma ut",
-      "moreInfo": "Det finns många tricks för lura dig..."
+      "moreInfo": "Det finns tre saker du i huvudsak ska leta efter: </br></br> 1. Orimligt bra priser eller erbjudanden. </br></br> 2. Felstavelser. </br></br> 3. Falsk URL. Istället för elgiganten.se kanske det står elggiganten.se eller elgitantet.se.någotannat.se"
     },
     "trashSamePassword": {
       "title": "Släng påståndet i soptunnan!",
@@ -133,6 +136,44 @@
       "moreInfo": "Ju längre ju bättre. Använd även stora och små bokstäver - <i>det är lättare än du tror att skapa ett starkt lösenord!</i>",
       "best": "Starkast",
       "worst": "Svagast"
+    },
+    "blackmailChat": {
+      "title": "Katastrof - någon har fått tag på intima bilder på dig...",
+      "text": "Nu hotar den anonyma person dig...",
+      "moreInfo": "<h2>Du har mer makt än du tror i denna situation. </h2> Polisen kan spåra personen som skickat detta och gripa dem. De kan även hjälpa till att ta ner bilder ifall de sprids. <b>Ifall man går med på gärningspersonens villkor blir saker oftast bara värre. </b> ",
+      "evenMoreInfo": "<h2>Hitta hjälp</h2> Även ifall det kan kännas väldigt jobbigt är det viktigt att du får hjälp av någon annan i en sån här situation. Be en förälder, kompis, lärare eller annan person att hjälpa dig. <h2>Visa inte ansiktet</h2> Ifall du någonsin skickar en intim bild säg till att ditt ansikte inte syns så att du inte kan bli identifierad och utpressad. </br></br><b>Helst ska du undvika att skicka intima bilder helt och hållet.</b> <h2>Lagen är på din sida</h2> Kontakta polisen genom att ringa 114 14 eller genom att besöka din närmaste polisstation. Kom även ihåg att ifall bilderna läggs upp kan man nästan alltid få bilderna nedtagna - detta är lag enligt GDPR.",
+      "from": "Anonym",
+      "bad": "Jag gör som de säger, det är inte värt risken.",
+      "good": "Jag svarar inte och anmäler direkt till Polisen via 114 14.",
+      "yourAnswer": "Vad gör du?",
+      "chat1": "jag har den här bilden på dig",
+      "chat2": "Skicka fler annars lägger jag upp den så att alla du känner kan se"
+    },
+    "dontClickLinkPhoto": {
+      "title": "Vad konstigt...",
+      "text": "Någon som du inte känner skriver att de hittat en video på dig...",
+      "moreInfo": "<b>Det finns ingen video på dig</b>, de vill bara att du ska klicka på länken för att sedan lura dig på något sätt.",
+      "evenMoreInfo": "<h2>Länken</h2>Videon länkar dig till 'etrk2.onodeshouse120.com' vilket genast borde väcka misstankar hos dig eftersom det inte är en välkänd video-hemsida. Men även ifall videon länkar till exempelvis youtube ska du vara mycket försiktig när du klickar på länkar från främlingar, <b> undvik det helst helt och hållet.</b><h2>Phishing</h2>Länken du trycker på kommer i många fall leda dig till en sida där du uppmanas att uppge kreditkortsinformation, lösenord eller annan känslig information. <b>Detta kallas Phishing eller nätfiske.</b> Med din information kan bedragare sno pengar eller ta över dina konton. <img src='https://cdn.sanity.io/images/06lnne29/redesign-prod/337588f831a5eaab6bfdc36ce76ec2c9b2798711-1200x630.jpg?w=2000&amp;auto=format' class='rpS7S' alt='Sålir du lurad av bedragare på sociala medier' style='width: 100%;'>",
+      "from": "Amanda",
+      "bad": "Det är bäst ifall jag kollar vad det är, så jag kan be dem ta bort videon.",
+      "good": "Även fast jag vill se klickar jag inte på länken.",
+      "yourAnswer": "Vad gör du?",
+      "chat1": "Är det här du i videon?? 😳💔",
+      "chat2": "etrk2.onodeshouse120.com"
+    },
+    "fakeDomain": {
+      "title": "Namnet på den här hemsidan ser misstänksam ut...",
+      "text": "Klicka på alla varningstecken",
+      "moreInfo": "Det är alltid namnet precis innan .com, .se, osv som är det 'riktiga' namnet på hemsidan. Så... </br> <div style='text-align: left;'><span style='color: red;'>instagram.annat.com - tar dig till 'annat.com'</span></br><span style='color: lightgreen;'>annat.instagram.com - tar dig till 'instagram.com'</span></br><span>Även instagram.com.annat.com tar dig till 'annat.com'</span></div> </br></br>Säg också alltid till att hemsidan du är inne på har <b>HTTP<i>S</i></b> och inte bara <b>HTTP</b>.",
+      "evenMoreInfo": "<h2>HTTPS</h2> 'S'-et i HTTPS står får secure och hemsidor med HTTPS enkrypterar all information som skickas. Det innebär att om du skickar ett lösenord till en hemsida med HTTPS är det omöjligt för någon annan än dig och hemsidan att se vad lösenordet är. </br></br>Ifall en hemsida bara har HTTP kan vem som helst se lösenordet medans det 'färdas' till hemsidan - exempelvis personen som äger wifi:et du använder."
+    },
+    "embarrasingData": {
+      "title": "Någon lägger upp en pinsam bild på dig på sociala medier",
+      "text": "Du vill att personen ska ta bort den men de vägrar. Vilket alternativ stämmer?",
+      "moreInfo": "På det allra flesta hemsidorna kan du rapportera och ta bort en bild ifall den trakasserar eller mobbar någon. </br></br> Börja dock alltid med att fråga personen som lagt upp bilden ifall de kan radera den.",
+      "option1": "Enligt GDPR är det lag att bilden ska tas bort ifall jag vill det.",
+      "option2": "Enligt GDPR har personen som lagt upp bilden rätt att ha kvar den, eftersom de har upphovsrätt.",
+      "option3": "De flesta hemsidorna tillåter en att ta bort sådana bilder. Men det finns ingen klar lagstiftning."
     }
   },
   "result": {

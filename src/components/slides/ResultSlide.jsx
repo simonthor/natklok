@@ -93,7 +93,7 @@ const ResultSlide = ({
             </p>
             <h2 style={{ margin: "6px 0" }}>{resultTextObj.title}</h2>
             <p style={{ margin: "6px 0" }}>{resultTextObj.desc}</p>
-            <Link to="/test">
+            <Link to="/">
               <StyledButton style={{ margin: "8px 0" }}>
                 {t("result.redo")}
               </StyledButton>

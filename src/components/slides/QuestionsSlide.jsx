@@ -17,12 +17,14 @@ import {
   FAKE_WEBSITE,
   DRAG_TO_TRASH,
   ORDER,
+  FAKE_DOMAIN,
 } from "util/constants";
-import RomanceChat from "components/dynamicQuestions/RomanceChat";
+import ChatQuestion from "components/dynamicQuestions/ChatQuestion";
 import FakeWebsite from "components/dynamicQuestions/FakeWebsite";
 import OrderQuestion from "components/dynamicQuestions/OrderQuestion";
 import YesNoWrapper from "components/features/YesNoWrapper";
 import DragToTrash from "components/dynamicQuestions/DragToTrash";
+import FakeDomain from "components/dynamicQuestions/FakeDomain";
 
 // Component that layers all the questions
 const Questions = ({
@@ -88,15 +90,23 @@ const AnswerOptions = ({
 }) => {
   if (questionData.type === CHAT) {
     return (
-      <RomanceChat
+      <ChatQuestion
         t={t}
-        options={questionData.options}
+        questionData={questionData}
         onSelectAnswer={onSelectAnswer}
       />
     );
   } else if (questionData.type === FAKE_WEBSITE) {
     return (
       <FakeWebsite
+        t={t}
+        options={questionData.options}
+        onSelectAnswer={onSelectAnswer}
+      />
+    );
+  } else if (questionData.type === FAKE_DOMAIN) {
+    return (
+      <FakeDomain
         t={t}
         options={questionData.options}
         onSelectAnswer={onSelectAnswer}
@@ -269,35 +279,42 @@ const Question = ({
     showTextAfterTime = 0;
   }
 
-  const onSelectAnswer = (addedScore, resultText = "") => {
-    if (questionResult === null) {
-      var res = "";
-      if (addedScore > 0.8) {
-        res = t("test.correctAnswer");
-      } else if (addedScore > 0.5) {
-        res = t("test.almostCorrectAnswer");
-      } else if (addedScore > 0.3) {
-        res = t("test.acceptableAnswer");
-      } else {
-        res = t("test.wrongAnswer");
+  const onSelectAnswer = (
+    addedScore,
+    resultText = "",
+    waitUntilShowAnswer = 0
+  ) => {
+    setTimeout(() => {
+      if (questionResult === null) {
+        var res = "";
+        if (addedScore > 0.8) {
+          res = t("test.correctAnswer");
+        } else if (addedScore > 0.5) {
+          res = t("test.almostCorrectAnswer");
+        } else if (addedScore > 0.3) {
+          res = t("test.acceptableAnswer");
+        } else {
+          res = t("test.wrongAnswer");
+        }
+        setQuestionResult(res);
+        increaseStarAmount(addedScore);
+        setQuestionResultAdditionalText(resultText);
       }
-      setQuestionResult(res);
-      increaseStarAmount(addedScore);
-      setQuestionResultAdditionalText(resultText);
-    }
-    if (addedScore > 0.3) {
-      setconfettiRun(true);
-      setTimeout(() => {
-        setconfettiRecycle(false);
-      }, 500);
-      setTimeout(() => {
-        setconfettiRun(false);
-        setconfettiRecycle(true);
-      }, 6000);
-      setStreak(streak + 1);
-    } else {
-      setStreak(0);
-    }
+
+      if (addedScore > 0.3) {
+        setconfettiRun(true);
+        setTimeout(() => {
+          setconfettiRecycle(false);
+        }, 500);
+        setTimeout(() => {
+          setconfettiRun(false);
+          setconfettiRecycle(true);
+        }, 6000);
+        setStreak(streak + 1);
+      } else {
+        setStreak(0);
+      }
+    }, waitUntilShowAnswer);
   };
 
   useEffect(() => {
@@ -321,7 +338,9 @@ const Question = ({
           isLastQuestion={last}
           title={questionResult}
           desc={t(questionData.moreInfo) + questionResultAdditionalText}
+          questionData={questionData}
           bodyMarkdown={null}
+          evenMoreInfo={questionData.evenMoreInfo}
           linkToEntireQuiz={linkToEntireQuiz}
           questionId={questionData.id}
         />

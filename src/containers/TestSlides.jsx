@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { withTranslation } from "react-i18next";
 
 // Custom
@@ -7,6 +7,7 @@ import {
   GAMING_PROFILE,
   STREAMING_PROFILE,
   SOCIAL_MEDIA_PROFILE,
+  PURPLE,
 } from "util/constants";
 
 import { generateQuestions } from "util/generateQuestions";
@@ -30,9 +31,8 @@ const TestSlides = ({
 }) => {
   const [slideIndex, setSlideIndex] = useState(0);
   const [questions, setQuestions] = useState([]);
-  const [foundQuerySearchQuestion, setFoundQuerySearchQuestion] = useState(
-    false
-  );
+  const [foundQuerySearchQuestion, setFoundQuerySearchQuestion] =
+    useState(false);
   const [checkedQuery, setCheckedQuery] = useState(false);
   const [maxStarAmount, setMaxStarAmount] = useState(0);
   const [streak, setStreak] = useState(0);
@@ -44,6 +44,11 @@ const TestSlides = ({
     [SOCIAL_MEDIA_PROFILE]: false,
   });
   const location = useLocation();
+
+  // If cinematic button made this screen dark, revert here
+  useEffect(() => {
+    document.getElementById("bgd-container").style.background = PURPLE;
+  });
 
   if (checkedQuery === false) {
     setCheckedQuery(true);

@@ -8,6 +8,7 @@ import common from "hsimp-purescript/data/common/top10k";
 import patterns from "hsimp-purescript/data/patterns";
 import { StyledTextField } from "../general";
 import { GENERAL_PROFILE, SOCIAL_MEDIA_PROFILE } from "../../util/constants";
+import { PanoramaFishEye, RemoveRedEye } from "@material-ui/icons";
 
 const PwdSecurityModal = ({
   t,
@@ -20,9 +21,14 @@ const PwdSecurityModal = ({
   const [pwdTime, setPwdTime] = useState("");
   const [notice, setNotice] = useState("");
   const [checks, setChecks] = useState({});
+  const [visiblePwd, setVisiblePwd] = useState(false);
   const [profileBasedService] = useState(
     questionData.profileBasedService[profileForQuestion]
   );
+
+  const toggleVisiblePwd = () => {
+    setVisiblePwd(!visiblePwd);
+  };
 
   const config = {
     calculationsPerSecond: 40e9,
@@ -77,15 +83,34 @@ const PwdSecurityModal = ({
         >
           Allt samlat.
         </span>
-        <StyledTextField
-          onChange={onChange}
-          margin="normal"
-          fullWidth
-          autoFocus
-          variant="filled"
-          label={t("questions.passwordCheck.inputPlaceholder")}
-          color={profileBasedService.secondColor}
-        />
+        <div style={{ position: "relative" }}>
+          <StyledTextField
+            onChange={onChange}
+            margin="normal"
+            fullWidth
+            autoFocus
+            variant="filled"
+            type={visiblePwd === true ? "default" : "password"}
+            label={t("questions.passwordCheck.inputPlaceholder")}
+            color={profileBasedService.secondColor}
+          />
+          <div
+            style={{
+              position: "absolute",
+              right: 10,
+              top: 0,
+              paddingTop: 32,
+              cursor: "pointer",
+            }}
+            onClick={toggleVisiblePwd}
+          >
+            <RemoveRedEye
+              style={{
+                color: visiblePwd ? "rgba(0,0,0,0.9)" : "rgba(0,0,0,0.4)",
+              }}
+            />
+          </div>
+        </div>
         <div
           style={{
             borderRadius: 5,

@@ -9,7 +9,7 @@ import { StyledButton } from "components/general";
 import { HEIGHT } from "util/constants";
 import Mainlogo from "assets/sakerhetskontrollen-logo.svg";
 import SocialShare from "components/features/SocialShare";
-import MoreInfoModal from "components/features/MoreInfoModal";
+import MoreInfoDisplay from "components/features/MoreInfoDisplay";
 
 import "keyframes.css";
 
@@ -50,30 +50,42 @@ const Welcome = ({ t, hasStarted }) => {
           flexDirection: "row",
           flexWrap: "wrap",
           justifyContent: "center",
-          alignItems: "center",
           position: "relative",
-          overflow: "hidden",
           height: "100%",
+          overflow: "hidden",
         }}
         id="hoverColorEffect"
         ref={bgdRef}
       >
         <Grid
           item
-          xs={11}
           style={{
             textAlign: "center",
             zIndex: "5",
+            marginTop: "10vh",
+            width: "100%",
           }}
         >
-          <div style={{ width: "40vw", margin: "0 auto" }}>
+          <div
+            style={{ maxWidth: "400px", padding: "0 2em", margin: "0 auto" }}
+          >
             <img
-              style={{ position: "relative", width: "100%", height: "100%" }}
+              style={{
+                position: "relative",
+                width: "100%",
+                height: "100%",
+              }}
               alt="Säkerhetskontrollen"
               src={Mainlogo}
             />
           </div>
-          <p style={{ fontWeight: "700", fontSize: "1.5em" }}>
+          <p
+            style={{
+              fontWeight: "700",
+              margin: "0 0 2em 0",
+              fontSize: "1.5em",
+            }}
+          >
             {t("welcome.desc")}
           </p>
           <Link to="/test">
@@ -82,12 +94,13 @@ const Welcome = ({ t, hasStarted }) => {
             </StyledButton>
           </Link>
           <SocialShare shareText={t("general.shareTest")} />
+          <MoreInfoDisplay
+            title={t("welcome.aboutTitle")}
+            content={t("welcome.aboutContent")}
+            fixed={true}
+          />
         </Grid>
       </Grid>
-      <MoreInfoModal
-        title={t("welcome.aboutTitle")}
-        content={t("welcome.aboutContent")}
-      />
     </>
   );
 };

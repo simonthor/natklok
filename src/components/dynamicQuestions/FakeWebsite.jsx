@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Fade, StyledButton } from "../general";
+import fakeWebsite from "assets/fakewebsite.png";
 
 const FakeWebsite = ({ options, onSelectAnswer, t }) => {
   const [scams, setScams] = useState({
@@ -16,7 +17,7 @@ const FakeWebsite = ({ options, onSelectAnswer, t }) => {
     }
   });
   if (amountFound === Object.values(scams).length) {
-    onSelectAnswer(amountFound / Object.values(scams).length);
+    onSelectAnswer(amountFound / Object.values(scams).length, "", 1000);
   }
 
   return (
@@ -36,7 +37,7 @@ const FakeWebsite = ({ options, onSelectAnswer, t }) => {
         <div
           style={{
             position: "relative",
-            width: "100%",
+            width: 370,
             height: 380,
             background: "white",
             borderRadius: 12,
@@ -80,7 +81,6 @@ const FakeWebsite = ({ options, onSelectAnswer, t }) => {
             />
 
             <div
-              onClick={() => setScams({ ...scams, domainScamFound: true })}
               style={{
                 flex: 1,
                 background: "white",
@@ -96,45 +96,58 @@ const FakeWebsite = ({ options, onSelectAnswer, t }) => {
                   padding: "6px 0",
                   margin: "-5px 0 0 10px",
                   color: "grey",
-                  borderRadius: 1000,
-                  border: scams.domainScamFound
-                    ? "4px solid red"
-                    : "4px solid rgba(0,0,0,0)",
+                  fontSize: "0.9em",
                 }}
               >
-                ßlocket.se
+                https://elgiganten.se.
+                <span
+                  style={{
+                    borderRadius: 1000,
+                    border: scams.domainScamFound
+                      ? "2px solid red"
+                      : "2px solid rgba(0,0,0,0)",
+                  }}
+                  onClick={() => setScams({ ...scams, domainScamFound: true })}
+                >
+                  src-sgg.com
+                </span>
               </p>
             </div>
           </div>
-
+          <img src={fakeWebsite} alt="" style={{}} />
           <p
             onClick={() => setScams({ ...scams, spellingErrorsFound: true })}
             style={{
               color: "grey",
-              margin: 20,
+              position: "absolute",
+              top: "20%",
+              left: 100,
+              fontSize: "0.9em",
               borderRadius: 1000,
               border: scams.spellingErrorsFound
-                ? "4px solid red"
-                : "4px solid rgba(0,0,0,0)",
+                ? "2px solid red"
+                : "2px solid rgba(0,0,0,0)",
             }}
           >
-            Välkomen till blocket.se! Här hittar du besta priserna!
+            Sok after produkter
           </p>
 
-          <div
+          <p
             onClick={() => setScams({ ...scams, priceScamFound: true })}
             style={{
-              color: "grey",
-              margin: 20,
-              position: "relative",
+              color: "black",
+              position: "absolute",
+              top: "45%",
+              left: 94,
+              fontSize: "0.9em",
               borderRadius: 1000,
               border: scams.priceScamFound
-                ? "4px solid red"
-                : "4px solid rgba(0,0,0,0)",
+                ? "2px solid red"
+                : "2px solid rgba(0,0,0,0)",
             }}
           >
-            Asgrym ny TV för 599 kr! Originalpris är 18999 sek!
-          </div>
+            Iphone 13 för endast 299 kr!
+          </p>
         </div>
       </div>
       <StyledButton
