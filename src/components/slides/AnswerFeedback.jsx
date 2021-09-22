@@ -1,8 +1,10 @@
 import React from "react";
 import { withTranslation } from "react-i18next";
 import Fade from "react-reveal/Fade";
-import { StyledButton, AlignCenter, HTMLRenderer } from "components/general";
-import { Grid } from "@material-ui/core";
+import StyledButton from "components/general/StyledButton";
+import AlignCenter from "components/general/AlignCenter";
+import HTMLRenderer from "components/general/HTMLRenderer";
+import Grid from "@material-ui/core/Grid";
 import { useHistory } from "react-router-dom";
 import WhatshotIcon from "@material-ui/icons/Whatshot";
 import SocialShare from "components/features/SocialShare";

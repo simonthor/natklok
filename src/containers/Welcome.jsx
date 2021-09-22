@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 
 // Custom
-import { StyledButton } from "components/general";
+import StyledButton from "components/general/StyledButton";
 import { HEIGHT } from "util/constants";
 import Mainlogo from "assets/sakerhetskontrollen-logo.svg";
 import SocialShare from "components/features/SocialShare";

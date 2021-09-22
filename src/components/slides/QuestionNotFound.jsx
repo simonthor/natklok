@@ -1,7 +1,7 @@
 import React from "react";
 import { withTranslation } from "react-i18next";
 import { useHistory } from 'react-router-dom';
-import { StyledButton } from "../general";
+import StyledButton from "components/general/StyledButton";
 
 const QuestionNotFound = ({t}) => {
   const history = useHistory(); 

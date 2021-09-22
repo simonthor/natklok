@@ -3,7 +3,9 @@ import React, { useEffect, useState } from "react";
 import { withTranslation } from "react-i18next";
 
 // Custom components
-import { AlignCenter, Fade, StyledButton } from "components/general";
+import AlignCenter from 'components/general/AlignCenter'
+import Fade from 'components/general/Fade'
+import StyledButton from 'components/general/StyledButton'
 import StyledLink from "components/general/StyledLink";
 import { Facebook, Instagram, Star, Twitter } from "@material-ui/icons";
 import { Link } from "react-router-dom";

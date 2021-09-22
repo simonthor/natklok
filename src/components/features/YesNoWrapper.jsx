@@ -2,8 +2,8 @@ import React from "react";
 import SwipeableViews from "react-swipeable-views";
 
 // Custom components
-import { Fade } from "../general";
-import { PINK, YES_NO } from "../../util/constants";
+import Fade from "components/general/Fade";
+import { YES_NO } from "util/constants";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 
