@@ -1,0 +1,18 @@
+{
+  "BANK_PROFILE": {
+    "color": "#0EE08C",
+    "dark": true
+  },
+  "GAMING_PROFILE": {
+    "color": "#FDCF35",
+    "dark": true
+  },
+  "STREAMING_PROFILE": {
+    "color": "#FB733F",
+    "dark": true
+  },
+  "SOCIAL_MEDIA_PROFILE": {
+    "color": "#FF3854",
+    "dark": false
+  }
+}

@@ -1,0 +1,153 @@
+[
+  {
+    "id": 1,
+    "category": "SHARED_PASSWORD_QUESTION",
+    "type": "SEVERAL_OPTION",
+    "forProfile": "GAMING_PROFILE",
+    "title": "questions.csgoSkin.title",
+    "text": "questions.csgoSkin.text",
+    "moreInfo": "questions.csgoSkin.moreInfo",
+    "emojis": ["🔪", "🔒", "🔫"],
+    "readMoreLink": "https://sakerhetskollen.se/testa-din-sakerhet/ar-du-saker-pa-ditt-losenord",
+    "options": [
+      { "text": "questions.csgoSkin.option1", "score": 0 },
+      {
+        "text": "questions.csgoSkin.option2",
+        "score": 0
+      },
+      { "text": "questions.csgoSkin.option3", "score": 1 }
+    ]
+  },
+  {
+    "id": 2,
+    "category": "SHARED_PASSWORD_QUESTION",
+    "type": "YES_NO",
+    "forProfile": "SOCIAL_MEDIA_PROFILE",
+    "title": "questions.fakeApp.title",
+    "text": "questions.fakeApp.text",
+    "moreInfo": "questions.fakeApp.moreInfo",
+    "emojis": ["📱", "🔒"],
+    "readMoreLink": "https://sakerhetskollen.se/testa-din-sakerhet/ar-du-saker-pa-ditt-losenord",
+    "yes_score": 0,
+    "no_score": 1
+  },
+  {
+    "id": 3,
+    "category": "ROMANCE_SCAM",
+    "type": "CHAT",
+    "forProfile": "GENERAL_PROFILE",
+    "title": "questions.romanceScamChat.title",
+    "text": "questions.romanceScamChat.text",
+    "moreInfo": "questions.romanceScamChat.moreInfo",
+    "emojis": ["☕", "📶"],
+    "readMoreLink": "https://sakerhetskollen.se/testa-din-sakerhet/ar-du-saker-pa-ditt-losenord",
+    "options": [
+      { "text": "questions.romanceScamChat.bad", "score": 0 },
+      { "text": "questions.romanceScamChat.good", "score": 1 }
+    ]
+  },
+  {
+    "id": 4,
+    "category": "PASSWORD_STRENGTH_QUESTION",
+    "type": "PASSWORD_INPUT",
+    "forProfile": "GENERAL_PROFILE",
+    "title": "questions.passwordCheck.title",
+    "profileBasedTitleVars": ["profileBasedService"],
+    "text": "questions.passwordCheck.text",
+    "moreInfo": "questions.passwordCheck.moreInfo",
+    "emojis": ["📱", "🔒"],
+    "readMoreLink": "https://sakerhetskollen.se/testa-din-sakerhet/ar-du-saker-pa-ditt-losenord",
+    "profileBasedService": {
+      "BANK_PROFILE": {
+        "name": "questions.passwordCheck.profileBasedService.BANK_PROFILE",
+        "color": "#0abf53",
+        "secondColor": "#fff",
+        "thirdColor": "#00112c"
+      },
+      "GAMING_PROFILE": {
+        "name": "questions.passwordCheck.profileBasedService.GAMING_PROFILE",
+        "color": "#2a475e",
+        "secondColor": "#c7d5e0",
+        "thirdColor": "#66c0f4"
+      },
+      "STREAMING_PROFILE": {
+        "name": "questions.passwordCheck.profileBasedService.STREAMING_PROFILE",
+        "color": "#f3f6f8",
+        "secondColor": "#282828",
+        "thirdColor": "#ff0000"
+      },
+      "SOCIAL_MEDIA_PROFILE": {
+        "name": "questions.passwordCheck.profileBasedService.SOCIAL_MEDIA_PROFILE",
+        "color": "#f5f8fa",
+        "secondColor": "#14171a",
+        "thirdColor": "#1da1f2"
+      }
+    },
+    "options": [
+      { "text": "questions.passwordCheck.option1", "score": 1 },
+      {
+        "text": "questions.passwordCheck.option2",
+        "score": 0
+      },
+      { "text": "questions.passwordCheck.option3", "score": 0 }
+    ]
+  },
+  {
+    "id": 5,
+    "category": "PUBLIC_WIFI_QUESTION",
+    "type": "SEVERAL_OPTION",
+    "forProfile": "GENERAL_PROFILE",
+    "title": "questions.publicWifi.title",
+    "text": "questions.publicWifi.text",
+    "moreInfo": "questions.publicWifi.moreInfo",
+    "emojis": ["☕", "📶"],
+    "readMoreLink": "https://sakerhetskollen.se/testa-din-sakerhet/ar-du-saker-pa-ditt-losenord",
+    "options": [
+      { "text": "questions.publicWifi.option1", "score": 0 },
+      {
+        "text": "questions.publicWifi.option2",
+        "score": 1
+      },
+      { "text": "questions.publicWifi.option3", "score": 0 }
+    ]
+  },
+  {
+    "id": 6,
+    "category": "FAKE_WEBSITE_QUESTION",
+    "type": "FAKE_WEBSITE",
+    "forProfile": "GENERAL_PROFILE",
+    "title": "questions.fakeWebsite.title",
+    "text": "questions.fakeWebsite.text",
+    "moreInfo": "questions.fakeWebsite.moreInfo",
+    "emojis": ["☕", "📶"],
+    "readMoreLink": "https://sakerhetskollen.se/testa-din-sakerhet/ar-du-saker-pa-ditt-losenord"
+  },
+  {
+    "id": 7,
+    "category": "USE_SAME_PASSWORD",
+    "type": "DRAG_TO_TRASH",
+    "forProfile": "GENERAL_PROFILE",
+    "title": "questions.trashSamePassword.title",
+    "text": "questions.trashSamePassword.text",
+    "moreInfo": "questions.trashSamePassword.moreInfo",
+    "dragToTrashText": "questions.trashSamePassword.dragToTrashText"
+  },
+  {
+    "id": 8,
+    "category": "RANK_PASSWORDS",
+    "type": "ORDER",
+    "forProfile": "GENERAL_PROFILE",
+    "title": "questions.rankpasswords.title",
+    "text": "questions.rankpasswords.text",
+    "moreInfo": "questions.rankpasswords.moreInfo",
+    "best": "questions.rankpasswords.best",
+    "worst": "questions.rankpasswords.worst",
+    "options": [
+      { "text": "abc123", "id": "1" },
+      { "text": "mångabäckarsmågrodorna", "id": "2" },
+      { "text": "sommar2021!", "id": "3" },
+      { "text": "{wz_kjq?ycl&aP#/", "id": "4" }
+    ],
+    "correctIdOrder": ["4", "3", "2", "1"]
+  }
+]
