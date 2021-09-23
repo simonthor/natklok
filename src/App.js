@@ -7,7 +7,7 @@ import i18next from "i18next";
 import "./index.css";
 
 // Custom
-import common_swe from "./translations/swe/common.json";
+import common_sv from "./translations/sv/common.json";
 import common_en from "./translations/en/common.json";
 
 const theme = createTheme({
@@ -20,13 +20,13 @@ const theme = createTheme({
 
 i18next.init({
   interpolation: { escapeValue: false }, // React already does escaping
-  lng: "swe",
+  lng: "sv",
   resources: {
     en: {
       common: common_en,
     },
-    swe: {
-      common: common_swe,
+    sv: {
+      common: common_sv,
     },
   },
 });

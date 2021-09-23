@@ -153,11 +153,11 @@ function RadioButtonsGroup() {
               <RadioGroup
                 aria-label="language"
                 name="lang1"
-                defaultValue="swe"
+                defaultValue="sv"
                 onChange={handleChange}
               >
                 <FormControlLabel
-                  value="swe"
+                  value="sv"
                   control={<StyledRadio />}
                   label="Svenska - SV"
                 />
