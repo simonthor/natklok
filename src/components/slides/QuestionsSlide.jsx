@@ -3,12 +3,8 @@ import { withTranslation } from "react-i18next";
 import PwdSecurityModal from "../features/PwdSecurity";
 
 // Custom components
-import {
-  AlignCenter,
-  Fade,
-  StyledButton,
-  HTMLRenderer,
-} from "components/general";
+import { AlignCenter, StyledButton, HTMLRenderer } from "components/general";
+import Fade from "react-reveal/Fade";
 import AnswerFeedback from "./AnswerFeedback";
 import {
   SEVERAL_OPTION,
@@ -18,6 +14,7 @@ import {
   DRAG_TO_TRASH,
   ORDER,
   FAKE_DOMAIN,
+  YES_NO,
 } from "util/constants";
 import ChatQuestion from "components/dynamicQuestions/ChatQuestion";
 import FakeWebsite from "components/dynamicQuestions/FakeWebsite";
@@ -25,6 +22,7 @@ import OrderQuestion from "components/dynamicQuestions/OrderQuestion";
 import YesNoWrapper from "components/features/YesNoWrapper";
 import DragToTrash from "components/dynamicQuestions/DragToTrash";
 import FakeDomain from "components/dynamicQuestions/FakeDomain";
+import { addCorrectAnswer } from "util/totalScore";
 
 // Component that layers all the questions
 const Questions = ({
@@ -253,7 +251,6 @@ const Question = ({
   const [questionResultAdditionalText, setQuestionResultAdditionalText] =
     useState("");
   const [questionOpened, setQuestionOpened] = useState(false);
-  const [timeSinceOpened, setTimeSinceOpened] = useState(0);
 
   let chosenProfiles = [];
   for (var i in profileStates) chosenProfiles.push(i);
@@ -274,9 +271,9 @@ const Question = ({
   }
 
   const last = index + 1 === amountOfQuestions;
-  let showTextAfterTime = 0.5 + questionTitle.length / 40;
+  let contentFadeDelay = (0.5 + questionTitle.length / 40) * 1000;
   if (questionData.type === PASSWORD_INPUT) {
-    showTextAfterTime = 0;
+    contentFadeDelay = 0;
   }
 
   const onSelectAnswer = (
@@ -289,6 +286,7 @@ const Question = ({
         var res = "";
         if (addedScore > 0.8) {
           res = t("test.correctAnswer");
+          addCorrectAnswer(questionData.id);
         } else if (addedScore > 0.5) {
           res = t("test.almostCorrectAnswer");
         } else if (addedScore > 0.3) {
@@ -309,7 +307,7 @@ const Question = ({
         setTimeout(() => {
           setconfettiRun(false);
           setconfettiRecycle(true);
-        }, 6000);
+        }, 5000);
         setStreak(streak + 1);
       } else {
         setStreak(0);
@@ -321,12 +319,11 @@ const Question = ({
     if (index === currentIndex) {
       setQuestionOpened(true);
     }
-    setTimeout(() => {
-      if (questionOpened === true && timeSinceOpened <= showTextAfterTime) {
-        setTimeSinceOpened(timeSinceOpened + 0.1);
-      }
-    }, 100);
-  }, [currentIndex, index, questionOpened, showTextAfterTime, timeSinceOpened]);
+  }, [setQuestionOpened, index, currentIndex]);
+
+  if (questionOpened === false) {
+    return null;
+  }
 
   return (
     <div id="question" style={{ height: "100%", width: "100%" }}>
@@ -348,40 +345,40 @@ const Question = ({
         <YesNoWrapper
           questionData={questionData}
           onSelectAnswer={onSelectAnswer}
-          showTextAfterTime={showTextAfterTime}
-          timeSinceOpened={timeSinceOpened}
+          contentFadeDelay={contentFadeDelay}
           t={t}
         >
-          <AlignCenter withMaxWidth>
-            {questionOpened === true ? (
-              <Fade>
-                <h2
-                  style={{
-                    minWidth: "100%",
-                    width: 0,
-                    fontFamily: "Bowlby One SC, Arial, Helvetica, sans-serif",
-                    fontWeight: 400,
-                  }}
-                >
-                  {changedTitle !== null ? changedTitle : questionTitle}
-                </h2>
-              </Fade>
-            ) : null}
+          <AlignCenter
+            withMaxWidth
+            centerBothAxis={questionData.type !== YES_NO} // Messes up the wrapper otherwise
+          >
+            <Fade>
+              <h2
+                style={{
+                  minWidth: "100%",
+                  width: 0,
+                  fontFamily: "Bowlby One SC, Arial, Helvetica, sans-serif",
+                  fontWeight: 400,
+                  lineHeight: 1.2,
+                  marginBottom: 8,
+                }}
+              >
+                {changedTitle !== null ? changedTitle : questionTitle}
+              </h2>
+            </Fade>
 
-            {timeSinceOpened > showTextAfterTime ? (
-              <Fade>
-                <HTMLRenderer style={{ marginBottom: 20, fontSize: "1.1em" }}>
-                  {t(questionData.text)}
-                </HTMLRenderer>
-                <AnswerOptions
-                  t={t}
-                  questionData={questionData}
-                  profileForQuestion={profileForQuestion}
-                  onSelectAnswer={onSelectAnswer}
-                  setChangedTitle={setChangedTitle}
-                />
-              </Fade>
-            ) : null}
+            <Fade delay={contentFadeDelay}>
+              <HTMLRenderer style={{ marginBottom: 20, fontSize: "1.1em" }}>
+                {changedTitle !== null ? "" : t(questionData.text)}
+              </HTMLRenderer>
+              <AnswerOptions
+                t={t}
+                questionData={questionData}
+                profileForQuestion={profileForQuestion}
+                onSelectAnswer={onSelectAnswer}
+                setChangedTitle={setChangedTitle}
+              />
+            </Fade>
           </AlignCenter>
         </YesNoWrapper>
       )}

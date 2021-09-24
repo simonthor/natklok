@@ -110,7 +110,7 @@ const FakeDomain = ({ options, onSelectAnswer, t }) => {
                 >
                   <WarningOutlined style={{ fontSize: "1.3em" }} />| http://
                 </span>
-                instagram.com.utm_src=ig
+                instagram.com.utm-src-ig
                 <span
                   style={{
                     borderRadius: 1000,

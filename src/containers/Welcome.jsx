@@ -5,9 +5,8 @@ import { Link } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 
 // Custom
-import { StyledButton } from "components/general";
+import { Logo, StyledButton } from "components/general";
 import { HEIGHT } from "util/constants";
-import Mainlogo from "assets/sakerhetskontrollen-logo.svg";
 import SocialShare from "components/features/SocialShare";
 import MoreInfoDisplay from "components/features/MoreInfoDisplay";
 
@@ -66,19 +65,7 @@ const Welcome = ({ t, hasStarted }) => {
             width: "100%",
           }}
         >
-          <div
-            style={{ maxWidth: "400px", padding: "0 2em", margin: "0 auto" }}
-          >
-            <img
-              style={{
-                position: "relative",
-                width: "100%",
-                height: "100%",
-              }}
-              alt="Säkerhetskontrollen"
-              src={Mainlogo}
-            />
-          </div>
+          <Logo />
           <p
             style={{
               fontWeight: "700",

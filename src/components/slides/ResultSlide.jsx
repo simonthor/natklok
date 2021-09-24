@@ -8,15 +8,25 @@ import StyledLink from "components/general/StyledLink";
 import { Facebook, Instagram, Star, Twitter } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import { BLUE } from "util/constants";
+import { getStoredTotalAmount, getMaxScore } from "util/totalScore";
 
 const getResultText = (t, starAmount, maxStarAmount) => {
   let title = "";
   let desc = "";
+  let extraDesc = "";
   let percentCorrect = starAmount / maxStarAmount;
 
   if (percentCorrect > 0.8) {
     title = t("result.firstPlaceTitle");
     desc = t("result.firstPlaceDesc");
+    if (getStoredTotalAmount() !== getMaxScore()) {
+      extraDesc =
+        t("result.firstPlaceEvenMorePoints1") +
+        getStoredTotalAmount() +
+        "/" +
+        getMaxScore() +
+        t("result.firstPlaceEvenMorePoints2");
+    }
   } else if (percentCorrect > 0.4) {
     title = t("result.secondPlaceTitle");
     desc = t("result.secondPlaceDesc");
@@ -25,7 +35,7 @@ const getResultText = (t, starAmount, maxStarAmount) => {
     desc = t("result.thirdPlaceDesc");
   }
 
-  return { title, desc };
+  return { title, desc, extraDesc };
 };
 
 const ResultSlide = ({
@@ -43,7 +53,7 @@ const ResultSlide = ({
   }
 
   return (
-    <AlignCenter marginTop={false} withMaxWidth style={{ width: "100vw" }}>
+    <AlignCenter withMaxWidth style={{ width: "100vw" }}>
       <div
         style={{
           width: "100%",
@@ -93,6 +103,9 @@ const ResultSlide = ({
             </p>
             <h2 style={{ margin: "6px 0" }}>{resultTextObj.title}</h2>
             <p style={{ margin: "6px 0" }}>{resultTextObj.desc}</p>
+            <p style={{ margin: "6px 0", opacity: 0.6 }}>
+              {resultTextObj.extraDesc}
+            </p>
             <Link to="/">
               <StyledButton style={{ margin: "8px 0" }}>
                 {t("result.redo")}
@@ -100,7 +113,14 @@ const ResultSlide = ({
             </Link>
           </div>
         </Fade>
-        <Fade delay={starAnimationTimeMS + 2000}>
+      </div>
+    </AlignCenter>
+  );
+};
+
+/*
+
+ <Fade delay={starAnimationTimeMS + 2000}>
           <div style={{ margin: "12px 0" }}>
             <h3 style={{ marginBottom: 2 }}>Dina svagheter</h3>
             <Grid container>
@@ -140,10 +160,7 @@ const ResultSlide = ({
             </div>
           </div>
         </Fade>
-      </div>
-    </AlignCenter>
-  );
-};
+*/
 
 const ShareLink = ({ icon }) => (
   <div
@@ -176,7 +193,7 @@ const ReadMore = ({ emoji, title, desc }) => {
           <span style={{ marginRight: 6 }}>{emoji}</span>
           {title}
         </p>
-        <p style={{ color: "grey", margin: "0 0 6px 0", opacity: 0.8 }}>
+        <p style={{ color: "grey", margin: "0 0 6px 0", opacity: 0.6 }}>
           {desc}
         </p>
         <StyledLink style={{ color: BLUE, margin: 0 }}>
@@ -208,10 +225,7 @@ const ResultStar = ({
   // Start the animation on mounted
   useEffect(() => {
     if (unlocked === true && testFinished === true) {
-      console.log("starting animation");
       setTimeout(function () {
-        console.log("first");
-
         const starAmountIcon = document.getElementById("starAmountIcon");
         const starAmountIconRect = starAmountIcon.getBoundingClientRect();
         setScale(1);
@@ -220,7 +234,6 @@ const ResultStar = ({
         setTop(starAmountIconRect.top);
 
         setTimeout(function () {
-          console.log("second");
           const resultStar = document.getElementById(id);
           const resultStarRect = resultStar.getBoundingClientRect();
 

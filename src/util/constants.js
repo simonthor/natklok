@@ -3,7 +3,7 @@ export const HEIGHT = 0;
 
 // Global colors
 export const BLUE = "#063955";
-export const PURPLE = "#292881";
+export const PURPLE = "#293881";
 export const PINK = "#E2147E";
 export const PALEBLUE = "#1DB6EB";
 export const BLACK = "#111111";
@@ -43,10 +43,11 @@ export const PASSWORD_STRENGTH_QUESTION = "PASSWORD_STRENGTH_QUESTION";
 export const WIFI_ON_QUESTION = "WIFI_ON_QUESTION";
 export const ROMANCE_SCAM = "ROMANCE_SCAM";
 export const BLACKMAIL = "BLACKMAIL";
-export const REMOVE_PERSONAL_DATA = "REMOVE_PERSONAL_DATA";
 export const DONT_CLICK_LINK = "DONT_CLICK_LINK";
 export const USE_SAME_PASSWORD = "USE_SAME_PASSWORD";
+export const SHOULDER_SURFING = "SHOULDER_SURFING";
 export const RANK_PASSWORDS = "RANK_PASSWORDS";
+export const VIRUS = "VIRUS";
 
 // Question types
 export const YES_NO = "YES_NO";
@@ -90,8 +91,8 @@ export const QUESTIONS = [
     emojis: ["📱", "🔒"],
     readMoreLink:
       "https://sakerhetskollen.se/testa-din-sakerhet/ar-du-saker-pa-ditt-losenord",
-    yes_score: 0,
-    no_score: 1,
+    yes_score: 1,
+    no_score: 0,
   },
   {
     id: 3,
@@ -115,7 +116,6 @@ export const QUESTIONS = [
       { side: "right", text: "questions.romanceScamChat.chat2" },
       { side: "left", text: "questions.romanceScamChat.chat3" },
       { side: "left", text: "questions.romanceScamChat.chat4" },
-      { side: "left", text: "questions.romanceScamChat.chat5" },
     ],
   },
   {
@@ -215,12 +215,13 @@ export const QUESTIONS = [
     title: "questions.rankpasswords.title",
     text: "questions.rankpasswords.text",
     moreInfo: "questions.rankpasswords.moreInfo",
+    evenMoreInfo: "questions.rankpasswords.evenMoreInfo",
     best: "questions.rankpasswords.best",
     worst: "questions.rankpasswords.worst",
     options: [
       { text: "abc123", id: "1" },
       { text: "mångabäckarsmågrodorna", id: "2" },
-      { text: "sommar2021!", id: "3" },
+      { text: "Vinter1994?", id: "3" },
       { text: "{wz_kjq?ycl&aP#/", id: "4" },
     ],
     correctIdOrder: ["4", "3", "2", "1"],
@@ -283,19 +284,38 @@ export const QUESTIONS = [
   },
   {
     id: 12,
-    category: REMOVE_PERSONAL_DATA,
-    type: SEVERAL_OPTION,
+    category: SHOULDER_SURFING,
+    type: DRAG_TO_TRASH,
     forProfile: SOCIAL_MEDIA_PROFILE,
-    title: "questions.embarrasingData.title",
-    text: "questions.embarrasingData.text",
-    moreInfo: "questions.embarrasingData.moreInfo",
+    title: "questions.shoulderSurfSocial.title",
+    text: "questions.shoulderSurfSocial.text",
+    moreInfo: "questions.shoulderSurfSocial.moreInfo",
+    evenMoreInfo: "questions.shoulderSurfSocial.evenMoreInfo",
+    dragToTrashText: "questions.shoulderSurfSocial.dragToTrashText",
+  },
+  {
+    id: 13,
+    category: SHOULDER_SURFING,
+    type: DRAG_TO_TRASH,
+    forProfile: GAMING_PROFILE,
+    title: "questions.shoulderSurfGaming.title",
+    text: "questions.shoulderSurfGaming.text",
+    moreInfo: "questions.shoulderSurfGaming.moreInfo",
+    evenMoreInfo: "questions.shoulderSurfGaming.evenMoreInfo",
+    dragToTrashText: "questions.shoulderSurfGaming.dragToTrashText",
+  },
+  {
+    id: 14,
+    category: VIRUS,
+    type: SEVERAL_OPTION,
+    forProfile: STREAMING_PROFILE,
+    title: "questions.downloadFilmVirus.title",
+    text: "questions.downloadFilmVirus.text",
+    moreInfo: "questions.downloadFilmVirus.moreInfo",
     options: [
-      { text: "questions.embarrasingData.option1", score: 0 },
-      {
-        text: "questions.embarrasingData.option2",
-        score: 0,
-      },
-      { text: "questions.embarrasingData.option3", score: 1 },
+      { text: "questions.downloadFilmVirus.option1", score: 1 },
+      { text: "questions.downloadFilmVirus.option2", score: 0 },
+      { text: "questions.downloadFilmVirus.option3", score: 0 },
     ],
   },
 ];

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { PURPLE, WHITE } from "../../util/constants";
 import { withTranslation } from "react-i18next";
 
-import { AlignCenter, Fade, HTMLRenderer, StyledButton } from "../general";
+import { AlignCenter, HTMLRenderer, StyledButton } from "../general";
 
 const MoreInfoDisplay = ({
   title,
@@ -42,28 +42,27 @@ const MoreInfoDisplay = ({
         </StyledButton>
       </div>
       {aboutExpanded && (
-        <Fade>
-          <div
-            style={{
-              marginTop: "2em",
-              background: WHITE,
-              position: fixed ? "fixed" : "none",
-              bottom: 0,
-              color: PURPLE,
-              transititon: "height 0.5s",
-              height: aboutExpanded ? "auto" : 0,
-              overflow: "hidden",
-              width: "100%",
-            }}
-          >
-            <div style={{ padding: "2em 0" }}>
-              <AlignCenter marginTop={false}>
-                <HTMLRenderer>{content}</HTMLRenderer>
-                {buttonComponent}
-              </AlignCenter>
-            </div>
+        <div
+          style={{
+            minHeight: "70vh",
+            marginTop: "2em",
+            background: WHITE,
+            position: fixed ? "fixed" : "none",
+            bottom: 0,
+            color: PURPLE,
+            transititon: "height 0.5s",
+            height: aboutExpanded ? "auto" : 0,
+            overflow: "hidden",
+            width: "100%",
+          }}
+        >
+          <div style={{ padding: "2em 0" }}>
+            <AlignCenter>
+              <HTMLRenderer>{content}</HTMLRenderer>
+              {buttonComponent}
+            </AlignCenter>
           </div>
-        </Fade>
+        </div>
       )}
     </>
   );

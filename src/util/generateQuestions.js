@@ -10,5 +10,7 @@ export const generateQuestions = (profileState) => {
       newQuestions.push(question);
     }
   });
-  return newQuestions.sort((a, b) => 0.5 - Math.random());
+  var randomized = newQuestions.sort((a, b) => 0.5 - Math.random());
+  var limitedAmount = randomized.slice(0, 10);
+  return limitedAmount;
 };

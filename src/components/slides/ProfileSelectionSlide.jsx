@@ -29,7 +29,7 @@ const ProfileSelectionSlide = ({
   handleProfileCheckboxChecked,
 }) => {
   return (
-    <AlignCenter>
+    <AlignCenter centerBothAxis>
       <ReactReveal>
         <Grid
           container

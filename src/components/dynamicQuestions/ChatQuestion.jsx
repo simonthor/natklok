@@ -17,8 +17,8 @@ const ChatQuestion = ({ questionData, onSelectAnswer, t }) => {
         style={{
           position: "relative",
           maxWidth: 300,
-          height: 380,
           background: "white",
+          paddingBottom: 42,
           borderRadius: 12,
           overflow: "hidden",
         }}
@@ -71,15 +71,14 @@ const ChatQuestion = ({ questionData, onSelectAnswer, t }) => {
                 fontSize: "1em",
                 opacity: 0.9,
                 margin: 0,
-                color: "lightgrey",
+                color: "grey",
               }}
             >
-              Meddelande
+              {t(questionData.yourAnswer)}
             </p>
           </div>
         </div>
       </div>
-      <p style={{ marginBottom: 0 }}>{t(questionData.yourAnswer)}</p>
       <div style={{ margin: "6px 0", display: "flex", flexDirection: "row" }}>
         {questionData.options.map((option) => (
           <div>
@@ -118,8 +117,8 @@ const SMS = ({ sms, t }) => {
         style={{
           background: sms.side === "left" ? "#e5e5ea" : "#4a5ef3",
           color: sms.side === "left" ? "grey" : "white",
-          width: sms.side === "left" ? "70%" : "30%",
-          margin: "6px 0",
+          width: sms.side === "left" ? "75%" : "30%",
+          margin: "4px 0",
           alignSelf: sms.side === "left" ? "flex-start" : "flex-end",
           borderRadius: 20,
           padding: "6px 6px 6px 12px",
@@ -134,7 +133,7 @@ const SMS = ({ sms, t }) => {
         src={imgSrc}
         alt=""
         style={{
-          margin: "6px 0",
+          margin: "4px 0",
           alignSelf: sms.side === "left" ? "flex-start" : "flex-end",
           borderRadius: 20,
         }}

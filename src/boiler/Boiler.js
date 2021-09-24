@@ -47,8 +47,9 @@ const Boiler = () => {
         width={windowSize.width}
         height={windowSize.height}
         run={confettiRun}
+        numberOfPieces={40}
         recycle={confettiRecycle}
-        confettiSource={{ x: windowSize.width / 2, y: 55 }}
+        confettiSource={{ x: windowSize.width / 2, y: 80 }}
         initialVelocityX={3}
         initialVelocityY={1}
       />

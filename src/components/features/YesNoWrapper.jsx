@@ -2,17 +2,16 @@ import React from "react";
 import SwipeableViews from "react-swipeable-views";
 
 // Custom components
-import { Fade } from "../general";
-import { PINK, YES_NO } from "../../util/constants";
+import { YES_NO } from "../../util/constants";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import ExpandLess from "@material-ui/icons/ExpandLess";
+import { Fade } from "components/general";
 
 const YesNoWrapper = ({
   children,
   questionData,
   onSelectAnswer,
-  timeSinceOpened,
-  showTextAfterTime,
+  contentFadeDelay,
   t,
 }) => {
   const handleUpdateIndex = (newIndex, lastestIndex) => {
@@ -46,28 +45,26 @@ const YesNoWrapper = ({
               flexDirection: "column",
             }}
           >
-            {timeSinceOpened > showTextAfterTime ? (
-              <Fade>
-                <ExpandLess />
-                <h2
-                  onClick={() => {
-                    onSelectAnswer(questionData.yes_score);
-                  }}
-                  style={{ cursor: "pointer", margin: 0, padding: "3px 16px" }}
-                >
-                  {t("general.yes")}
-                </h2>
-                <p
-                  style={{
-                    color: "rgba(255,255,255,0.5)",
-                    fontSize: "0.8em",
-                    margin: 0,
-                  }}
-                >
-                  Swipe
-                </p>
-              </Fade>
-            ) : null}
+            <Fade delay={contentFadeDelay}>
+              <ExpandLess />
+              <h2
+                onClick={() => {
+                  onSelectAnswer(questionData.yes_score);
+                }}
+                style={{ cursor: "pointer", margin: 0, padding: "3px 16px" }}
+              >
+                {t("general.yes")}
+              </h2>
+              <p
+                style={{
+                  color: "rgba(255,255,255,0.5)",
+                  fontSize: "0.8em",
+                  margin: 0,
+                }}
+              >
+                Swipe
+              </p>
+            </Fade>
           </div>
           {children}
           <div
@@ -80,39 +77,37 @@ const YesNoWrapper = ({
               flexDirection: "column",
             }}
           >
-            {timeSinceOpened > showTextAfterTime ? (
-              <Fade>
-                <p
-                  style={{
-                    color: "rgba(255,255,255,0.5)",
-                    fontSize: "0.8em",
-                    margin: 0,
-                  }}
-                >
-                  Swipe
-                </p>
-                <h2
-                  onClick={() => {
-                    onSelectAnswer(questionData.no_score);
-                  }}
-                  style={{
-                    cursor: "pointer",
-                    margin: 0,
-                    padding: "3px 16px",
-                  }}
-                >
-                  {t("general.no")}
-                </h2>
-                <ExpandMore />
-              </Fade>
-            ) : null}
+            <Fade delay={contentFadeDelay}>
+              <p
+                style={{
+                  color: "rgba(255,255,255,0.5)",
+                  fontSize: "0.8em",
+                  margin: 0,
+                }}
+              >
+                Swipe
+              </p>
+              <h2
+                onClick={() => {
+                  onSelectAnswer(questionData.no_score);
+                }}
+                style={{
+                  cursor: "pointer",
+                  margin: 0,
+                  padding: "3px 16px",
+                }}
+              >
+                {t("general.no")}
+              </h2>
+              <ExpandMore />
+            </Fade>
           </div>
         </div>
         <div />
       </SwipeableViews>
     );
   } else {
-    return <> {children}</>;
+    return children;
   }
 };
 

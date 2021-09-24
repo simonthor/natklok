@@ -180,6 +180,7 @@ const StreakDisplay = ({ streak }) => {
           xs={12}
           alignItems="center"
           style={{
+            marginTop: 6,
             fontFamily: "Bungee, Arial, Helvetica, sans-serif",
           }}
         >

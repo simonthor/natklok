@@ -90,26 +90,14 @@ const PwdSecurityModal = ({
             fullWidth
             autoFocus
             variant="filled"
-            type={visiblePwd === true ? "default" : "password"}
+            //type={visiblePwd === true ? "default" : "password"}
             label={t("questions.passwordCheck.inputPlaceholder")}
             color={profileBasedService.secondColor}
           />
-          <div
-            style={{
-              position: "absolute",
-              right: 10,
-              top: 0,
-              paddingTop: 32,
-              cursor: "pointer",
-            }}
-            onClick={toggleVisiblePwd}
-          >
-            <RemoveRedEye
-              style={{
-                color: visiblePwd ? "rgba(0,0,0,0.9)" : "rgba(0,0,0,0.4)",
-              }}
-            />
-          </div>
+          {/*<EyeVisibleButton
+            visiblePwd={visiblePwd}
+            toggleVisiblePwd={toggleVisiblePwd}
+          />*/}
         </div>
         <div
           style={{
@@ -157,6 +145,27 @@ const PwdSecurityModal = ({
         </span>
       </div>
     </>
+  );
+};
+
+const EyeVisibleButton = ({ visiblePwd, toggleVisiblePwd }) => {
+  return (
+    <div
+      style={{
+        position: "absolute",
+        right: 10,
+        top: 0,
+        paddingTop: 32,
+        cursor: "pointer",
+      }}
+      onClick={toggleVisiblePwd}
+    >
+      <RemoveRedEye
+        style={{
+          color: visiblePwd ? "rgba(0,0,0,0.)" : "rgba(0,0,0,0.4)",
+        }}
+      />
+    </div>
   );
 };
 

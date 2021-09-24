@@ -1,7 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import { Fade, StyledButton } from "../general";
-import fakeWebsite from "assets/fakewebsite.png";
+import fakeWebsite from "assets/fakewebsite.jpeg";
+import { Hidden } from "@material-ui/core";
+import { Menu, Search, ShoppingBasket } from "@material-ui/icons";
 
 const FakeWebsite = ({ options, onSelectAnswer, t }) => {
   const [scams, setScams] = useState({
@@ -22,10 +24,14 @@ const FakeWebsite = ({ options, onSelectAnswer, t }) => {
 
   return (
     <>
-      <h2>
-        {amountFound}/ {Object.values(scams).length}{" "}
-        <span style={{ fontSize: "1em" }}>Hittade</span>
-      </h2>
+      <p style={{ margin: "0 0 12px 0" }}>
+        <span style={{ fontSize: "1.2em", fontWeight: 600 }}>
+          {amountFound}
+        </span>
+        <span style={{ fontSize: "1em", fontWeight: 200, opacity: 0.6 }}>
+          /{Object.values(scams).length} hittade
+        </span>
+      </p>
       <div
         style={{
           width: "100%",
@@ -37,11 +43,10 @@ const FakeWebsite = ({ options, onSelectAnswer, t }) => {
         <div
           style={{
             position: "relative",
-            width: 370,
-            height: 380,
             background: "white",
             borderRadius: 12,
             overflow: "hidden",
+            color: "grey",
           }}
         >
           <div
@@ -52,34 +57,35 @@ const FakeWebsite = ({ options, onSelectAnswer, t }) => {
               background: "rgba(0,0,0,0.1)",
             }}
           >
-            <div
-              style={{
-                background: "red",
-                borderRadius: 20,
-                width: 14,
-                height: 14,
-                margin: "6px 3px",
-              }}
-            />
-            <div
-              style={{
-                background: "yellow",
-                borderRadius: 20,
-                width: 14,
-                height: 14,
-                margin: "6px 3px",
-              }}
-            />
-            <div
-              style={{
-                background: "green",
-                borderRadius: 20,
-                width: 14,
-                height: 14,
-                margin: "6px 3px",
-              }}
-            />
-
+            <Hidden xsDown>
+              <div
+                style={{
+                  background: "red",
+                  borderRadius: 20,
+                  width: 14,
+                  height: 14,
+                  margin: "10px 3px",
+                }}
+              />
+              <div
+                style={{
+                  background: "yellow",
+                  borderRadius: 20,
+                  width: 14,
+                  height: 14,
+                  margin: "10px 3px",
+                }}
+              />
+              <div
+                style={{
+                  background: "lightgreen",
+                  borderRadius: 20,
+                  width: 14,
+                  height: 14,
+                  margin: "10px 3px",
+                }}
+              />
+            </Hidden>
             <div
               style={{
                 flex: 1,
@@ -99,7 +105,7 @@ const FakeWebsite = ({ options, onSelectAnswer, t }) => {
                   fontSize: "0.9em",
                 }}
               >
-                https://elgiganten.se.
+                https://varuhuset.se.
                 <span
                   style={{
                     borderRadius: 1000,
@@ -109,45 +115,103 @@ const FakeWebsite = ({ options, onSelectAnswer, t }) => {
                   }}
                   onClick={() => setScams({ ...scams, domainScamFound: true })}
                 >
-                  src-sgg.com
+                  src-utm.io
                 </span>
               </p>
             </div>
           </div>
-          <img src={fakeWebsite} alt="" style={{}} />
-          <p
-            onClick={() => setScams({ ...scams, spellingErrorsFound: true })}
-            style={{
-              color: "grey",
-              position: "absolute",
-              top: "20%",
-              left: 100,
-              fontSize: "0.9em",
-              borderRadius: 1000,
-              border: scams.spellingErrorsFound
-                ? "2px solid red"
-                : "2px solid rgba(0,0,0,0)",
-            }}
-          >
-            Sok after produkter
-          </p>
 
-          <p
-            onClick={() => setScams({ ...scams, priceScamFound: true })}
+          <div
             style={{
-              color: "black",
-              position: "absolute",
-              top: "45%",
-              left: 94,
-              fontSize: "0.9em",
-              borderRadius: 1000,
-              border: scams.priceScamFound
-                ? "2px solid red"
-                : "2px solid rgba(0,0,0,0)",
+              display: "flex",
+              justifyContent: "space-between",
+              padding: "12px 6px",
             }}
           >
-            Iphone 13 för endast 299 kr!
-          </p>
+            <div style={{ opacity: 0.7, fontSize: "0.8em" }}>Logga in</div>
+            <div>
+              <b>
+                <i>varuhuset.se</i>
+              </b>
+            </div>
+            <div style={{ opacity: 0.7, fontSize: "0.8em" }}>Hitta varuhus</div>
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              padding: "3px 6px 8px 6px",
+              borderBottom: "1px grey solid",
+            }}
+          >
+            <div>
+              <Menu />
+            </div>
+            <div
+              style={{
+                border: "1px grey solid",
+                display: "flex",
+                justifyContent: "space-between",
+                width: "60%",
+                maxWidth: 400,
+              }}
+            >
+              <p
+                onClick={() =>
+                  setScams({ ...scams, spellingErrorsFound: true })
+                }
+                style={{
+                  color: "grey",
+                  fontSize: "0.9em",
+                  margin: 3,
+                  borderRadius: 100,
+                  border: scams.spellingErrorsFound
+                    ? "2px solid red"
+                    : "2px solid rgba(0,0,0,0)",
+                }}
+              >
+                Sok after produkter
+              </p>
+              <div
+                style={{ background: "lightgreen", height: "100%", width: 28 }}
+              >
+                <Search style={{ color: "white" }} />
+              </div>
+            </div>
+            <div>
+              <ShoppingBasket />
+            </div>
+          </div>
+          <div
+            style={{
+              position: "relative",
+              textAlign: "center",
+              maxHeight: 240,
+              overflow: "hidden",
+            }}
+          >
+            <h3
+              onClick={() => setScams({ ...scams, priceScamFound: true })}
+              style={{
+                color: "white",
+                borderRadius: 1000,
+                position: "absolute",
+                left: 0,
+                right: 0,
+                marginTop: "5%",
+                marginLeft: "auto",
+                marginRight: "auto",
+                width: "100%",
+                border: scams.priceScamFound
+                  ? "2px solid red"
+                  : "2px solid rgba(0,0,0,0)",
+              }}
+            >
+              Iphone 13 för endast 299 kr!
+            </h3>
+            <img src={fakeWebsite} style={{ width: "100%" }} alt="" />
+          </div>
         </div>
       </div>
       <StyledButton
