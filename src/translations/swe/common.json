@@ -28,8 +28,9 @@
     "title": "Säkerhetskontrollen",
     "desc": "Hur säkra är dina internetvanor?",
     "test": "STARTA TESTET",
+    "continueTest": "Fortsätt testet",
     "aboutTitle": "Om testet",
-    "aboutContent": "Säkerhetskontrollen är ett test gjort av Säkerhetskollen och Digital Ungdom. "
+    "aboutContent": "Säkerhetskontrollen är ett test gjort av Säkerhetskollen och Digital Ungdom för att öka människors förståelse för digitala brott på ett interaktivt och roligt sätt. </br></br> Prova testet och se hur många rätt du kan få!"
   },
   "profileSelection": {
     "title": "Skapa din digitala profil",
@@ -75,8 +76,8 @@
     "publicWifi": {
       "title": "Gratis wifi på kaféet",
       "text": "Nice, alla älskar ju gratis saker! <b> Men hur mycket av din surfning kan kaféet faktiskt se? </b>",
-      "moreInfo": "Med HTTPS är alla meddelanden eller lösenord du skickar säkra, men utan en VPN kan de som äger en router kan <b>alltid se vilken webbplatser du besöker.</b>",
-      "option1": "Jag är helt skyddad, även utan VPN.",
+      "moreInfo": "Med HTTPS (🔒-ikonen syns brevid hemsidans namn) är alla meddelanden eller lösenord du skickar säkra, men utan en VPN kan de som äger wifi:et <b>alltid se vilka webbplatser du besöker.</b>",
+      "option1": "Jag är helt skyddad, även utan en VPN.",
       "option2": "De kan bara se vissa saker jag gör",
       "option3": "De kan se allt jag gör."
     },
@@ -88,24 +89,24 @@
         "STREAMING_PROFILE": "streamingtjänsten Oslagbar",
         "SOCIAL_MEDIA_PROFILE": "sociala-media-plattformen Kvitter"
       },
-      "text": "Försök skapa ett lösenord som skulle ta ungefär 10 år att hacka.",
-      "secondTitle": "Du skrev in lösenordet {password}. Brukar du använda säkra lösenord som detta?",
+      "text": "Hitta på ett starkt lösenord som kommer ta hackare lång tid att knäcka!",
+      "secondTitle": "Det där var ett bra lösenord! Brukar du använda säkra lösenord som detta?",
       "secondTitleUnsecurePwd": "Det var ett ganska dåligt lösenord. Om vi bortser fran det, brukar du använda dig av säkra lösenord?",
       "option1": "Såklart, och mina lösenord förvaras säkert",
       "option2": "Jag har säkra lösenord, men använder dem för mer än ett konto",
       "option3": "Jag tenderar att inte använda säkra lösenord när jag inte är tvungen",
-      "result0": "Du verkar ha stenkoll på hanteringen av lösenord.",
-      "result1": "Du angav ett kasst lösenord, men lösenord kan du hantera.",
+      "result0": "Du stenkoll på hanteringen av lösenord.",
+      "result1": "Du angav ett kasst lösenord, men du har bra koll på lösenordshantering.",
       "result2": "Njaa, lösenord ska vara unika for varje tjänst.",
       "result3": "Inte bra, du kan utsattas for bedrägerier när som helst.",
-      "moreInfo": "Med hjälp av speciella karaktärer, längre lösenord, ovanliga ord, mm. gör du det mycket svårare att knäcka ditt lösenord. ",
+      "moreInfo": "Lösenordet 'mussepigg' tar <b>2 minuter</b> att knäcka.</br></br> 'mussePIGG_1999' tar <b>tvåhundra miljoner år</b> att knäcka! </br></br> Med hjälp av speciella karaktärer, siffror, längre lösenord, ovanliga ord, mm. gör du det mycket svårare att knäcka ditt lösenord.",
       "inputLabel": "Skriv ett lösenord",
       "inputPlaceholder": "Börja skriv lösenord...",
       "resultPrefix": "Det skulle ta en hackare",
       "resultSuffix": "att knäcka lösenordet."
     },
     "romanceScamChat": {
-      "title": "Syrran sms:ar",
+      "title": "Syrran skriver på messenger",
       "text": "Hon behöver låna pengar ur det blå...",
       "moreInfo": "Bedragare har tagit över din systers konto och försöker nu lura dig på pengar.",
       "evenMoreInfo": "<h2>Var aktsam när någon ber om pengar</h2> Det behöver inte vara en 'familjemedlem' som skriver. Det kan vara någon som hackat sig in på en av dina kompisar eller kollegors konton och påstår sig vara dem.</br></br> Det kan även vara fallet att en bedragare har skapat ett konto som imiterar en av dina kompisar - de använder helt enkelt samma namn och bilder som kontot de låtsas vara.  <h2>Enkel lösning - ring upp</h2> Innan du gör något vid en förfrågan från en ”familjemedlem” ska du alltid bekräfta att det verkligen är personen som hen utger sig för att vara. Ring upp hen direkt och stäm av, för aldrig över några pengar på direkt uppmaning via sociala medier. <h2>Romansbedrägeri</h2>Ifall någon du dejtat online ber om en stor summa pengar för ett visum eller en flygbiljett för att träffa dig ska du också vara försiktig - det kan en bedragare som vill åt dina pengar som har låtsats vara förälskad i dig under en längre period. <b>Detta kallas romansbedrageri.</b>",
@@ -121,7 +122,7 @@
     "fakeWebsite": {
       "title": "Du råkar hamna på en scam-hemsida!",
       "text": "Klicka på saker du tycker ser misstänksamma ut",
-      "moreInfo": "Det finns tre saker du i huvudsak ska leta efter: </br></br> 1. Orimligt bra priser eller erbjudanden. </br></br> 2. Stavfel. </br></br> 3. Falsk URL. Istället för varuhuset.se kanske det står varuhusets.se eller varuhuset.se.någotannat.se"
+      "moreInfo": "Det finns tre saker du i huvudsak ska leta efter: </br></br> 1. Orimligt bra priser eller erbjudanden. </br></br> 2. Stavfel. </br></br> 3. Falsk URL. Istället för varuhuset.se kanske det står var<b>o</b>huset.se med ett 'o' eller varuhuset.se.någotannat.se"
     },
     "trashSamePassword": {
       "title": "Släng påståndet i soptunnan!",
@@ -133,7 +134,7 @@
       "title": "Ranka lösenorden efter hur starka de är.",
       "text": "",
       "moreInfo": "<i>Det är lättare än du tror att skapa ett starkt lösenord!</i> - Ju längre ju bättre. Använd stora och små bokstäver. Lägg till några siffror och speciella symboler <b>och boom</b>, nu har du ett starkt lösenord!",
-      "evenMoreInfo": "<h2>mångabäckarsmågrodorna</h2> Även fast detta lösenord är längst är det ganska svagt. Detta beror på faktumet att den innehåller 4 vanliga ord utan några stora bokstäver eller speciella karaktärer. <i> En hackare behöver bara en ordbok och ett program som kan testa supermånga kombinationer av ord på kort tid för att knäcka lösenordet.</i> </br></br> Ifall det hade funnits en siffra i lösenordet hade antalet kombinationer ökat enormt då hackaren hade behövt kolla både ord och siffror för att knäcka lösenordet!",
+      "evenMoreInfo": "<h2>mångabäckarsmågrodorna</h2> Även fast detta lösenord är längst är det ganska svagt. Detta beror på faktumet att den innehåller 4 vanliga ord utan några stora bokstäver eller speciella karaktärer. <i> En hackare behöver bara en ordbok och ett program som kan testa supermånga kombinationer av ord på kort tid för att knäcka lösenordet.</i> </br></br> Ifall det hade funnits en siffra i lösenordet hade tiden det tagit att knäcka lösenordet ökat enormt då hackaren hade behövt kolla både ord och siffror för att knäcka lösenordet!",
       "best": "Starkast",
       "worst": "Svagast"
     },
@@ -141,7 +142,7 @@
       "title": "Katastrof!",
       "text": "Någon har fått tag på intima bilder på dig...",
       "moreInfo": "<h2>Du har mer makt än du tror i denna situation. </h2> Polisen kan spåra personen som skickat detta och gripa dem. De kan även hjälpa till att ta ner bilder ifall de sprids. <b>Ifall man går med på bedragarens villkor blir saker oftast bara värre. </b> ",
-      "evenMoreInfo": "<h2>Hitta hjälp</h2> Även ifall det kan kännas väldigt jobbigt är det viktigt att du får hjälp av någon annan i en sån här situation. Be en förälder, kompis, lärare eller annan person att hjälpa dig. <h2>Visa inte ansiktet</h2> Ifall du någonsin skickar en intim bild säg till att ditt ansikte inte syns så att du inte kan bli identifierad och utpressad. </br></br><b>Helst ska du undvika att skicka intima bilder helt och hållet.</b> <h2>Lagen är på din sida</h2> Kontakta polisen genom att ringa 114 14 eller genom att besöka din närmaste polisstation. Kom även ihåg att ifall bilderna läggs upp kan man nästan alltid få bilderna nedtagna då detta är villkoren på det flesta hemsidorna och i vissa fall även lag enligt GDPR.",
+      "evenMoreInfo": "<h2>Hitta hjälp</h2> Även ifall det kan kännas väldigt jobbigt är det viktigt att du får hjälp av någon annan i en sådan situation. Be en förälder, kompis, lärare eller annan person att hjälpa dig. <h2>Visa inte ansiktet</h2> Ifall du någonsin skickar en intim bild säg till att ditt ansikte inte syns så att du inte kan bli identifierad och utpressad. <h2>Lagen är på din sida</h2> Kontakta polisen genom att ringa 114 14 eller genom att besöka din närmaste polisstation. Kom även ihåg att ifall bilderna läggs upp kan man nästan alltid få bilderna nedtagna då detta är villkoren på det flesta hemsidorna och i vissa fall även lag enligt GDPR.",
       "from": "Anonym",
       "bad": "Jag gör som de säger, det är inte värt risken.",
       "good": "Jag svarar inte och anmäler direkt till Polisen via 114 14.",
@@ -162,22 +163,22 @@
       "chat2": "etrk2.onodeshouse120.com"
     },
     "fakeDomain": {
-      "title": "Namnet på den här hemsidan ser misstänksam ut...",
+      "title": "Namnet på den här hemsidan ser misstänksamt ut...",
       "text": "Klicka på alla varningstecken",
-      "moreInfo": "Det är alltid namnet precis innan .com, .se, osv som är det 'riktiga' namnet på hemsidan. Så... </br></br> <span style='color: red;'>instagram.annat.com - tar dig till 'annat.com'</span></br><span style='color: lightgreen;'>annat.instagram.com - tar dig till 'instagram.com'</span></br><span>Även instagram.com.annat.com tar dig till 'annat.com'</span> </br></br>Se också alltid till att hemsidan du är inne på har <span style='color: lightgreen;'>https</span> med ett 's' och inte bara <span style='color: red;'>http</span>.",
-      "evenMoreInfo": "<h2>HTTPS</h2> 'S'-et i HTTPS står får secure och hemsidor med HTTPS enkrypterar all information som skickas. Det innebär att om du skickar ett lösenord till en hemsida med HTTPS är det omöjligt för någon annan än dig och hemsidan att se vad lösenordet är. </br></br>Ifall en hemsida bara har HTTP kan vem som helst se lösenordet medans det 'färdas' till hemsidan - exempelvis personen som äger wifi:et du använder."
+      "moreInfo": "Det är alltid namnet precis innan .com, .se, osv som är det 'riktiga' namnet på hemsidan. Så... </br></br> <span style='color: red;'>instagram.annat.com - tar dig till 'annat.com'</span></br><span style='color: lightgreen;'>annat.instagram.com - tar dig till 'instagram.com'</span></br><span>Även instagram.com.annat.com tar dig till 'annat.com'</span> </br></br>Se också alltid till att hemsidan du är inne på har <span style='color: lightgreen;'>https</span> (🔒-ikonen syns brevid hemsidans namn) med ett 's' och inte bara <span style='color: red;'>http</span>.",
+      "evenMoreInfo": "<h2>HTTPS</h2> 'S'-et i HTTPS står får secure och hemsidor med HTTPS krypterar all information som skickas. Det innebär att om du skickar ett lösenord till en hemsida med HTTPS är det omöjligt för någon annan än dig och hemsidan att se vad lösenordet är. </br></br>Ifall en hemsida bara har HTTP kan vem som helst se lösenordet medans det 'färdas' till hemsidan - exempelvis personen som äger wifi:et du använder."
     },
     "shoulderSurfSocial": {
       "title": "Din kompis lämnar sin telefon öppen och är inloggad på snapchat...",
-      "text": "Släng påståendet i soptunnan.",
+      "text": "Släng idéen i soptunnan.",
       "dragToTrashText": "'Det vorre fett kul att ändra deras lösenord och lägga upp pinsamma bilder!!🤣🤣🤣'",
       "moreInfo": "<b>Detta är ett brott</b> och ifall något går fel kan du råka riktigt illa ut.",
       "evenMoreInfo": "<h2>Shoulder surfing</h2> Ifall du använder ett av dina lösenord och någon tittar över din axel och ser vad lösenordet är kan du utsättas för en <i>shoulder surfing attack</i>. Personen som såg ditt lösenord kan helt enkelt använda det vid ett senare tillfälle för att exempelvis lura dig eller dina nära och kära på pengar. </br></br> Ifall en kompis tar över ditt konto 'på skoj', något går snett och du råkar illa ut på grund av deras lilla praktiska skämt räknas även det som shoulder surfing."
     },
     "shoulderSurfGaming": {
       "title": "Din kompis lämnar sin laptop utan att logga ut ur sitt favoritspel",
-      "text": "Släng påståendet i soptunnan.",
-      "dragToTrashText": "'Ey det vorre fett kul att ändra spelkontos lösenordet och ändra deras karaktärs utseende!!🤣🤣🤣'",
+      "text": "Släng idéen i soptunnan.",
+      "dragToTrashText": "'Ey det vore fett kul att ändra spelkontots lösenordet och ändra deras karaktärs utseende!!🤣🤣🤣'",
       "moreInfo": "<b>Detta är ett brott</b> och ifall något går fel kan du råka riktigt illa ut.",
       "evenMoreInfo": "<h2>Shoulder surfing</h2> Ifall du använder ett av dina lösenord och någon tittar över din axel och ser vad lösenordet är kan du utsättas för en <i>shoulder surfing attack</i>. Personen som såg ditt lösenord kan helt enkelt använda det vid ett senare tillfälle för att exempelvis lura dig eller dina nära och kära på pengar. </br></br> Ifall en kompis tar över ditt konto 'på skoj', något går snett och du råkar illa ut på grund av deras lilla praktiska skämt räknas även det som shoulder surfing."
     },
@@ -194,8 +195,11 @@
     "correct": "rätt",
     "firstPlaceTitle": "Imponerande!",
     "firstPlaceDesc": "Du kan mycket när det kommer till säkerhet online, men du kan alltid lära dig mer! ",
+    "firstPlaceEvenMorePointsTitle": "Kan du få alla rätt?",
     "firstPlaceEvenMorePoints1": "Du har svarat rätt på ",
-    "firstPlaceEvenMorePoints2": " frågor totalt - se ifall du kan få alla rätt!",
+    "firstPlaceEvenMorePoints2": " av ",
+    "firstPlaceEvenMorePoints3": " frågor totalt tillgängliga i quizet - se ifall du kan få alla rätt!",
+    "redoWithUnanswered": "Gör obesvarade frågor",
     "secondPlaceTitle": "Inte bra, inte dåligt",
     "secondPlaceDesc": "Du verkar kunna en del om säkerhet online, men du har fortfarande en hel del att lära dig.",
     "thirdPlaceTitle": "Aj då...",

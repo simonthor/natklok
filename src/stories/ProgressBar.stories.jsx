@@ -1,6 +1,5 @@
 import React from "react";
-import ProgressBar from "./../components/features/ProgressBar";
-import CurrentBlock from './../components/features/ProgressBar/CurrentBlock'
+import ProgressBar from "components/features/ProgressBar";
 
 export default {
   component: ProgressBar,

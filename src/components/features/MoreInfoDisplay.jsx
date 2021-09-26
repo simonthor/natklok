@@ -21,7 +21,6 @@ const MoreInfoDisplay = ({
           marginTop: "1.5em",
           width: "100%",
           textAlign: "center",
-          opacity: 0.8,
         }}
       >
         <StyledButton
@@ -32,9 +31,9 @@ const MoreInfoDisplay = ({
           style={{
             background: "rgba(0,0,0,0)",
             color: "white",
-            fontSize: "0.8em",
+            fontSize: "0.9em",
             border: "1px solid white",
-            padding: "0.5em 1em",
+            padding: "0.5em 1.5em",
           }}
         >
           {aboutExpanded === false && title}

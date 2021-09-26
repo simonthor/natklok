@@ -1,30 +1,72 @@
 // Third party
 import React, { Suspense, lazy, useState, useEffect } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
+import { useHistory, useLocation } from "react-router";
 import Confetti from "react-confetti";
+// Custom
+import {
+  BANK_PROFILE,
+  GAMING_PROFILE,
+  STREAMING_PROFILE,
+  SOCIAL_MEDIA_PROFILE,
+  PURPLE,
+} from "util/constants";
 
 // Custom components
-import { Loading } from "../components/general";
-import TestSlides from "../containers/TestSlides";
-import Welcome from "../containers/Welcome";
-import { PURPLE, HEIGHT } from "../util/constants";
-import getWindowSize from "../util/getWindowSize.js";
+import Loading from "components/general/Loading";
+import TestSlides from "containers/TestSlides";
+import Welcome from "containers/Welcome";
+import getWindowSize from "util/getWindowSize.js";
 import { ThumbDown } from "@material-ui/icons";
-import ResultSlide from "../components/slides/ResultSlide";
+import { generateQuestions } from "util/generateQuestions";
+import QuestionNotFound from "components/slides/QuestionNotFound";
+import { getQuestionFromId } from "util/getQuestionFromId";
 
 // Lazy loading
-const Header = lazy(() => import("../containers/Header"));
+const Header = lazy(() => import("containers/Header"));
 
 const Boiler = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [slideIndex, setSlideIndex] = useState(0);
   const [totalQuestions, setTotalQuestions] = useState(0);
+  const [questions, setQuestions] = useState([]);
+  const [maxStarAmount, setMaxStarAmount] = useState(0);
   const [starAmount, setStarAmount] = useState(0);
   const [showThumbsDown, setShowThumbsDown] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
+  const [hasStarted, setHasStarted] = useState(false);
   const [confettiRecycle, setconfettiRecycle] = useState(true);
   const [confettiRun, setconfettiRun] = useState(false);
+  const [foundQuerySearchQuestion, setFoundQuerySearchQuestion] =
+    useState(false);
+  const [checkedQuery, setCheckedQuery] = useState(false);
+  const [profileState, setProfileState] = useState({
+    [BANK_PROFILE]: false,
+    [GAMING_PROFILE]: false,
+    [STREAMING_PROFILE]: false,
+    [SOCIAL_MEDIA_PROFILE]: false,
+  });
 
+  const history = useHistory();
   const windowSize = getWindowSize();
+  const location = useLocation();
+
+  // If user has entered url /test?id=11 they should only receive that question
+  if (checkedQuery === false) {
+    setCheckedQuery(true);
+
+    let questionId = new URLSearchParams(location.search).get("id");
+    if (questionId !== null) {
+      var questionData = getQuestionFromId(questionId);
+      if (questionData !== null) {
+        setFoundQuerySearchQuestion(true);
+        setQuestions([questionData]);
+        setSlideIndex(1);
+      } else {
+        return <QuestionNotFound />;
+      }
+    }
+  }
 
   const increaseStarAmount = (inc) => {
     let prevAmount = Number(starAmount);
@@ -36,9 +78,42 @@ const Boiler = () => {
     }
   };
 
-  const resetQuizData = () => {
+  const startQuiz = (generateUnanswered) => {
+    console.log("generateUnanswered: ", generateUnanswered);
+    let generatedQuestions = generateQuestions(
+      profileState,
+      generateUnanswered
+    );
+    setQuestions(generatedQuestions);
+    setMaxStarAmount(generatedQuestions.length);
+    setTotalQuestions(generatedQuestions.length);
     setCurrentQuestionIndex(0);
+    setHasStarted(true);
+    setSlideIndex(1);
+  };
+
+  const redoTest = (generateUnansweredOnly) => {
+    resetQuizData(generateUnansweredOnly);
+    if (generateUnansweredOnly === true) {
+      startQuiz(generateUnansweredOnly);
+    }
+  };
+
+  const resetQuizData = () => {
+    history.push("/test");
+    let newProfileState = {};
+    Object.keys(profileState).forEach((profileId) => {
+      newProfileState[profileId] = false;
+    });
+    setProfileState(newProfileState);
+    setCurrentQuestionIndex(0);
+    setSlideIndex(0);
+    setStarAmount(0);
+    setTotalQuestions(0);
     setIsFinished(false);
+    setHasStarted(false);
+    setCheckedQuery(false);
+    setFoundQuerySearchQuestion(false);
   };
 
   return (
@@ -47,8 +122,9 @@ const Boiler = () => {
         width={windowSize.width}
         height={windowSize.height}
         run={confettiRun}
-        numberOfPieces={40}
+        style={{ opacity: confettiRun ? 1 : 0, transition: "all 0.2s ease" }}
         recycle={confettiRecycle}
+        numberOfPieces={40}
         confettiSource={{ x: windowSize.width / 2, y: 80 }}
         initialVelocityX={3}
         initialVelocityY={1}
@@ -60,7 +136,7 @@ const Boiler = () => {
       <div
         style={{
           background: PURPLE,
-          height: HEIGHT === 0 ? "100vh" : HEIGHT,
+          height: "100vh",
           transition: "0.13s",
           position: "relative",
           display: "grid",
@@ -74,33 +150,38 @@ const Boiler = () => {
           currentQuestionIndex={currentQuestionIndex}
           totalQuestions={totalQuestions}
           isFinished={isFinished}
+          hasStarted={hasStarted}
           starAmount={starAmount}
         />
         <Switch>
           <Route
             path="/"
             exact
-            render={() => {
-              resetQuizData();
-              return <Welcome />;
-            }}
+            render={() => <Welcome hasStarted={hasStarted} />}
           />
           <Route
             path="/test"
             render={() => (
               <TestSlides
+                profileState={profileState}
+                setProfileState={setProfileState}
                 setCurrentQuestionIndex={setCurrentQuestionIndex}
-                setTotalQuestions={setTotalQuestions}
+                currentQuestionIndex={currentQuestionIndex}
                 setIsFinished={setIsFinished}
                 setconfettiRecycle={setconfettiRecycle}
                 setconfettiRun={setconfettiRun}
                 increaseStarAmount={increaseStarAmount}
                 starAmount={starAmount}
+                redoTest={redoTest}
+                slideIndex={slideIndex}
+                setSlideIndex={setSlideIndex}
+                startQuiz={startQuiz}
+                questions={questions}
+                foundQuerySearchQuestion={foundQuerySearchQuestion}
+                maxStarAmount={maxStarAmount}
               />
             )}
           />
-          <Route path="/devresult" render={(props) => <ResultSlide />} />
-
           <Route render={(props) => <Redirect to="/" />} />
         </Switch>
       </div>

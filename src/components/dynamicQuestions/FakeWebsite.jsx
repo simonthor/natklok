@@ -1,9 +1,10 @@
 import React from "react";
 import { useState } from "react";
-import { Fade, StyledButton } from "../general";
+import StyledButton from "components/general/StyledButton";
 import fakeWebsite from "assets/fakewebsite.jpeg";
-import { Hidden } from "@material-ui/core";
+import Hidden from "@material-ui/core/Hidden";
 import { Menu, Search, ShoppingBasket } from "@material-ui/icons";
+import AmountFound from "components/features/AmountFound";
 
 const FakeWebsite = ({ options, onSelectAnswer, t }) => {
   const [scams, setScams] = useState({
@@ -19,19 +20,12 @@ const FakeWebsite = ({ options, onSelectAnswer, t }) => {
     }
   });
   if (amountFound === Object.values(scams).length) {
-    onSelectAnswer(amountFound / Object.values(scams).length, "", 1000);
+    onSelectAnswer(1, "", "", 500);
   }
 
   return (
     <>
-      <p style={{ margin: "0 0 12px 0" }}>
-        <span style={{ fontSize: "1.2em", fontWeight: 600 }}>
-          {amountFound}
-        </span>
-        <span style={{ fontSize: "1em", fontWeight: 200, opacity: 0.6 }}>
-          /{Object.values(scams).length} hittade
-        </span>
-      </p>
+      <AmountFound scams={scams} amountFound={amountFound} />
       <div
         style={{
           width: "100%",
@@ -199,7 +193,7 @@ const FakeWebsite = ({ options, onSelectAnswer, t }) => {
                 position: "absolute",
                 left: 0,
                 right: 0,
-                marginTop: "5%",
+                marginTop: 6,
                 marginLeft: "auto",
                 marginRight: "auto",
                 width: "100%",
@@ -208,15 +202,30 @@ const FakeWebsite = ({ options, onSelectAnswer, t }) => {
                   : "2px solid rgba(0,0,0,0)",
               }}
             >
-              Iphone 13 för endast 299 kr!
+              Iphone 13 för endast 899 kr!
             </h3>
+            <p
+              style={{
+                color: "white",
+                opacity: 0.5,
+                position: "absolute",
+                left: 0,
+                right: 0,
+                fontSize: 12,
+                marginTop: 30,
+                marginLeft: "auto",
+                marginRight: "auto",
+              }}
+            >
+              Orginalpris är 18990 kr!
+            </p>
             <img src={fakeWebsite} style={{ width: "100%" }} alt="" />
           </div>
         </div>
       </div>
       <StyledButton
         onClick={() => {
-          onSelectAnswer(amountFound / 3);
+          onSelectAnswer(0);
         }}
         style={{ marginTop: 10 }}
       >

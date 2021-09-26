@@ -1,6 +1,9 @@
 //0 sets the height to windowHeight
 export const HEIGHT = 0;
 
+// Quiz Settings
+export const MAX_AMOUNT_QUESTIONS = 12;
+
 // Global colors
 export const BLUE = "#063955";
 export const PURPLE = "#293881";
@@ -173,7 +176,6 @@ export const QUESTIONS = [
     title: "questions.publicWifi.title",
     text: "questions.publicWifi.text",
     moreInfo: "questions.publicWifi.moreInfo",
-    emojis: ["☕", "📶"],
     readMoreLink:
       "https://sakerhetskollen.se/testa-din-sakerhet/ar-du-saker-pa-ditt-losenord",
     options: [
@@ -193,9 +195,6 @@ export const QUESTIONS = [
     title: "questions.fakeWebsite.title",
     text: "questions.fakeWebsite.text",
     moreInfo: "questions.fakeWebsite.moreInfo",
-    emojis: ["☕", "📶"],
-    readMoreLink:
-      "https://sakerhetskollen.se/testa-din-sakerhet/ar-du-saker-pa-ditt-losenord",
   },
   {
     id: 7,
@@ -237,8 +236,6 @@ export const QUESTIONS = [
     evenMoreInfo: "questions.blackmailChat.evenMoreInfo",
     yourAnswer: "questions.blackmailChat.yourAnswer",
     from: "questions.blackmailChat.from",
-    readMoreLink:
-      "https://sakerhetskollen.se/testa-din-sakerhet/ar-du-saker-pa-ditt-losenord",
     options: [
       { text: "questions.blackmailChat.bad", score: 0 },
       { text: "questions.blackmailChat.good", score: 1 },
@@ -260,8 +257,6 @@ export const QUESTIONS = [
     evenMoreInfo: "questions.dontClickLinkPhoto.evenMoreInfo",
     yourAnswer: "questions.dontClickLinkPhoto.yourAnswer",
     from: "questions.dontClickLinkPhoto.from",
-    readMoreLink:
-      "https://sakerhetskollen.se/testa-din-sakerhet/ar-du-saker-pa-ditt-losenord",
     options: [
       { text: "questions.dontClickLinkPhoto.bad", score: 0 },
       { text: "questions.dontClickLinkPhoto.good", score: 1 },

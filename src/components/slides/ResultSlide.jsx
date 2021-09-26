@@ -3,29 +3,36 @@ import React, { useEffect, useState } from "react";
 import { withTranslation } from "react-i18next";
 
 // Custom components
-import { AlignCenter, Fade, StyledButton } from "components/general";
+import AlignCenter from "components/general/AlignCenter";
+import Fade from "components/general/Fade";
+import StyledButton from "components/general/StyledButton";
 import StyledLink from "components/general/StyledLink";
 import { Facebook, Instagram, Star, Twitter } from "@material-ui/icons";
 import { Link } from "react-router-dom";
-import { BLUE } from "util/constants";
-import { getStoredTotalAmount, getMaxScore } from "util/totalScore";
+import { BLUE, PALEBLUE } from "util/constants";
+import { getStoredTotalAmount, getAllQuestionAmount } from "util/totalScore";
+import Title from "components/general/typeography/Title";
+import Subtitle from "components/general/typeography/Subtitle";
+import SmallText from "components/general/typeography/SmallText";
 
 const getResultText = (t, starAmount, maxStarAmount) => {
   let title = "";
   let desc = "";
+  let extraTitle = "";
   let extraDesc = "";
   let percentCorrect = starAmount / maxStarAmount;
 
-  if (percentCorrect > 0.8) {
+  if (percentCorrect >= 0.8) {
     title = t("result.firstPlaceTitle");
     desc = t("result.firstPlaceDesc");
-    if (getStoredTotalAmount() !== getMaxScore()) {
+    if (getStoredTotalAmount() !== getAllQuestionAmount()) {
+      extraTitle = t("result.firstPlaceEvenMorePointsTitle");
       extraDesc =
         t("result.firstPlaceEvenMorePoints1") +
         getStoredTotalAmount() +
-        "/" +
-        getMaxScore() +
-        t("result.firstPlaceEvenMorePoints2");
+        t("result.firstPlaceEvenMorePoints2") +
+        getAllQuestionAmount() +
+        t("result.firstPlaceEvenMorePoints3");
     }
   } else if (percentCorrect > 0.4) {
     title = t("result.secondPlaceTitle");
@@ -35,7 +42,7 @@ const getResultText = (t, starAmount, maxStarAmount) => {
     desc = t("result.thirdPlaceDesc");
   }
 
-  return { title, desc, extraDesc };
+  return { title, desc, extraDesc, extraTitle };
 };
 
 const ResultSlide = ({
@@ -43,6 +50,7 @@ const ResultSlide = ({
   starAmount = 12,
   maxStarAmount = 12,
   testFinished = true,
+  redoTest,
 }) => {
   const resultTextObj = getResultText(t, starAmount, maxStarAmount);
   const starAnimationTimeMS = 400 * maxStarAmount;
@@ -62,14 +70,7 @@ const ResultSlide = ({
           justifyContent: "center",
         }}
       >
-        <h1
-          style={{
-            margin: 8,
-            fontFamily: "Bowlby One SC, Arial, Helvetica, sans-serif",
-          }}
-        >
-          {t("result.yourScore")}
-        </h1>
+        <Title>{t("result.yourScore")}</Title>
         <div
           style={{
             background: "rgba(255,255,255,0.2)",
@@ -91,26 +92,76 @@ const ResultSlide = ({
         </div>
         <Fade delay={starAnimationTimeMS}>
           <div style={{ marginTop: 32 }}>
-            <p
+            <SmallText
+              opacity
               style={{
-                fontSize: "0.9em",
                 margin: 0,
-                opacity: 0.6,
                 fontWeight: 600,
               }}
             >
               {starAmount + " / " + maxStarAmount + " " + t("result.correct")}
-            </p>
-            <h2 style={{ margin: "6px 0" }}>{resultTextObj.title}</h2>
+            </SmallText>
+            <Subtitle style={{ margin: "6px 0" }}>
+              {resultTextObj.title}
+            </Subtitle>
             <p style={{ margin: "6px 0" }}>{resultTextObj.desc}</p>
-            <p style={{ margin: "6px 0", opacity: 0.6 }}>
-              {resultTextObj.extraDesc}
-            </p>
-            <Link to="/">
-              <StyledButton style={{ margin: "8px 0" }}>
+            <div
+              style={{
+                display: "flex",
+                marginTop: 12,
+                justifyContent: "center",
+                flexDirection: "column",
+                alignItems: "center",
+                width: 200,
+              }}
+            >
+              <StyledButton
+                onClick={() => {
+                  redoTest(false);
+                }}
+                style={{ margin: "8px 0" }}
+              >
                 {t("result.redo")}
               </StyledButton>
-            </Link>
+              <StyledLink href="https://sakerhetskollen.typeform.com/to/StcP4PFK">
+                <SmallText opacity style={{ marginTop: 0 }}>
+                  Ge feedback här!
+                </SmallText>
+              </StyledLink>
+            </div>
+
+            <Subtitle style={{ margin: "32px 0 6px 0", opacity: 0.8 }}>
+              {resultTextObj.extraTitle}
+            </Subtitle>
+            <p style={{ margin: "6px 0", opacity: 0.8 }}>
+              {resultTextObj.extraDesc}
+            </p>
+            {resultTextObj.extraTitle !== "" && (
+              <StyledButton
+                onClick={() => {
+                  redoTest(true);
+                }}
+                style={{ margin: "8px 0", background: PALEBLUE }}
+              >
+                {t("result.redoWithUnanswered")}
+              </StyledButton>
+            )}
+            {getStoredTotalAmount() === getAllQuestionAmount() && (
+              <>
+                <Subtitle style={{ margin: "32px 0 6px 0", opacity: 0.8 }}>
+                  Grattis! Du har fått rätt på alla quiz:ets frågor.
+                </Subtitle>
+                <p style={{ opacity: 0.8, margin: "6px 0" }}>
+                  Läs mer om digitala brott på{" "}
+                  <StyledLink
+                    style={{ textDecoration: "underline" }}
+                    href="https://sakerhetskollen.se"
+                  >
+                    säkerhetskollen.se!
+                  </StyledLink>{" "}
+                </p>
+              </>
+            )}
           </div>
         </Fade>
       </div>
@@ -217,6 +268,7 @@ const ResultStar = ({
   const [top, setTop] = useState("40vh");
   const [transition, setTransition] = useState("");
   const [opacity, setOpacity] = useState(0);
+  const [staticStarColor, setStaticStarColor] = useState("grey");
   const id = "resultStar" + index;
   const flyAnimTime = 800;
   const timeUntilStartAnim =
@@ -225,24 +277,29 @@ const ResultStar = ({
   // Start the animation on mounted
   useEffect(() => {
     if (unlocked === true && testFinished === true) {
+      const starAmountIcon = document.getElementById("starAmountIcon");
+      const starAmountIconRect = starAmountIcon.getBoundingClientRect();
+      setScale(1);
+      setOpacity(1);
+      setLeft(starAmountIconRect.left);
+      setTop(starAmountIconRect.top);
+
+      // Start the flying animation
       setTimeout(function () {
-        const starAmountIcon = document.getElementById("starAmountIcon");
-        const starAmountIconRect = starAmountIcon.getBoundingClientRect();
-        setScale(1);
-        setOpacity(1);
-        setLeft(starAmountIconRect.left);
-        setTop(starAmountIconRect.top);
+        const resultStar = document.getElementById(id);
+        const resultStarRect = resultStar.getBoundingClientRect();
 
+        setTransition(
+          "transform 1s cubic-bezier(.03,1.9,.63,1.95), left 0.8s cubic-bezier(.04,1.31,.71,1.05), top 0.8s ease-in-out, opacity 1s cubic-bezier(1,.01,1,.01)"
+        );
+        setOpacity(0);
+        setLeft(resultStarRect.left);
+        setTop(resultStarRect.top);
+        setScale(1.1);
+
+        // Finally, set the static star to yellow so it looks like the flying one landed
         setTimeout(function () {
-          const resultStar = document.getElementById(id);
-          const resultStarRect = resultStar.getBoundingClientRect();
-
-          setTransition(
-            "transform 1s cubic-bezier(.03,1.9,.63,1.95), left 1s cubic-bezier(.04,1.31,.71,1.05), top 1s ease-in-out"
-          );
-          setLeft(resultStarRect.left);
-          setTop(resultStarRect.top);
-          setScale(1.1);
+          setStaticStarColor("yellow");
         }, flyAnimTime);
       }, timeUntilStartAnim);
     }
@@ -271,7 +328,7 @@ const ResultStar = ({
           <Star style={{ color: "yellow" }} />
         </div>
       )}
-      <Star style={{ color: "grey" }} />
+      <Star style={{ color: staticStarColor }} />
     </div>
   );
 };

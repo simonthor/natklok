@@ -2,92 +2,55 @@ import React, { useEffect, useState } from "react";
 import { withTranslation } from "react-i18next";
 
 // Custom
-import {
-  BANK_PROFILE,
-  GAMING_PROFILE,
-  STREAMING_PROFILE,
-  SOCIAL_MEDIA_PROFILE,
-  PURPLE,
-} from "util/constants";
+import { PURPLE } from "util/constants";
 
-import { generateQuestions } from "util/generateQuestions";
-import { getMaxScore } from "util/getMaxScore";
 import ResultSlide from "components/slides/ResultSlide";
 import ProfileSelectionSlide from "components/slides/ProfileSelectionSlide";
 import QuestionsSlide from "components/slides/QuestionsSlide";
-import { getQuestionFromId } from "util/getQuestionFromId";
-import QuestionNotFound from "components/slides/QuestionNotFound";
-import { useLocation } from "react-router-dom";
 
 const TestSlides = ({
   t,
   setCurrentQuestionIndex,
-  setTotalQuestions,
+  currentQuestionIndex,
+  profileState,
+  setProfileState,
   setIsFinished,
   setconfettiRun,
   setconfettiRecycle,
   increaseStarAmount,
   starAmount,
+  redoTest,
+  slideIndex,
+  setSlideIndex,
+  startQuiz,
+  foundQuerySearchQuestion,
+  questions,
+  maxStarAmount,
 }) => {
-  const [slideIndex, setSlideIndex] = useState(0);
-  const [questions, setQuestions] = useState([]);
-  const [foundQuerySearchQuestion, setFoundQuerySearchQuestion] =
-    useState(false);
-  const [checkedQuery, setCheckedQuery] = useState(false);
-  const [maxStarAmount, setMaxStarAmount] = useState(0);
   const [streak, setStreak] = useState(0);
   const [testFinished, setTestFinished] = useState(false);
-  const [profileState, setState] = useState({
-    [BANK_PROFILE]: false,
-    [GAMING_PROFILE]: false,
-    [STREAMING_PROFILE]: false,
-    [SOCIAL_MEDIA_PROFILE]: false,
-  });
-  const location = useLocation();
 
-  // If cinematic button made this screen dark, revert here
+  // If cinematic button made the screen dark, revert here
   useEffect(() => {
     document.getElementById("bgd-container").style.background = PURPLE;
   });
 
-  if (checkedQuery === false) {
-    setCheckedQuery(true);
-
-    let questionId = new URLSearchParams(location.search).get("id");
-    if (questionId !== null) {
-      var questionData = getQuestionFromId(questionId);
-      if (questionData !== null) {
-        setFoundQuerySearchQuestion(true);
-        setQuestions([questionData]);
-        setSlideIndex(1);
-      } else {
-        return <QuestionNotFound />;
-      }
-    }
-  }
-
   const handleProfileCheckboxChecked = (event) => {
-    setState({ ...profileState, [event.target.name]: event.target.checked });
+    setProfileState({
+      ...profileState,
+      [event.target.name]: event.target.checked,
+    });
   };
 
   const nextSlide = () => {
     if (slideIndex === 0) {
-      // Do this if we should run the test as normal
-      if (foundQuerySearchQuestion === false) {
-        let generatedQuestions = generateQuestions(profileState);
-        let maxScore = getMaxScore(generatedQuestions);
-        setQuestions(generatedQuestions);
-        setMaxStarAmount(maxScore);
-        setTotalQuestions(generatedQuestions.length);
-        setCurrentQuestionIndex(1);
-      }
-
+      startQuiz(false); // Does setSlideIndex
       document.getElementById("formContainer").style.background = "none";
     } else if (slideIndex === 1) {
       setTestFinished(true);
       setIsFinished(true);
+      setSlideIndex(slideIndex + 1);
     }
-    setSlideIndex(slideIndex + 1);
   };
 
   return (
@@ -100,7 +63,7 @@ const TestSlides = ({
         }}
       >
         {/* Only show profile selection if we have generated the quiz */}
-        {foundQuerySearchQuestion !== true && slideIndex === 0 ? (
+        {slideIndex === 0 ? (
           <ProfileSelectionSlide
             t={t}
             nextSlide={nextSlide}
@@ -113,7 +76,6 @@ const TestSlides = ({
           <QuestionsSlide
             t={t}
             nextSlide={nextSlide}
-            setCurrentQuestionIndex={setCurrentQuestionIndex}
             questions={questions}
             profileStates={profileState}
             increaseStarAmount={increaseStarAmount}
@@ -122,6 +84,9 @@ const TestSlides = ({
             linkToEntireQuiz={foundQuerySearchQuestion}
             setStreak={setStreak}
             streak={streak}
+            redoTest={redoTest}
+            questionIndex={currentQuestionIndex}
+            setQuestionIndex={setCurrentQuestionIndex}
           />
         )}
 
@@ -130,6 +95,7 @@ const TestSlides = ({
             starAmount={starAmount}
             maxStarAmount={maxStarAmount}
             testFinished={testFinished}
+            redoTest={redoTest}
           />
         )}
       </div>

@@ -5,7 +5,9 @@ import { Link } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 
 // Custom
-import { Logo, StyledButton } from "components/general";
+import StyledButton from "components/general/StyledButton";
+import Logo from "components/general/Logo";
+
 import { HEIGHT } from "util/constants";
 import SocialShare from "components/features/SocialShare";
 import MoreInfoDisplay from "components/features/MoreInfoDisplay";
@@ -77,14 +79,13 @@ const Welcome = ({ t, hasStarted }) => {
           </p>
           <Link to="/test">
             <StyledButton cinematicColor="#212058">
-              {t("welcome.test")}
+              {hasStarted ? t("welcome.continueTest") : t("welcome.test")}
             </StyledButton>
           </Link>
           <SocialShare shareText={t("general.shareTest")} />
           <MoreInfoDisplay
             title={t("welcome.aboutTitle")}
             content={t("welcome.aboutContent")}
-            fixed={true}
           />
         </Grid>
       </Grid>

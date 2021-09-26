@@ -68,9 +68,9 @@ const ChatQuestion = ({ questionData, onSelectAnswer, t }) => {
             <p
               style={{
                 padding: 4,
-                fontSize: "1em",
                 opacity: 0.9,
                 margin: 0,
+                fontSize: 16,
                 color: "grey",
               }}
             >
@@ -85,7 +85,6 @@ const ChatQuestion = ({ questionData, onSelectAnswer, t }) => {
             <StyledButton
               onClick={() => onSelectAnswer(option.score)}
               style={{
-                fontSize: "1em",
                 fontWeight: 500,
                 background: "#4a5ef3",
                 color: "white",
@@ -122,6 +121,7 @@ const SMS = ({ sms, t }) => {
           alignSelf: sms.side === "left" ? "flex-start" : "flex-end",
           borderRadius: 20,
           padding: "6px 6px 6px 12px",
+          fontSize: 16,
         }}
       >
         {t(sms.text)}

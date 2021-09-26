@@ -3,7 +3,7 @@ import React from "react";
 
 const ProgressBar = ({ t, currentQuestionIndex = 1, totalQuestions = 1 }) => {
   const CompletedBlocks = () => {
-    return [...Array(currentQuestionIndex - 1)].map((e, i) => (
+    return [...Array(currentQuestionIndex)].map((e, i) => (
       <div
         style={{ height: "100%", width: "100%", background: "white" }}
         key={i}
@@ -12,7 +12,7 @@ const ProgressBar = ({ t, currentQuestionIndex = 1, totalQuestions = 1 }) => {
   };
 
   const UnCompletedBlocks = () => {
-    return [...Array(totalQuestions - currentQuestionIndex)].map((e, i) => (
+    return [...Array(totalQuestions - currentQuestionIndex - 1)].map((e, i) => (
       <div
         style={{ height: "100%", width: "100%", background: "rgba(0,0,0,0.3)" }}
         key={i}

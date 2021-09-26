@@ -6,6 +6,7 @@ import { YES_NO } from "../../util/constants";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import { Fade } from "components/general";
+import Subtitle from "components/general/typeography/Subtitle";
 
 const YesNoWrapper = ({
   children,
@@ -28,7 +29,9 @@ const YesNoWrapper = ({
         axis="y"
         index={1}
         enableMouseEvents
-        containerStyle={{ height: "90vh" }}
+        containerStyle={{
+          height: "90vh",
+        }}
         slideStyle={{ height: "100%" }}
         id="yesNoWrapper"
         onChangeIndex={handleUpdateIndex}
@@ -43,18 +46,23 @@ const YesNoWrapper = ({
               alignItems: "center",
               justifyContent: "center",
               flexDirection: "column",
+              paddingTop: window.innerHeight > 620 ? "8vh" : 0,
             }}
           >
             <Fade delay={contentFadeDelay}>
               <ExpandLess />
-              <h2
+              <Subtitle
                 onClick={() => {
                   onSelectAnswer(questionData.yes_score);
                 }}
-                style={{ cursor: "pointer", margin: 0, padding: "3px 16px" }}
+                style={{
+                  cursor: "pointer",
+                  margin: 0,
+                  padding: "3px 16px",
+                }}
               >
                 {t("general.yes")}
-              </h2>
+              </Subtitle>
               <p
                 style={{
                   color: "rgba(255,255,255,0.5)",
@@ -62,14 +70,14 @@ const YesNoWrapper = ({
                   margin: 0,
                 }}
               >
-                Swipe
+                Swipe:a uppåt
               </p>
             </Fade>
           </div>
-          {children}
+          <div style={{ pointerEvents: "none" }}>{children}</div>
           <div
             style={{
-              marginTop: "6vh", // Due to alignCenter having a margin top of 5vh
+              marginTop: "6vh",
               height: "10vh",
               display: "flex",
               alignItems: "center",
@@ -85,9 +93,9 @@ const YesNoWrapper = ({
                   margin: 0,
                 }}
               >
-                Swipe
+                Swipe:a neråt
               </p>
-              <h2
+              <Subtitle
                 onClick={() => {
                   onSelectAnswer(questionData.no_score);
                 }}
@@ -98,7 +106,7 @@ const YesNoWrapper = ({
                 }}
               >
                 {t("general.no")}
-              </h2>
+              </Subtitle>
               <ExpandMore />
             </Fade>
           </div>

@@ -7,8 +7,5 @@ body {
     Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
   color: white;
   background-color: #293881;
-}
-
-p {
-  font-size: 1.1em;
+  font-size: 18px;
 }

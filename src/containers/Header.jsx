@@ -7,18 +7,20 @@ import { Hidden } from "@material-ui/core";
 import { Popover, ArrowContainer } from "react-tiny-popover";
 
 // Custom components
-import { AlignCenter } from "components/general";
+import AlignCenter from "components/general/AlignCenter";
 import ProgressBar from "components/features/ProgressBar";
 import Mainlogo from "assets/sakerhetskontrollen-logo.svg";
 import StyledLink from "components/general/StyledLink";
-import { QUESTIONS } from "util/constants";
-import { getMaxScore, getStoredTotalAmount } from "util/totalScore";
+import { getAllQuestionAmount, getStoredTotalAmount } from "util/totalScore";
+import SmallText from "components/general/typeography/SmallText";
+import Subtitle from "components/general/typeography/Subtitle";
 
 const Header = ({
   t,
   currentQuestionIndex,
   totalQuestions,
   isFinished,
+  hasStarted,
   starAmount,
 }) => {
   return (
@@ -34,7 +36,7 @@ const Header = ({
             padding: "8px 0",
           }}
         >
-          {currentQuestionIndex === 0 ? (
+          {hasStarted === false ? (
             <ContentBeforeStart />
           ) : (
             <ContentAfterStart
@@ -47,7 +49,7 @@ const Header = ({
           )}
         </div>
       </AlignCenter>
-      {currentQuestionIndex !== 0 && isFinished === false ? (
+      {hasStarted === true && isFinished === false ? (
         <ProgressBar
           currentQuestionIndex={currentQuestionIndex}
           totalQuestions={totalQuestions}
@@ -60,16 +62,16 @@ const Header = ({
 const ContentBeforeStart = () => (
   <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
     <div>
-      <p
+      <SmallText
+        opacity
         style={{
-          fontSize: "0.8em",
           display: "block",
           width: "100%",
           margin: 0,
         }}
       >
         I samarbete med
-      </p>
+      </SmallText>
       <StyledLink
         href="https://www.digitalungdom.se/"
         colored
@@ -98,7 +100,7 @@ const ContentAfterStart = ({
   let questionsLeft = "";
   if (isFinished === true) {
     questionsLeft = t("general.done") + "!";
-  } else if (totalQuestions - currentQuestionIndex + 1 === 1) {
+  } else if (totalQuestions - currentQuestionIndex === 1) {
     questionsLeft = t("general.questionLeft");
   } else {
     questionsLeft = t("general.questionsLeft");
@@ -114,17 +116,18 @@ const ContentAfterStart = ({
             history.push("/");
           }}
         >
-          <p
+          <SmallText
+            opacity
+            xs
             style={{
-              fontSize: "0.6em",
               display: "block",
               width: "100%",
               margin: 0,
             }}
           >
             Tillbaks till
-          </p>
-          <p
+          </SmallText>
+          <SmallText
             style={{
               fontSize: "0.8em",
               display: "block",
@@ -140,7 +143,7 @@ const ContentAfterStart = ({
               }}
             />
             Start
-          </p>
+          </SmallText>
         </div>
         <StarContainer
           starAmount={starAmount}
@@ -181,27 +184,27 @@ const ContentAfterStart = ({
           alignItems: "center",
         }}
       >
-        <p
+        <Subtitle
           style={{
-            fontSize: "1.1em",
             display: "inline-block",
             margin: 5,
             fontWeight: "bold",
             opacity: isFinished ? 0 : 1,
           }}
         >
-          {totalQuestions - currentQuestionIndex + 1}
-        </p>
-        <p
+          {totalQuestions - currentQuestionIndex}
+        </Subtitle>
+        <SmallText
+          opacity
+          xs
           style={{
-            fontSize: "0.6em",
             display: "block",
             width: 5,
             margin: "0 20px 0 0",
           }}
         >
           {questionsLeft}
-        </p>
+        </SmallText>
       </div>
     </>
   );
@@ -243,9 +246,13 @@ const StarContainer = ({ starAmount, totalQuestions }) => {
   }
 
   useEffect(() => {
+    // Only do this if the star amount increased or it was reset
     if (starAmount > prevStarAmount) {
       prevStarAmount = starAmount;
       showStar();
+    } else if (starAmount === 0) {
+      prevStarAmount = starAmount;
+      setStarAmountText(starAmount);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [starAmount]);
@@ -280,7 +287,7 @@ const StarContainer = ({ starAmount, totalQuestions }) => {
               <StarBox amount={starAmount} totalAmount={totalQuestions} />
               <StarBox
                 amount={getStoredTotalAmount()}
-                totalAmount={getMaxScore()}
+                totalAmount={getAllQuestionAmount()}
                 total
               />
             </div>

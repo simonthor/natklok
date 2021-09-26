@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { withTranslation } from "react-i18next";
 import Fade from "react-reveal/Fade";
-import { StyledButton, AlignCenter, HTMLRenderer } from "components/general";
-import { Grid } from "@material-ui/core";
+import StyledButton from "components/general/StyledButton";
+import AlignCenter from "components/general/AlignCenter";
+import HTMLRenderer from "components/general/HTMLRenderer";
+import Grid from "@material-ui/core/Grid";
 import { useHistory } from "react-router-dom";
 import WhatshotIcon from "@material-ui/icons/Whatshot";
 import SocialShare from "components/features/SocialShare";
 import MoreInfoDisplay from "components/features/MoreInfoDisplay";
 import { PALEBLUE, PURPLE } from "util/constants";
+import Title from "components/general/typeography/Title";
+import Subtitle from "components/general/typeography/Subtitle";
 
 const AnswerFeedback = ({
   t,
@@ -19,11 +23,12 @@ const AnswerFeedback = ({
   questionId,
   evenMoreInfo,
   linkToEntireQuiz,
+  redoTest,
 }) => {
   // Scroll to top of page so that mobile doesn't look bad
   useEffect(() => {
     window.scrollTo(0, 0);
-  });
+  }, []);
 
   return (
     <div style={{ height: "100%" }}>
@@ -39,23 +44,12 @@ const AnswerFeedback = ({
         >
           <StreakDisplay streak={streak} />
           <Fade>
-            <h1
-              style={{
-                marginTop: 8,
-                textTransform: "uppercase",
-                marginBottom: 0,
-                textAlign: "center",
-                fontFamily: "Bowlby One SC, Arial, Helvetica, sans-serif",
-              }}
-            >
-              {title}
-            </h1>
+            <Title>{title}</Title>
           </Fade>
           <Fade delay={800}>
             <HTMLRenderer
               style={{
                 marginTop: 0,
-                fontSize: "1.1em",
                 textAlign: "center",
               }}
             >
@@ -71,6 +65,7 @@ const AnswerFeedback = ({
         nextQuestion={nextQuestion}
         isLastQuestion={isLastQuestion}
         questionId={questionId}
+        redoTest={redoTest}
       />
     </div>
   );
@@ -82,6 +77,7 @@ const ReadMoreOrContinue = ({
   isLastQuestion,
   questionId,
   evenMoreInfo,
+  redoTest,
   t,
 }) => {
   const [moreInfoExpanded, setMoreInfoExpanded] = useState(false);
@@ -101,6 +97,7 @@ const ReadMoreOrContinue = ({
                 nextQuestion={nextQuestion}
                 isLastQuestion={isLastQuestion}
                 questionId={questionId}
+                redoTest={redoTest}
               />
             }
           />
@@ -113,6 +110,7 @@ const ReadMoreOrContinue = ({
             nextQuestion={nextQuestion}
             isLastQuestion={isLastQuestion}
             questionId={questionId}
+            redoTest={redoTest}
           />
         )}
       </Grid>
@@ -125,10 +123,9 @@ const NextQuestionOrDoTestButton = ({
   nextQuestion,
   isLastQuestion,
   questionId,
+  redoTest,
   t,
 }) => {
-  const history = useHistory();
-
   if (linkToEntireQuiz === false) {
     return (
       <>
@@ -150,18 +147,16 @@ const NextQuestionOrDoTestButton = ({
   } else {
     return (
       <>
-        <h2 style={{ marginBottom: 0, marginTop: "10vh" }}>
+        <Subtitle style={{ marginBottom: 0, marginTop: "10vh" }}>
           {t("test.doTheTestTitle")}
-        </h2>
+        </Subtitle>
         <p style={{ marginTop: 6, fontSize: "1em" }}>
           {t("test.doTheTestDesc")}
         </p>
         <StyledButton
           style={{ margin: "6px 0 2em 0" }}
           onClick={() => {
-            history.push("/test");
-            // TODO: Just reset state instead
-            window.location.reload(false);
+            redoTest(false);
           }}
         >
           {t("welcome.test")}
@@ -197,7 +192,6 @@ const StreakDisplay = ({ streak }) => {
               padding: 3,
               display: "flex",
               alignItems: "center",
-              fontSize: "1.1em",
             }}
           >
             Streak

@@ -1,8 +1,11 @@
-import { Hidden } from "@material-ui/core";
-import { LockOpen, WarningOutlined } from "@material-ui/icons";
 import React from "react";
 import { useState } from "react";
-import { Fade, StyledButton } from "../general";
+
+import AmountFound from "components/features/AmountFound";
+import StyledButton from "components/general/StyledButton";
+
+import { Hidden } from "@material-ui/core";
+import { WarningOutlined } from "@material-ui/icons";
 
 const FakeDomain = ({ options, onSelectAnswer, t }) => {
   const [scams, setScams] = useState({
@@ -17,15 +20,12 @@ const FakeDomain = ({ options, onSelectAnswer, t }) => {
     }
   });
   if (amountFound === Object.values(scams).length) {
-    onSelectAnswer(amountFound / Object.values(scams).length, "", 1000);
+    onSelectAnswer(1, "", "", 500);
   }
 
   return (
     <>
-      <h2>
-        {amountFound}/ {Object.values(scams).length}{" "}
-        <span style={{ fontSize: "0.7em" }}>Hittade</span>
-      </h2>
+      <AmountFound scams={scams} amountFound={amountFound} />
       <div
         style={{
           width: "100%",
@@ -94,7 +94,7 @@ const FakeDomain = ({ options, onSelectAnswer, t }) => {
               <p
                 style={{
                   padding: "6px 0",
-                  margin: "-5px 0 0 10px",
+                  margin: "2px 0 0 10px",
                   color: "grey",
                   fontSize: "0.8em",
                 }}
@@ -108,9 +108,16 @@ const FakeDomain = ({ options, onSelectAnswer, t }) => {
                   }}
                   onClick={() => setScams({ ...scams, httpFound: true })}
                 >
-                  <WarningOutlined style={{ fontSize: "1.3em" }} />| http://
+                  <WarningOutlined
+                    style={{
+                      fontSize: "1.2em",
+                      marginBottom: -3,
+                      color: "red",
+                    }}
+                  />
+                  | http://
                 </span>
-                instagram.com.utm-src-ig
+                instagram.com.
                 <span
                   style={{
                     borderRadius: 1000,
@@ -120,7 +127,7 @@ const FakeDomain = ({ options, onSelectAnswer, t }) => {
                   }}
                   onClick={() => setScams({ ...scams, finalDomainScam: true })}
                 >
-                  web.se
+                  utm-srcigweb.se
                 </span>
               </p>
             </div>
@@ -129,7 +136,7 @@ const FakeDomain = ({ options, onSelectAnswer, t }) => {
       </div>
       <StyledButton
         onClick={() => {
-          onSelectAnswer(amountFound / 3);
+          onSelectAnswer(0);
         }}
         style={{ marginTop: 10 }}
       >

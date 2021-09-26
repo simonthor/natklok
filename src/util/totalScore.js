@@ -6,16 +6,25 @@ export const getStoredTotalAmount = () => {
   return amountCorrect;
 };
 
-export const getMaxScore = () => {
+export const getAllQuestionAmount = () => {
   return Object.keys(QUESTIONS).length;
+};
+
+export const getCorrectlyAnsweredIds = () => {
+  var correctlyAnsweredIds = JSON.parse(localStorage.getItem("questionScores"));
+  if (correctlyAnsweredIds === null) {
+    return [];
+  }
+  return correctlyAnsweredIds;
 };
 
 export const addCorrectAnswer = (questionId) => {
   let questionScores = localStorage.getItem("questionScores");
+  let prevQuestionScores = JSON.parse(localStorage.getItem("questionScores"));
+
   if (questionScores === null) {
     localStorage.setItem("questionScores", JSON.stringify([questionId]));
-  } else if (questionScores.includes(questionId) === false) {
-    let prevQuestionScores = JSON.parse(localStorage.getItem("questionScores"));
+  } else if (prevQuestionScores.includes(questionId) === false) {
     localStorage.setItem(
       "questionScores",
       JSON.stringify([...prevQuestionScores, questionId])

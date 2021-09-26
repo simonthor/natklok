@@ -13,14 +13,18 @@ import MovieIcon from "@material-ui/icons/Movie";
 import ShareIcon from "@material-ui/icons/Share";
 
 // Custom components
-import { AlignCenter, StyledButton } from "../general";
+import AlignCenter from "components/general/AlignCenter";
+import StyledButton from "components/general/StyledButton";
 import {
   BANK_PROFILE,
   GAMING_PROFILE,
   STREAMING_PROFILE,
   SOCIAL_MEDIA_PROFILE,
   PROFILE_STYLING,
-} from "../../util/constants";
+} from "util/constants";
+import Title from "components/general/typeography/Title";
+import SmallText from "components/general/typeography/SmallText";
+import Subtitle from "components/general/typeography/Subtitle";
 
 const ProfileSelectionSlide = ({
   t,
@@ -37,16 +41,8 @@ const ProfileSelectionSlide = ({
           xs={12}
           style={{ textAlign: "center", margin: "0 0 20px 0" }}
         >
-          <h2
-            style={{
-              margin: "0 0 10px 0",
-              fontSize: 31,
-              fontFamily: "Bungee, Roboto, sans-serif",
-            }}
-          >
-            {t("profileSelection.title")}
-          </h2>
-          <p style={{ margin: "0 0 25px 0", fontSize: 19, marginBottom: 0 }}>
+          <Title>{t("profileSelection.title")}</Title>
+          <p style={{ margin: 0, fontWeight: "bold" }}>
             {t("profileSelection.subtitle")}
           </p>
         </Grid>
@@ -108,9 +104,7 @@ const ProfileSelectionSlide = ({
               xs={12}
               style={{ textAlign: "center", paddingRight: 8, marginTop: 10 }}
             >
-              <p style={{ fontSize: "0.7em", opacity: 0.8 }}>
-                {t("profileSelection.desc")}
-              </p>
+              <SmallText opacity>{t("profileSelection.desc")}</SmallText>
               <StyledButton onClick={nextSlide}>
                 {t("general.next")}
               </StyledButton>

@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import {
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  RadioGroup,
-  Radio,
-} from "@material-ui/core";
+
+import FormControl from "@material-ui/core/FormControl"
+import FormControlLabel from "@material-ui/core/FormControlLabel"
+import FormLabel from "@material-ui/core/FormLabel"
+import RadioGroup from "@material-ui/core/RadioGroup"
+import Radio from "@material-ui/core/Radio"
 import { makeStyles } from "@material-ui/core/styles";
 import { PINK, PURPLE, WHITE } from "util/constants";
 import i18next from "i18next";
