@@ -83,10 +83,6 @@ const Welcome = ({ t, hasStarted }) => {
             </StyledButton>
           </Link>
           <SocialShare shareText={t("general.shareTest")} />
-          <MoreInfoDisplay
-            title={t("welcome.aboutTitle")}
-            content={t("welcome.aboutContent")}
-          />
         </Grid>
       </Grid>
     </>
