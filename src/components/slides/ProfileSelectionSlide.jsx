@@ -22,6 +22,9 @@ import {
   SOCIAL_MEDIA_PROFILE,
   PROFILE_STYLING,
 } from "util/constants";
+import Title from "components/general/typeography/Title";
+import SmallText from "components/general/typeography/SmallText";
+import Subtitle from "components/general/typeography/Subtitle";
 
 const ProfileSelectionSlide = ({
   t,
@@ -30,7 +33,7 @@ const ProfileSelectionSlide = ({
   handleProfileCheckboxChecked,
 }) => {
   return (
-    <AlignCenter>
+    <AlignCenter centerBothAxis>
       <ReactReveal>
         <Grid
           container
@@ -38,16 +41,8 @@ const ProfileSelectionSlide = ({
           xs={12}
           style={{ textAlign: "center", margin: "0 0 20px 0" }}
         >
-          <h2
-            style={{
-              margin: "0 0 10px 0",
-              fontSize: 31,
-              fontFamily: "Bungee, Roboto, sans-serif",
-            }}
-          >
-            {t("profileSelection.title")}
-          </h2>
-          <p style={{ margin: "0 0 25px 0", fontSize: 19, marginBottom: 0 }}>
+          <Title>{t("profileSelection.title")}</Title>
+          <p style={{ margin: 0, fontWeight: "bold" }}>
             {t("profileSelection.subtitle")}
           </p>
         </Grid>
@@ -109,9 +104,7 @@ const ProfileSelectionSlide = ({
               xs={12}
               style={{ textAlign: "center", paddingRight: 8, marginTop: 10 }}
             >
-              <p style={{ fontSize: "0.7em", opacity: 0.8 }}>
-                {t("profileSelection.desc")}
-              </p>
+              <SmallText opacity>{t("profileSelection.desc")}</SmallText>
               <StyledButton onClick={nextSlide}>
                 {t("general.next")}
               </StyledButton>

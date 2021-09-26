@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { withTranslation } from "react-i18next";
 import Fade from "react-reveal/Fade";
 import StyledButton from "components/general/StyledButton";
@@ -8,8 +8,10 @@ import Grid from "@material-ui/core/Grid";
 import { useHistory } from "react-router-dom";
 import WhatshotIcon from "@material-ui/icons/Whatshot";
 import SocialShare from "components/features/SocialShare";
-import MoreInfoModal from "components/features/MoreInfoModal";
+import MoreInfoDisplay from "components/features/MoreInfoDisplay";
 import { PALEBLUE, PURPLE } from "util/constants";
+import Title from "components/general/typeography/Title";
+import Subtitle from "components/general/typeography/Subtitle";
 
 const AnswerFeedback = ({
   t,
@@ -19,9 +21,14 @@ const AnswerFeedback = ({
   title,
   desc,
   questionId,
+  evenMoreInfo,
   linkToEntireQuiz,
+  redoTest,
 }) => {
-  const history = useHistory();
+  // Scroll to top of page so that mobile doesn't look bad
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div style={{ height: "100%" }}>
@@ -37,92 +44,126 @@ const AnswerFeedback = ({
         >
           <StreakDisplay streak={streak} />
           <Fade>
-            <h1
-              style={{
-                marginTop: 8,
-                textTransform: "uppercase",
-                marginBottom: 0,
-                textAlign: "center",
-                fontFamily: "Bowlby One SC, Arial, Helvetica, sans-serif",
-              }}
-            >
-              {title}
-            </h1>
+            <Title>{title}</Title>
           </Fade>
           <Fade delay={800}>
             <HTMLRenderer
               style={{
                 marginTop: 0,
-                fontSize: "1.1em",
                 textAlign: "center",
               }}
             >
               {desc}
             </HTMLRenderer>
           </Fade>
-          <Fade bottom delay={800}>
-            <Grid
-              container
-              justify="center"
-              alignItems="center"
-              direction="column"
-            >
-              {linkToEntireQuiz === false ? (
-                <>
-                  <Grid container justify="center" alignItems="center">
-                    <StyledButton
-                      style={{ marginTop: 24, width: "100%" }}
-                      onClick={nextQuestion}
-                    >
-                      {t(
-                        isLastQuestion === true
-                          ? "test.result"
-                          : "test.nextQuestion"
-                      )}
-                    </StyledButton>
-                  </Grid>
-                  <SocialShare
-                    questionId={questionId}
-                    shareText={t("general.shareQuestion")}
-                    style={{ marginTop: 0 }}
-                  />
-                </>
-              ) : (
-                <>
-                  <h2 style={{ marginBottom: 0, marginTop: "10vh" }}>
-                    {t("test.doTheTestTitle")}
-                  </h2>
-                  <p style={{ marginTop: 6 }}>{t("test.doTheTestDesc")}</p>
-                  <StyledButton
-                    style={{ margin: "6px 0" }}
-                    onClick={() => {
-                      history.push("/test");
-                      // TODO: Just reset state instead
-                      window.location.reload(false);
-                    }}
-                  >
-                    {t("welcome.test")}
-                  </StyledButton>
-                </>
-              )}
-            </Grid>
-          </Fade>
         </div>
       </AlignCenter>
-      <MoreInfoModal
-        title={t("test.pressToReadMore")}
-        content={t("welcome.aboutContent")}
-        buttonComponent={
+      <ReadMoreOrContinue
+        t={t}
+        evenMoreInfo={evenMoreInfo}
+        linkToEntireQuiz={linkToEntireQuiz}
+        nextQuestion={nextQuestion}
+        isLastQuestion={isLastQuestion}
+        questionId={questionId}
+        redoTest={redoTest}
+      />
+    </div>
+  );
+};
+
+const ReadMoreOrContinue = ({
+  linkToEntireQuiz,
+  nextQuestion,
+  isLastQuestion,
+  questionId,
+  evenMoreInfo,
+  redoTest,
+  t,
+}) => {
+  const [moreInfoExpanded, setMoreInfoExpanded] = useState(false);
+
+  return (
+    <Fade delay={800}>
+      <Grid container justify="center" alignItems="center" direction="column">
+        {evenMoreInfo !== undefined && (
+          <MoreInfoDisplay
+            title={t("test.pressToReadMore")}
+            content={t(evenMoreInfo)}
+            setExpanded={setMoreInfoExpanded}
+            buttonComponent={
+              <NextQuestionOrDoTestButton
+                t={t}
+                linkToEntireQuiz={linkToEntireQuiz}
+                nextQuestion={nextQuestion}
+                isLastQuestion={isLastQuestion}
+                questionId={questionId}
+                redoTest={redoTest}
+              />
+            }
+          />
+        )}
+
+        {moreInfoExpanded === false && (
+          <NextQuestionOrDoTestButton
+            t={t}
+            linkToEntireQuiz={linkToEntireQuiz}
+            nextQuestion={nextQuestion}
+            isLastQuestion={isLastQuestion}
+            questionId={questionId}
+            redoTest={redoTest}
+          />
+        )}
+      </Grid>
+    </Fade>
+  );
+};
+
+const NextQuestionOrDoTestButton = ({
+  linkToEntireQuiz,
+  nextQuestion,
+  isLastQuestion,
+  questionId,
+  redoTest,
+  t,
+}) => {
+  if (linkToEntireQuiz === false) {
+    return (
+      <>
+        <Grid container justify="center" alignItems="center">
           <StyledButton
-            style={{ marginTop: 24, width: "100%" }}
+            style={{ marginTop: 24, width: 300 }}
             onClick={nextQuestion}
           >
             {t(isLastQuestion === true ? "test.result" : "test.nextQuestion")}
           </StyledButton>
-        }
-      />
-    </div>
-  );
+        </Grid>
+        <SocialShare
+          questionId={questionId}
+          shareText={t("general.shareQuestion")}
+          style={{ marginTop: 0 }}
+        />
+      </>
+    );
+  } else {
+    return (
+      <>
+        <Subtitle style={{ marginBottom: 0, marginTop: "10vh" }}>
+          {t("test.doTheTestTitle")}
+        </Subtitle>
+        <p style={{ marginTop: 6, fontSize: "1em" }}>
+          {t("test.doTheTestDesc")}
+        </p>
+        <StyledButton
+          style={{ margin: "6px 0 2em 0" }}
+          onClick={() => {
+            redoTest(false);
+          }}
+        >
+          {t("welcome.test")}
+        </StyledButton>
+      </>
+    );
+  }
 };
 
 const StreakDisplay = ({ streak }) => {
@@ -134,6 +175,7 @@ const StreakDisplay = ({ streak }) => {
           xs={12}
           alignItems="center"
           style={{
+            marginTop: 6,
             fontFamily: "Bungee, Arial, Helvetica, sans-serif",
           }}
         >
@@ -150,7 +192,6 @@ const StreakDisplay = ({ streak }) => {
               padding: 3,
               display: "flex",
               alignItems: "center",
-              fontSize: "1.1em",
             }}
           >
             Streak

@@ -1,15 +1,22 @@
 import React, { useState } from "react";
-import { PURPLE, PALEBLUE } from "util/constants";
+import { PURPLE, PINK } from "util/constants";
 
-export default ({
+const StyledButton = ({
   children,
   style,
-  color = PALEBLUE,
+  color = PINK,
   onClick,
   disabled = false,
   cinematicColor,
 }) => {
   const [hoveringOver, setHoveringOver] = useState(false);
+
+  let filter = "none";
+  if (hoveringOver && !disabled) {
+    filter = "brightness(1.16)";
+  } else if (disabled === true) {
+    filter = "brightness(0.6)";
+  }
 
   function handleMouseChange(isonTop) {
     if (isonTop) {
@@ -34,11 +41,11 @@ export default ({
       style={{
         borderRadius: 100,
         cursor: "pointer",
-        fontSize: "1.1em",
-        background: !disabled ? color : "#3c3abb",
-        filter: hoveringOver && !disabled ? "brightness(1.16)" : "none",
+        fontSize: "1em",
+        background: PINK,
+        filter: filter,
         transform: hoveringOver && !disabled ? "scale(1.03)" : "scale(1)",
-        color: PURPLE,
+        color: disabled ? "lightgrey" : "white",
         padding: "14px 40px",
         border: "none",
         fontWeight: "800",
@@ -54,3 +61,5 @@ export default ({
     </button>
   );
 };
+
+export default StyledButton;

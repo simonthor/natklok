@@ -1,22 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { withTranslation } from "react-i18next";
-// Material UI
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
+import { useHistory } from "react-router-dom";
+import { Star } from "@material-ui/icons";
+import { Hidden } from "@material-ui/core";
+import { Popover, ArrowContainer } from "react-tiny-popover";
 
 // Custom components
 import AlignCenter from "components/general/AlignCenter";
 import ProgressBar from "components/features/ProgressBar";
 import Mainlogo from "assets/sakerhetskontrollen-logo.svg";
-
-import { useHistory } from "react-router-dom";
-import { Star } from "@material-ui/icons";
-import { Hidden } from "@material-ui/core";
 import StyledLink from "components/general/StyledLink";
+import { getAllQuestionAmount, getStoredTotalAmount } from "util/totalScore";
+import SmallText from "components/general/typeography/SmallText";
+import Subtitle from "components/general/typeography/Subtitle";
 
-const Header = ({ t, currentQuestionIndex, totalQuestions, starAmount }) => {
+const Header = ({
+  t,
+  currentQuestionIndex,
+  totalQuestions,
+  isFinished,
+  hasStarted,
+  starAmount,
+}) => {
   return (
     <div>
-      <AlignCenter marginTop={false} row>
+      <AlignCenter marginTop={false}>
         <div
           style={{
             display: "flex",
@@ -27,11 +36,12 @@ const Header = ({ t, currentQuestionIndex, totalQuestions, starAmount }) => {
             padding: "8px 0",
           }}
         >
-          {currentQuestionIndex === 0 ? (
+          {hasStarted === false ? (
             <ContentBeforeStart />
           ) : (
             <ContentAfterStart
               t={t}
+              isFinished={isFinished}
               currentQuestionIndex={currentQuestionIndex}
               totalQuestions={totalQuestions}
               starAmount={starAmount}
@@ -39,7 +49,7 @@ const Header = ({ t, currentQuestionIndex, totalQuestions, starAmount }) => {
           )}
         </div>
       </AlignCenter>
-      {currentQuestionIndex !== 0 ? (
+      {hasStarted === true && isFinished === false ? (
         <ProgressBar
           currentQuestionIndex={currentQuestionIndex}
           totalQuestions={totalQuestions}
@@ -52,16 +62,16 @@ const Header = ({ t, currentQuestionIndex, totalQuestions, starAmount }) => {
 const ContentBeforeStart = () => (
   <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
     <div>
-      <p
+      <SmallText
+        opacity
         style={{
-          fontSize: "0.8em",
           display: "block",
           width: "100%",
           margin: 0,
         }}
       >
         I samarbete med
-      </p>
+      </SmallText>
       <StyledLink
         href="https://www.digitalungdom.se/"
         colored
@@ -83,8 +93,19 @@ const ContentAfterStart = ({
   currentQuestionIndex,
   totalQuestions,
   starAmount,
+  isFinished,
 }) => {
   const history = useHistory();
+
+  let questionsLeft = "";
+  if (isFinished === true) {
+    questionsLeft = t("general.done") + "!";
+  } else if (totalQuestions - currentQuestionIndex === 1) {
+    questionsLeft = t("general.questionLeft");
+  } else {
+    questionsLeft = t("general.questionsLeft");
+  }
+
   return (
     <>
       {/*TODO: Implement auto-resume. When user clicks 'Return to Start' and then clicks 'Start' again, the quiz resumes from last answered question.*/}
@@ -95,17 +116,18 @@ const ContentAfterStart = ({
             history.push("/");
           }}
         >
-          <p
+          <SmallText
+            opacity
+            xs
             style={{
-              fontSize: "0.7em",
               display: "block",
               width: "100%",
               margin: 0,
             }}
           >
             Tillbaks till
-          </p>
-          <p
+          </SmallText>
+          <SmallText
             style={{
               fontSize: "0.8em",
               display: "block",
@@ -121,9 +143,12 @@ const ContentAfterStart = ({
               }}
             />
             Start
-          </p>
+          </SmallText>
         </div>
-        <StarContainer starAmount={starAmount} />
+        <StarContainer
+          starAmount={starAmount}
+          totalQuestions={totalQuestions}
+        />
       </div>
 
       <Hidden xsDown>
@@ -153,37 +178,33 @@ const ContentAfterStart = ({
 
       <div
         style={{
-          fontSize: "0.6em",
-          display: "block",
-          width: 5,
-          margin: "0 20px 0 0",
+          display: "flex",
           lineHeight: 1,
           flexWrap: "nowrap",
           alignItems: "center",
         }}
       >
-        <p
+        <Subtitle
           style={{
-            fontSize: "1.5em",
             display: "inline-block",
             margin: 5,
             fontWeight: "bold",
+            opacity: isFinished ? 0 : 1,
           }}
         >
-          {totalQuestions - currentQuestionIndex + 1}
-        </p>
-        <p
+          {totalQuestions - currentQuestionIndex}
+        </Subtitle>
+        <SmallText
+          opacity
+          xs
           style={{
-            fontSize: "0.6em",
             display: "block",
             width: 5,
             margin: "0 20px 0 0",
           }}
         >
-          {totalQuestions - currentQuestionIndex + 1 === 1
-            ? t("general.questionLeft")
-            : t("general.questionsLeft")}
-        </p>
+          {questionsLeft}
+        </SmallText>
       </div>
     </>
   );
@@ -191,7 +212,7 @@ const ContentAfterStart = ({
 
 let prevStarAmount = 0;
 
-const StarContainer = ({ starAmount }) => {
+const StarContainer = ({ starAmount, totalQuestions }) => {
   // Star values
   const [scale, setScale] = useState(1);
   const [left, setLeft] = useState(window.innerWidth / 2);
@@ -199,6 +220,8 @@ const StarContainer = ({ starAmount }) => {
   const [opacity, setOpacity] = useState(0);
   const [transition, setTransition] = useState("");
   const [starAmountText, setStarAmountText] = useState(0);
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const clickMeButtonRef = useRef();
 
   function showStar() {
     setTransition(
@@ -223,24 +246,70 @@ const StarContainer = ({ starAmount }) => {
   }
 
   useEffect(() => {
+    // Only do this if the star amount increased or it was reset
     if (starAmount > prevStarAmount) {
       prevStarAmount = starAmount;
       showStar();
+    } else if (starAmount === 0) {
+      prevStarAmount = starAmount;
+      setStarAmountText(starAmount);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [starAmount]);
 
   return (
-    <div
-      style={{
-        background: "rgba(255,255,255,0.1)",
-        borderRadius: 6,
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        padding: 4,
-      }}
-    >
+    <>
+      <Popover
+        isOpen={isPopoverOpen}
+        positions={["bottom"]}
+        padding={10}
+        onClickOutside={() => setIsPopoverOpen(false)}
+        ref={clickMeButtonRef} // if you'd like a ref to your popover's child, you can grab one here
+        content={({ position, childRect, popoverRect }) => (
+          <ArrowContainer
+            position={position}
+            childRect={childRect}
+            popoverRect={popoverRect}
+            arrowColor={"white"}
+            arrowSize={6}
+            className="popover-arrow-container"
+            arrowClassName="popover-arrow"
+          >
+            <div
+              style={{
+                background: "white",
+                display: "flex",
+                borderRadius: 8,
+                padding: 8,
+              }}
+              onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+            >
+              <StarBox amount={starAmount} totalAmount={totalQuestions} />
+              <StarBox
+                amount={getStoredTotalAmount()}
+                totalAmount={getAllQuestionAmount()}
+                total
+              />
+            </div>
+          </ArrowContainer>
+        )}
+      >
+        <div
+          onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+          style={{
+            background: "rgba(255,255,255,0.1)",
+            borderRadius: 6,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: 4,
+            cursor: "pointer",
+          }}
+        >
+          <Star id="starAmountIcon" style={{ color: "yellow" }} />
+          <p style={{ margin: "0 2px" }}>{starAmountText}</p>
+        </div>
+      </Popover>
       <div
         id="animatedStar"
         style={{
@@ -251,13 +320,58 @@ const StarContainer = ({ starAmount }) => {
           opacity: opacity,
           transition: transition,
           zIndex: 100,
+          pointerEvents: "none",
         }}
       >
         <Star style={{ color: "yellow" }} />
       </div>
+    </>
+  );
+};
 
-      <Star id="starAmountIcon" style={{ color: "yellow" }} />
-      <p style={{ margin: "0 2px" }}>{starAmountText}</p>
+const StarBox = ({ amount, totalAmount, total = false }) => {
+  return (
+    <div
+      style={{
+        margin: total === true ? "0 0 0 4px" : "0 4px 0 0",
+        textAlign: "center",
+      }}
+    >
+      <div
+        style={{
+          background: total ? "silver" : "gold",
+          borderRadius: 4,
+          width: 80,
+          height: 80,
+          color: "black",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "column",
+            height: "100%",
+          }}
+        >
+          <Star style={{ color: "yellow" }} />
+          <p style={{ margin: 0, fontSize: "0.9em" }}>
+            <span style={{ fontWeight: 600, fontSize: "1.1em" }}>{amount}</span>
+            /<span style={{ fontWeight: 300 }}>{totalAmount}</span>
+          </p>
+        </div>
+      </div>
+      <p
+        style={{
+          margin: "4px 0 0 0",
+          fontSize: "0.8em",
+          fontWeight: 600,
+          color: total ? "grey" : "black",
+        }}
+      >
+        {total ? "Totalt" : "Detta quiz"}
+      </p>
     </div>
   );
 };

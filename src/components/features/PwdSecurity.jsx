@@ -5,8 +5,12 @@ import language from "hsimp-purescript/language/english";
 import characterSets from "hsimp-purescript/data/character-sets";
 import common from "hsimp-purescript/data/common/top10k";
 import patterns from "hsimp-purescript/data/patterns";
-import StyledTextField from "components/general/StyledTextField";
-import { SOCIAL_MEDIA_PROFILE } from "util/constants";
+import { StyledTextField } from "../general";
+import { SOCIAL_MEDIA_PROFILE } from "../../util/constants";
+import { RemoveRedEye } from "@material-ui/icons";
+import Subtitle from "components/general/typeography/Subtitle";
+import Title from "components/general/typeography/Title";
+import SmallText from "components/general/typeography/SmallText";
 
 const PwdSecurityModal = ({
   t,
@@ -19,9 +23,49 @@ const PwdSecurityModal = ({
   const [pwdTime, setPwdTime] = useState("");
   const [notice, setNotice] = useState("");
   const [checks, setChecks] = useState({});
+  const [visiblePwd, setVisiblePwd] = useState(false);
   const [profileBasedService] = useState(
     questionData.profileBasedService[profileForQuestion]
   );
+
+  const toggleVisiblePwd = () => {
+    setVisiblePwd(!visiblePwd);
+  };
+
+  const translate = (time) => {
+    time = time.replace("pico", "piko");
+    time = time.replace("micro", "mikro");
+    time = time.replace("hundred", "hundra");
+    time = time.replace("thousand", "tusen");
+    time = time.replace("million", "miljoner");
+    time = time.replace("billion", "miljarder");
+    time = time.replace("Instantly", "0 sekunder");
+
+    time = time.replace("seconds", "sekunder");
+    time = time.replace("second", "sekund");
+
+    time = time.replace("minutes", "minuter");
+    if (time.includes("minuter") === false) {
+      time = time.replace("minute", "minut");
+    }
+
+    time = time.replace("hours", "timmar");
+    time = time.replace("hour", "timme");
+
+    time = time.replace("days", "dagar");
+    time = time.replace("day", "dag");
+
+    time = time.replace("weeks", "veckor");
+    time = time.replace("week", "vecka");
+
+    time = time.replace("months", "månader");
+    time = time.replace("month", "månad");
+
+    time = time.replace("years", "år");
+    time = time.replace("year", "år");
+
+    return time;
+  };
 
   const config = {
     calculationsPerSecond: 40e9,
@@ -39,7 +83,7 @@ const PwdSecurityModal = ({
     let res = hsimp(e.target.value);
     setPassword(e.target.value);
     setPwd(e.target.value);
-    setPwdTime(res.time);
+    setPwdTime(translate(res.time));
     setNotice(res.level);
     setChecks(res.checks);
     setPwdIsSecure(res.time.includes("years"));
@@ -76,61 +120,87 @@ const PwdSecurityModal = ({
         >
           Allt samlat.
         </span>
-        <StyledTextField
-          onChange={onChange}
-          margin="normal"
-          fullWidth
-          autoFocus
-          variant="filled"
-          label={t("questions.passwordCheck.inputPlaceholder")}
-          color={profileBasedService.secondColor}
-        />
+        <div style={{ position: "relative" }}>
+          <StyledTextField
+            onChange={onChange}
+            margin="normal"
+            fullWidth
+            autoFocus
+            variant="filled"
+            //type={visiblePwd === true ? "default" : "password"}
+            label={t("questions.passwordCheck.inputPlaceholder")}
+            color={profileBasedService.secondColor}
+          />
+          {/*<EyeVisibleButton
+            visiblePwd={visiblePwd}
+            toggleVisiblePwd={toggleVisiblePwd}
+          />*/}
+        </div>
         <div
           style={{
             borderRadius: 5,
             background: profileBasedService.thirdColor,
             color: profileBasedService.color,
-            fontSize: "0.8em",
-            padding: "15px 0",
             transition: "0.3s ease-in-out",
+            padding: "8px 0",
             border: "none",
             textAlign: "center",
             width: "100%",
             display: pwd === "" ? "none" : "inline-block",
           }}
         >
-          <h3 style={{ margin: 0, opacity: "0.8" }}>
+          <SmallText style={{ margin: 0, opacity: "0.8" }}>
             {t("questions.passwordCheck.resultPrefix")}
-          </h3>
-          <h2
+          </SmallText>
+          <Subtitle
             style={{
               margin: "5px 0",
               lineHeight: 1,
-              fontSize: "1.7em",
               fontWeight: "800",
             }}
           >
             {pwdTime}
-          </h2>
-          <h3 style={{ margin: 0, opacity: "0.8" }}>
+          </Subtitle>
+          <SmallText style={{ margin: 0, opacity: "0.8" }}>
             {t("questions.passwordCheck.resultSuffix")}
-          </h3>
+          </SmallText>
         </div>
-        <span
+        <SmallText
+          opacity
+          xs
           style={{
             display: "block",
-            marginTop: 15,
+            marginTop: 12,
             textAlign: "center",
-            fontSize: "0.7em",
-            opacity: "0.7",
             color: profileBasedService.thirdColor,
             lineHeight: 1,
           }}
         >
           Använder samma teknologi som howsecureismypassword.net
-        </span>
+        </SmallText>
       </div>
     </>
+  );
+};
+
+const EyeVisibleButton = ({ visiblePwd, toggleVisiblePwd }) => {
+  return (
+    <div
+      style={{
+        position: "absolute",
+        right: 10,
+        top: 0,
+        paddingTop: 32,
+        cursor: "pointer",
+      }}
+      onClick={toggleVisiblePwd}
+    >
+      <RemoveRedEye
+        style={{
+          color: visiblePwd ? "rgba(0,0,0,0.)" : "rgba(0,0,0,0.4)",
+        }}
+      />
+    </div>
   );
 };
 

@@ -1,9 +1,12 @@
 //0 sets the height to windowHeight
 export const HEIGHT = 0;
 
+// Quiz Settings
+export const MAX_AMOUNT_QUESTIONS = 12;
+
 // Global colors
 export const BLUE = "#063955";
-export const PURPLE = "#292881";
+export const PURPLE = "#293881";
 export const PINK = "#E2147E";
 export const PALEBLUE = "#1DB6EB";
 export const BLACK = "#111111";
@@ -38,12 +41,16 @@ export const PROFILE_STYLING = {
 // Categories
 export const SHARED_PASSWORD_QUESTION = "SHARED_PASSWORD_QUESTION";
 export const PUBLIC_WIFI_QUESTION = "PUBLIC_WIFI_QUESTION";
-export const FAKE_WEBSITE_QUESTION = "FAKE_WEBSITE_QUESTION";
+export const DECEIVE_WEBSITE = "DECEIVE_WEBSITE";
 export const PASSWORD_STRENGTH_QUESTION = "PASSWORD_STRENGTH_QUESTION";
 export const WIFI_ON_QUESTION = "WIFI_ON_QUESTION";
 export const ROMANCE_SCAM = "ROMANCE_SCAM";
+export const BLACKMAIL = "BLACKMAIL";
+export const DONT_CLICK_LINK = "DONT_CLICK_LINK";
 export const USE_SAME_PASSWORD = "USE_SAME_PASSWORD";
+export const SHOULDER_SURFING = "SHOULDER_SURFING";
 export const RANK_PASSWORDS = "RANK_PASSWORDS";
+export const VIRUS = "VIRUS";
 
 // Question types
 export const YES_NO = "YES_NO";
@@ -52,6 +59,7 @@ export const SEVERAL_OPTION = "SEVERAL_OPTION";
 export const PASSWORD_INPUT = "PASSWORD_INPUT";
 export const CHAT = "CHAT";
 export const FAKE_WEBSITE = "FAKE_WEBSITE";
+export const FAKE_DOMAIN = "FAKE_DOMAIN";
 export const ORDER = "ORDER";
 
 export const QUESTIONS = [
@@ -86,8 +94,8 @@ export const QUESTIONS = [
     emojis: ["📱", "🔒"],
     readMoreLink:
       "https://sakerhetskollen.se/testa-din-sakerhet/ar-du-saker-pa-ditt-losenord",
-    yes_score: 0,
-    no_score: 1,
+    yes_score: 1,
+    no_score: 0,
   },
   {
     id: 3,
@@ -97,12 +105,20 @@ export const QUESTIONS = [
     title: "questions.romanceScamChat.title",
     text: "questions.romanceScamChat.text",
     moreInfo: "questions.romanceScamChat.moreInfo",
-    emojis: ["☕", "📶"],
+    evenMoreInfo: "questions.romanceScamChat.evenMoreInfo",
+    yourAnswer: "questions.romanceScamChat.yourAnswer",
+    from: "questions.romanceScamChat.from",
     readMoreLink:
       "https://sakerhetskollen.se/testa-din-sakerhet/ar-du-saker-pa-ditt-losenord",
     options: [
       { text: "questions.romanceScamChat.bad", score: 0 },
       { text: "questions.romanceScamChat.good", score: 1 },
+    ],
+    smses: [
+      { side: "left", text: "questions.romanceScamChat.chat1" },
+      { side: "right", text: "questions.romanceScamChat.chat2" },
+      { side: "left", text: "questions.romanceScamChat.chat3" },
+      { side: "left", text: "questions.romanceScamChat.chat4" },
     ],
   },
   {
@@ -160,7 +176,6 @@ export const QUESTIONS = [
     title: "questions.publicWifi.title",
     text: "questions.publicWifi.text",
     moreInfo: "questions.publicWifi.moreInfo",
-    emojis: ["☕", "📶"],
     readMoreLink:
       "https://sakerhetskollen.se/testa-din-sakerhet/ar-du-saker-pa-ditt-losenord",
     options: [
@@ -174,15 +189,12 @@ export const QUESTIONS = [
   },
   {
     id: 6,
-    category: FAKE_WEBSITE_QUESTION,
+    category: DECEIVE_WEBSITE,
     type: FAKE_WEBSITE,
     forProfile: GENERAL_PROFILE,
     title: "questions.fakeWebsite.title",
     text: "questions.fakeWebsite.text",
     moreInfo: "questions.fakeWebsite.moreInfo",
-    emojis: ["☕", "📶"],
-    readMoreLink:
-      "https://sakerhetskollen.se/testa-din-sakerhet/ar-du-saker-pa-ditt-losenord",
   },
   {
     id: 7,
@@ -202,14 +214,103 @@ export const QUESTIONS = [
     title: "questions.rankpasswords.title",
     text: "questions.rankpasswords.text",
     moreInfo: "questions.rankpasswords.moreInfo",
+    evenMoreInfo: "questions.rankpasswords.evenMoreInfo",
     best: "questions.rankpasswords.best",
     worst: "questions.rankpasswords.worst",
     options: [
       { text: "abc123", id: "1" },
       { text: "mångabäckarsmågrodorna", id: "2" },
-      { text: "sommar2021!", id: "3" },
+      { text: "Vinter1994?", id: "3" },
       { text: "{wz_kjq?ycl&aP#/", id: "4" },
     ],
     correctIdOrder: ["4", "3", "2", "1"],
+  },
+  {
+    id: 9,
+    category: BLACKMAIL,
+    type: CHAT,
+    forProfile: GENERAL_PROFILE,
+    title: "questions.blackmailChat.title",
+    text: "questions.blackmailChat.text",
+    moreInfo: "questions.blackmailChat.moreInfo",
+    evenMoreInfo: "questions.blackmailChat.evenMoreInfo",
+    yourAnswer: "questions.blackmailChat.yourAnswer",
+    from: "questions.blackmailChat.from",
+    options: [
+      { text: "questions.blackmailChat.bad", score: 0 },
+      { text: "questions.blackmailChat.good", score: 1 },
+    ],
+    smses: [
+      { side: "left", text: "questions.blackmailChat.chat1" },
+      { side: "left", image: "intim1" },
+      { side: "left", text: "questions.blackmailChat.chat2" },
+    ],
+  },
+  {
+    id: 10,
+    category: DONT_CLICK_LINK,
+    type: CHAT,
+    forProfile: GENERAL_PROFILE,
+    title: "questions.dontClickLinkPhoto.title",
+    text: "questions.dontClickLinkPhoto.text",
+    moreInfo: "questions.dontClickLinkPhoto.moreInfo",
+    evenMoreInfo: "questions.dontClickLinkPhoto.evenMoreInfo",
+    yourAnswer: "questions.dontClickLinkPhoto.yourAnswer",
+    from: "questions.dontClickLinkPhoto.from",
+    options: [
+      { text: "questions.dontClickLinkPhoto.bad", score: 0 },
+      { text: "questions.dontClickLinkPhoto.good", score: 1 },
+    ],
+    smses: [
+      { side: "left", text: "questions.dontClickLinkPhoto.chat1" },
+      { side: "left", image: "dontClickVideo" },
+      { side: "left", text: "questions.dontClickLinkPhoto.chat2" },
+    ],
+  },
+  {
+    id: 11,
+    category: DECEIVE_WEBSITE,
+    type: FAKE_DOMAIN,
+    forProfile: GENERAL_PROFILE,
+    title: "questions.fakeDomain.title",
+    text: "questions.fakeDomain.text",
+    moreInfo: "questions.fakeDomain.moreInfo",
+    evenMoreInfo: "questions.fakeDomain.evenMoreInfo",
+  },
+  {
+    id: 12,
+    category: SHOULDER_SURFING,
+    type: DRAG_TO_TRASH,
+    forProfile: SOCIAL_MEDIA_PROFILE,
+    title: "questions.shoulderSurfSocial.title",
+    text: "questions.shoulderSurfSocial.text",
+    moreInfo: "questions.shoulderSurfSocial.moreInfo",
+    evenMoreInfo: "questions.shoulderSurfSocial.evenMoreInfo",
+    dragToTrashText: "questions.shoulderSurfSocial.dragToTrashText",
+  },
+  {
+    id: 13,
+    category: SHOULDER_SURFING,
+    type: DRAG_TO_TRASH,
+    forProfile: GAMING_PROFILE,
+    title: "questions.shoulderSurfGaming.title",
+    text: "questions.shoulderSurfGaming.text",
+    moreInfo: "questions.shoulderSurfGaming.moreInfo",
+    evenMoreInfo: "questions.shoulderSurfGaming.evenMoreInfo",
+    dragToTrashText: "questions.shoulderSurfGaming.dragToTrashText",
+  },
+  {
+    id: 14,
+    category: VIRUS,
+    type: SEVERAL_OPTION,
+    forProfile: STREAMING_PROFILE,
+    title: "questions.downloadFilmVirus.title",
+    text: "questions.downloadFilmVirus.text",
+    moreInfo: "questions.downloadFilmVirus.moreInfo",
+    options: [
+      { text: "questions.downloadFilmVirus.option1", score: 1 },
+      { text: "questions.downloadFilmVirus.option2", score: 0 },
+      { text: "questions.downloadFilmVirus.option3", score: 0 },
+    ],
   },
 ];

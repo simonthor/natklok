@@ -7,7 +7,7 @@ import {
 import TextField from "@material-ui/core/TextField";
 import { WHITE } from "util/constants";
 
-export default ({
+const StyledTextField = ({
   inputProps,
   onChange,
   margin,
@@ -73,3 +73,5 @@ export default ({
     </ThemeProvider>
   );
 };
+
+export default StyledTextField;

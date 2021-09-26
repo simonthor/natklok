@@ -1,12 +1,12 @@
 import React from "react";
 
-export default ({ children, colored, href, style }) => (
+const StyledLink = ({ children, href, style }) => (
   <a
     href={href}
     target="_blank"
     rel="noopener noreferrer"
     style={{
-      color: colored !== undefined ? "lightblue" : "grey",
+      color: "white",
       fontWeight: 500,
       textDecoration: "none",
       cursor: "pointer",
@@ -16,3 +16,5 @@ export default ({ children, colored, href, style }) => (
     {children}
   </a>
 );
+
+export default StyledLink;

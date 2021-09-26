@@ -1,6 +1,6 @@
 import React from "react";
 
-const CurrentBlock = ({ lineWidth = 2}) => {
+const CurrentBlock = ({ lineWidth = 2 }) => {
   return (
     <div
       style={{

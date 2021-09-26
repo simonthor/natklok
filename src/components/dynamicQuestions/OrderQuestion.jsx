@@ -13,8 +13,6 @@ const OrderQuestion = ({ questionData, t, onSelectAnswer }) => {
     let order = options.map((options) => {
       return options.id;
     });
-    console.log(order);
-    console.log(questionData.correctIdOrder);
 
     // Compare by casting to strings
     let correctOrder = questionData.correctIdOrder + "" === order + "";
@@ -47,7 +45,7 @@ const OrderQuestion = ({ questionData, t, onSelectAnswer }) => {
 
   return (
     <>
-      <div style={{ display: "flex", width: "100%" }}>
+      <div style={{ display: "flex", width: "100%", overflow: "hidden" }}>
         <div style={{ flex: "100% auto", paddingRight: "1em" }}>
           <div
             style={{
@@ -77,7 +75,7 @@ const OrderQuestion = ({ questionData, t, onSelectAnswer }) => {
         </div>
         <div style={{ flex: 1 }}>
           <DragDropContext onDragEnd={handleOnDragEnd}>
-            <Droppable droppableId="characters">
+            <Droppable droppableId="items">
               {(provided) => (
                 <ul
                   className="items"
@@ -106,7 +104,9 @@ const OrderQuestion = ({ questionData, t, onSelectAnswer }) => {
           </DragDropContext>
         </div>
       </div>
-      <StyledButton onClick={checkAnswer}>{t("general.done")}</StyledButton>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <StyledButton onClick={checkAnswer}>{t("general.done")}</StyledButton>
+      </div>
     </>
   );
 };

@@ -12,7 +12,7 @@ const Loading = () => {
         background: PURPLE,
         height: "100vh",
         width: "100vw",
-        paddingTop: "30%",
+        paddingTop: "10%",
       }}
     >
       <Logo />

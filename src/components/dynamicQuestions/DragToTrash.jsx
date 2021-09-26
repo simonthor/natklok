@@ -3,7 +3,7 @@ import Draggable from "react-draggable"; // The default
 
 import Delete from "@material-ui/icons/Delete";
 import ArrowBack from "@material-ui/icons/ArrowBack";
-
+import SmallText from "components/general/typeography/SmallText";
 
 const DragToTrash = ({ questionData, onSelectAnswer, t }) => {
   const [isOverTrash, setIsOverTrash] = useState(false);
@@ -74,16 +74,15 @@ const TrashCan = ({ isOver }) => {
           fontSize: "3.5em",
         }}
       />
-      <p
+      <SmallText
         style={{
           margin: 0,
-          fontSize: "1em",
           color: "black",
           opacity: isOver ? 0.7 : 0.2,
         }}
       >
         Trash
-      </p>
+      </SmallText>
     </div>
   );
 };

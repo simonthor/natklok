@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ShareOutlinedIcon from "@material-ui/icons/ShareOutlined";
 import { withTranslation } from "react-i18next";
+import SmallText from "components/general/typeography/SmallText";
 
 const copyToClipBoard = (setShowCopied, questionId) => {
   let href = window.location.href;
@@ -21,8 +22,6 @@ const SocialShare = ({ shareText, style, questionId, t }) => {
         justifyContent: "center",
         flexDirection: "column",
         textAlign: "center",
-        opacity: 0.8,
-        fontSize: "0.8em",
       }}
     >
       <div
@@ -39,13 +38,15 @@ const SocialShare = ({ shareText, style, questionId, t }) => {
           ...style,
         }}
       >
-        <ShareOutlinedIcon style={{ marginRight: 5 }} />
-        <span style={{ marginRight: 10 }}>{shareText}</span>
+        <ShareOutlinedIcon style={{ opacity: "0.6", marginRight: 5 }} />
+        <SmallText opacity style={{ marginRight: 10 }}>
+          {shareText}
+        </SmallText>
       </div>
       {showCopied && (
-        <p style={{ fontSize: "0.8em", opacity: 0.7, margin: 0 }}>
+        <SmallText opacity style={{ margin: 0 }}>
           {t("general.copied")}
-        </p>
+        </SmallText>
       )}
     </div>
   );
