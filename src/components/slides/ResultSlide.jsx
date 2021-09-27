@@ -109,24 +109,20 @@ const ResultSlide = ({
               style={{
                 display: "flex",
                 marginTop: 12,
-                justifyContent: "center",
-                flexDirection: "column",
-                alignItems: "center",
-                width: 200,
               }}
             >
               <StyledButton
                 onClick={() => {
                   redoTest(false);
                 }}
-                style={{ margin: "8px 0" }}
+                style={{ margin: "8px 8px 8px 0" }}
               >
                 {t("result.redo")}
               </StyledButton>
               <StyledLink href="https://sakerhetskollen.typeform.com/to/StcP4PFK">
-                <SmallText opacity style={{ marginTop: 0 }}>
+                <StyledButton style={{ margin: "8px 0", background: PALEBLUE }}>
                   Ge feedback här!
-                </SmallText>
+                </StyledButton>
               </StyledLink>
             </div>
 
