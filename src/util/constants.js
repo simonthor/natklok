@@ -60,11 +60,44 @@ export const PASSWORD_INPUT = "PASSWORD_INPUT";
 export const CHAT = "CHAT";
 export const FAKE_WEBSITE = "FAKE_WEBSITE";
 export const FAKE_DOMAIN = "FAKE_DOMAIN";
+export const SEARCH_RESULT = "SEARCH_RESULT";
 export const ORDER = "ORDER";
 
 export const QUESTIONS = [
   {
     id: 1,
+    category: DONT_CLICK_LINK,
+    type: SEARCH_RESULT,
+    forProfile: GENERAL_PROFILE,
+    title: "questions.searchResult.title",
+    text: "questions.searchResult.text",
+    moreInfo: "questions.searchResult.moreInfo",
+    evenMoreInfo: "questions.searchResult.evenMoreInfo",
+    linkSets: [{
+      adLinks: [{
+        url: "https://www.post.em/Frimarken-Rabatt",
+        title: "Frimärken för 1kr | Köp hos Postem'",
+        metaDesc: "Halva priset för frimärken 70% rabatt på Västkusten Leverans i Sverige på några dagar Garanterat pris"
+      },
+      {
+        url: "https://www.ship.py/shipments",
+        title: "Vad kostar ett frimärke? - Vi skickar ditt paket.",
+        metaDesc: "Shippy är världsledande på moderna och högteknologiska fraktlösningar som kräver minimal kundkontakt och ger maximal avkastning."
+      }],
+      suspiciousLink: {
+        url: "https://postn0rd-sverige-norden.gq/786",
+        title: "Frimärken | Postnord Sverige",
+        metaDesc: "Med direktbetalande kund menar vi dig som betalar via internetbank eller med kort och inte har något avtal med oss. Se portotabeller."
+      },
+      legitLink: {
+        url: "www.",
+        title: "Portotabell och priser för brev inrikes | PostNord",
+        metaDesc: "Här hittar du portotabeller som visar vad det kostar för dig som direktbetalande kund att skicka brev och paket inrikes och utrikes."
+      }
+    }]
+  },
+  {
+    id: 2,
     category: SHARED_PASSWORD_QUESTION,
     type: SEVERAL_OPTION,
     forProfile: GAMING_PROFILE,
@@ -84,7 +117,7 @@ export const QUESTIONS = [
     ],
   },
   {
-    id: 2,
+    id: 3,
     category: SHARED_PASSWORD_QUESTION,
     type: YES_NO,
     forProfile: SOCIAL_MEDIA_PROFILE,
@@ -98,7 +131,7 @@ export const QUESTIONS = [
     no_score: 0,
   },
   {
-    id: 3,
+    id: 4,
     category: ROMANCE_SCAM,
     type: CHAT,
     forProfile: GENERAL_PROFILE,
@@ -122,7 +155,7 @@ export const QUESTIONS = [
     ],
   },
   {
-    id: 4,
+    id: 5,
     category: PASSWORD_STRENGTH_QUESTION,
     type: PASSWORD_INPUT,
     forProfile: GENERAL_PROFILE,
@@ -169,7 +202,7 @@ export const QUESTIONS = [
     ],
   },
   {
-    id: 5,
+    id: 6,
     category: PUBLIC_WIFI_QUESTION,
     type: SEVERAL_OPTION,
     forProfile: GENERAL_PROFILE,
@@ -188,7 +221,7 @@ export const QUESTIONS = [
     ],
   },
   {
-    id: 6,
+    id: 7,
     category: DECEIVE_WEBSITE,
     type: FAKE_WEBSITE,
     forProfile: GENERAL_PROFILE,
@@ -197,7 +230,7 @@ export const QUESTIONS = [
     moreInfo: "questions.fakeWebsite.moreInfo",
   },
   {
-    id: 7,
+    id: 8,
     category: USE_SAME_PASSWORD,
     type: DRAG_TO_TRASH,
     forProfile: GENERAL_PROFILE,
@@ -207,7 +240,7 @@ export const QUESTIONS = [
     dragToTrashText: "questions.trashSamePassword.dragToTrashText",
   },
   {
-    id: 8,
+    id: 9,
     category: RANK_PASSWORDS,
     type: ORDER,
     forProfile: GENERAL_PROFILE,
@@ -226,7 +259,7 @@ export const QUESTIONS = [
     correctIdOrder: ["4", "3", "2", "1"],
   },
   {
-    id: 9,
+    id: 10,
     category: BLACKMAIL,
     type: CHAT,
     forProfile: GENERAL_PROFILE,
@@ -247,7 +280,7 @@ export const QUESTIONS = [
     ],
   },
   {
-    id: 10,
+    id: 11,
     category: DONT_CLICK_LINK,
     type: CHAT,
     forProfile: GENERAL_PROFILE,
@@ -268,7 +301,7 @@ export const QUESTIONS = [
     ],
   },
   {
-    id: 11,
+    id: 12,
     category: DECEIVE_WEBSITE,
     type: FAKE_DOMAIN,
     forProfile: GENERAL_PROFILE,
@@ -278,7 +311,7 @@ export const QUESTIONS = [
     evenMoreInfo: "questions.fakeDomain.evenMoreInfo",
   },
   {
-    id: 12,
+    id: 13,
     category: SHOULDER_SURFING,
     type: DRAG_TO_TRASH,
     forProfile: SOCIAL_MEDIA_PROFILE,
@@ -289,7 +322,7 @@ export const QUESTIONS = [
     dragToTrashText: "questions.shoulderSurfSocial.dragToTrashText",
   },
   {
-    id: 13,
+    id: 14,
     category: SHOULDER_SURFING,
     type: DRAG_TO_TRASH,
     forProfile: GAMING_PROFILE,
@@ -300,7 +333,7 @@ export const QUESTIONS = [
     dragToTrashText: "questions.shoulderSurfGaming.dragToTrashText",
   },
   {
-    id: 14,
+    id: 15,
     category: VIRUS,
     type: SEVERAL_OPTION,
     forProfile: STREAMING_PROFILE,
