@@ -18,6 +18,7 @@ import {
   ORDER,
   FAKE_DOMAIN,
   YES_NO,
+  SEARCH_RESULT
 } from "util/constants";
 import ChatQuestion from "components/dynamicQuestions/ChatQuestion";
 import FakeWebsite from "components/dynamicQuestions/FakeWebsite";
@@ -25,6 +26,7 @@ import OrderQuestion from "components/dynamicQuestions/OrderQuestion";
 import YesNoWrapper from "components/features/YesNoWrapper";
 import DragToTrash from "components/dynamicQuestions/DragToTrash";
 import FakeDomain from "components/dynamicQuestions/FakeDomain";
+import SearchResult from "components/dynamicQuestions/SearchResult";
 import { addCorrectAnswer } from "util/totalScore";
 import Title from "components/general/typeography/Title";
 
@@ -247,73 +249,82 @@ const AnswerOptions = ({
   profileForQuestion,
   setChangedTitle,
 }) => {
-  if (questionData.type === CHAT) {
-    return (
-      <ChatQuestion
+  switch (questionData.type) {
+    case CHAT:
+      return (
+        <ChatQuestion
         t={t}
         questionData={questionData}
         onSelectAnswer={onSelectAnswer}
       />
-    );
-  } else if (questionData.type === FAKE_WEBSITE) {
-    return (
-      <FakeWebsite
-        t={t}
-        options={questionData.options}
-        onSelectAnswer={onSelectAnswer}
-      />
-    );
-  } else if (questionData.type === FAKE_DOMAIN) {
-    return (
-      <FakeDomain
-        t={t}
-        options={questionData.options}
-        onSelectAnswer={onSelectAnswer}
-      />
-    );
-  } else if (questionData.type === ORDER) {
-    return (
-      <OrderQuestion
-        questionData={questionData}
-        t={t}
-        onSelectAnswer={onSelectAnswer}
-      />
-    );
-  } else if (questionData.type === SEVERAL_OPTION) {
-    return (
-      <>
-        {questionData.options.map((option) => (
-          <div style={{ margin: "6px 0" }}>
-            <StyledButton
-              onClick={() => onSelectAnswer(option.score)}
-              style={{ width: "100%", textAlign: "center" }}
-            >
-              {t(option.text)}
-            </StyledButton>
-          </div>
-        ))}
-      </>
-    );
-  } else if (questionData.type === DRAG_TO_TRASH) {
-    return (
-      <DragToTrash
-        questionData={questionData}
-        onSelectAnswer={onSelectAnswer}
-        t={t}
-      />
-    );
-  } else if (questionData.type === PASSWORD_INPUT) {
-    return (
-      <PasswordCheck
-        onSelectAnswer={onSelectAnswer}
-        questionData={questionData}
-        profileForQuestion={profileForQuestion}
-        t={t}
-        setChangedTitle={setChangedTitle}
-      />
-    );
-  } else {
-    return null;
+      )
+    case FAKE_WEBSITE:
+      return (
+        <FakeWebsite
+          t={t}
+          options={questionData.options}
+          onSelectAnswer={onSelectAnswer}
+        />
+      );
+    case FAKE_DOMAIN:
+      return (
+        <FakeDomain
+          t={t}
+          options={questionData.options}
+          onSelectAnswer={onSelectAnswer}
+        />
+      );
+    case ORDER:
+      return (
+        <OrderQuestion
+          questionData={questionData}
+          t={t}
+          onSelectAnswer={onSelectAnswer}
+        />
+      );
+    case SEVERAL_OPTION:
+      return (
+        <>
+          {questionData.options.map((option) => (
+            <div style={{ margin: "6px 0" }}>
+              <StyledButton
+                onClick={() => onSelectAnswer(option.score)}
+                style={{ width: "100%", textAlign: "center" }}
+              >
+                {t(option.text)}
+              </StyledButton>
+            </div>
+          ))}
+        </>
+      );
+    case DRAG_TO_TRASH:
+      return (
+        <DragToTrash
+          questionData={questionData}
+          onSelectAnswer={onSelectAnswer}
+          t={t}
+        />
+      );
+    case PASSWORD_INPUT:
+      return (
+        <PasswordCheck
+          onSelectAnswer={onSelectAnswer}
+          questionData={questionData}
+          profileForQuestion={profileForQuestion}
+          t={t}
+          setChangedTitle={setChangedTitle}
+        />
+      );
+    case SEARCH_RESULT:
+      return (
+        <SearchResult
+          t={t}
+          questionData={questionData}
+          onSelectAnswer={onSelectAnswer}
+        />
+      );
+    default:
+      return null;
   }
 };
 
