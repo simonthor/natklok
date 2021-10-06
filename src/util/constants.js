@@ -77,7 +77,7 @@ export const QUESTIONS = [
       adLinks: [{
         url: "https://www.post.em/Frimarken-Rabatt",
         title: "Frimärken för 1kr | Köp hos Postem'",
-        metaDesc: "Halva priset för frimärken 70% rabatt på Västkusten Leverans i Sverige på några dagar Garanterat pris"
+        metaDesc: "Halva priset för frimärken  70% rabatt på Västkusten  Leverans i Sverige på några dagar  Garanterat pris"
       },
       {
         url: "https://www.ship.py/shipments",
@@ -90,7 +90,7 @@ export const QUESTIONS = [
         metaDesc: "Med direktbetalande kund menar vi dig som betalar via internetbank eller med kort och inte har något avtal med oss. Se portotabeller."
       },
       legitLink: {
-        url: "www.",
+        url: "https://www.postnord.se/inrikes/portotabeller",
         title: "Portotabell och priser för brev inrikes | PostNord",
         metaDesc: "Här hittar du portotabeller som visar vad det kostar för dig som direktbetalande kund att skicka brev och paket inrikes och utrikes."
       }
