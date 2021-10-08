@@ -1,192 +1,102 @@
 import React from "react";
-import { useState } from "react";
-
-import { Hidden } from "@material-ui/core";
-import { WarningOutlined } from "@material-ui/icons";
+import SearchResultLink from "../features/SearchResultLink";
+import { withTranslation } from "react-i18next";
+import searchEngineLogo from "../../assets/searchEngineLogo.svg";
 
 const SearchResults = ({ questionData, onSelectAnswer, t }) => {
-  const [scams, setScams] = useState({
-    httpFound: false,
-    finalDomainScam: false,
-  });
-  const [linkHover, setLinkHover] = useState([false,false,false,false])
-
-  let amountFound = 0;
-  Object.values(scams).forEach((found) => {
-    if (found === true) {
-      amountFound += 1;
-    }
-  });
-  if (amountFound === Object.values(scams).length) {
-    onSelectAnswer(1, "", "", 500); 
-  }
-
+  let randomQuery = questionData.searches[Math.floor(Math.random() * questionData.searches.length)];
   const dark = window.matchMedia("(prefers-color-scheme: dark)");
 
+  const pointsController = (index) => {
+    if (index === randomQuery.correctAnswerIndex) {
+      let correct = questionData.options.correct
+      onSelectAnswer(correct.score, "", correct.text, 500)
+    } else if (randomQuery.links[index].type === "ad") {
+      let partially = questionData.options.partially
+      onSelectAnswer(partially.score, "", partially.text, 500)
+    } else {
+      let wrong = questionData.options.wrong
+      onSelectAnswer(wrong.score, "", wrong.text, 500)
+    }
+  }
+
   return (
-    <div style={{
-      width: "100%",
-      backgroundColor: dark ? "#1d2342" : "#dedee0",
-      color: dark ? "#e5e5ea" : "#151e4a",
-    }}>
-      <div style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: 10,
-        backgroundColor: dark ? "#10142b" : "#fff",
-      }}>
-        <div>logo</div>
-        <div style={{
-          width: "80%",
-          display: "flex",
-          height: 38,
-          alignItems: "center",
-          backgroundColor: dark ? "#212959" : "#fff",
-          padding: "0 15px",
-          borderRadius: 19,
-          fontSize: "0.85em"
-        }}>Vad kostar ett frimärke?</div>
-      </div>
-      <div style={{
-        display: "flex",
-        paddingLeft: 20,
-        alignItems: "center",
-        fontSize: "0.75em",
-        fontWeight: "bold",
-        backgroundColor: dark ? "#10142b" : "#fff",
-      }}>
-        <div style={{
-          color: "#7d9efa",
-          padding: "7px 0",
-          margin: "0 5px",
-          borderBottom: "3px solid #7d9efa"
-        }}>Allt</div>
-        <div style={{
-          padding: "7px 0",
-          margin: "0 5px",
-          borderBottom: "3px solid transparent"
-        }}>Bilder</div>
-        <div style={{
-          padding: "7px 0",
-          margin: "0 5px",
-          borderBottom: "3px solid transparent"
-        }}>Nyheter</div>
-      </div>
-      <div style={{
-        margin: 10,
-        padding: 10,
-        paddingBottom: 5
+    <div
+      style={{
+        width: "100%",
+        backgroundColor: dark ? "#1d2342" : "#fff",
+        color: dark ? "#e5e5ea" : "#3e3e3e",
+        borderRadius: 6
       }}
-      onMouseEnter={() => setLinkHover([true,false,false,false])}
-      onMouseLeave={() => setLinkHover(false)}>
-        <div style={{
+    >
+      <div
+        style={{
           display: "flex",
-        }}>
-          <span style={{
-            fontSize: "0.6em",
-            padding: "1px 5px",
-            color: "#1d2342",
-            fontWeight: "bold",
-            borderRadius: 4,
-            backgroundColor: "#f1c232",
-            marginRight: 6
-          }}>ANNONS</span>
-          <span style={{
-          display: "block",
-          fontSize: "0.7em",
-          opacity: 0.9
-        }}>{questionData.linkSets[0].adLinks[0].url}</span>
-        </div>
-        <span style={{
-          margin: "3px 0",
-          display: "block"
-        }}>{questionData.linkSets[0].adLinks[0].title}</span>
-        <p style={{
-          margin: 0,
-          fontSize: "0.8em"
-        }}>{questionData.linkSets[0].adLinks[0].metaDesc}</p>
+          justifyContent: "space-between",
+          alignItems: "center",
+          borderRadius: "6px 6px 0 0",
+          padding: 10,
+          backgroundColor: dark ? "#10142b" : "#fff",
+        }}
+      >
+        <div style={{marginTop: 3, marginLeft: 3}}><img src={searchEngineLogo} alt="Piggy Sökmotor" width="42"/></div>
+        <div
+          style={{
+            width: "80%",
+            display: "flex",
+            height: 38,
+            alignItems: "center",
+            backgroundColor: dark ? "#212959" : "#fff",
+            border: dark ? "none" : "1px solid gray",
+            padding: "0 15px",
+            borderRadius: 19,
+            fontSize: "0.85em",
+            cursor: "text"
+          }}
+        >{randomQuery.query}</div>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          paddingLeft: 20,
+          alignItems: "center",
+          fontSize: "0.75em",
+          fontWeight: "bold",
+          backgroundColor: dark ? "#10142b" : "#fff",
+        }}
+      >
+        <div
+          style={{
+            color: "#7d9efa",
+            padding: "7px 0",
+            margin: "0 5px",
+            borderBottom: "3px solid #7d9efa",
+            cursor: "pointer"
+          }}
+        >{questionData.searchCategories[0]}</div>
+        <div
+          style={{
+            padding: "7px 0",
+            margin: "0 5px",
+            borderBottom: "3px solid transparent",
+            cursor: "pointer",
+          }}>{questionData.searchCategories[1]}</div>
+        <div
+          style={{
+            padding: "7px 0",
+            margin: "0 5px",
+            borderBottom: "3px solid transparent",
+            cursor: "pointer",
+          }}
+        >{questionData.searchCategories[2]}</div>
       </div>
       <div style={{
-        margin: 10,
-        padding: 10,
-        paddingBottom: 5
+        padding: 20
       }}>
-        <div style={{
-          display: "flex",
-        }}>
-          <span style={{
-            fontSize: "0.6em",
-            padding: "1px 5px",
-            color: "#1d2342",
-            fontWeight: "bold",
-            borderRadius: 4,
-            backgroundColor: "#f1c232",
-            marginRight: 6
-          }}>ANNONS</span>
-          <span style={{
-          display: "block",
-          fontSize: "0.7em",
-          opacity: 0.9
-        }}>{questionData.linkSets[0].adLinks[1].url}</span>
-        </div>
-        <span style={{
-          margin: "3px 0",
-          display: "block"
-        }}>{questionData.linkSets[0].adLinks[1].title}</span>
-        <p style={{
-          margin: 0,
-          fontSize: "0.8em"
-        }}>{questionData.linkSets[0].adLinks[1].metaDesc}</p>
-      </div>
-      <div style={{
-        margin: 10,
-        padding: 10,
-        paddingBottom: 5
-      }}>
-        <div style={{
-          display: "flex",
-        }}>
-          <span style={{
-          display: "block",
-          fontSize: "0.7em",
-          opacity: 0.9
-        }}>{questionData.linkSets[0].suspiciousLink.url}</span>
-        </div>
-        <span style={{
-          margin: "3px 0",
-          display: "block"
-        }}>{questionData.linkSets[0].suspiciousLink.title}</span>
-        <p style={{
-          margin: 0,
-          fontSize: "0.8em"
-        }}>{questionData.linkSets[0].suspiciousLink.metaDesc}</p>
-      </div>
-      <div style={{
-        margin: 10,
-        padding: 10,
-        paddingBottom: 5
-      }}>
-        <div style={{
-          display: "flex",
-        }}>
-          <span style={{
-          display: "block",
-          fontSize: "0.7em",
-          opacity: 0.9
-        }}>{questionData.linkSets[0].legitLink.url}</span>
-        </div>
-        <span style={{
-          margin: "3px 0",
-          display: "block"
-        }}>{questionData.linkSets[0].legitLink.title}</span>
-        <p style={{
-          margin: 0,
-          fontSize: "0.8em"
-        }}>{questionData.linkSets[0].legitLink.metaDesc}</p>
-      </div>
+      {randomQuery.links.map((result, index) => <SearchResultLink data={result} index={index} adNotice={t(questionData.adNotice)} dark={dark} pointsController={pointsController}/>)}
+    </div>
     </div>
   );
 };
 
-export default SearchResults;
+export default withTranslation("common")(SearchResults);
