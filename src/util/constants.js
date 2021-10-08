@@ -73,28 +73,78 @@ export const QUESTIONS = [
     text: "questions.searchResult.text",
     moreInfo: "questions.searchResult.moreInfo",
     evenMoreInfo: "questions.searchResult.evenMoreInfo",
-    linkSets: [{
-      adLinks: [{
-        url: "https://www.post.em/Frimarken-Rabatt",
-        title: "Frimärken för 1kr | Köp hos Postem'",
-        metaDesc: "Halva priset för frimärken  70% rabatt på Västkusten  Leverans i Sverige på några dagar  Garanterat pris"
+    searchCategories: ["Allt", "Bilder", "Nyheter"],
+    adNotice: "ANNONS",
+    options: {
+      correct: {
+        text: "Se där! Helt rätt!",
+        score: 1
+      },
+      partially: {
+        text: "Annonser går inte alltid att lita på.",
+        score: 0.2
+      },
+      wrong: {
+        text: "Du klickade på en suspekt länk.",
+        score: 0
+      }
+  },
+    searches: [{
+      query: "Vad kostar ett frimärke?",
+      correctAnswerIndex: 3,
+      links: [{
+          url: "https://www.post.em/Frimarken-Rabatt",
+          type: "ad",
+          title: "Frimärken för 1kr | Köp hos Postem'",
+          metaDesc: "Halva priset för frimärken  70% rabatt på Västkusten  Leverans i Sverige på några dagar  Garanterat pris"
+        },
+        {
+          url: "https://www.ship.py/shipments",
+          type: "ad",
+          title: "Vad kostar ett frimärke? - Vi skickar ditt paket.",
+          metaDesc: "Shippy är världsledande på moderna och högteknologiska fraktlösningar som kräver minimal kundkontakt och ger maximal avkastning."
+        },
+        {
+          url: "https://postn0rd-sverige-norden.gq/786",
+          type: "normal",
+          title: "Frimärken | Postnord Sverige",
+          metaDesc: "Med direktbetalande kund menar vi dig som betalar via internetbank eller med kort och inte har något avtal med oss. Se portotabeller."
+        },
+        {
+          url: "https://www.postnord.se/inrikes/portotabeller",
+          type: "normal",
+          title: "Portotabell och priser för brev inrikes | PostNord",
+          metaDesc: "Här hittar du portotabeller som visar vad det kostar för dig som direktbetalande kund att skicka brev och paket inrikes och utrikes."
+      }]
+    },
+    {
+      query: "Vad är Tiktok?",
+      correctAnswerIndex: 2,
+      links: [{
+        url: "https://www.harvest.ts",
+        type: "ad",
+        title: "Boosta dina följare på Tiktok med Harvest - helt gratis!",
+        metaDesc: "Med hjälp av Harvest kan du få tusentals likes på dina videor. Premium följare enkelt och snabbt."
       },
       {
-        url: "https://www.ship.py/shipments",
-        title: "Vad kostar ett frimärke? - Vi skickar ditt paket.",
-        metaDesc: "Shippy är världsledande på moderna och högteknologiska fraktlösningar som kräver minimal kundkontakt och ger maximal avkastning."
-      }],
-      suspiciousLink: {
-        url: "https://postn0rd-sverige-norden.gq/786",
-        title: "Frimärken | Postnord Sverige",
-        metaDesc: "Med direktbetalande kund menar vi dig som betalar via internetbank eller med kort och inte har något avtal med oss. Se portotabeller."
+        url: "https://www.tiktok.en/kurs",
+        type: "ad",
+        title: "Lär dig allt om TikTok | Onlinekurs med Johlina Doe",
+        metaDesc: "Mrs. Doe lär dig allt om hur du blir en riktig TikTok stjärna och alltid hamnar på #foryou. Börja kursen idag för 499kr."
       },
-      legitLink: {
-        url: "https://www.postnord.se/inrikes/portotabeller",
-        title: "Portotabell och priser för brev inrikes | PostNord",
-        metaDesc: "Här hittar du portotabeller som visar vad det kostar för dig som direktbetalande kund att skicka brev och paket inrikes och utrikes."
-      }
-    }]
+      {
+        url: "https://internetstiftelsen.se › podd › ... › vad-ar-tiktok",
+        type: "normal",
+        title: "Vad är Tiktok, och hur fungerar det? - Internetstiftelsen",
+        metaDesc: "Vad är Tiktok? Tiktok är en app för mobiltelefonen, där man kan spela in och dela videor med varandra. Appen hette från början Musical.ly, och blev populär främst bland unga tjejer i åldern 7-13 år."
+      },
+      {
+        url: "https://www.wikipediia.src.om",
+        type: "normal",
+        title: "TikTok - Wikipedia",
+        metaDesc: "TikTok, även känt som Douyin (kinesiska: 抖音; pinyin: Dǒuyīn) i Kina, är en sociala medier-app för skapande och delning av videor och livesändningar."
+      }]
+    }],
   },
   {
     id: 2,
