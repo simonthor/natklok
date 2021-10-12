@@ -7,5 +7,26 @@ body {
     Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
   color: white;
   background-color: #293881;
+  transition: background-color 0.2s ease;
   font-size: 18px;
+  font-family: Dagny;
+}
+
+@font-face {
+  font-family: "Dagny";
+  src: local("Dagny"), url("./fonts/Dagny.ttf") format("truetype");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Dagny";
+  src: local("Dagny"), url("./fonts/DagnyBold.ttf") format("truetype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Dagny";
+  src: local("Dagny"), url("./fonts/DagnyItalic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
 }

@@ -3,8 +3,8 @@ import { PURPLE, WHITE } from "util/constants";
 import BottomFade from "components/general/Fade";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import AlignCenter from 'components/general/AlignCenter'
-import HTMLRenderer from 'components/general/HTMLRenderer'
+import AlignCenter from "components/general/AlignCenter";
+import HTMLRenderer from "components/general/HTMLRenderer";
 
 const MoreInfoModal = ({ title, content, buttonComponent = null }) => {
   const [aboutExpanded, setaboutExpanded] = useState(false);
@@ -45,7 +45,6 @@ const MoreInfoModal = ({ title, content, buttonComponent = null }) => {
           <AlignCenter>
             <div
               style={{
-                padding: "10px 20px 20px 20px",
                 overflow: "scroll",
                 height: "70vh",
               }}

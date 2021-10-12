@@ -14,7 +14,7 @@ const AlignCenter = ({
 
   let paddingTop = 0;
   if (centerBothAxis && windowSize.height > 620) {
-    paddingTop = "-5vh";
+    paddingTop = "5vh";
   } else if (!centerBothAxis && windowSize.height > 620 && marginTop === true) {
     paddingTop = "5vh";
   }

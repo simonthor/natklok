@@ -119,13 +119,26 @@ const ResultSlide = ({
               >
                 {t("result.redo")}
               </StyledButton>
-              <StyledLink href="https://sakerhetskollen.typeform.com/to/StcP4PFK">
+              <StyledLink
+                rel=""
+                target="_self"
+                href="https://sakerhetskollen.se/"
+              >
                 <StyledButton style={{ margin: "8px 0", background: PALEBLUE }}>
-                  Ge feedback här!
+                  Tillbaka till säkerhetskollen
                 </StyledButton>
               </StyledLink>
+              {/* 
+                <StyledLink href="https://sakerhetskollen.typeform.com/to/StcP4PFK">
+                  <StyledButton style={{ margin: "8px 0", background: PALEBLUE }}>
+                    Ge feedback här!
+                  </StyledButton>
+                </StyledLink>
+              */}
             </div>
 
+            {/* 
+            This gives the user the option to redo the test with questions they haven't answered
             <Subtitle style={{ margin: "32px 0 6px 0", opacity: 0.8 }}>
               {resultTextObj.extraTitle}
             </Subtitle>
@@ -158,6 +171,7 @@ const ResultSlide = ({
                 </p>
               </>
             )}
+            */}
           </div>
         </Fade>
       </div>
@@ -274,30 +288,32 @@ const ResultStar = ({
   useEffect(() => {
     if (unlocked === true && testFinished === true) {
       const starAmountIcon = document.getElementById("starAmountIcon");
-      const starAmountIconRect = starAmountIcon.getBoundingClientRect();
-      setScale(1);
-      setOpacity(1);
-      setLeft(starAmountIconRect.left);
-      setTop(starAmountIconRect.top);
+      if (starAmountIcon != null) {
+        const starAmountIconRect = starAmountIcon.getBoundingClientRect();
+        setScale(1);
+        setOpacity(1);
+        setLeft(starAmountIconRect.left);
+        setTop(starAmountIconRect.top);
 
-      // Start the flying animation
-      setTimeout(function () {
-        const resultStar = document.getElementById(id);
-        const resultStarRect = resultStar.getBoundingClientRect();
-
-        setTransition(
-          "transform 1s cubic-bezier(.03,1.9,.63,1.95), left 0.8s cubic-bezier(.04,1.31,.71,1.05), top 0.8s ease-in-out, opacity 1s cubic-bezier(1,.01,1,.01)"
-        );
-        setOpacity(0);
-        setLeft(resultStarRect.left);
-        setTop(resultStarRect.top);
-        setScale(1.1);
-
-        // Finally, set the static star to yellow so it looks like the flying one landed
+        // Start the flying animation
         setTimeout(function () {
-          setStaticStarColor("yellow");
-        }, flyAnimTime);
-      }, timeUntilStartAnim);
+          const resultStar = document.getElementById(id);
+          const resultStarRect = resultStar.getBoundingClientRect();
+
+          setTransition(
+            "transform 1s cubic-bezier(.03,1.9,.63,1.95), left 0.8s cubic-bezier(.04,1.31,.71,1.05), top 0.8s ease-in-out, opacity 1s cubic-bezier(1,.01,1,.01)"
+          );
+          setOpacity(0);
+          setLeft(resultStarRect.left);
+          setTop(resultStarRect.top);
+          setScale(1.1);
+
+          // Finally, set the static star to yellow so it looks like the flying one landed
+          setTimeout(function () {
+            setStaticStarColor("yellow");
+          }, flyAnimTime);
+        }, timeUntilStartAnim);
+      }
     }
   }, [
     id,

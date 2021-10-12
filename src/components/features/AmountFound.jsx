@@ -1,4 +1,3 @@
-import SmallText from "components/general/typeography/SmallText";
 import Subtitle from "components/general/typeography/Subtitle";
 import React from "react";
 

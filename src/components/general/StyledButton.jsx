@@ -21,13 +21,12 @@ const StyledButton = ({
   function handleMouseChange(isonTop) {
     if (isonTop) {
       if (cinematicColor) {
-        document.getElementById("bgd-container").style.background =
-          cinematicColor;
+        document.body.style.background = cinematicColor;
       }
       setHoveringOver(true);
     } else {
       if (cinematicColor) {
-        document.getElementById("bgd-container").style.background = PURPLE;
+        document.body.style.background = PURPLE;
       }
       setHoveringOver(false);
     }

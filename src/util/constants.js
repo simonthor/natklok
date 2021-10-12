@@ -64,7 +64,7 @@ export const ORDER = "ORDER";
 
 export const QUESTIONS = [
   {
-    id: 1,
+    id: "GPW",
     category: SHARED_PASSWORD_QUESTION,
     type: SEVERAL_OPTION,
     forProfile: GAMING_PROFILE,
@@ -84,7 +84,7 @@ export const QUESTIONS = [
     ],
   },
   {
-    id: 2,
+    id: "SPW",
     category: SHARED_PASSWORD_QUESTION,
     type: YES_NO,
     forProfile: SOCIAL_MEDIA_PROFILE,
@@ -98,7 +98,7 @@ export const QUESTIONS = [
     no_score: 0,
   },
   {
-    id: 3,
+    id: "CSCM",
     category: ROMANCE_SCAM,
     type: CHAT,
     forProfile: GENERAL_PROFILE,
@@ -122,7 +122,7 @@ export const QUESTIONS = [
     ],
   },
   {
-    id: 4,
+    id: "PWSTR",
     category: PASSWORD_STRENGTH_QUESTION,
     type: PASSWORD_INPUT,
     forProfile: GENERAL_PROFILE,
@@ -169,7 +169,7 @@ export const QUESTIONS = [
     ],
   },
   {
-    id: 5,
+    id: "PLCWF",
     category: PUBLIC_WIFI_QUESTION,
     type: SEVERAL_OPTION,
     forProfile: GENERAL_PROFILE,
@@ -188,7 +188,7 @@ export const QUESTIONS = [
     ],
   },
   {
-    id: 6,
+    id: "FKWBS",
     category: DECEIVE_WEBSITE,
     type: FAKE_WEBSITE,
     forProfile: GENERAL_PROFILE,
@@ -197,7 +197,7 @@ export const QUESTIONS = [
     moreInfo: "questions.fakeWebsite.moreInfo",
   },
   {
-    id: 7,
+    id: "SMPW",
     category: USE_SAME_PASSWORD,
     type: DRAG_TO_TRASH,
     forProfile: GENERAL_PROFILE,
@@ -207,7 +207,7 @@ export const QUESTIONS = [
     dragToTrashText: "questions.trashSamePassword.dragToTrashText",
   },
   {
-    id: 8,
+    id: "RKPW",
     category: RANK_PASSWORDS,
     type: ORDER,
     forProfile: GENERAL_PROFILE,
@@ -226,7 +226,7 @@ export const QUESTIONS = [
     correctIdOrder: ["4", "3", "2", "1"],
   },
   {
-    id: 9,
+    id: "BMSCM",
     category: BLACKMAIL,
     type: CHAT,
     forProfile: GENERAL_PROFILE,
@@ -247,7 +247,7 @@ export const QUESTIONS = [
     ],
   },
   {
-    id: 10,
+    id: "DCLK",
     category: DONT_CLICK_LINK,
     type: CHAT,
     forProfile: GENERAL_PROFILE,
@@ -268,7 +268,7 @@ export const QUESTIONS = [
     ],
   },
   {
-    id: 11,
+    id: "FKDMN",
     category: DECEIVE_WEBSITE,
     type: FAKE_DOMAIN,
     forProfile: GENERAL_PROFILE,
@@ -278,7 +278,7 @@ export const QUESTIONS = [
     evenMoreInfo: "questions.fakeDomain.evenMoreInfo",
   },
   {
-    id: 12,
+    id: "SSHSRF",
     category: SHOULDER_SURFING,
     type: DRAG_TO_TRASH,
     forProfile: SOCIAL_MEDIA_PROFILE,
@@ -289,7 +289,7 @@ export const QUESTIONS = [
     dragToTrashText: "questions.shoulderSurfSocial.dragToTrashText",
   },
   {
-    id: 13,
+    id: "GSHSRF",
     category: SHOULDER_SURFING,
     type: DRAG_TO_TRASH,
     forProfile: GAMING_PROFILE,
@@ -300,7 +300,7 @@ export const QUESTIONS = [
     dragToTrashText: "questions.shoulderSurfGaming.dragToTrashText",
   },
   {
-    id: 14,
+    id: "STVRS",
     category: VIRUS,
     type: SEVERAL_OPTION,
     forProfile: STREAMING_PROFILE,

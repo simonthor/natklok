@@ -32,7 +32,7 @@ const TestSlides = ({
 
   // If cinematic button made the screen dark, revert here
   useEffect(() => {
-    document.getElementById("bgd-container").style.background = PURPLE;
+    document.body.style.background = PURPLE;
   });
 
   const handleProfileCheckboxChecked = (event) => {
@@ -59,7 +59,6 @@ const TestSlides = ({
         index={slideIndex}
         style={{
           maxWidth: "100vw",
-          height: "100%",
         }}
       >
         {/* Only show profile selection if we have generated the quiz */}

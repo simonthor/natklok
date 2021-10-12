@@ -29,8 +29,7 @@ const SocialShare = ({ shareText, style, questionId, t }) => {
           copyToClipBoard(setShowCopied, questionId);
         }}
         style={{
-          marginTop: 8,
-          padding: 8,
+          marginTop: 0,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",

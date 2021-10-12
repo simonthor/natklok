@@ -4,7 +4,8 @@ import ExpandMore from "@material-ui/icons/ExpandMore";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 
 import "./OrderQuestion.css";
-import StyledButton from 'components/general/StyledButton'
+import StyledButton from "components/general/StyledButton";
+import SmallText from "components/general/typeography/SmallText";
 
 const OrderQuestion = ({ questionData, t, onSelectAnswer }) => {
   const [options, setOptions] = useState(questionData.options);
@@ -45,7 +46,7 @@ const OrderQuestion = ({ questionData, t, onSelectAnswer }) => {
 
   return (
     <>
-      <div style={{ display: "flex", width: "100%", overflow: "hidden" }}>
+      <div style={{ display: "flex", width: "100%" }}>
         <div style={{ flex: "100% auto", paddingRight: "1em" }}>
           <div
             style={{
@@ -55,9 +56,9 @@ const OrderQuestion = ({ questionData, t, onSelectAnswer }) => {
               height: "100%",
             }}
           >
-            <p style={{ opacity: 0.8, fontSize: "0.8em" }}>
+            <SmallText xs opacity style={{ margin: "16px 0 0 0" }}>
               {t(questionData.best)}
-            </p>
+            </SmallText>
             <ExpandLess style={{ fontSize: "1.5em" }} />
             <div
               style={{
@@ -68,9 +69,9 @@ const OrderQuestion = ({ questionData, t, onSelectAnswer }) => {
               }}
             />
             <ExpandMore style={{ fontSize: "1.5em" }} />
-            <p style={{ opacity: 0.8, fontSize: "0.8em" }}>
+            <SmallText xs opacity style={{ margin: "0 0 16px 0" }}>
               {t(questionData.worst)}
-            </p>
+            </SmallText>
           </div>
         </div>
         <div style={{ flex: 1 }}>

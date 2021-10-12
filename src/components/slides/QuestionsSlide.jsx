@@ -27,6 +27,7 @@ import DragToTrash from "components/dynamicQuestions/DragToTrash";
 import FakeDomain from "components/dynamicQuestions/FakeDomain";
 import { addCorrectAnswer } from "util/totalScore";
 import Title from "components/general/typeography/Title";
+import { shuffleArray } from "util/shuffleArray";
 
 // Component that layers all the questions
 const Questions = ({
@@ -53,16 +54,12 @@ const Questions = ({
   };
 
   return (
-    <div style={{ height: "100%" }}>
+    <div>
       {questions.map((questionData, index) => {
         return (
           <>
             {questionIndex === index && (
-              <div
-                key={index}
-                id="questionContainer"
-                style={{ height: "100%" }}
-              >
+              <div key={index} id="questionContainer">
                 <Question
                   t={t}
                   currentIndex={questionIndex}
@@ -187,7 +184,10 @@ const Question = ({
   }
 
   return (
-    <div id="question" style={{ height: "100%", width: "100%" }}>
+    <div
+      id="question"
+      style={{ width: "100%", maxHeight: "-webkit-fill-available" }}
+    >
       {questionResult !== null ? (
         <AnswerFeedback
           t={t}
@@ -221,9 +221,12 @@ const Question = ({
             </Fade>
 
             <Fade delay={contentFadeDelay}>
-              <HTMLRenderer style={{ marginBottom: 20 }}>
-                {changedTitle !== null ? "" : t(questionData.text)}
-              </HTMLRenderer>
+              {questionData.text !== "" && (
+                <HTMLRenderer style={{ marginBottom: 12 }}>
+                  {changedTitle !== null ? "" : t(questionData.text)}
+                </HTMLRenderer>
+              )}
+
               <AnswerOptions
                 t={t}
                 questionData={questionData}
@@ -282,7 +285,7 @@ const AnswerOptions = ({
   } else if (questionData.type === SEVERAL_OPTION) {
     return (
       <>
-        {questionData.options.map((option) => (
+        {shuffleArray(questionData.options).map((option) => (
           <div style={{ margin: "6px 0" }}>
             <StyledButton
               onClick={() => onSelectAnswer(option.score)}

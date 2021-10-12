@@ -1,10 +1,16 @@
 import React from "react";
 
-const StyledLink = ({ children, href, style }) => (
+const StyledLink = ({
+  children,
+  href,
+  style,
+  rel = "noopener noreferrer",
+  target = "_blank",
+}) => (
   <a
     href={href}
-    target="_blank"
-    rel="noopener noreferrer"
+    target={target}
+    rel={rel}
     style={{
       color: "white",
       fontWeight: 500,

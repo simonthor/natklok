@@ -146,7 +146,7 @@ const NextQuestionOrDoTestButton = ({
     );
   } else {
     return (
-      <>
+      <div style={{ padding: "0 1em", textAlign: "center" }}>
         <Subtitle style={{ marginBottom: 0, marginTop: "10vh" }}>
           {t("test.doTheTestTitle")}
         </Subtitle>
@@ -154,14 +154,14 @@ const NextQuestionOrDoTestButton = ({
           {t("test.doTheTestDesc")}
         </p>
         <StyledButton
-          style={{ margin: "6px 0 2em 0" }}
+          style={{ margin: "6px 0 2px 0" }}
           onClick={() => {
             redoTest(false);
           }}
         >
           {t("welcome.test")}
         </StyledButton>
-      </>
+      </div>
     );
   }
 };

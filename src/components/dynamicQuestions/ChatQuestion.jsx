@@ -2,6 +2,7 @@ import React from "react";
 import { StyledButton } from "../general";
 import intim1 from "assets/intim1.png";
 import dontClickVideo from "assets/dontClickVideo.png";
+import { shuffleArray } from "util/shuffleArray";
 
 const ChatQuestion = ({ questionData, onSelectAnswer, t }) => {
   return (
@@ -80,7 +81,7 @@ const ChatQuestion = ({ questionData, onSelectAnswer, t }) => {
         </div>
       </div>
       <div style={{ margin: "6px 0", display: "flex", flexDirection: "row" }}>
-        {questionData.options.map((option) => (
+        {shuffleArray(questionData.options).map((option) => (
           <div>
             <StyledButton
               onClick={() => onSelectAnswer(option.score)}
@@ -110,13 +111,15 @@ const SMS = ({ sms, t }) => {
     imgSrc = dontClickVideo;
   }
 
+  var greyWidth = t(sms.text).length > 30 ? "90%" : "75%";
+
   if (sms.text !== undefined) {
     return (
       <div
         style={{
           background: sms.side === "left" ? "#e5e5ea" : "#4a5ef3",
           color: sms.side === "left" ? "grey" : "white",
-          width: sms.side === "left" ? "75%" : "30%",
+          width: sms.side === "left" ? greyWidth : "50%",
           margin: "4px 0",
           alignSelf: sms.side === "left" ? "flex-start" : "flex-end",
           borderRadius: 20,
@@ -133,6 +136,7 @@ const SMS = ({ sms, t }) => {
         src={imgSrc}
         alt=""
         style={{
+          height: window.innerWidth < 500 ? 60 : "100%",
           margin: "4px 0",
           alignSelf: sms.side === "left" ? "flex-start" : "flex-end",
           borderRadius: 20,

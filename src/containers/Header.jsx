@@ -9,11 +9,11 @@ import { Popover, ArrowContainer } from "react-tiny-popover";
 // Custom components
 import AlignCenter from "components/general/AlignCenter";
 import ProgressBar from "components/features/ProgressBar";
-import Mainlogo from "assets/sakerhetskontrollen-logo.svg";
 import StyledLink from "components/general/StyledLink";
 import { getAllQuestionAmount, getStoredTotalAmount } from "util/totalScore";
 import SmallText from "components/general/typeography/SmallText";
 import Subtitle from "components/general/typeography/Subtitle";
+import { Logo } from "components/general";
 
 const Header = ({
   t,
@@ -61,7 +61,7 @@ const Header = ({
 
 const ContentBeforeStart = () => (
   <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
-    <div>
+    <div style={{ textAlign: "center" }}>
       <SmallText
         opacity
         style={{
@@ -164,15 +164,7 @@ const ContentAfterStart = ({
             pointerEvents: "none",
           }}
         >
-          <img
-            style={{
-              width: 110,
-              position: "relative",
-              height: "auto",
-            }}
-            alt="Säkerhetskontrollen"
-            src={Mainlogo}
-          />
+          <Logo sm={true} />
         </div>
       </Hidden>
 

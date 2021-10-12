@@ -6,6 +6,7 @@ const SmallText = ({ children, style, xs = false, opacity = false }) => {
       style={{
         opacity: opacity ? 0.6 : 1,
         fontSize: xs ? "0.6em" : "0.8em",
+        fontFamily: "Dagny",
         ...style,
       }}
     >

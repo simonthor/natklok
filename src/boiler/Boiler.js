@@ -21,6 +21,7 @@ import { ThumbDown } from "@material-ui/icons";
 import { generateQuestions } from "util/generateQuestions";
 import QuestionNotFound from "components/slides/QuestionNotFound";
 import { getQuestionFromId } from "util/getQuestionFromId";
+import ResultSlide from "components/slides/ResultSlide";
 
 // Lazy loading
 const Header = lazy(() => import("containers/Header"));
@@ -135,14 +136,13 @@ const Boiler = () => {
       />
       <div
         style={{
-          background: PURPLE,
-          height: "100vh",
           transition: "0.13s",
           position: "relative",
           display: "grid",
           gridTemplateRows: "min-content 1fr",
           justifyItems: "stretch",
           alignItems: "stretch",
+          height: "-webkit-fill-available",
         }}
         id="bgd-container"
       >
@@ -158,6 +158,11 @@ const Boiler = () => {
             path="/"
             exact
             render={() => <Welcome hasStarted={hasStarted} />}
+          />
+          <Route
+            path="/resultslidepreview"
+            exact
+            render={() => <ResultSlide />}
           />
           <Route
             path="/test"

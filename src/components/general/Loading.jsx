@@ -10,7 +10,7 @@ const Loading = () => {
         textAlign: "center",
         flex: 1,
         background: PURPLE,
-        height: "100vh",
+        height: "-webkit-fill-available",
         width: "100vw",
         paddingTop: "10%",
       }}
