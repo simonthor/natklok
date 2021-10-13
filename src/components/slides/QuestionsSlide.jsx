@@ -226,15 +226,15 @@ const Question = ({
                   {changedTitle !== null ? "" : t(questionData.text)}
                 </HTMLRenderer>
               )}
-
-              <AnswerOptions
-                t={t}
-                questionData={questionData}
-                profileForQuestion={profileForQuestion}
-                onSelectAnswer={onSelectAnswer}
-                setChangedTitle={setChangedTitle}
-              />
             </Fade>
+            <AnswerOptions
+              t={t}
+              contentFadeDelay={contentFadeDelay}
+              questionData={questionData}
+              profileForQuestion={profileForQuestion}
+              onSelectAnswer={onSelectAnswer}
+              setChangedTitle={setChangedTitle}
+            />
           </AlignCenter>
         </YesNoWrapper>
       )}
@@ -249,30 +249,37 @@ const AnswerOptions = ({
   onSelectAnswer,
   profileForQuestion,
   setChangedTitle,
+  contentFadeDelay,
 }) => {
   if (questionData.type === CHAT) {
     return (
-      <ChatQuestion
-        t={t}
-        questionData={questionData}
-        onSelectAnswer={onSelectAnswer}
-      />
+      <Fade delay={contentFadeDelay}>
+        <ChatQuestion
+          t={t}
+          questionData={questionData}
+          onSelectAnswer={onSelectAnswer}
+        />
+      </Fade>
     );
   } else if (questionData.type === FAKE_WEBSITE) {
     return (
-      <FakeWebsite
-        t={t}
-        options={questionData.options}
-        onSelectAnswer={onSelectAnswer}
-      />
+      <Fade delay={contentFadeDelay}>
+        <FakeWebsite
+          t={t}
+          options={questionData.options}
+          onSelectAnswer={onSelectAnswer}
+        />
+      </Fade>
     );
   } else if (questionData.type === FAKE_DOMAIN) {
     return (
-      <FakeDomain
-        t={t}
-        options={questionData.options}
-        onSelectAnswer={onSelectAnswer}
-      />
+      <Fade delay={contentFadeDelay}>
+        <FakeDomain
+          t={t}
+          options={questionData.options}
+          onSelectAnswer={onSelectAnswer}
+        />
+      </Fade>
     );
   } else if (questionData.type === ORDER) {
     return (
@@ -284,7 +291,7 @@ const AnswerOptions = ({
     );
   } else if (questionData.type === SEVERAL_OPTION) {
     return (
-      <>
+      <Fade delay={contentFadeDelay}>
         {shuffleArray(questionData.options).map((option) => (
           <div style={{ margin: "6px 0" }}>
             <StyledButton
@@ -295,7 +302,7 @@ const AnswerOptions = ({
             </StyledButton>
           </div>
         ))}
-      </>
+      </Fade>
     );
   } else if (questionData.type === DRAG_TO_TRASH) {
     return (

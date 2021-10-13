@@ -76,7 +76,7 @@ const Welcome = ({ t, hasStarted }) => {
             style={{
               marginBottom: "2em",
               fontSize: window.innerWidth < 576 ? 16 : 24,
-              marginTop: -22,
+              marginTop: -14,
               fontWeight: 400,
               opacity: 0.8,
             }}

@@ -6,9 +6,14 @@ import ExpandLess from "@material-ui/icons/ExpandLess";
 import "./OrderQuestion.css";
 import StyledButton from "components/general/StyledButton";
 import SmallText from "components/general/typeography/SmallText";
+import AlignCenter from "components/general/AlignCenter";
+import Fade from "react-reveal/Fade";
 
 const OrderQuestion = ({ questionData, t, onSelectAnswer }) => {
   const [options, setOptions] = useState(questionData.options);
+
+  const questionContainer = document.getElementById("questionContainer");
+  const questionContainerRect = questionContainer.getBoundingClientRect();
 
   function checkAnswer() {
     let order = options.map((options) => {
@@ -46,67 +51,101 @@ const OrderQuestion = ({ questionData, t, onSelectAnswer }) => {
 
   return (
     <>
-      <div style={{ display: "flex", width: "100%" }}>
-        <div style={{ flex: "100% auto", paddingRight: "1em" }}>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              height: "100%",
-            }}
-          >
-            <SmallText xs opacity style={{ margin: "16px 0 0 0" }}>
-              {t(questionData.best)}
-            </SmallText>
-            <ExpandLess style={{ fontSize: "1.5em" }} />
-            <div
-              style={{
-                height: "100%",
-                margin: "-0.76em 0",
-                width: 2,
-                background: "white",
-              }}
-            />
-            <ExpandMore style={{ fontSize: "1.5em" }} />
-            <SmallText xs opacity style={{ margin: "0 0 16px 0" }}>
-              {t(questionData.worst)}
-            </SmallText>
-          </div>
-        </div>
-        <div style={{ flex: 1 }}>
-          <DragDropContext onDragEnd={handleOnDragEnd}>
-            <Droppable droppableId="items">
-              {(provided) => (
-                <ul
-                  className="items"
-                  {...provided.droppableProps}
-                  ref={provided.innerRef}
-                >
-                  {options.map(({ text, id }, index) => {
-                    return (
-                      <Draggable key={id} draggableId={id} index={index}>
-                        {(provided) => (
-                          <li
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                          >
-                            <p>{text}</p>
-                          </li>
-                        )}
-                      </Draggable>
-                    );
-                  })}
-                  {provided.placeholder}
-                </ul>
-              )}
-            </Droppable>
-          </DragDropContext>
-        </div>
-      </div>
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <StyledButton onClick={checkAnswer}>{t("general.done")}</StyledButton>
+      <div
+        style={{
+          position: "absolute",
+          height: "90vh",
+          width: "100vw",
+          top: 0,
+          left: 0,
+        }}
+      >
+        <DragDropContext onDragEnd={handleOnDragEnd}>
+          <Fade>
+            <AlignCenter withMaxWidth>
+              <div
+                style={{
+                  display: "flex",
+                  padding: "1em",
+                  marginTop: "30vh",
+                  width: "100%",
+                }}
+              >
+                <div style={{ flex: "100% auto", paddingRight: "1em" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      height: "100%",
+                    }}
+                  >
+                    <SmallText xs opacity style={{ margin: "16px 0 0 0" }}>
+                      {t(questionData.best)}
+                    </SmallText>
+                    <ExpandLess style={{ fontSize: "1.5em" }} />
+                    <div
+                      style={{
+                        height: "100%",
+                        margin: "-0.76em 0",
+                        width: 2,
+                        background: "white",
+                      }}
+                    />
+                    <ExpandMore style={{ fontSize: "1.5em" }} />
+                    <SmallText xs opacity style={{ margin: "0 0 16px 0" }}>
+                      {t(questionData.worst)}
+                    </SmallText>
+                  </div>
+                </div>
+                <Droppable droppableId="items">
+                  {(provided) => (
+                    <ul
+                      className="items"
+                      {...provided.droppableProps}
+                      ref={provided.innerRef}
+                      style={{ width: "100%" }}
+                    >
+                      {options.map(({ text, id }, index) => {
+                        return (
+                          <Draggable key={id} draggableId={id} index={index}>
+                            {(provided, snapshot) => {
+                              if (snapshot.isDragging) {
+                                const offset = { x: 0, y: 0 }; // your fixed container left/top position
+                                const x =
+                                  provided.draggableProps.style.left - offset.x;
+                                const y =
+                                  provided.draggableProps.style.top - offset.y;
+                                provided.draggableProps.style.left = x;
+                                provided.draggableProps.style.top = y;
+                              }
+                              return (
+                                <li
+                                  style={{ width: "100%" }}
+                                  ref={provided.innerRef}
+                                  {...provided.draggableProps}
+                                  {...provided.dragHandleProps}
+                                >
+                                  <p>{text}</p>
+                                </li>
+                              );
+                            }}
+                          </Draggable>
+                        );
+                      })}
+                      {provided.placeholder}
+                    </ul>
+                  )}
+                </Droppable>
+              </div>
+            </AlignCenter>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <StyledButton onClick={checkAnswer}>
+                {t("general.done")}
+              </StyledButton>
+            </div>
+          </Fade>
+        </DragDropContext>
       </div>
     </>
   );

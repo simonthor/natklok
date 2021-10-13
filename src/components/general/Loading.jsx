@@ -12,7 +12,7 @@ const Loading = () => {
         background: PURPLE,
         height: "-webkit-fill-available",
         width: "100vw",
-        paddingTop: "10%",
+        paddingTop: "20vh",
       }}
     >
       <Logo />
