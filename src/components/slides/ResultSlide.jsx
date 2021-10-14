@@ -1,14 +1,14 @@
-import { Grid } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { withTranslation } from "react-i18next";
+import Grid from "@material-ui/core/Grid";
 
 // Custom components
 import AlignCenter from "components/general/AlignCenter";
 import Fade from "components/general/Fade";
 import StyledButton from "components/general/StyledButton";
 import StyledLink from "components/general/StyledLink";
-import { Facebook, Instagram, Star, Twitter } from "@material-ui/icons";
-import { Link } from "react-router-dom";
+//import { Facebook, Instagram, Star, Twitter } from "@material-ui/icons";
+import Star from "@material-ui/icons/Star";
 import { BLUE, PALEBLUE } from "util/constants";
 import { getStoredTotalAmount, getAllQuestionAmount } from "util/totalScore";
 import Title from "components/general/typeography/Title";
@@ -91,7 +91,7 @@ const ResultSlide = ({
           ))}
         </div>
         <Fade delay={starAnimationTimeMS}>
-          <div style={{ marginTop: 32 }}>
+          <div style={{ marginTop: 32, textAlign: "center" }}>
             <SmallText
               opacity
               style={{
@@ -105,29 +105,43 @@ const ResultSlide = ({
               {resultTextObj.title}
             </Subtitle>
             <p style={{ margin: "6px 0" }}>{resultTextObj.desc}</p>
-            <div
+            <Grid
+              container
               style={{
-                display: "flex",
+                width: "100%",
                 marginTop: 12,
               }}
+              spacing={1}
             >
-              <StyledButton
-                onClick={() => {
-                  redoTest(false);
-                }}
-                style={{ margin: "8px 8px 8px 0" }}
-              >
-                {t("result.redo")}
-              </StyledButton>
-              <StyledLink
-                rel=""
-                target="_self"
-                href="https://sakerhetskollen.se/"
-              >
-                <StyledButton style={{ margin: "8px 0", background: PALEBLUE }}>
-                  Tillbaka till säkerhetskollen
+              <Grid item xs={12} sm={6}>
+                <StyledButton
+                  onClick={() => {
+                    redoTest(false);
+                  }}
+                  style={{ width: "100%" }}
+                >
+                  {t("result.redo")}
                 </StyledButton>
-              </StyledLink>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <StyledLink
+                  rel=""
+                  target="_self"
+                  href="https://sakerhetskollen.se/"
+                >
+                  <StyledButton
+                    style={{
+                      margin: 0,
+                      width: "100%",
+                      padding: "14px 14px",
+                      background: PALEBLUE,
+                    }}
+                  >
+                    Tillbaka till säkerhetskollen
+                  </StyledButton>
+                </StyledLink>
+              </Grid>
+
               {/* 
                 <StyledLink href="https://sakerhetskollen.typeform.com/to/StcP4PFK">
                   <StyledButton style={{ margin: "8px 0", background: PALEBLUE }}>
@@ -135,7 +149,7 @@ const ResultSlide = ({
                   </StyledButton>
                 </StyledLink>
               */}
-            </div>
+            </Grid>
 
             {/* 
             This gives the user the option to redo the test with questions they haven't answered
@@ -310,7 +324,7 @@ const ResultStar = ({
 
           // Finally, set the static star to yellow so it looks like the flying one landed
           setTimeout(function () {
-            setStaticStarColor("yellow");
+            setStaticStarColor("#FDCF35");
           }, flyAnimTime);
         }, timeUntilStartAnim);
       }
@@ -337,7 +351,7 @@ const ResultStar = ({
             opacity,
           }}
         >
-          <Star style={{ color: "yellow" }} />
+          <Star style={{ color: "#FDCF35" }} />
         </div>
       )}
       <Star style={{ color: staticStarColor }} />

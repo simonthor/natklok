@@ -27,7 +27,6 @@ import DragToTrash from "components/dynamicQuestions/DragToTrash";
 import FakeDomain from "components/dynamicQuestions/FakeDomain";
 import { addCorrectAnswer } from "util/totalScore";
 import Title from "components/general/typeography/Title";
-import { shuffleArray } from "util/shuffleArray";
 
 // Component that layers all the questions
 const Questions = ({
@@ -292,11 +291,14 @@ const AnswerOptions = ({
   } else if (questionData.type === SEVERAL_OPTION) {
     return (
       <Fade delay={contentFadeDelay}>
-        {shuffleArray(questionData.options).map((option) => (
+        {questionData.options.map((option) => (
           <div style={{ margin: "6px 0" }}>
             <StyledButton
               onClick={() => onSelectAnswer(option.score)}
-              style={{ width: "100%", textAlign: "center" }}
+              style={{
+                width: "100%",
+                textAlign: "center",
+              }}
             >
               {t(option.text)}
             </StyledButton>

@@ -234,7 +234,7 @@ const ThumbsDown = ({ showThumbsDown, setShowThumbsDown }) => {
         zIndex: 100,
       }}
     >
-      <ThumbDown style={{ color: "red" }} />
+      <ThumbDown style={{ color: "#FF3854" }} />
     </div>
   );
 };

@@ -111,8 +111,8 @@ export const QUESTIONS = [
     readMoreLink:
       "https://sakerhetskollen.se/testa-din-sakerhet/ar-du-saker-pa-ditt-losenord",
     options: [
-      { text: "questions.romanceScamChat.bad", score: 0 },
       { text: "questions.romanceScamChat.good", score: 1 },
+      { text: "questions.romanceScamChat.bad", score: 0 },
     ],
     smses: [
       { side: "left", text: "questions.romanceScamChat.chat1" },
@@ -237,8 +237,8 @@ export const QUESTIONS = [
     yourAnswer: "questions.blackmailChat.yourAnswer",
     from: "questions.blackmailChat.from",
     options: [
-      { text: "questions.blackmailChat.bad", score: 0 },
       { text: "questions.blackmailChat.good", score: 1 },
+      { text: "questions.blackmailChat.bad", score: 0 },
     ],
     smses: [
       { side: "left", text: "questions.blackmailChat.chat1" },

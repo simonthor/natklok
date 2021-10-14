@@ -298,7 +298,7 @@ const StarContainer = ({ starAmount, totalQuestions }) => {
             cursor: "pointer",
           }}
         >
-          <Star id="starAmountIcon" style={{ color: "yellow" }} />
+          <Star id="starAmountIcon" style={{ color: "#FDCF35" }} />
           <p style={{ margin: "0 2px" }}>{starAmountText}</p>
         </div>
       </Popover>
@@ -315,7 +315,7 @@ const StarContainer = ({ starAmount, totalQuestions }) => {
           pointerEvents: "none",
         }}
       >
-        <Star style={{ color: "yellow" }} />
+        <Star style={{ color: "#FDCF35" }} />
       </div>
     </>
   );
@@ -347,7 +347,7 @@ const StarBox = ({ amount, totalAmount, total = false }) => {
             height: "100%",
           }}
         >
-          <Star style={{ color: "yellow" }} />
+          <Star style={{ color: "#FDCF35" }} />
           <p style={{ margin: 0, fontSize: "0.9em" }}>
             <span style={{ fontWeight: 600, fontSize: "1.1em" }}>{amount}</span>
             /<span style={{ fontWeight: 300 }}>{totalAmount}</span>

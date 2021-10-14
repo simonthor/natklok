@@ -10,6 +10,7 @@
     "yes": "Ja",
     "no": "Nej",
     "done": "Klar",
+    "notGood": "Inte bra...",
     "close": "Stäng"
   },
   "error": {
@@ -33,7 +34,7 @@
     "aboutContent": "Nätklok är ett test gjort av Säkerhetskollen.se och Digital Ungdom för att öka människors förståelse för digitala brott på ett interaktivt och kreativt sätt. </br></br> Gör testet och se hur många rätt du får!"
   },
   "profileSelection": {
-    "title": "Skapa din digitala profil",
+    "title": "Din digitala profil",
     "subtitle": "Vilka av följande gör du online?",
     "desc": "Testet anpassas efter din digitala profil.",
     "profiles": {
@@ -89,17 +90,17 @@
         "STREAMING_PROFILE": "streamingtjänsten Oslagbar",
         "SOCIAL_MEDIA_PROFILE": "sociala-media-plattformen Kvitter"
       },
-      "text": "Hitta på ett starkt lösenord som kommer ta hackare lång tid att knäcka!",
+      "text": "Kom på ett lösenord som kommer ta hackare lång tid att knäcka!",
       "secondTitle": "Det där var ett bra lösenord! Brukar du använda säkra lösenord som detta?",
       "secondTitleUnsecurePwd": "Det var ett ganska dåligt lösenord. Om vi bortser fran det, brukar du använda dig av säkra lösenord?",
       "option1": "Såklart, och mina lösenord förvaras säkert",
-      "option2": "Jag har säkra lösenord, men använder dem för mer än ett konto",
-      "option3": "Jag tenderar att inte använda säkra lösenord när jag inte är tvungen",
+      "option2": "Ja, fast jag använder samma för mer än ett konto",
+      "option3": "Jag använder bara säkra lösenord om jag är tvungen",
       "result0": "Du stenkoll på hanteringen av lösenord.",
       "result1": "Du angav ett kasst lösenord, men du har bra koll på lösenordshantering.",
       "result2": "Njaa, lösenord ska vara unika för varje tjänst.",
-      "result3": "Inte bra, du kan utsattas for bedrägerier när som helst.",
-      "moreInfo": "Lösenordet 'mussepigg' tar <b>2 minuter</b> att knäcka.</br></br> 'mussePIGG_1999' tar <b>tvåhundra miljoner år</b> att knäcka! </br></br> Med hjälp av speciella karaktärer, siffror, längre lösenord, ovanliga ord, mm. gör du det mycket svårare att knäcka ditt lösenord.",
+      "result3": "Inte bra...",
+      "moreInfo": "Lösenordet 'mussepigg' tar <b>2 minuter</b> att knäcka.</br></br> 'mussePIGG_1999' tar <b>tvåhundra miljoner år</b> att knäcka!",
       "inputLabel": "Skriv ett lösenord",
       "inputPlaceholder": "Börja skriv lösenord...",
       "resultPrefix": "Det skulle ta en hackare",
@@ -125,7 +126,7 @@
       "moreInfo": "Det finns tre saker du i huvudsak ska leta efter: </br></br> 1. Orimligt bra priser eller erbjudanden. </br></br> 2. Stavfel. </br></br> 3. Falsk URL. Istället för varuhuset.se kanske det står var<b>o</b>huset.se med ett 'o' eller varuhuset.se.någotannat.se"
     },
     "trashSamePassword": {
-      "title": "Klicka och dra påståndet i soptunnan!",
+      "title": "Klicka och dra påståndet till soptunnan!",
       "text": "",
       "dragToTrashText": "'Så länge jag använder ett bra lösenord kan jag använda samma överallt.'",
       "moreInfo": "<b>Använd alltid unika lösenord för varje tjänst du använder!</b> <br/><br/> För att inte glömma bort lösenord kan du använda en lösenordshanterare. Det finns många bra. Apple har en inbyggd som heter 'Keychain Access' eller 'Nyckelhanterare'."
@@ -133,7 +134,7 @@
     "rankpasswords": {
       "title": "Ranka lösenorden efter hur starka de är.",
       "text": "",
-      "moreInfo": "<i>Det är lättare än du tror att skapa ett starkt lösenord!</i> - Ju längre desto bättre. Använd både stora och små bokstäver. Lägg till några siffror och speciella symboler <b>och boom</b>, nu har du ett starkt lösenord!",
+      "moreInfo": "Stora och små bokstäver + siffror + någon speciell symbol = ett grymt lösenord!",
       "evenMoreInfo": "<h2>mångabäckarsmågrodorna</h2> Även fast detta lösenord är längst, är det ganska svagt. Det beror på att det innehåller 4 vanliga ord utan några stora bokstäver eller speciella karaktärer. <i> En hackare behöver bara en ordbok och ett program som kan testa supermånga kombinationer av ord på kort tid, för att knäcka lösenordet.</i> </br></br> Om det hade funnits en siffra i lösenordet, hade tiden det tagit att knäcka lösenordet ökat enormt mycket eftersom hackaren då hade behövt kolla både ord och siffror för att knäcka det!",
       "best": "Starkast",
       "worst": "Svagast"
@@ -170,14 +171,14 @@
     },
     "shoulderSurfSocial": {
       "title": "Din kompis lämnar sin telefon öppen och är inloggad på snapchat...",
-      "text": "Klicka och dra idéen i soptunnan.",
+      "text": "Klicka och dra idéen till soptunnan.",
       "dragToTrashText": "'Det vorre fett kul att ändra deras lösenord och lägga upp pinsamma bilder!!🤣🤣🤣'",
       "moreInfo": "<b>Detta är ett brott</b> och ifall något går fel kan du råka riktigt illa ut.",
       "evenMoreInfo": "<h2>Shoulder surfing</h2> Ifall du använder ett av dina lösenord och någon tittar över din axel och ser vad lösenordet är kan du utsättas för en <i>shoulder surfing attack</i>. Personen som såg ditt lösenord kan helt enkelt använda det vid ett senare tillfälle för att exempelvis lura dig eller dina nära och kära på pengar. </br></br> Ifall en kompis tar över ditt konto 'på skoj', något går snett och du råkar illa ut på grund av deras lilla praktiska skämt räknas även det som shoulder surfing."
     },
     "shoulderSurfGaming": {
       "title": "Din kompis lämnar sin laptop utan att logga ut ur sitt favoritspel",
-      "text": "Klicka och dra idéen i soptunnan.",
+      "text": "Klicka och dra idéen till soptunnan.",
       "dragToTrashText": "'Ey det vore fett kul att ändra spelkontots lösenordet och ändra deras karaktärs utseende!!🤣🤣🤣'",
       "moreInfo": "<b>Detta är ett brott</b> och ifall något går fel kan du råka riktigt illa ut.",
       "evenMoreInfo": "<h2>Shoulder surfing</h2> Ifall att du använder ett av dina lösenord och någon samtidigt kikar över din axel och ser vad lösenordet är, kan du utsättas för en <i>shoulder surfing attack</i>. Personen som såg ditt lösenord kan helt enkelt använda det vid ett senare tillfälle för att exempelvis lura dig eller dina nära och kära på pengar. </br></br> Ifall en kompis tar över ditt konto 'på skoj', något går snett och du råkar illa ut på grund av deras skämt räknas även det som shoulder surfing."

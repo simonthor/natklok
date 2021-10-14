@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyledButton } from "../general";
 import intim1 from "assets/intim1.png";
 import dontClickVideo from "assets/dontClickVideo.png";
-import { shuffleArray } from "util/shuffleArray";
 
 const ChatQuestion = ({ questionData, onSelectAnswer, t }) => {
   return (
@@ -12,6 +11,7 @@ const ChatQuestion = ({ questionData, onSelectAnswer, t }) => {
         display: "flex",
         justifyContent: "center",
         flexDirection: "column",
+        fontFamily: "arial",
       }}
     >
       <div
@@ -81,7 +81,7 @@ const ChatQuestion = ({ questionData, onSelectAnswer, t }) => {
         </div>
       </div>
       <div style={{ margin: "6px 0", display: "flex", flexDirection: "row" }}>
-        {shuffleArray(questionData.options).map((option) => (
+        {questionData.options.map((option) => (
           <div>
             <StyledButton
               onClick={() => onSelectAnswer(option.score)}

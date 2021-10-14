@@ -21,9 +21,10 @@ const DragToTrash = ({ questionData, onSelectAnswer, t }) => {
         }}
       >
         <div
+          id="dragArea"
           style={{
             width: "100%",
-            height: 380,
+            height: window.innerWidth < 576 ? "60vh" : 380,
             background: "white",
             borderRadius: 12,
           }}
@@ -44,6 +45,7 @@ const DragToTrash = ({ questionData, onSelectAnswer, t }) => {
               transform: "rotate(-140deg)",
               bottom: "45%",
               right: "40%",
+              pointerEvents: "none",
             }}
           />
           <TrashCan isOver={isOverTrash} />
@@ -94,6 +96,7 @@ const DragText = ({
   isOverTrash,
   onSelectAnswer,
 }) => {
+  const [transform, setTransform] = useState("translate(0px, 0px)");
   const collidingWithTrash = (data) => {
     const trashCan = document.getElementById("trashcan");
     const trashCanRect = trashCan.getBoundingClientRect();
@@ -110,39 +113,83 @@ const DragText = ({
     return false;
   };
 
+  const isOutside = (data) => {
+    const dragArea = document.getElementById("dragArea");
+    const dragAreaRect = dragArea.getBoundingClientRect();
+    const dragableText = document.getElementById("dragableText");
+    const dragableTextRect = dragableText.getBoundingClientRect();
+    const distOutsideToFailX = dragableTextRect.width / 5;
+    const distOutsideToFailY = dragableTextRect.height / 8;
+    if (
+      dragableTextRect.x + dragableTextRect.width / 2 >
+        dragAreaRect.x - distOutsideToFailX &&
+      dragableTextRect.x + dragableTextRect.width / 2 <
+        dragAreaRect.x + dragAreaRect.width + distOutsideToFailX &&
+      dragableTextRect.y + dragableTextRect.height / 2 >
+        dragAreaRect.y - distOutsideToFailY &&
+      dragableTextRect.y + dragableTextRect.height / 2 <
+        dragAreaRect.y + dragAreaRect.height + distOutsideToFailY
+    ) {
+      return false;
+    }
+    return true;
+  };
+
   const onDrag = (event, data) => {
     if (collidingWithTrash(data) === true) {
       if (isOverTrash === false) {
         setIsOverTrash(true);
       }
     } else if (isOverTrash === true) {
-      setIsOverTrash(false);
+      setTransform("translate(0px, 0px)");
     }
   };
 
   const handleStop = (event, data) => {
     if (collidingWithTrash(data) === true) {
       onSelectAnswer(1);
+    } else if (isOutside(data) === true) {
+      onSelectAnswer(0);
     }
   };
 
   return (
     <Draggable axis="both" onDrag={onDrag} onStop={handleStop}>
-      <div
-        id="dragableText"
-        style={{
-          width: 200,
-          height: 70,
-          margin: 30,
-          cursor: "move",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <p style={{ color: "grey", fontSize: isOverTrash ? "0.8em" : "1em" }}>
-          <i>{t(questionData.dragToTrashText)}</i>
-        </p>
+      <div style={{ transform: transform }}>
+        <div
+          id="dragableText"
+          style={{
+            margin: 20,
+            width: 200,
+            height: 70,
+            cursor: "move",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: 6,
+            background: "rgba(0,0,0,0.075)",
+            borderRadius: 8,
+            position: "relative",
+            transform: isOverTrash ? "scale(0.7)" : "scale(1)",
+          }}
+        >
+          <p style={{ color: "grey" }}>
+            <i>{t(questionData.dragToTrashText)}</i>
+          </p>
+          <div
+            style={{
+              position: "absolute",
+              bottom: -8,
+              left: 20,
+              width: 0,
+              height: 0,
+              borderStyle: "solid",
+              borderWidth: "8px 6px 0 6px",
+              borderColor:
+                "rgba(0,0,0,0.075) transparent transparent transparent",
+            }}
+          />
+        </div>
       </div>
     </Draggable>
   );

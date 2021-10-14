@@ -86,7 +86,11 @@ const Welcome = ({ t, hasStarted }) => {
           <Link to="/test">
             <StyledButton
               cinematicColor="#212058"
-              style={{ boxShadow: "0px 0px 8px 8px rgba(33, 32, 88, 0.2)" }}
+              style={{
+                boxShadow: "0px 0px 8px 8px rgba(33, 32, 88, 0.2)",
+                paddingLeft: 32,
+                paddingRight: 32,
+              }}
             >
               {hasStarted ? t("welcome.continueTest") : t("welcome.test")}
             </StyledButton>

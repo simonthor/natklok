@@ -12,9 +12,6 @@ import Fade from "react-reveal/Fade";
 const OrderQuestion = ({ questionData, t, onSelectAnswer }) => {
   const [options, setOptions] = useState(questionData.options);
 
-  const questionContainer = document.getElementById("questionContainer");
-  const questionContainerRect = questionContainer.getBoundingClientRect();
-
   function checkAnswer() {
     let order = options.map((options) => {
       return options.id;
@@ -66,9 +63,8 @@ const OrderQuestion = ({ questionData, t, onSelectAnswer }) => {
               <div
                 style={{
                   display: "flex",
-                  padding: "1em",
-                  marginTop: "30vh",
-                  width: "100%",
+                  marginTop: "28vh",
+                  width: "90%",
                 }}
               >
                 <div style={{ flex: "100% auto", paddingRight: "1em" }}>
@@ -104,7 +100,7 @@ const OrderQuestion = ({ questionData, t, onSelectAnswer }) => {
                       className="items"
                       {...provided.droppableProps}
                       ref={provided.innerRef}
-                      style={{ width: "100%" }}
+                      style={{ width: "90%" }}
                     >
                       {options.map(({ text, id }, index) => {
                         return (
@@ -140,7 +136,10 @@ const OrderQuestion = ({ questionData, t, onSelectAnswer }) => {
               </div>
             </AlignCenter>
             <div style={{ display: "flex", justifyContent: "center" }}>
-              <StyledButton onClick={checkAnswer}>
+              <StyledButton
+                onClick={checkAnswer}
+                style={{ paddingRight: 42, paddingLeft: 42 }}
+              >
                 {t("general.done")}
               </StyledButton>
             </div>

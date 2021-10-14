@@ -32,6 +32,7 @@ const FakeWebsite = ({ options, onSelectAnswer, t }) => {
           display: "flex",
           justifyContent: "center",
           flexDirection: "column",
+          fontFamily: "arial",
         }}
       >
         <div
@@ -63,7 +64,7 @@ const FakeWebsite = ({ options, onSelectAnswer, t }) => {
               />
               <div
                 style={{
-                  background: "yellow",
+                  background: "#FDCF35",
                   borderRadius: 20,
                   width: 14,
                   height: 14,

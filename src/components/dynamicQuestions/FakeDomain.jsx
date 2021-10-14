@@ -32,6 +32,7 @@ const FakeDomain = ({ options, onSelectAnswer, t }) => {
           display: "flex",
           justifyContent: "center",
           flexDirection: "column",
+          fontFamily: "arial",
         }}
       >
         <div
@@ -54,7 +55,7 @@ const FakeDomain = ({ options, onSelectAnswer, t }) => {
             <Hidden smDown>
               <div
                 style={{
-                  background: "red",
+                  background: "#FF3854",
                   borderRadius: 20,
                   width: 14,
                   height: 14,
@@ -63,7 +64,7 @@ const FakeDomain = ({ options, onSelectAnswer, t }) => {
               />
               <div
                 style={{
-                  background: "yellow",
+                  background: "#FDCF35",
                   borderRadius: 20,
                   width: 14,
                   height: 14,

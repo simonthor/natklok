@@ -101,7 +101,7 @@ const ProfileSelectionSlide = ({
               container
               direction="column"
               xs={12}
-              style={{ textAlign: "center", paddingRight: 8, marginTop: 10 }}
+              style={{ textAlign: "center", paddingRight: 8, marginTop: 2 }}
             >
               <SmallText opacity>{t("profileSelection.desc")}</SmallText>
               <StyledButton onClick={nextSlide} style={{ marginBottom: 6 }}>

@@ -27,6 +27,5 @@ body {
 @font-face {
   font-family: "Dagny";
   src: local("Dagny"), url("./fonts/DagnyItalic.ttf") format("truetype");
-  font-weight: normal;
   font-style: italic;
 }

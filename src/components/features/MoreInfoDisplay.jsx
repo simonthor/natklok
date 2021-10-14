@@ -31,7 +31,6 @@ const MoreInfoDisplay = ({
           style={{
             background: "rgba(0,0,0,0)",
             color: "white",
-            fontSize: "0.9em",
             border: "1px solid white",
             padding: "0.5em 1.5em",
           }}

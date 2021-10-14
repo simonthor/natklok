@@ -147,7 +147,7 @@ const NextQuestionOrDoTestButton = ({
   } else {
     return (
       <div style={{ padding: "0 1em", textAlign: "center" }}>
-        <Subtitle style={{ marginBottom: 0, marginTop: "10vh" }}>
+        <Subtitle style={{ marginBottom: 0, marginTop: 42 }}>
           {t("test.doTheTestTitle")}
         </Subtitle>
         <p style={{ marginTop: 6, fontSize: "1em" }}>
