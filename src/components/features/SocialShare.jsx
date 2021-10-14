@@ -10,11 +10,11 @@ const copyToClipBoard = (setShowCopied, questionId) => {
   let domain = (url + "").replace(url.search, "").replace(url.pathname, "");
   let questionUrl = domain + "/test?id=" + questionId;
   navigator.clipboard.writeText(questionUrl);
-  setShowCopied(true);
+  setShowCopied(0.6);
 };
 
 const SocialShare = ({ shareText, style, questionId, t }) => {
-  const [showCopied, setShowCopied] = useState(false);
+  const [copiedOpacity, setCopiedOpacity] = useState(0);
   return (
     <div
       style={{
@@ -22,19 +22,21 @@ const SocialShare = ({ shareText, style, questionId, t }) => {
         justifyContent: "center",
         flexDirection: "column",
         textAlign: "center",
+        marginBottom: 24,
+        marginTop: 12,
+        postion: "relative",
       }}
     >
       <button
         onClick={() => {
-          copyToClipBoard(setShowCopied, questionId);
+          copyToClipBoard(setCopiedOpacity, questionId);
         }}
         style={{
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           cursor: "pointer",
-          marginBottom: 24,
-          marginTop: 12,
+
           background: "rgba(0,0,0,0)",
           color: "white",
           border: "none",
@@ -46,11 +48,18 @@ const SocialShare = ({ shareText, style, questionId, t }) => {
           {shareText}
         </SmallText>
       </button>
-      {showCopied && (
-        <SmallText opacity style={{ margin: 0 }}>
-          {t("general.copied")}
-        </SmallText>
-      )}
+      <SmallText
+        opacity
+        style={{
+          textAlign: "center",
+          width: "100%",
+          opacity: copiedOpacity,
+          transition: "0.4s ease",
+          margin: "-8px 0 0 0",
+        }}
+      >
+        {t("general.copied")}
+      </SmallText>
     </div>
   );
 };

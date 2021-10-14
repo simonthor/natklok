@@ -150,11 +150,10 @@ const NextQuestionOrDoTestButton = ({
         <Subtitle style={{ marginBottom: 0, marginTop: 42 }}>
           {t("test.doTheTestTitle")}
         </Subtitle>
-        <p style={{ marginTop: 6, fontSize: "1em" }}>
-          {t("test.doTheTestDesc")}
-        </p>
+        <p style={{ marginTop: 6 }}>{t("test.doTheTestDesc")}</p>
         <StyledButton
-          style={{ margin: "0px 0 22px 0", paddingLeft: 24, paddingRight: 24 }}
+          style={{ margin: "0px 0 18px 0", paddingLeft: 24, paddingRight: 24 }}
+          caps
           onClick={() => {
             redoTest(false);
           }}

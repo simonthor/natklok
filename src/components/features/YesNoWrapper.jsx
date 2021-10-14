@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import SwipeableViews from "react-swipeable-views";
 
 // Custom components
-import { YES_NO } from "util/constants";
+import { PINK, YES_NO } from "util/constants";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import Fade from "components/general/Fade";
@@ -16,6 +16,8 @@ const YesNoWrapper = ({
   contentFadeDelay,
   t,
 }) => {
+  const [percentSwitched, setPercentSwitched] = useState(1);
+
   const handleUpdateIndex = (newIndex, lastestIndex) => {
     if (newIndex === 2) {
       onSelectAnswer(questionData.no_score);
@@ -24,15 +26,20 @@ const YesNoWrapper = ({
     }
   };
 
+  const handleAction = (percent) => {
+    setPercentSwitched(percent);
+  };
+
   if (questionData.type === YES_NO) {
     return (
       <SwipeableViews
+        onSwitching={handleAction}
         index={1}
         enableMouseEvents
         id="yesNoWrapper"
         onChangeIndex={handleUpdateIndex}
         slideStyle={{
-          height: "-webkit-fill-available",
+          height: "calc(90vh - 60px)",
           overflow: "hidden",
         }}
       >
@@ -63,8 +70,12 @@ const YesNoWrapper = ({
                   display: "flex",
                   flexDirection: "row",
                   alignItems: "center",
-                  margin: "0 12px",
+                  marginRight: "20vw",
                   pointerEvents: "auto",
+                  transform:
+                    "scale(" +
+                    Math.pow(Number(1 + (1 - percentSwitched)), 1.5) +
+                    ")",
                 }}
               >
                 <KeyboardArrowLeft />
@@ -75,7 +86,7 @@ const YesNoWrapper = ({
                   style={{
                     cursor: "pointer",
                     margin: 0,
-                    padding: "3px 16px",
+                    padding: "3px 0px",
                   }}
                 >
                   {t("general.yes")}
@@ -86,8 +97,9 @@ const YesNoWrapper = ({
                   display: "flex",
                   flexDirection: "row",
                   alignItems: "center",
-                  margin: "0 12px",
+                  marginLeft: "20vw",
                   pointerEvents: "auto",
+                  transform: "scale(" + Math.pow(percentSwitched, 1.5) + ")",
                 }}
               >
                 <Subtitle
@@ -97,7 +109,7 @@ const YesNoWrapper = ({
                   style={{
                     cursor: "pointer",
                     margin: 0,
-                    padding: "3px 16px",
+                    padding: "3px 0px",
                   }}
                 >
                   {t("general.no")}

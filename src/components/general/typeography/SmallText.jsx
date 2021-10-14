@@ -5,7 +5,7 @@ const SmallText = ({ children, style, xs = false, opacity = false }) => {
     <p
       style={{
         opacity: opacity ? 0.6 : 1,
-        fontSize: xs ? "0.6em" : "0.8em",
+        fontSize: xs ? 10 : 14,
         fontFamily: "Dagny",
         ...style,
       }}

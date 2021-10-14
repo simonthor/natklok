@@ -4,7 +4,7 @@
     "madeByDU": "Ett quiz gjort i samarbete med",
     "shareTest": "Dela detta test",
     "shareQuestion": "Kopiera länken till denna fråga",
-    "copied": "Kopierad! Nu kan du dela länken på sociala medier eller med vänner.",
+    "copied": "Frågans länk är kopierad!",
     "questionsLeft": "frågor kvar",
     "questionLeft": "fråga kvar!",
     "yes": "Ja",
@@ -21,22 +21,22 @@
   "meta": {
     "keywords": "Säkerhet online, säkerhetskollen, quiz, säkerhetsquiz, digitala brott, utbildning, säkerhetsutbildning, IT, samhällskunskap",
     "homeTitle": "Nätklok",
-    "homeDesc": "Hur säker är du online, gör testet!",
+    "homeDesc": "Hur säker är du online, gör quizet!",
     "aboutTitle": "Om oss",
     "aboutDesc": "Om Nätklok"
   },
   "welcome": {
     "title": "Nätklok",
     "desc": "Hur säkra är dina internetvanor?",
-    "test": "STARTA TESTET",
-    "continueTest": "Fortsätt testet",
-    "aboutTitle": "Om testet",
-    "aboutContent": "Nätklok är ett test gjort av Säkerhetskollen.se och Digital Ungdom för att öka människors förståelse för digitala brott på ett interaktivt och kreativt sätt. </br></br> Gör testet och se hur många rätt du får!"
+    "test": "Starta quizet",
+    "continueTest": "Fortsätt quizet",
+    "aboutTitle": "Om quizet",
+    "aboutContent": "Nätklok är ett test gjort av Säkerhetskollen.se och Digital Ungdom för att öka människors förståelse för digitala brott på ett interaktivt och kreativt sätt. </br></br> Gör quizet och se hur många rätt du får!"
   },
   "profileSelection": {
     "title": "Din digitala profil",
     "subtitle": "Vilka av följande gör du online?",
-    "desc": "Testet anpassas efter din digitala profil.",
+    "desc": "Quizet anpassas efter din digitala profil.",
     "profiles": {
       "BANK_PROFILE": "Gör banktransaktioner",
       "GAMING_PROFILE": "Spelar datorspel",
@@ -58,7 +58,7 @@
     "bad": "Dåligt",
     "pressToReadMore": "Läs mer",
     "doTheTestTitle": "Hur säker är du online?",
-    "doTheTestDesc": "Ta reda på svaret genom att göra hela quizet!"
+    "doTheTestDesc": "Gör hela quizet och ta reda på svaret!"
   },
   "questions": {
     "csgoSkin": {
@@ -78,9 +78,9 @@
       "title": "Gratis wifi på café",
       "text": "Nice, alla älskar ju gratis saker! <b> Men hur mycket av din surfning kan kaféet faktiskt se? </b>",
       "moreInfo": "Med HTTPS (🔒-ikonen syns bredvid hemsidans namn) är alla meddelanden eller lösenord du skickar säkra, men utan en VPN kan de som äger wifi:et <b>alltid se vilka webbplatser du besöker.</b>",
-      "option1": "Jag är helt skyddad, även utan en VPN.",
-      "option2": "De kan bara se vissa saker jag gör",
-      "option3": "De kan se allt jag gör."
+      "option1": "Jag är helt skyddad",
+      "option2": "De kan bara se vissa saker",
+      "option3": "De kan se allt jag gör"
     },
     "passwordCheck": {
       "title": "Du skapar ett konto hos {profileBasedService}...",
@@ -112,11 +112,11 @@
       "moreInfo": "Bedragare har tagit över din systers konto och försöker nu lura dig på pengar.",
       "evenMoreInfo": "<h2>Var aktsam när någon ber om pengar.</h2> Det behöver inte vara en 'familjemedlem' som skriver. Det kan vara någon som hackat sig in på en av dina kompisars eller kollegors konton och påstår sig vara dem.</br></br> Det kan även vara så att en bedragare har skapat ett konto som imiterar en av dina kompisar. De använder helt enkelt samma namn och bilder som kontot de låtsas vara.  <h2>Enkel lösning - ring upp!</h2> Innan du gör något vid en förfrågan från en ”familjemedlem”, ska du alltid bekräfta att det verkligen är personen som hen utger sig för att vara. Ring upp hen direkt och stäm av. För aldrig över några pengar på direkt uppmaning via sociala medier. <h2>Romansbedrägeri</h2>Ifall någon du dejtat online ber om en stor summa pengar, för tex ett visum eller en flygbiljett, för att träffa dig, ska du också vara försiktig - det kan vara en bedragare som vill åt dina pengar som har låtsats vara förälskad i dig. <b>Detta kallas romansbedrageri.</b>",
       "from": "Syster",
-      "good": "Oj, vad handlar det om? Kan jag ringa? 😲",
+      "good": "Oj, kan jag ringa? 😲",
       "bad": "Sure, swishar! 💸👍",
       "yourAnswer": "Vad svarar du?",
       "chat1": "Hej, du måste hjälpa mig :(",
-      "chat2": "Oj, Vad har hänt? ",
+      "chat2": "Åh nej, vad har hänt? ",
       "chat3": "Behöver betala för en grej nu direkt, men min swish fungerar inte.",
       "chat4": "Kan du swisha 3000 kr till 0722984541? Betalar tillbaka imorgon!"
     },
@@ -207,7 +207,7 @@
     "thirdPlaceDesc": "Du skulle behöva lära dig mer om digital säkerhet innan du råkar ut för en olycka!",
     "readMore": "Läs mer",
     "yourScore": "Ditt result",
-    "redo": "Gör om testet",
+    "redo": "Gör om quizet",
     "share": "Dela ditt resultat"
   }
  }

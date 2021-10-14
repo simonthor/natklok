@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyledButton } from "../general";
 import intim1 from "assets/intim1.png";
 import dontClickVideo from "assets/dontClickVideo.png";
+import { PINK } from "util/constants";
 
 const ChatQuestion = ({ questionData, onSelectAnswer, t }) => {
   return (
@@ -80,16 +81,17 @@ const ChatQuestion = ({ questionData, onSelectAnswer, t }) => {
           </div>
         </div>
       </div>
-      <div style={{ margin: "6px 0", display: "flex", flexDirection: "row" }}>
+      <div
+        style={{ margin: "6px 0", display: "flex", flexDirection: "column" }}
+      >
         {questionData.options.map((option) => (
           <div>
             <StyledButton
               onClick={() => onSelectAnswer(option.score)}
               style={{
                 fontWeight: 500,
-                background: "#4a5ef3",
                 color: "white",
-                margin: "6px 2px",
+                margin: "5px 2px",
                 borderRadius: 20,
                 padding: 6,
               }}
@@ -117,7 +119,7 @@ const SMS = ({ sms, t }) => {
     return (
       <div
         style={{
-          background: sms.side === "left" ? "#e5e5ea" : "#4a5ef3",
+          background: sms.side === "left" ? "#e5e5ea" : PINK,
           color: sms.side === "left" ? "grey" : "white",
           width: sms.side === "left" ? greyWidth : "50%",
           margin: "4px 0",

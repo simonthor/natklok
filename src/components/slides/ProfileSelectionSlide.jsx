@@ -104,7 +104,11 @@ const ProfileSelectionSlide = ({
               style={{ textAlign: "center", paddingRight: 8, marginTop: 2 }}
             >
               <SmallText opacity>{t("profileSelection.desc")}</SmallText>
-              <StyledButton onClick={nextSlide} style={{ marginBottom: 24 }}>
+              <StyledButton
+                onClick={nextSlide}
+                caps
+                style={{ marginBottom: 24 }}
+              >
                 {t("general.next")}
               </StyledButton>
             </Grid>

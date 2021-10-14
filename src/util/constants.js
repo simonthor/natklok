@@ -6,6 +6,7 @@ export const MAX_AMOUNT_QUESTIONS = 12;
 
 // Global colors
 export const BLUE = "#063955";
+export const LIGHT_BLUE = "#00b5f1";
 export const PURPLE = "#293881";
 export const PINK = "#E2147E";
 export const PALEBLUE = "#1DB6EB";
@@ -84,7 +85,7 @@ export const QUESTIONS = [
     ],
   },
   {
-    id: "SPW",
+    id: "SPWD",
     category: SHARED_PASSWORD_QUESTION,
     type: YES_NO,
     forProfile: SOCIAL_MEDIA_PROFILE,
@@ -197,7 +198,7 @@ export const QUESTIONS = [
     moreInfo: "questions.fakeWebsite.moreInfo",
   },
   {
-    id: "SMPW",
+    id: "SMPWD",
     category: USE_SAME_PASSWORD,
     type: DRAG_TO_TRASH,
     forProfile: GENERAL_PROFILE,

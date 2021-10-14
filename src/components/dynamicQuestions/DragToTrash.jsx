@@ -24,7 +24,8 @@ const DragToTrash = ({ questionData, onSelectAnswer, t }) => {
           id="dragArea"
           style={{
             width: "100%",
-            height: window.innerWidth < 576 ? "60vh" : 380,
+            maxHeight: "50vh",
+            height: 380,
             background: "white",
             borderRadius: 12,
           }}
@@ -43,8 +44,8 @@ const DragToTrash = ({ questionData, onSelectAnswer, t }) => {
               fontSize: "3.5em",
               position: "absolute",
               transform: "rotate(-140deg)",
-              bottom: "45%",
-              right: "40%",
+              top: "45%",
+              left: "50%",
               pointerEvents: "none",
             }}
           />
@@ -96,45 +97,28 @@ const DragText = ({
   isOverTrash,
   onSelectAnswer,
 }) => {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+
   const collidingWithTrash = (data) => {
     const trashCan = document.getElementById("trashcan");
     const trashCanRect = trashCan.getBoundingClientRect();
     const dragableText = document.getElementById("dragableText");
     const dragableTextRect = dragableText.getBoundingClientRect();
     if (
-      dragableTextRect.x > trashCanRect.left - 100 &&
-      dragableTextRect.x < trashCanRect.left + 100 &&
-      dragableTextRect.y > trashCanRect.top - 100 &&
-      dragableTextRect.y < trashCanRect.top + 100
+      dragableTextRect.x >
+        trashCanRect.left - dragableTextRect.width / 2 - 50 &&
+      dragableTextRect.x <
+        trashCanRect.left + dragableTextRect.width / 2 + 50 &&
+      dragableTextRect.y > trashCanRect.top - dragableTextRect.height / 2 &&
+      dragableTextRect.y < trashCanRect.top + dragableTextRect.height / 2
     ) {
       return true;
     }
     return false;
   };
 
-  const isOutside = (data) => {
-    const dragArea = document.getElementById("dragArea");
-    const dragAreaRect = dragArea.getBoundingClientRect();
-    const dragableText = document.getElementById("dragableText");
-    const dragableTextRect = dragableText.getBoundingClientRect();
-    const distOutsideToFailX = dragableTextRect.width / 5;
-    const distOutsideToFailY = dragableTextRect.height / 8;
-    if (
-      dragableTextRect.x + dragableTextRect.width / 2 >
-        dragAreaRect.x - distOutsideToFailX &&
-      dragableTextRect.x + dragableTextRect.width / 2 <
-        dragAreaRect.x + dragAreaRect.width + distOutsideToFailX &&
-      dragableTextRect.y + dragableTextRect.height / 2 >
-        dragAreaRect.y - distOutsideToFailY &&
-      dragableTextRect.y + dragableTextRect.height / 2 <
-        dragAreaRect.y + dragAreaRect.height + distOutsideToFailY
-    ) {
-      return false;
-    }
-    return true;
-  };
-
   const onDrag = (event, data) => {
+    setPosition({ x: data.x, y: data.y });
     if (collidingWithTrash(data) === true) {
       if (isOverTrash === false) {
         setIsOverTrash(true);
@@ -147,13 +131,18 @@ const DragText = ({
   const handleStop = (event, data) => {
     if (collidingWithTrash(data) === true) {
       onSelectAnswer(1);
-    } else if (isOutside(data) === true) {
-      onSelectAnswer(0);
+    } else {
+      setPosition({ x: 0, y: 0 });
     }
   };
 
   return (
-    <Draggable axis="both" onDrag={onDrag} onStop={handleStop}>
+    <Draggable
+      axis="both"
+      position={position}
+      onDrag={onDrag}
+      onStop={handleStop}
+    >
       <div>
         <div
           id="dragableText"

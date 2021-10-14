@@ -53,7 +53,7 @@ const ResultSlide = ({
   redoTest,
 }) => {
   const resultTextObj = getResultText(t, starAmount, maxStarAmount);
-  const starAnimationTimeMS = 400 * maxStarAmount;
+  const starAnimationTimeMS = 310 * maxStarAmount;
   const achievedStars = [];
   for (let i = 0; i < maxStarAmount; i++) {
     let achieved = starAmount > i;

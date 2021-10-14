@@ -43,7 +43,7 @@ const MoreInfoDisplay = ({
         <div
           style={{
             minHeight: "70vh",
-            marginTop: 24,
+            marginTop: 16,
             background: WHITE,
             position: fixed ? "fixed" : "none",
             bottom: 0,
