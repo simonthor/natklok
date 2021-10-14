@@ -154,7 +154,7 @@ const NextQuestionOrDoTestButton = ({
           {t("test.doTheTestDesc")}
         </p>
         <StyledButton
-          style={{ margin: "6px 0 2px 0" }}
+          style={{ margin: "0px 0 22px 0", paddingLeft: 24, paddingRight: 24 }}
           onClick={() => {
             redoTest(false);
           }}

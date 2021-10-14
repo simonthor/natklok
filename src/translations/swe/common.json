@@ -186,7 +186,7 @@
     "downloadFilmVirus": {
       "title": "Ah! Jag vill verkligen se Shrek 4 men hittar inte den på mina streamingtjänster...",
       "text": "Phew, den finns dock på https://ultrashare.ff/shrek. Vad är den största risken med att gå in på sidan?",
-      "moreInfo": "<b>Undvik alltid sådana misstänksamma hemsidor. Det är inte värt risken.</b> </br></br>Det vanligaste bedrägeriet online är så kallad <i>phishing</i>. Phishing är när bedragare bl.a snor dina uppgifter genom att få dig att 'logga in' via en falsk log-in-sida. Med dina uppgifter kan de exempelvis lura dig eller dina nära och kära på pengar. </br></br> Hemsidor kan inte automatiskt ladda ner virus utan att dina webbläsare varnar dig och chansen att du får böter är ganska låga.",
+      "moreInfo": "<b>Undvik alltid sådana misstänksamma hemsidor.</b> </br></br>Det vanligaste bedrägeriet online är så kallad <i>phishing</i>. Phishing är när bedragare bl.a snor dina uppgifter genom att få dig att 'logga in' via en falsk log-in-sida. </br></br> Med dina uppgifter kan de exempelvis lura dig eller dina nära och kära på pengar. </br></br>",
       "option1": "Att jag behöver 'logga in' och att mina uppgifter blir stulna",
       "option2": "Att ett virus installeras så fort jag går in",
       "option3": "Att jag får böter"

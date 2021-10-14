@@ -223,7 +223,7 @@ const FakeWebsite = ({ options, onSelectAnswer, t }) => {
             <div
               style={{
                 width: "100%",
-                maxHeight: window.innerWidth < 576 ? "20vh" : "80vh",
+                maxHeight: window.innerWidth < 576 ? "15vh" : "80vh",
                 overflow: "hidden",
               }}
             >

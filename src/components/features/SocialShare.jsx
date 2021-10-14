@@ -24,16 +24,20 @@ const SocialShare = ({ shareText, style, questionId, t }) => {
         textAlign: "center",
       }}
     >
-      <div
+      <button
         onClick={() => {
           copyToClipBoard(setShowCopied, questionId);
         }}
         style={{
-          marginTop: 0,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           cursor: "pointer",
+          marginBottom: 24,
+          marginTop: 12,
+          background: "rgba(0,0,0,0)",
+          color: "white",
+          border: "none",
           ...style,
         }}
       >
@@ -41,7 +45,7 @@ const SocialShare = ({ shareText, style, questionId, t }) => {
         <SmallText opacity style={{ marginRight: 10 }}>
           {shareText}
         </SmallText>
-      </div>
+      </button>
       {showCopied && (
         <SmallText opacity style={{ margin: 0 }}>
           {t("general.copied")}

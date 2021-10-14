@@ -96,7 +96,6 @@ const DragText = ({
   isOverTrash,
   onSelectAnswer,
 }) => {
-  const [transform, setTransform] = useState("translate(0px, 0px)");
   const collidingWithTrash = (data) => {
     const trashCan = document.getElementById("trashcan");
     const trashCanRect = trashCan.getBoundingClientRect();
@@ -140,8 +139,8 @@ const DragText = ({
       if (isOverTrash === false) {
         setIsOverTrash(true);
       }
-    } else if (isOverTrash === true) {
-      setTransform("translate(0px, 0px)");
+    } else {
+      setIsOverTrash(false);
     }
   };
 
@@ -155,13 +154,12 @@ const DragText = ({
 
   return (
     <Draggable axis="both" onDrag={onDrag} onStop={handleStop}>
-      <div style={{ transform: transform }}>
+      <div>
         <div
           id="dragableText"
           style={{
             margin: 20,
-            width: 200,
-            height: 70,
+            maxWidth: 200,
             cursor: "move",
             display: "flex",
             justifyContent: "center",
@@ -173,7 +171,7 @@ const DragText = ({
             transform: isOverTrash ? "scale(0.7)" : "scale(1)",
           }}
         >
-          <p style={{ color: "grey" }}>
+          <p style={{ color: "grey", margin: 0 }}>
             <i>{t(questionData.dragToTrashText)}</i>
           </p>
           <div

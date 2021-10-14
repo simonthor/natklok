@@ -51,7 +51,6 @@ const OrderQuestion = ({ questionData, t, onSelectAnswer }) => {
       <div
         style={{
           position: "absolute",
-          height: "90vh",
           width: "100vw",
           top: 0,
           left: 0,
