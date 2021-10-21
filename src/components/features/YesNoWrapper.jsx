@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import SwipeableViews from "react-swipeable-views";
 
 // Custom components
-import { YES_NO } from "../../util/constants";
-import ExpandMore from "@material-ui/icons/ExpandMore";
-import ExpandLess from "@material-ui/icons/ExpandLess";
-import { Fade } from "components/general";
+import { PINK, YES_NO } from "util/constants";
+import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
+import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
+import Fade from "components/general/Fade";
 import Subtitle from "components/general/typeography/Subtitle";
+import SmallText from "components/general/typeography/SmallText";
 
 const YesNoWrapper = ({
   children,
@@ -15,102 +16,110 @@ const YesNoWrapper = ({
   contentFadeDelay,
   t,
 }) => {
+  const [percentSwitched, setPercentSwitched] = useState(1);
+
   const handleUpdateIndex = (newIndex, lastestIndex) => {
-    if (newIndex === 0) {
+    if (newIndex === 2) {
       onSelectAnswer(questionData.no_score);
-    } else if (newIndex === 2) {
+    } else if (newIndex === 0) {
       onSelectAnswer(questionData.yes_score);
     }
+  };
+
+  const handleAction = (percent) => {
+    setPercentSwitched(percent);
   };
 
   if (questionData.type === YES_NO) {
     return (
       <SwipeableViews
-        axis="y"
+        onSwitching={handleAction}
         index={1}
         enableMouseEvents
-        containerStyle={{
-          height: "90vh",
-        }}
-        slideStyle={{ height: "100%" }}
         id="yesNoWrapper"
         onChangeIndex={handleUpdateIndex}
+        slideStyle={{
+          height: "calc(90vh - 60px)",
+          overflow: "hidden",
+        }}
       >
         <div />
 
-        <div style={{ height: "100%" }}>
-          <div
-            style={{
-              height: "10vh",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              flexDirection: "column",
-              paddingTop: window.innerHeight > 620 ? "8vh" : 0,
-            }}
-          >
-            <Fade delay={contentFadeDelay}>
-              <ExpandLess />
-              <Subtitle
-                onClick={() => {
-                  onSelectAnswer(questionData.yes_score);
-                }}
-                style={{
-                  cursor: "pointer",
-                  margin: 0,
-                  padding: "3px 16px",
-                }}
-              >
-                {t("general.yes")}
-              </Subtitle>
-              <p
-                style={{
-                  color: "rgba(255,255,255,0.5)",
-                  fontSize: "0.8em",
-                  margin: 0,
-                }}
-              >
-                Swipe:a uppåt
-              </p>
-            </Fade>
-          </div>
+        <div>
           <div style={{ pointerEvents: "none" }}>{children}</div>
-          <div
-            style={{
-              marginTop: "6vh",
-              height: "10vh",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              flexDirection: "column",
-            }}
-          >
-            <Fade delay={contentFadeDelay}>
-              <p
+          <Fade delay={contentFadeDelay}>
+            <SmallText
+              style={{
+                textAlign: "center",
+                pointerEvents: "none",
+              }}
+              opacity
+            >
+              Swipe:a eller klicka
+            </SmallText>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                pointerEvents: "none",
+              }}
+            >
+              <div
                 style={{
-                  color: "rgba(255,255,255,0.5)",
-                  fontSize: "0.8em",
-                  margin: 0,
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  marginRight: "20vw",
+                  pointerEvents: "auto",
+                  transform:
+                    "scale(" +
+                    Math.pow(Number(1 + (1 - percentSwitched)), 1.5) +
+                    ")",
                 }}
               >
-                Swipe:a neråt
-              </p>
-              <Subtitle
-                onClick={() => {
-                  onSelectAnswer(questionData.no_score);
-                }}
+                <KeyboardArrowLeft />
+                <Subtitle
+                  onClick={() => {
+                    onSelectAnswer(questionData.yes_score);
+                  }}
+                  style={{
+                    cursor: "pointer",
+                    margin: 0,
+                    padding: "3px 0px",
+                  }}
+                >
+                  {t("general.yes")}
+                </Subtitle>
+              </div>
+              <div
                 style={{
-                  cursor: "pointer",
-                  margin: 0,
-                  padding: "3px 16px",
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  marginLeft: "20vw",
+                  pointerEvents: "auto",
+                  transform: "scale(" + Math.pow(percentSwitched, 1.5) + ")",
                 }}
               >
-                {t("general.no")}
-              </Subtitle>
-              <ExpandMore />
-            </Fade>
-          </div>
+                <Subtitle
+                  onClick={() => {
+                    onSelectAnswer(questionData.no_score);
+                  }}
+                  style={{
+                    cursor: "pointer",
+                    margin: 0,
+                    padding: "3px 0px",
+                  }}
+                >
+                  {t("general.no")}
+                </Subtitle>
+                <KeyboardArrowRight />
+              </div>
+            </div>
+          </Fade>
         </div>
+
         <div />
       </SwipeableViews>
     );

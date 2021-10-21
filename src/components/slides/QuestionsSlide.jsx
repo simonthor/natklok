@@ -53,16 +53,12 @@ const Questions = ({
   };
 
   return (
-    <div style={{ height: "100%" }}>
+    <div>
       {questions.map((questionData, index) => {
         return (
           <>
             {questionIndex === index && (
-              <div
-                key={index}
-                id="questionContainer"
-                style={{ height: "100%" }}
-              >
+              <div key={index} id="questionContainer">
                 <Question
                   t={t}
                   currentIndex={questionIndex}
@@ -187,7 +183,10 @@ const Question = ({
   }
 
   return (
-    <div id="question" style={{ height: "100%", width: "100%" }}>
+    <div
+      id="question"
+      style={{ width: "100%", maxHeight: "-webkit-fill-available" }}
+    >
       {questionResult !== null ? (
         <AnswerFeedback
           t={t}
@@ -221,17 +220,20 @@ const Question = ({
             </Fade>
 
             <Fade delay={contentFadeDelay}>
-              <HTMLRenderer style={{ marginBottom: 20 }}>
-                {changedTitle !== null ? "" : t(questionData.text)}
-              </HTMLRenderer>
-              <AnswerOptions
-                t={t}
-                questionData={questionData}
-                profileForQuestion={profileForQuestion}
-                onSelectAnswer={onSelectAnswer}
-                setChangedTitle={setChangedTitle}
-              />
+              {questionData.text !== "" && (
+                <HTMLRenderer style={{ marginBottom: 12 }}>
+                  {changedTitle !== null ? "" : t(questionData.text)}
+                </HTMLRenderer>
+              )}
             </Fade>
+            <AnswerOptions
+              t={t}
+              contentFadeDelay={contentFadeDelay}
+              questionData={questionData}
+              profileForQuestion={profileForQuestion}
+              onSelectAnswer={onSelectAnswer}
+              setChangedTitle={setChangedTitle}
+            />
           </AlignCenter>
         </YesNoWrapper>
       )}
@@ -246,30 +248,37 @@ const AnswerOptions = ({
   onSelectAnswer,
   profileForQuestion,
   setChangedTitle,
+  contentFadeDelay,
 }) => {
   if (questionData.type === CHAT) {
     return (
-      <ChatQuestion
-        t={t}
-        questionData={questionData}
-        onSelectAnswer={onSelectAnswer}
-      />
+      <Fade delay={contentFadeDelay}>
+        <ChatQuestion
+          t={t}
+          questionData={questionData}
+          onSelectAnswer={onSelectAnswer}
+        />
+      </Fade>
     );
   } else if (questionData.type === FAKE_WEBSITE) {
     return (
-      <FakeWebsite
-        t={t}
-        options={questionData.options}
-        onSelectAnswer={onSelectAnswer}
-      />
+      <Fade delay={contentFadeDelay}>
+        <FakeWebsite
+          t={t}
+          options={questionData.options}
+          onSelectAnswer={onSelectAnswer}
+        />
+      </Fade>
     );
   } else if (questionData.type === FAKE_DOMAIN) {
     return (
-      <FakeDomain
-        t={t}
-        options={questionData.options}
-        onSelectAnswer={onSelectAnswer}
-      />
+      <Fade delay={contentFadeDelay}>
+        <FakeDomain
+          t={t}
+          options={questionData.options}
+          onSelectAnswer={onSelectAnswer}
+        />
+      </Fade>
     );
   } else if (questionData.type === ORDER) {
     return (
@@ -281,18 +290,21 @@ const AnswerOptions = ({
     );
   } else if (questionData.type === SEVERAL_OPTION) {
     return (
-      <>
+      <Fade delay={contentFadeDelay}>
         {questionData.options.map((option) => (
           <div style={{ margin: "6px 0" }}>
             <StyledButton
               onClick={() => onSelectAnswer(option.score)}
-              style={{ width: "100%", textAlign: "center" }}
+              style={{
+                width: "100%",
+                textAlign: "center",
+              }}
             >
               {t(option.text)}
             </StyledButton>
           </div>
         ))}
-      </>
+      </Fade>
     );
   } else if (questionData.type === DRAG_TO_TRASH) {
     return (

@@ -3,21 +3,23 @@ import { getWindowSize } from "util";
 
 const Title = ({ children, style }) => {
   let fontSize = 32;
+  let marginBottom = 12;
   if (window.innerWidth < 400) {
-    fontSize = 24;
+    fontSize = 20;
+    marginBottom = 6;
   }
 
   return (
     <h1
       style={{
-        marginTop: 8,
+        marginTop: 12,
         textTransform: "uppercase",
         textAlign: "center",
         fontSize: fontSize,
         fontFamily: "Bowlby One SC, Arial, Helvetica, sans-serif",
         fontWeight: 300,
         lineHeight: 1.2,
-        marginBottom: 12,
+        marginBottom: marginBottom,
         ...style,
       }}
     >

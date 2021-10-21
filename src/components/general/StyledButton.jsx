@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { PURPLE, PINK } from "util/constants";
 
+import "index.css";
+
 const StyledButton = ({
   children,
   style,
   color = PINK,
   onClick,
+  caps,
   disabled = false,
   cinematicColor,
 }) => {
@@ -21,13 +24,12 @@ const StyledButton = ({
   function handleMouseChange(isonTop) {
     if (isonTop) {
       if (cinematicColor) {
-        document.getElementById("bgd-container").style.background =
-          cinematicColor;
+        document.body.style.background = cinematicColor;
       }
       setHoveringOver(true);
     } else {
       if (cinematicColor) {
-        document.getElementById("bgd-container").style.background = PURPLE;
+        document.body.style.background = PURPLE;
       }
       setHoveringOver(false);
     }
@@ -41,19 +43,22 @@ const StyledButton = ({
       style={{
         borderRadius: 100,
         cursor: "pointer",
-        fontSize: "1em",
+        fontSize: 18,
+        fontWeight: "bold",
+        fontFamily: "Dagny",
         background: PINK,
         filter: filter,
         transform: hoveringOver && !disabled ? "scale(1.03)" : "scale(1)",
         color: disabled ? "lightgrey" : "white",
-        padding: "14px 40px",
+        padding: "12px 12px",
         border: "none",
-        fontWeight: "800",
         display: "inline-block",
         margin: 0,
         transition: "all 0.3s ease-in-out",
         boxSizing: "border-box",
         textAlign: "center",
+        textTransform: caps ? "uppercase" : "auto",
+
         ...style,
       }}
     >

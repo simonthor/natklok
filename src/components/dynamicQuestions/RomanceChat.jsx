@@ -1,5 +1,5 @@
 import React from "react";
-import StyledButton from 'components/general/StyledButton'
+import StyledButton from "components/general/StyledButton";
 
 const smses = [
   { side: "left", text: "questions.romanceScamChat.chat1" },
@@ -95,7 +95,6 @@ const RomanceChat = ({ options, onSelectAnswer, t }) => (
           <StyledButton
             onClick={() => onSelectAnswer(option.score)}
             style={{
-              fontSize: "1em",
               fontWeight: 500,
               background: "#4a5ef3",
               color: "white",

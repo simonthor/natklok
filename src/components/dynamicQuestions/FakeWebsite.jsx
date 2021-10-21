@@ -32,6 +32,7 @@ const FakeWebsite = ({ options, onSelectAnswer, t }) => {
           display: "flex",
           justifyContent: "center",
           flexDirection: "column",
+          fontFamily: "arial",
         }}
       >
         <div
@@ -63,7 +64,7 @@ const FakeWebsite = ({ options, onSelectAnswer, t }) => {
               />
               <div
                 style={{
-                  background: "yellow",
+                  background: "#FDCF35",
                   borderRadius: 20,
                   width: 14,
                   height: 14,
@@ -86,7 +87,7 @@ const FakeWebsite = ({ options, onSelectAnswer, t }) => {
                 background: "white",
                 borderRadius: 20,
                 margin: 6,
-                height: 24,
+                height: 21,
                 textAlign: "start",
                 position: "relative",
               }}
@@ -119,7 +120,7 @@ const FakeWebsite = ({ options, onSelectAnswer, t }) => {
             style={{
               display: "flex",
               justifyContent: "space-between",
-              padding: "12px 6px",
+              padding: "4px 6px",
             }}
           >
             <div style={{ opacity: 0.7, fontSize: "0.8em" }}>Logga in</div>
@@ -157,7 +158,7 @@ const FakeWebsite = ({ options, onSelectAnswer, t }) => {
                 }
                 style={{
                   color: "grey",
-                  fontSize: "0.9em",
+                  fontSize: "0.8em",
                   margin: 3,
                   borderRadius: 100,
                   border: scams.spellingErrorsFound
@@ -219,7 +220,15 @@ const FakeWebsite = ({ options, onSelectAnswer, t }) => {
             >
               Orginalpris är 18990 kr!
             </p>
-            <img src={fakeWebsite} style={{ width: "100%" }} alt="" />
+            <div
+              style={{
+                width: "100%",
+                maxHeight: window.innerWidth < 576 ? "15vh" : "80vh",
+                overflow: "hidden",
+              }}
+            >
+              <img src={fakeWebsite} style={{ width: "100%" }} alt="" />
+            </div>
           </div>
         </div>
       </div>

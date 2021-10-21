@@ -8,9 +8,9 @@ const AmountFound = ({ amountFound, scams }) => {
       style={{ display: "flex", margin: "0 0 12px 0", alignItems: "flex-end" }}
     >
       <Subtitle style={{ margin: 0 }}>{amountFound}</Subtitle>
-      <p style={{ opacity: 0.8, margin: "0 0 2px 0" }}>
+      <SmallText style={{ opacity: 0.8, margin: "0 0 2px 0" }}>
         /{Object.values(scams).length} hittade
-      </p>
+      </SmallText>
     </div>
   );
 };

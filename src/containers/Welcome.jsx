@@ -1,5 +1,5 @@
 // Third party
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { withTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { Grid } from "@material-ui/core";
@@ -8,37 +8,46 @@ import { Grid } from "@material-ui/core";
 import StyledButton from "components/general/StyledButton";
 import Logo from "components/general/Logo";
 
-import { HEIGHT } from "util/constants";
+import { HEIGHT, LIGHT_BLUE, PINK } from "util/constants";
 import SocialShare from "components/features/SocialShare";
-import MoreInfoDisplay from "components/features/MoreInfoDisplay";
 
 import "keyframes.css";
+import Subtitle from "components/general/typeography/Subtitle";
 
 const Welcome = ({ t, hasStarted }) => {
   const bgdRef = useRef(null);
+  const [generatedOnce, setGeneratedOnce] = useState(false);
 
   useEffect(() => {
-    const bgdObj = bgdRef.current;
+    if (generatedOnce === false) {
+      setGeneratedOnce(true);
+      const bgdObj = bgdRef.current;
 
-    function generateBgd() {
-      let nBlobs = window.innerWidth < 576 ? 3 : 5;
-      let height = HEIGHT === 0 ? window.innerHeight : HEIGHT;
-      let width = window.innerWidth;
-
-      for (let i = 0; i < nBlobs; i++) {
-        let diam = Math.floor(Math.random() * 90 + 90);
-        let posX = Math.floor(Math.random() * (width - diam * 2) + diam);
-        let posY = Math.floor(Math.random() * (height - diam * 2) + diam);
-        var blob = document.createElement("div");
-        if (i % 2 === 0) {
-          blob.style.cssText = `width:${diam}px;height:${diam}px;position:absolute;top:${posY}px;left:${posX}px;background:radial-gradient(58.66% 58.66% at 77.37% 78.77%, #84256F 0%, #E2147E 100%);border-radius:100%;z-index:0;animation: blobsExpand 8s infinite alternate;animation-delay: ${i}s;`;
-        } else {
-          blob.style.cssText = `width:${diam}px;height:${diam}px;position:absolute;top:${posY}px;left:${posX}px;background: radial-gradient(58.66% 58.66% at 77.37% 78.77%, #0F5073 0%, #1D78AA 100%);;border-radius:100%;z-index:0;animation: blobsExpand 8s infinite alternate;animation-delay: ${i}s;`;
+      function generateBgd() {
+        let nBlobs = window.innerWidth < 576 ? 3 : 5;
+        let blobInfo = [
+          { x: "15%", y: "20%", diam: 70 },
+          { x: "15%", y: "60%", diam: 150 },
+          { x: "85%", y: "40%", diam: 100 },
+        ];
+        for (let i = 0; i < blobInfo.length; i++) {
+          let color = i % 2 === 0 ? PINK : LIGHT_BLUE;
+          let shade = i % 2 === 0 ? "#e892d5" : "#9fe0f5";
+          var yPos =
+            "calc(" + blobInfo[i].y + " - " + blobInfo[i].diam / 2 + "px)";
+          var xPos =
+            "calc(" + blobInfo[i].x + " - " + blobInfo[i].diam / 2 + "px)";
+          var blob = document.createElement("div");
+          blob.style.cssText = `width:${blobInfo[i].diam}px;height:${
+            blobInfo[i].diam
+          }px;position:absolute;top:${yPos};left:${xPos};background:radial-gradient(58.66% 58.66% at 77.37% 78.77%, ${shade} 0%, ${color} 100%);border-radius:100%;z-index:0;animation: blobsExpand 8s infinite alternate;animation-delay: ${
+            i * 2
+          }s;`;
+          bgdObj.appendChild(blob);
         }
-        bgdObj.appendChild(blob);
       }
+      generateBgd();
     }
-    generateBgd();
   }, [bgdRef]);
 
   return (
@@ -50,9 +59,9 @@ const Welcome = ({ t, hasStarted }) => {
           display: "flex",
           flexDirection: "row",
           flexWrap: "wrap",
-          justifyContent: "center",
           position: "relative",
-          height: "100%",
+          width: "100%",
+          marginTop: window.innerWidth > 600 ? "10vh" : 0,
           overflow: "hidden",
         }}
         id="hoverColorEffect"
@@ -68,17 +77,27 @@ const Welcome = ({ t, hasStarted }) => {
           }}
         >
           <Logo />
-          <p
+          <Subtitle
             style={{
-              fontWeight: "700",
-              margin: "0 0 2em 0",
-              fontSize: "1.5em",
+              marginBottom: "2em",
+              fontSize: window.innerWidth < 576 ? 16 : 24,
+              marginTop: -14,
+              fontWeight: 400,
+              opacity: 0.8,
             }}
           >
             {t("welcome.desc")}
-          </p>
+          </Subtitle>
           <Link to="/test">
-            <StyledButton cinematicColor="#212058">
+            <StyledButton
+              cinematicColor="#212058"
+              caps
+              style={{
+                boxShadow: "0px 0px 8px 8px rgba(33, 32, 88, 0.2)",
+                paddingLeft: 32,
+                paddingRight: 32,
+              }}
+            >
               {hasStarted ? t("welcome.continueTest") : t("welcome.test")}
             </StyledButton>
           </Link>

@@ -94,7 +94,7 @@ const PwdSecurityModal = ({
       <div
         style={{
           background: profileBasedService.color,
-          padding: 10,
+          padding: "6px 6px 2px 6px",
           borderRadius: 8,
           position: "relative",
           boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.2)",
@@ -106,7 +106,7 @@ const PwdSecurityModal = ({
             fontWeight: "bold",
             fontFamily: "sans-serif",
             letterSpacing: -3,
-            fontSize: "1.8em",
+            fontSize: 24,
             color: profileBasedService.thirdColor,
           }}
         >
@@ -123,10 +123,11 @@ const PwdSecurityModal = ({
         <div style={{ position: "relative" }}>
           <StyledTextField
             onChange={onChange}
-            margin="normal"
+            margin="none"
             fullWidth
             autoFocus
             variant="filled"
+            size="small"
             //type={visiblePwd === true ? "default" : "password"}
             label={t("questions.passwordCheck.inputPlaceholder")}
             color={profileBasedService.secondColor}
@@ -142,7 +143,8 @@ const PwdSecurityModal = ({
             background: profileBasedService.thirdColor,
             color: profileBasedService.color,
             transition: "0.3s ease-in-out",
-            padding: "8px 0",
+            marginTop: 4,
+            padding: "6px 0",
             border: "none",
             textAlign: "center",
             width: "100%",
@@ -170,7 +172,7 @@ const PwdSecurityModal = ({
           xs
           style={{
             display: "block",
-            marginTop: 12,
+            marginTop: 6,
             textAlign: "center",
             color: profileBasedService.thirdColor,
             lineHeight: 1,
