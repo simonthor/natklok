@@ -14,6 +14,7 @@ import { getAllQuestionAmount, getStoredTotalAmount } from "util/totalScore";
 import SmallText from "components/general/typeography/SmallText";
 import Subtitle from "components/general/typeography/Subtitle";
 import { Logo } from "components/general";
+import annaWhiteLogo from "assets/annaWhiteLogo.svg";
 
 const Header = ({
   t,
@@ -82,7 +83,21 @@ const ContentBeforeStart = () => (
           margin: 0,
         }}
       >
-        Digital Ungdom
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            marginTop: -6,
+          }}
+        >
+          <img
+            src={annaWhiteLogo}
+            alt=""
+            style={{ height: 40, marginLeft: -6 }}
+          />
+          Digital Ungdom
+        </div>
       </StyledLink>
     </div>
   </div>
@@ -331,7 +346,7 @@ const StarBox = ({ amount, totalAmount, total = false }) => {
     >
       <div
         style={{
-          background: total ? "silver" : "gold",
+          background: total ? "silver" : "#fcfa6f",
           borderRadius: 4,
           width: 80,
           height: 80,

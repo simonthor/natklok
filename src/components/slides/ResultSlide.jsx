@@ -14,6 +14,7 @@ import { getStoredTotalAmount, getAllQuestionAmount } from "util/totalScore";
 import Title from "components/general/typeography/Title";
 import Subtitle from "components/general/typeography/Subtitle";
 import SmallText from "components/general/typeography/SmallText";
+import SocialShare from "components/features/SocialShare";
 
 const getResultText = (t, starAmount, maxStarAmount) => {
   let title = "";
@@ -141,6 +142,9 @@ const ResultSlide = ({
                   </StyledButton>
                 </StyledLink>
               </Grid>
+              <div style={{ width: "100%", textAlign: "center" }}>
+                <SocialShare shareText={t("general.shareTest")} />
+              </div>
 
               {/* 
                 <StyledLink href="https://sakerhetskollen.typeform.com/to/StcP4PFK">
