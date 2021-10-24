@@ -4,7 +4,7 @@
     "madeByDU": "Ett quiz gjort i samarbete med",
     "shareTest": "Dela detta test",
     "shareQuestion": "Kopiera länken till denna fråga",
-    "copied": "Frågans länk är kopierad!",
+    "copied": "Länken är nu kopierad.",
     "questionsLeft": "frågor kvar",
     "questionLeft": "fråga kvar!",
     "yes": "Ja",
@@ -142,8 +142,8 @@
     "blackmailChat": {
       "title": "Katastrof!",
       "text": "Någon har fått tag på intima bilder på dig...",
-      "moreInfo": "<b>Du har mer makt än du tror i denna situation. </b></br></br> Polisen kan spåra personen som skickat meddelanet till dig och gripa dem. Polisen kan även hjälpa till att ta ner bilder ifall de sprids. <b>Ifall man går med på bedragarens villkor blir saker oftast bara värre. </b> ",
-      "evenMoreInfo": "<h2>Hitta hjälp</h2> Även ifall det kan kännas väldigt jobbigt, är det viktigt att du får hjälp av någon annan i en sådan situation. Be en förälder, kompis, lärare eller annan person att hjälpa dig. <h2>Visa inte ansiktet</h2> Ifall du någonsin skickar en intim bild, se till att ditt ansikte inte syns. Då kan du undvika att bli identifierad och utpressad. <h2>Lagen är på din sida</h2> Kontakta polisen genom att ringa 114 14 eller genom att besöka din närmaste polisstation. Kom även ihåg att ifall bilderna läggs upp, kan man nästan alltid få bilderna nedtagna eftersom det är villkorat på det flesta hemsidor och i vissa fall även i lagen enligt GDPR.",
+      "moreInfo": "<b>Du har mer makt än du tror i denna situation. </b></br></br> Polisen har möjlighet att spåra personen som skickat meddelandet till dig och gripa dem. Polisen kan även ibland hjälpa till att ta ner bilder ifall de sprids. <b>Ifall man går med på bedragarens villkor blir saker bara värre. </b> ",
+      "evenMoreInfo": "<h2>Hitta hjälp</h2> Även ifall det kan kännas väldigt jobbigt, är det viktigt att du får hjälp av någon annan i en sådan situation. Be en förälder, kompis, lärare eller annan person att hjälpa dig. <h2>Visa inte ansiktet</h2> Skicka aldrig intima bilder på nätet, ifall du ändå vill skicka en intim bild, se då till att du inte kan identifieras. Då kan du undvika att bli identifierad och utpressad. <h2>Lagen är på din sida</h2> Kontakta polisen genom att ringa 114 14 eller genom att besöka din närmaste polisstation. Kom även ihåg att ifall bilderna läggs upp, kan man nästan alltid få bilderna nedtagna eftersom det är villkorat på det flesta hemsidor och i vissa fall även i lagen enligt GDPR.",
       "from": "Anonym",
       "bad": "Jag gör som de säger, det är inte värt risken.",
       "good": "Jag svarar inte och anmäler direkt till Polisen via 114 14.",
@@ -211,3 +211,5 @@
     "share": "Dela ditt resultat"
   }
  }
+ 
+ 

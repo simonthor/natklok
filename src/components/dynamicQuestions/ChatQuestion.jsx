@@ -93,7 +93,7 @@ const ChatQuestion = ({ questionData, onSelectAnswer, t }) => {
                 color: "white",
                 margin: "5px 2px",
                 borderRadius: 20,
-                padding: 6,
+                padding: 10,
               }}
             >
               {t(option.text)}

@@ -53,6 +53,7 @@ const OrderQuestion = ({ questionData, t, onSelectAnswer }) => {
           position: "absolute",
           width: "100vw",
           top: 0,
+          pointerEvents: "none",
           left: 0,
         }}
       >
@@ -64,9 +65,15 @@ const OrderQuestion = ({ questionData, t, onSelectAnswer }) => {
                   display: "flex",
                   marginTop: "28vh",
                   width: "90%",
+                  pointerEvents: "auto",
                 }}
               >
-                <div style={{ flex: "100% auto", paddingRight: "1em" }}>
+                <div
+                  style={{
+                    flex: "100% auto",
+                    paddingRight: "1em",
+                  }}
+                >
                   <div
                     style={{
                       display: "flex",
@@ -134,7 +141,13 @@ const OrderQuestion = ({ questionData, t, onSelectAnswer }) => {
                 </Droppable>
               </div>
             </AlignCenter>
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                pointerEvents: "auto",
+              }}
+            >
               <StyledButton
                 onClick={checkAnswer}
                 style={{ paddingRight: 42, paddingLeft: 42 }}
