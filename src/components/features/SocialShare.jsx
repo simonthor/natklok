@@ -1,20 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ShareOutlinedIcon from "@material-ui/icons/ShareOutlined";
 import { withTranslation } from "react-i18next";
 import SmallText from "components/general/typeography/SmallText";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
-const copyToClipBoard = (setShowCopied, questionId) => {
+const SocialShare = ({ shareText, style, questionId, t }) => {
+  const [copiedOpacity, setCopiedOpacity] = useState(0);
+
+  const onCopy = () => {
+    setCopiedOpacity(0.6);
+  };
+
   let href = window.location.href;
   let url = new URL(href);
   // Gets domain name only (even with localhost)
   let domain = (url + "").replace(url.search, "").replace(url.pathname, "");
   let questionUrl = domain + "/test?id=" + questionId;
-  navigator.clipboard.writeText(questionUrl);
-  setShowCopied(0.6);
-};
-
-const SocialShare = ({ shareText, style, questionId, t }) => {
-  const [copiedOpacity, setCopiedOpacity] = useState(0);
 
   return (
     <div
@@ -26,33 +27,29 @@ const SocialShare = ({ shareText, style, questionId, t }) => {
         marginBottom: 12,
         marginTop: 12,
         postion: "relative",
+        pointerEvents: "auto",
       }}
     >
-      <button
-        id="shareButton"
-        onClick={() => {
-          copyToClipBoard(setCopiedOpacity, questionId);
-        }}
-        onTouchStart={() => {
-          copyToClipBoard(setCopiedOpacity, questionId);
-        }}
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          cursor: "pointer",
-          pointerEvents: "auto",
-          background: "rgba(0,0,0,0)",
-          color: "white",
-          border: "none",
-          ...style,
-        }}
-      >
-        <ShareOutlinedIcon style={{ opacity: "0.6", marginRight: 5 }} />
-        <SmallText opacity style={{ marginRight: 10 }}>
-          {shareText}
-        </SmallText>
-      </button>
+      <CopyToClipboard text={questionUrl} onCopy={onCopy}>
+        <button
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "pointer",
+            background: "rgba(0,0,0,0)",
+            color: "white",
+            border: "none",
+            ...style,
+          }}
+        >
+          <ShareOutlinedIcon style={{ opacity: "0.6", marginRight: 5 }} />
+          <SmallText opacity style={{ marginRight: 10 }}>
+            {shareText}
+          </SmallText>
+        </button>
+      </CopyToClipboard>
+
       <SmallText
         opacity
         style={{
