@@ -22,7 +22,7 @@ const SocialShare = ({ shareText, style, questionId, t }) => {
         justifyContent: "center",
         flexDirection: "column",
         textAlign: "center",
-        marginBottom: 24,
+        marginBottom: 12,
         marginTop: 12,
         postion: "relative",
       }}
@@ -36,7 +36,7 @@ const SocialShare = ({ shareText, style, questionId, t }) => {
           alignItems: "center",
           justifyContent: "center",
           cursor: "pointer",
-
+          pointerEvents: "auto",
           background: "rgba(0,0,0,0)",
           color: "white",
           border: "none",
@@ -55,7 +55,7 @@ const SocialShare = ({ shareText, style, questionId, t }) => {
           width: "100%",
           opacity: copiedOpacity,
           transition: "0.4s ease",
-          margin: "-8px 0 0 0",
+          margin: "0 0 0 0",
         }}
       >
         {t("general.copied")}

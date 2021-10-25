@@ -94,7 +94,7 @@ const ContentBeforeStart = () => (
           <img
             src={annaWhiteLogo}
             alt=""
-            style={{ height: 40, marginLeft: -6 }}
+            style={{ height: 32, marginLeft: -6 }}
           />
           Digital Ungdom
         </div>
