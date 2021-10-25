@@ -15,6 +15,7 @@ const copyToClipBoard = (setShowCopied, questionId) => {
 
 const SocialShare = ({ shareText, style, questionId, t }) => {
   const [copiedOpacity, setCopiedOpacity] = useState(0);
+
   return (
     <div
       style={{
@@ -28,7 +29,11 @@ const SocialShare = ({ shareText, style, questionId, t }) => {
       }}
     >
       <button
+        id="shareButton"
         onClick={() => {
+          copyToClipBoard(setCopiedOpacity, questionId);
+        }}
+        onTouchStart={() => {
           copyToClipBoard(setCopiedOpacity, questionId);
         }}
         style={{
