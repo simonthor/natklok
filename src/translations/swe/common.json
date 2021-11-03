@@ -169,8 +169,9 @@
       "evenMoreInfo": "<h2>HTTPS</h2> 'S'-et i HTTPS står får secure och hemsidor med HTTPS krypterar all information som skickas. Det innebär att om du skickar ett lösenord till en hemsida med HTTPS är det omöjligt för någon annan än dig och hemsidan att se vad lösenordet är. </br></br>Ifall en hemsida bara har HTTP kan vem som helst se lösenordet medans det 'färdas' till hemsidan - exempelvis personen som äger wifi:et du använder."
     },
     "searchResult": {
-      "title": "Du har använt sökmotorn Piggy för att få svar på en fråga.",
-      "text": "Vilken länk skulle du klicka på?"
+      "title": "Du har använt sökmotorn Piggy...",
+      "text": "Vilken länk skulle du klicka på?",
+      "moreInfo": "Ingen sökmotor är perfekt. Ibland får du suspekta sökresultat, det kan till exempel handla om falsk information, piratkopior eller konstiga länkar. Tänk på att vara källkritisk och kontrollera strukturen av länkarna som du klickar på när du surfar."
     },
     "shoulderSurfSocial": {
       "title": "Din kompis lämnar sin telefon öppen och är inloggad på snapchat...",
