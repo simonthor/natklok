@@ -72,7 +72,6 @@ export const QUESTIONS = [
     title: "questions.searchResult.title",
     text: "questions.searchResult.text",
     moreInfo: "questions.searchResult.moreInfo",
-    evenMoreInfo: "questions.searchResult.evenMoreInfo",
     searchCategories: ["Allt", "Bilder", "Nyheter"],
     adNotice: "ANNONS",
     options: {
@@ -91,27 +90,21 @@ export const QUESTIONS = [
   },
     searches: [{
       query: "Vad kostar ett frimärke?",
-      correctAnswerIndex: 3,
+      correctAnswerIndex: 2,
       links: [{
-          url: "https://www.post.em/Frimarken-Rabatt",
+          url: "https://www.post.em › frimarken-rabatt",
           type: "ad",
           title: "Frimärken för 1kr | Köp hos Postem'",
           metaDesc: "Halva priset för frimärken  70% rabatt på Västkusten  Leverans i Sverige på några dagar  Garanterat pris"
         },
         {
-          url: "https://www.ship.py/shipments",
-          type: "ad",
-          title: "Vad kostar ett frimärke? - Vi skickar ditt paket.",
-          metaDesc: "Shippy är världsledande på moderna och högteknologiska fraktlösningar som kräver minimal kundkontakt och ger maximal avkastning."
-        },
-        {
-          url: "https://postn0rd-sverige-norden.gq/786",
+          url: "https://postn0rd-sverige-norden.gq › 786",
           type: "normal",
           title: "Frimärken | Postnord Sverige",
           metaDesc: "Med direktbetalande kund menar vi dig som betalar via internetbank eller med kort och inte har något avtal med oss. Se portotabeller."
         },
         {
-          url: "https://www.postnord.se/inrikes/portotabeller",
+          url: "https://www.postnord.se › inrikes › portotabeller",
           type: "normal",
           title: "Portotabell och priser för brev inrikes | PostNord",
           metaDesc: "Här hittar du portotabeller som visar vad det kostar för dig som direktbetalande kund att skicka brev och paket inrikes och utrikes."
@@ -119,18 +112,12 @@ export const QUESTIONS = [
     },
     {
       query: "Vad är Tiktok?",
-      correctAnswerIndex: 2,
+      correctAnswerIndex: 1,
       links: [{
         url: "https://www.harvest.ts",
         type: "ad",
         title: "Boosta dina följare på Tiktok med Harvest - helt gratis!",
         metaDesc: "Med hjälp av Harvest kan du få tusentals likes på dina videor. Premium följare enkelt och snabbt."
-      },
-      {
-        url: "https://www.tiktok.en/kurs",
-        type: "ad",
-        title: "Lär dig allt om TikTok | Onlinekurs med Johlina Doe",
-        metaDesc: "Mrs. Doe lär dig allt om hur du blir en riktig TikTok stjärna och alltid hamnar på #foryou. Börja kursen idag för 499kr."
       },
       {
         url: "https://internetstiftelsen.se › podd › ... › vad-ar-tiktok",
@@ -143,6 +130,50 @@ export const QUESTIONS = [
         type: "normal",
         title: "TikTok - Wikipedia",
         metaDesc: "TikTok, även känt som Douyin (kinesiska: 抖音; pinyin: Dǒuyīn) i Kina, är en sociala medier-app för skapande och delning av videor och livesändningar."
+      }]
+    },
+    {
+      query: "Hur mycket tjänar en tandläkare?",
+      correctAnswerIndex: 2,
+      links: [{
+        url: "https://www.tandkram.en › tandlakare",
+        type: "ad",
+        title: "Tandläkare tjänar för mycket | Supertandkrämen 2",
+        metaDesc: "Enligt pålitliga studier kan Supertandkrämen 2 eliminera 97% av all karies."
+      },
+      {
+        url: "http://worldoftadzjikistan.an › home",
+        type: "ad",
+        title: "Tandläkare tjänar 80% mindre i Sverige jämfört med i Tadzjikistan ...",
+        metaDesc: "Flytta till Asiens pärla och tjäna mer pengar på samma timmar arbete idag."
+      },
+      {
+        url: "https://www.saco.se › yrken-a-o › ... › tandlakare",
+        type: "normal",
+        title: "Tandläkare - Information om lön, utbildning ...",
+        metaDesc: "Hur jobbar man, vad tjänar man och hur ser arbetsmarknaden ut? Saco har samlat information för dig som arbetar som eller vill utbilda dig till tandläkare."
+      }]
+    },
+    {
+      query: "Var kan jag se Allsvenskan?",
+      correctAnswerIndex: 1,
+      links: [{
+        url: "http://www.streamasoccer.mi › allsvenskan › gratis",
+        type: "ad",
+        title: "Se alla matcher från Serie A på StreamSoccer - helt gratis!",
+        metaDesc: "Streama Serie A gratis på nätet med StreamSoccer. Även om rättigheterna för att streama är dyra har vi lyckats få det gratis!"
+      },
+      {
+        url: "https://www.tvmatchen.nu › fotboll › serie-a",
+        type: "normal",
+        title: "Serie A på TV stream idag - Tid, spelschema,kanal, tabell",
+        metaDesc: "Serie A på TV och stream. TVmatchen ger dig Serie A spelschema för säsongen 2021/22. Här hittar du alla tv-sända Serie A matcher, med tid och kanal."
+      },
+      {
+        url: "https://fussba.ll › how-to › ... › nike",
+        type: "normal",
+        title: "Fussball sänder Serie A : Hur kan jag se matcherna?",
+        metaDesc: "Serie A Live Stream 2021/2022: Serie A kan den här säsongen bli mer intressant än på många länge. Cristiano Ronaldo finns som bekant i Juventus och vår svenska superstjärna Zlatan ibrahimovic återfinns i AC Milan igen."
       }]
     }],
   },
