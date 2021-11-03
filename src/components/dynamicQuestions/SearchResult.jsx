@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import SearchResultLink from "../features/SearchResultLink";
 import { withTranslation } from "react-i18next";
 import searchEngineLogo from "../../assets/searchEngineLogo.svg";
+import getWindowSize from "util/getWindowSize.js";
 
 const SearchResults = ({ questionData, onSelectAnswer, t }) => {
-  let randomQuery = questionData.searches[Math.floor(Math.random() * questionData.searches.length)];
-  const dark = window.matchMedia("(prefers-color-scheme: dark)");
+  const [randomQuery] = useState(questionData.searches[Math.floor(Math.random() * questionData.searches.length)]);
+  const [dark] = useState(window.matchMedia("(prefers-color-scheme: dark)"));
+  const windowSize = getWindowSize();
+  const [mobile] = useState(windowSize.width <= 540 ? true : false);
 
   const pointsController = (index) => {
     if (index === randomQuery.correctAnswerIndex) {
@@ -26,7 +29,8 @@ const SearchResults = ({ questionData, onSelectAnswer, t }) => {
         width: "100%",
         backgroundColor: dark ? "#1d2342" : "#fff",
         color: dark ? "#e5e5ea" : "#3e3e3e",
-        borderRadius: 6
+        borderRadius: 6,
+        marginBottom: "2em",
       }}
     >
       <div
@@ -93,7 +97,7 @@ const SearchResults = ({ questionData, onSelectAnswer, t }) => {
       <div style={{
         padding: 20
       }}>
-      {randomQuery.links.map((result, index) => <SearchResultLink data={result} index={index} adNotice={t(questionData.adNotice)} dark={dark} pointsController={pointsController}/>)}
+      {randomQuery.links.map((result, index) => <SearchResultLink data={result} index={index} adNotice={t(questionData.adNotice)} dark={dark} mobile={mobile} pointsController={pointsController}/>)}
     </div>
     </div>
   );
