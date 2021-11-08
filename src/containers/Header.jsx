@@ -114,7 +114,7 @@ const ContentAfterStart = ({
 
   let questionsLeft = "";
   if (isFinished === true) {
-    questionsLeft = t("general.done") + "!";
+    questionsLeft = "";
   } else if (totalQuestions - currentQuestionIndex === 1) {
     questionsLeft = t("general.questionLeft");
   } else {
