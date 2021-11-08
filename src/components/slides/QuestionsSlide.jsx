@@ -314,65 +314,8 @@ const AnswerOptions = ({
         questionData={questionData}
         onSelectAnswer={onSelectAnswer}
       />
-      )
-    case FAKE_WEBSITE:
-      return (
-        <FakeWebsite
-          t={t}
-          options={questionData.options}
-          onSelectAnswer={onSelectAnswer}
-        />
-      );
-    case FAKE_DOMAIN:
-      return (
-        <FakeDomain
-          t={t}
-          options={questionData.options}
-          onSelectAnswer={onSelectAnswer}
-        />
-      );
-    case ORDER:
-      return (
-        <OrderQuestion
-          questionData={questionData}
-          t={t}
-          onSelectAnswer={onSelectAnswer}
-        />
-      );
-    case SEVERAL_OPTION:
-      return (
-        <>
-          {questionData.options.map((option) => (
-            <div style={{ margin: "6px 0" }}>
-              <StyledButton
-                onClick={() => onSelectAnswer(option.score)}
-                style={{ width: "100%", textAlign: "center" }}
-              >
-                {t(option.text)}
-              </StyledButton>
-            </div>
-          ))}
-        </>
-      );
-    case DRAG_TO_TRASH:
-      return (
-        <DragToTrash
-          questionData={questionData}
-          onSelectAnswer={onSelectAnswer}
-          t={t}
-        />
-      );
-    case PASSWORD_INPUT:
-      return (
-        <PasswordCheck
-          onSelectAnswer={onSelectAnswer}
-          questionData={questionData}
-          profileForQuestion={profileForQuestion}
-          t={t}
-          setChangedTitle={setChangedTitle}
-        />
-      );
-    case SEARCH_RESULT:
+    );
+  } else if(questionData.type === SEARCH_RESULT) {
       return (
         <SearchResult
           t={t}
@@ -380,9 +323,7 @@ const AnswerOptions = ({
           onSelectAnswer={onSelectAnswer}
         />
       );
-    default:
-      return null;
-  }
+  } else return null;
 };
 
 // Type: Interactive question

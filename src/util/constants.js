@@ -66,7 +66,7 @@ export const ORDER = "ORDER";
 
 export const QUESTIONS = [
   {
-    id: 1,
+    id: "SRCH",
     category: DONT_CLICK_LINK,
     type: SEARCH_RESULT,
     forProfile: GENERAL_PROFILE,
