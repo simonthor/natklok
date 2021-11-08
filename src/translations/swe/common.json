@@ -2,7 +2,7 @@
   "general": {
     "next": "Nästa",
     "madeByDU": "Ett quiz gjort i samarbete med",
-    "shareTest": "Dela detta test",
+    "shareTest": "Dela testet",
     "shareQuestion": "Kopiera länken till denna fråga",
     "copied": "Länken är nu kopierad.",
     "questionsLeft": "frågor kvar",
@@ -76,7 +76,7 @@
     },
     "publicWifi": {
       "title": "Gratis wifi på café",
-      "text": "Nice, alla älskar ju gratis saker! <b> Men hur mycket av din surfning kan kaféet faktiskt se? </b>",
+      "text": "Nice, alla älskar ju gratis saker! <b> Men hur mycket av din surfning kan kaféet faktiskt se ifall du inte använder en VPN? </b>",
       "moreInfo": "Med HTTPS (🔒-ikonen syns bredvid hemsidans namn) är alla meddelanden eller lösenord du skickar säkra, men utan en VPN kan de som äger wifi:et <b>alltid se vilka webbplatser du besöker.</b>",
       "option1": "Jag är helt skyddad",
       "option2": "De kan bara se vissa saker",
@@ -126,7 +126,7 @@
       "moreInfo": "Det finns tre saker du i huvudsak ska leta efter: </br></br> 1. Orimligt bra priser eller erbjudanden. </br></br> 2. Stavfel. </br></br> 3. Falsk URL. Istället för varuhuset.se kanske det står var<b>o</b>huset.se med ett 'o' eller varuhuset.se.någotannat.se"
     },
     "trashSamePassword": {
-      "title": "Klicka och dra påståndet till soptunnan!",
+      "title": "Klicka och dra påståendet till soptunnan!",
       "text": "",
       "dragToTrashText": "'Så länge jag använder ett bra lösenord kan jag använda samma överallt.'",
       "moreInfo": "<b>Använd alltid unika lösenord för varje tjänst du använder!</b> <br/><br/> För att inte glömma bort lösenord kan du använda en lösenordshanterare. Det finns många bra. Apple har en inbyggd som heter 'Keychain Access' eller 'Nyckelhanterare'."
@@ -135,7 +135,6 @@
       "title": "Ranka lösenorden efter hur starka de är.",
       "text": "",
       "moreInfo": "Stora och små bokstäver + siffror + någon speciell symbol = ett grymt lösenord!",
-      "evenMoreInfo": "<h2>mångabäckarsmågrodorna</h2> Även fast detta lösenord är längst, är det ganska svagt. Det beror på att det innehåller 4 vanliga ord utan några stora bokstäver eller speciella karaktärer. <i> En hackare behöver bara en ordbok och ett program som kan testa supermånga kombinationer av ord på kort tid, för att knäcka lösenordet.</i> </br></br> Om det hade funnits en siffra i lösenordet, hade tiden det tagit att knäcka lösenordet ökat enormt mycket eftersom hackaren då hade behövt kolla både ord och siffror för att knäcka det!",
       "best": "Starkast",
       "worst": "Svagast"
     },
@@ -206,7 +205,7 @@
     "thirdPlaceTitle": "Aj då...",
     "thirdPlaceDesc": "Du skulle behöva lära dig mer om digital säkerhet innan du råkar ut för en olycka!",
     "readMore": "Läs mer",
-    "yourScore": "Ditt result",
+    "yourScore": "Ditt resultat",
     "redo": "Gör om quizet",
     "share": "Dela ditt resultat"
   }
