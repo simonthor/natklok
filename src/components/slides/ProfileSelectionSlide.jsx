@@ -24,7 +24,6 @@ import {
 } from "util/constants";
 import Title from "components/general/typeography/Title";
 import SmallText from "components/general/typeography/SmallText";
-import Subtitle from "components/general/typeography/Subtitle";
 
 const ProfileSelectionSlide = ({
   t,
@@ -102,10 +101,14 @@ const ProfileSelectionSlide = ({
               container
               direction="column"
               xs={12}
-              style={{ textAlign: "center", paddingRight: 8, marginTop: 10 }}
+              style={{ textAlign: "center", paddingRight: 8, marginTop: 2 }}
             >
               <SmallText opacity>{t("profileSelection.desc")}</SmallText>
-              <StyledButton onClick={nextSlide}>
+              <StyledButton
+                onClick={nextSlide}
+                caps
+                style={{ marginBottom: 24 }}
+              >
                 {t("general.next")}
               </StyledButton>
             </Grid>
@@ -136,7 +139,7 @@ const ProfilCheckbox = ({
             ? "4px solid rgba(0, 0, 0, 0.2)"
             : "4px solid transparent",
           width: "100%",
-          padding: "3px 0",
+          padding: 0,
           color: profileState[name]
             ? dark
               ? "rgba(0, 0, 0, 0.7)"

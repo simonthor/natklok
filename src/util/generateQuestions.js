@@ -55,10 +55,6 @@ const generateQuestionsToShow = (profileFiltered, showAllUnanswered) => {
       const reuseCorrect =
         maxScore - correctlyAnsweredQuestions.length < profileFiltered.length;
 
-      if (reuseCorrect === true) {
-        console.log("have to reuse ", question.title);
-      }
-
       if (
         (alreadyCorrect === false || reuseCorrect === true) &&
         alreadyAddedCategory === false

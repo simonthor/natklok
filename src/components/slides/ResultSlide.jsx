@@ -1,19 +1,20 @@
-import { Grid } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { withTranslation } from "react-i18next";
+import Grid from "@material-ui/core/Grid";
 
 // Custom components
 import AlignCenter from "components/general/AlignCenter";
 import Fade from "components/general/Fade";
 import StyledButton from "components/general/StyledButton";
 import StyledLink from "components/general/StyledLink";
-import { Facebook, Instagram, Star, Twitter } from "@material-ui/icons";
-import { Link } from "react-router-dom";
+//import { Facebook, Instagram, Star, Twitter } from "@material-ui/icons";
+import Star from "@material-ui/icons/Star";
 import { BLUE, PALEBLUE } from "util/constants";
 import { getStoredTotalAmount, getAllQuestionAmount } from "util/totalScore";
 import Title from "components/general/typeography/Title";
 import Subtitle from "components/general/typeography/Subtitle";
 import SmallText from "components/general/typeography/SmallText";
+import SocialShare from "components/features/SocialShare";
 
 const getResultText = (t, starAmount, maxStarAmount) => {
   let title = "";
@@ -53,7 +54,7 @@ const ResultSlide = ({
   redoTest,
 }) => {
   const resultTextObj = getResultText(t, starAmount, maxStarAmount);
-  const starAnimationTimeMS = 400 * maxStarAmount;
+  const starAnimationTimeMS = 310 * maxStarAmount;
   const achievedStars = [];
   for (let i = 0; i < maxStarAmount; i++) {
     let achieved = starAmount > i;
@@ -91,7 +92,7 @@ const ResultSlide = ({
           ))}
         </div>
         <Fade delay={starAnimationTimeMS}>
-          <div style={{ marginTop: 32 }}>
+          <div style={{ marginTop: 32, textAlign: "center" }}>
             <SmallText
               opacity
               style={{
@@ -105,27 +106,57 @@ const ResultSlide = ({
               {resultTextObj.title}
             </Subtitle>
             <p style={{ margin: "6px 0" }}>{resultTextObj.desc}</p>
-            <div
+            <Grid
+              container
               style={{
-                display: "flex",
+                width: "100%",
                 marginTop: 12,
               }}
+              spacing={1}
             >
-              <StyledButton
-                onClick={() => {
-                  redoTest(false);
-                }}
-                style={{ margin: "8px 8px 8px 0" }}
-              >
-                {t("result.redo")}
-              </StyledButton>
-              <StyledLink href="https://sakerhetskollen.typeform.com/to/StcP4PFK">
-                <StyledButton style={{ margin: "8px 0", background: PALEBLUE }}>
-                  Ge feedback här!
+              <Grid item xs={12} sm={6}>
+                <StyledButton
+                  onClick={() => {
+                    redoTest(false);
+                  }}
+                  style={{ width: "100%" }}
+                >
+                  {t("result.redo")}
                 </StyledButton>
-              </StyledLink>
-            </div>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <StyledLink
+                  rel=""
+                  target="_self"
+                  href="https://sakerhetskollen.se/"
+                >
+                  <StyledButton
+                    style={{
+                      margin: 0,
+                      width: "100%",
+                      padding: "14px 14px",
+                      background: PALEBLUE,
+                    }}
+                  >
+                    Tillbaka till säkerhetskollen
+                  </StyledButton>
+                </StyledLink>
+              </Grid>
+              <div style={{ width: "100%", textAlign: "center" }}>
+                <SocialShare shareText={t("general.shareTest")} />
+              </div>
 
+              {/* 
+                <StyledLink href="https://sakerhetskollen.typeform.com/to/StcP4PFK">
+                  <StyledButton style={{ margin: "8px 0", background: PALEBLUE }}>
+                    Ge feedback här!
+                  </StyledButton>
+                </StyledLink>
+              */}
+            </Grid>
+
+            {/* 
+            This gives the user the option to redo the test with questions they haven't answered
             <Subtitle style={{ margin: "32px 0 6px 0", opacity: 0.8 }}>
               {resultTextObj.extraTitle}
             </Subtitle>
@@ -158,6 +189,7 @@ const ResultSlide = ({
                 </p>
               </>
             )}
+            */}
           </div>
         </Fade>
       </div>
@@ -274,30 +306,32 @@ const ResultStar = ({
   useEffect(() => {
     if (unlocked === true && testFinished === true) {
       const starAmountIcon = document.getElementById("starAmountIcon");
-      const starAmountIconRect = starAmountIcon.getBoundingClientRect();
-      setScale(1);
-      setOpacity(1);
-      setLeft(starAmountIconRect.left);
-      setTop(starAmountIconRect.top);
+      if (starAmountIcon != null) {
+        const starAmountIconRect = starAmountIcon.getBoundingClientRect();
+        setScale(1);
+        setOpacity(1);
+        setLeft(starAmountIconRect.left);
+        setTop(starAmountIconRect.top);
 
-      // Start the flying animation
-      setTimeout(function () {
-        const resultStar = document.getElementById(id);
-        const resultStarRect = resultStar.getBoundingClientRect();
-
-        setTransition(
-          "transform 1s cubic-bezier(.03,1.9,.63,1.95), left 0.8s cubic-bezier(.04,1.31,.71,1.05), top 0.8s ease-in-out, opacity 1s cubic-bezier(1,.01,1,.01)"
-        );
-        setOpacity(0);
-        setLeft(resultStarRect.left);
-        setTop(resultStarRect.top);
-        setScale(1.1);
-
-        // Finally, set the static star to yellow so it looks like the flying one landed
+        // Start the flying animation
         setTimeout(function () {
-          setStaticStarColor("yellow");
-        }, flyAnimTime);
-      }, timeUntilStartAnim);
+          const resultStar = document.getElementById(id);
+          const resultStarRect = resultStar.getBoundingClientRect();
+
+          setTransition(
+            "transform 1s cubic-bezier(.03,1.9,.63,1.95), left 0.8s cubic-bezier(.04,1.31,.71,1.05), top 0.8s ease-in-out, opacity 1s cubic-bezier(1,.01,1,.01)"
+          );
+          setOpacity(0);
+          setLeft(resultStarRect.left);
+          setTop(resultStarRect.top);
+          setScale(1.1);
+
+          // Finally, set the static star to yellow so it looks like the flying one landed
+          setTimeout(function () {
+            setStaticStarColor("#FDCF35");
+          }, flyAnimTime);
+        }, timeUntilStartAnim);
+      }
     }
   }, [
     id,
@@ -321,7 +355,7 @@ const ResultStar = ({
             opacity,
           }}
         >
-          <Star style={{ color: "yellow" }} />
+          <Star style={{ color: "#FDCF35" }} />
         </div>
       )}
       <Star style={{ color: staticStarColor }} />

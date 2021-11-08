@@ -18,7 +18,7 @@ const MoreInfoDisplay = ({
     <>
       <div
         style={{
-          marginTop: "1.5em",
+          marginTop: 16,
           width: "100%",
           textAlign: "center",
         }}
@@ -31,7 +31,6 @@ const MoreInfoDisplay = ({
           style={{
             background: "rgba(0,0,0,0)",
             color: "white",
-            fontSize: "0.9em",
             border: "1px solid white",
             padding: "0.5em 1.5em",
           }}
@@ -44,7 +43,7 @@ const MoreInfoDisplay = ({
         <div
           style={{
             minHeight: "70vh",
-            marginTop: "2em",
+            marginTop: 16,
             background: WHITE,
             position: fixed ? "fixed" : "none",
             bottom: 0,
@@ -55,12 +54,10 @@ const MoreInfoDisplay = ({
             width: "100%",
           }}
         >
-          <div style={{ padding: "2em 0" }}>
-            <AlignCenter>
-              <HTMLRenderer>{content}</HTMLRenderer>
-              {buttonComponent}
-            </AlignCenter>
-          </div>
+          <AlignCenter>
+            <HTMLRenderer>{content}</HTMLRenderer>
+            {buttonComponent}
+          </AlignCenter>
         </div>
       )}
     </>

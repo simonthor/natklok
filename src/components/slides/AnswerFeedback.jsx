@@ -146,22 +146,21 @@ const NextQuestionOrDoTestButton = ({
     );
   } else {
     return (
-      <>
-        <Subtitle style={{ marginBottom: 0, marginTop: "10vh" }}>
+      <div style={{ padding: "0 1em", textAlign: "center" }}>
+        <Subtitle style={{ marginBottom: 0, marginTop: 42 }}>
           {t("test.doTheTestTitle")}
         </Subtitle>
-        <p style={{ marginTop: 6, fontSize: "1em" }}>
-          {t("test.doTheTestDesc")}
-        </p>
+        <p style={{ marginTop: 6 }}>{t("test.doTheTestDesc")}</p>
         <StyledButton
-          style={{ margin: "6px 0 2em 0" }}
+          style={{ margin: "0px 0 18px 0", paddingLeft: 24, paddingRight: 24 }}
+          caps
           onClick={() => {
             redoTest(false);
           }}
         >
           {t("welcome.test")}
         </StyledButton>
-      </>
+      </div>
     );
   }
 };

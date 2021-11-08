@@ -11,6 +11,9 @@ import common_swe from "./translations/swe/common.json";
 import common_en from "./translations/en/common.json";
 
 const theme = createTheme({
+  typography: {
+    fontFamily: "Dagny",
+  },
   palette: {
     primary: {
       main: "#a12345",
@@ -33,7 +36,7 @@ i18next.init({
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" style={{ minHeight: "-webkit-fill-available" }}>
       <I18nextProvider i18n={i18next}>
         <ThemeProvider theme={theme}>
           <Router />

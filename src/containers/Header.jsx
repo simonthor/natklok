@@ -9,11 +9,12 @@ import { Popover, ArrowContainer } from "react-tiny-popover";
 // Custom components
 import AlignCenter from "components/general/AlignCenter";
 import ProgressBar from "components/features/ProgressBar";
-import Mainlogo from "assets/sakerhetskontrollen-logo.svg";
 import StyledLink from "components/general/StyledLink";
 import { getAllQuestionAmount, getStoredTotalAmount } from "util/totalScore";
 import SmallText from "components/general/typeography/SmallText";
 import Subtitle from "components/general/typeography/Subtitle";
+import { Logo } from "components/general";
+import annaWhiteLogo from "assets/annaWhiteLogo.svg";
 
 const Header = ({
   t,
@@ -61,7 +62,7 @@ const Header = ({
 
 const ContentBeforeStart = () => (
   <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
-    <div>
+    <div style={{ textAlign: "center" }}>
       <SmallText
         opacity
         style={{
@@ -82,7 +83,21 @@ const ContentBeforeStart = () => (
           margin: 0,
         }}
       >
-        Digital Ungdom
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            marginTop: -6,
+          }}
+        >
+          <img
+            src={annaWhiteLogo}
+            alt=""
+            style={{ height: 32, marginLeft: -6 }}
+          />
+          Digital Ungdom
+        </div>
       </StyledLink>
     </div>
   </div>
@@ -99,7 +114,7 @@ const ContentAfterStart = ({
 
   let questionsLeft = "";
   if (isFinished === true) {
-    questionsLeft = t("general.done") + "!";
+    questionsLeft = "";
   } else if (totalQuestions - currentQuestionIndex === 1) {
     questionsLeft = t("general.questionLeft");
   } else {
@@ -164,15 +179,7 @@ const ContentAfterStart = ({
             pointerEvents: "none",
           }}
         >
-          <img
-            style={{
-              width: 110,
-              position: "relative",
-              height: "auto",
-            }}
-            alt="Säkerhetskontrollen"
-            src={Mainlogo}
-          />
+          <Logo sm={true} />
         </div>
       </Hidden>
 
@@ -306,7 +313,7 @@ const StarContainer = ({ starAmount, totalQuestions }) => {
             cursor: "pointer",
           }}
         >
-          <Star id="starAmountIcon" style={{ color: "yellow" }} />
+          <Star id="starAmountIcon" style={{ color: "#FDCF35" }} />
           <p style={{ margin: "0 2px" }}>{starAmountText}</p>
         </div>
       </Popover>
@@ -323,7 +330,7 @@ const StarContainer = ({ starAmount, totalQuestions }) => {
           pointerEvents: "none",
         }}
       >
-        <Star style={{ color: "yellow" }} />
+        <Star style={{ color: "#FDCF35" }} />
       </div>
     </>
   );
@@ -339,7 +346,7 @@ const StarBox = ({ amount, totalAmount, total = false }) => {
     >
       <div
         style={{
-          background: total ? "silver" : "gold",
+          background: total ? "silver" : "#fcfa6f",
           borderRadius: 4,
           width: 80,
           height: 80,
@@ -355,7 +362,7 @@ const StarBox = ({ amount, totalAmount, total = false }) => {
             height: "100%",
           }}
         >
-          <Star style={{ color: "yellow" }} />
+          <Star style={{ color: "#FDCF35" }} />
           <p style={{ margin: 0, fontSize: "0.9em" }}>
             <span style={{ fontWeight: 600, fontSize: "1.1em" }}>{amount}</span>
             /<span style={{ fontWeight: 300 }}>{totalAmount}</span>
