@@ -18,6 +18,7 @@ import {
   ORDER,
   FAKE_DOMAIN,
   YES_NO,
+  SEARCH_RESULT
 } from "util/constants";
 import ChatQuestion from "components/dynamicQuestions/ChatQuestion";
 import FakeWebsite from "components/dynamicQuestions/FakeWebsite";
@@ -25,6 +26,7 @@ import OrderQuestion from "components/dynamicQuestions/OrderQuestion";
 import YesNoWrapper from "components/features/YesNoWrapper";
 import DragToTrash from "components/dynamicQuestions/DragToTrash";
 import FakeDomain from "components/dynamicQuestions/FakeDomain";
+import SearchResult from "components/dynamicQuestions/SearchResult";
 import { addCorrectAnswer } from "util/totalScore";
 import Title from "components/general/typeography/Title";
 
@@ -311,22 +313,17 @@ const AnswerOptions = ({
       <DragToTrash
         questionData={questionData}
         onSelectAnswer={onSelectAnswer}
-        t={t}
       />
     );
-  } else if (questionData.type === PASSWORD_INPUT) {
-    return (
-      <PasswordCheck
-        onSelectAnswer={onSelectAnswer}
-        questionData={questionData}
-        profileForQuestion={profileForQuestion}
-        t={t}
-        setChangedTitle={setChangedTitle}
-      />
-    );
-  } else {
-    return null;
-  }
+  } else if(questionData.type === SEARCH_RESULT) {
+      return (
+        <SearchResult
+          t={t}
+          questionData={questionData}
+          onSelectAnswer={onSelectAnswer}
+        />
+      );
+  } else return null;
 };
 
 // Type: Interactive question
