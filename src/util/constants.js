@@ -82,7 +82,7 @@ export const QUESTIONS = [
       },
       partially: {
         text: "Annonser går inte alltid att lita på.",
-        score: 0.2
+        score: 0
       },
       wrong: {
         text: "Du klickade på en suspekt länk.",
