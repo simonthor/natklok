@@ -6,7 +6,7 @@ import Hidden from "@material-ui/core/Hidden";
 import { Menu, Search, ShoppingBasket } from "@material-ui/icons";
 import AmountFound from "components/features/AmountFound";
 
-const FakeWebsite = ({ options, onSelectAnswer, t }) => {
+const FakeWebsite = ({ onSelectAnswer, t }) => {
   const [scams, setScams] = useState({
     domainScamFound: false,
     spellingErrorsFound: false,

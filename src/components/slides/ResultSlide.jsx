@@ -35,12 +35,15 @@ const getResultText = (t, starAmount, maxStarAmount) => {
         getAllQuestionAmount() +
         t("result.firstPlaceEvenMorePoints3");
     }
-  } else if (percentCorrect > 0.4) {
+  } else if (percentCorrect >= 0.5) {
     title = t("result.secondPlaceTitle");
     desc = t("result.secondPlaceDesc");
-  } else {
+  } else if (percentCorrect >= 0.3) {
     title = t("result.thirdPlaceTitle");
     desc = t("result.thirdPlaceDesc");
+  } else {
+    title = t("result.forthPlaceTitle");
+    desc = t("result.forthPlaceDesc");
   }
 
   return { title, desc, extraDesc, extraTitle };
@@ -48,7 +51,7 @@ const getResultText = (t, starAmount, maxStarAmount) => {
 
 const ResultSlide = ({
   t,
-  starAmount = 12,
+  starAmount = 7,
   maxStarAmount = 12,
   testFinished = true,
   redoTest,

@@ -18,12 +18,13 @@ import {
   ORDER,
   FAKE_DOMAIN,
   YES_NO,
-  SEARCH_RESULT
+  SEARCH_RESULT,
 } from "util/constants";
 import ChatQuestion from "components/dynamicQuestions/ChatQuestion";
 import FakeWebsite from "components/dynamicQuestions/FakeWebsite";
 import OrderQuestion from "components/dynamicQuestions/OrderQuestion";
 import YesNoWrapper from "components/features/YesNoWrapper";
+import BackgroundOrbs from "components/features/BackgroundOrbs";
 import DragToTrash from "components/dynamicQuestions/DragToTrash";
 import FakeDomain from "components/dynamicQuestions/FakeDomain";
 import SearchResult from "components/dynamicQuestions/SearchResult";
@@ -46,16 +47,20 @@ const Questions = ({
   setQuestionIndex,
   redoTest,
 }) => {
+  const [blobSeed, setBlobSeed] = useState(Math.random());
+
   const nextQuestion = () => {
     if (questionIndex + 1 === questions.length) {
       nextSlide();
     } else {
+      setBlobSeed(Math.random());
       setQuestionIndex(questionIndex + 1);
     }
   };
 
   return (
     <div>
+      <BackgroundOrbs hideWhenSmall seed={blobSeed} />
       {questions.map((questionData, index) => {
         return (
           <>
@@ -265,11 +270,7 @@ const AnswerOptions = ({
   } else if (questionData.type === FAKE_WEBSITE) {
     return (
       <Fade delay={contentFadeDelay}>
-        <FakeWebsite
-          t={t}
-          options={questionData.options}
-          onSelectAnswer={onSelectAnswer}
-        />
+        <FakeWebsite t={t} onSelectAnswer={onSelectAnswer} />
       </Fade>
     );
   } else if (questionData.type === FAKE_DOMAIN) {
@@ -311,18 +312,29 @@ const AnswerOptions = ({
   } else if (questionData.type === DRAG_TO_TRASH) {
     return (
       <DragToTrash
+        t={t}
         questionData={questionData}
         onSelectAnswer={onSelectAnswer}
       />
     );
-  } else if(questionData.type === SEARCH_RESULT) {
-      return (
-        <SearchResult
-          t={t}
-          questionData={questionData}
-          onSelectAnswer={onSelectAnswer}
-        />
-      );
+  } else if (questionData.type === SEARCH_RESULT) {
+    return (
+      <SearchResult
+        t={t}
+        questionData={questionData}
+        onSelectAnswer={onSelectAnswer}
+      />
+    );
+  } else if (questionData.type === PASSWORD_INPUT) {
+    return (
+      <PasswordCheck
+        t={t}
+        profileForQuestion={profileForQuestion}
+        questionData={questionData}
+        onSelectAnswer={onSelectAnswer}
+        setChangedTitle={setChangedTitle}
+      />
+    );
   } else return null;
 };
 

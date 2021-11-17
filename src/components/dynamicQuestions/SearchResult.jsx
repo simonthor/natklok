@@ -5,23 +5,27 @@ import searchEngineLogo from "../../assets/searchEngineLogo.svg";
 import getWindowSize from "util/getWindowSize.js";
 
 const SearchResults = ({ questionData, onSelectAnswer, t }) => {
-  const [randomQuery] = useState(questionData.searches[Math.floor(Math.random() * questionData.searches.length)]);
+  const [randomQuery] = useState(
+    questionData.searches[
+      Math.floor(Math.random() * questionData.searches.length)
+    ]
+  );
   const [dark] = useState(window.matchMedia("(prefers-color-scheme: dark)"));
   const windowSize = getWindowSize();
   const [mobile] = useState(windowSize.width <= 540 ? true : false);
 
   const pointsController = (index) => {
     if (index === randomQuery.correctAnswerIndex) {
-      let correct = questionData.options.correct
-      onSelectAnswer(correct.score, "", correct.text, 500)
+      let correct = questionData.options.correct;
+      onSelectAnswer(correct.score, "", correct.text);
     } else if (randomQuery.links[index].type === "ad") {
-      let partially = questionData.options.partially
-      onSelectAnswer(partially.score, "", partially.text, 500)
+      let partially = questionData.options.partially;
+      onSelectAnswer(partially.score, "", partially.text);
     } else {
-      let wrong = questionData.options.wrong
-      onSelectAnswer(wrong.score, "", wrong.text, 500)
+      let wrong = questionData.options.wrong;
+      onSelectAnswer(wrong.score, "", wrong.text);
     }
-  }
+  };
 
   return (
     <div
@@ -43,7 +47,9 @@ const SearchResults = ({ questionData, onSelectAnswer, t }) => {
           backgroundColor: dark ? "#10142b" : "#fff",
         }}
       >
-        <div style={{marginTop: 3, marginLeft: 3}}><img src={searchEngineLogo} alt="Piggy Sökmotor" width="42"/></div>
+        <div style={{ marginTop: 3, marginLeft: 3 }}>
+          <img src={searchEngineLogo} alt="Piggy Sökmotor" width="42" />
+        </div>
         <div
           style={{
             width: "80%",
@@ -55,9 +61,11 @@ const SearchResults = ({ questionData, onSelectAnswer, t }) => {
             padding: "0 15px",
             borderRadius: 19,
             fontSize: "0.85em",
-            cursor: "text"
+            cursor: "text",
           }}
-        >{randomQuery.query}</div>
+        >
+          {randomQuery.query}
+        </div>
       </div>
       <div
         style={{
@@ -75,16 +83,11 @@ const SearchResults = ({ questionData, onSelectAnswer, t }) => {
             padding: "7px 0",
             margin: "0 5px",
             borderBottom: "3px solid #7d9efa",
-            cursor: "pointer"
-          }}
-        >{questionData.searchCategories[0]}</div>
-        <div
-          style={{
-            padding: "7px 0",
-            margin: "0 5px",
-            borderBottom: "3px solid transparent",
             cursor: "pointer",
-          }}>{questionData.searchCategories[1]}</div>
+          }}
+        >
+          {questionData.searchCategories[0]}
+        </div>
         <div
           style={{
             padding: "7px 0",
@@ -92,13 +95,36 @@ const SearchResults = ({ questionData, onSelectAnswer, t }) => {
             borderBottom: "3px solid transparent",
             cursor: "pointer",
           }}
-        >{questionData.searchCategories[2]}</div>
+        >
+          {questionData.searchCategories[1]}
+        </div>
+        <div
+          style={{
+            padding: "7px 0",
+            margin: "0 5px",
+            borderBottom: "3px solid transparent",
+            cursor: "pointer",
+          }}
+        >
+          {questionData.searchCategories[2]}
+        </div>
       </div>
-      <div style={{
-        padding: 20
-      }}>
-      {randomQuery.links.map((result, index) => <SearchResultLink data={result} index={index} adNotice={t(questionData.adNotice)} dark={dark} mobile={mobile} pointsController={pointsController}/>)}
-    </div>
+      <div
+        style={{
+          padding: 20,
+        }}
+      >
+        {randomQuery.links.map((result, index) => (
+          <SearchResultLink
+            data={result}
+            index={index}
+            adNotice={t(questionData.adNotice)}
+            dark={dark}
+            mobile={mobile}
+            pointsController={pointsController}
+          />
+        ))}
+      </div>
     </div>
   );
 };

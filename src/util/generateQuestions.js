@@ -2,7 +2,6 @@ import { GENERAL_PROFILE, MAX_AMOUNT_QUESTIONS, QUESTIONS } from "./constants";
 import { getCorrectlyAnsweredIds, getAllQuestionAmount } from "./totalScore";
 
 export const generateQuestions = (profileState, showAllUnanswered) => {
-  console.log("showAllUnanswered: ", showAllUnanswered);
   var randomizedQuestions = QUESTIONS.sort((a, b) => 0.5 - Math.random());
   var profileFiltered = filterAfterProfile(
     randomizedQuestions,

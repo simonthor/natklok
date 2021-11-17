@@ -74,7 +74,7 @@ const YesNoWrapper = ({
                   pointerEvents: "auto",
                   transform:
                     "scale(" +
-                    Math.pow(Number(1 + (1 - percentSwitched)), 1.5) +
+                    Math.pow(Number(1 + (1 - percentSwitched)), 2) +
                     ")",
                 }}
               >
@@ -99,7 +99,7 @@ const YesNoWrapper = ({
                   alignItems: "center",
                   marginLeft: "20vw",
                   pointerEvents: "auto",
-                  transform: "scale(" + Math.pow(percentSwitched, 1.5) + ")",
+                  transform: "scale(" + Math.pow(percentSwitched, 2) + ")",
                 }}
               >
                 <Subtitle

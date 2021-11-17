@@ -125,41 +125,49 @@ const ContentAfterStart = ({
     <>
       {/*TODO: Implement auto-resume. When user clicks 'Return to Start' and then clicks 'Start' again, the quiz resumes from last answered question.*/}
       <div style={{ display: "flex" }}>
-        <div
-          style={{ lineHeight: 1, cursor: "pointer", paddingRight: 12 }}
-          onClick={() => {
-            history.push("/");
+        <a
+          style={{
+            lineHeight: 1,
+            cursor: "pointer",
+            paddingRight: 12,
+            color: "white",
+            textDecoration: "none",
           }}
+          href="https://sakerhetskollen.se/"
         >
-          <SmallText
-            opacity
-            xs
-            style={{
-              display: "block",
-              width: "100%",
-              margin: 0,
-            }}
-          >
-            Tillbaks till
-          </SmallText>
-          <SmallText
-            style={{
-              fontSize: "0.8em",
-              display: "block",
-              width: "100%",
-              margin: 0,
-              fontWeight: "bold",
-            }}
-          >
+          <div style={{ display: "flex", alignItems: "center" }}>
             <NavigateBeforeIcon
               style={{
                 height: 20,
                 margin: "-2px -2px -5px -8px",
               }}
             />
-            Start
-          </SmallText>
-        </div>
+            <div>
+              <SmallText
+                opacity
+                xs
+                style={{
+                  display: "block",
+                  width: "100%",
+                  margin: 0,
+                }}
+              >
+                Tillbaka till
+              </SmallText>
+              <SmallText
+                style={{
+                  fontSize: "0.8em",
+                  display: "block",
+                  width: "100%",
+                  margin: 0,
+                  fontWeight: "bold",
+                }}
+              >
+                Säkerhetskollen
+              </SmallText>
+            </div>
+          </div>
+        </a>
         <StarContainer
           starAmount={starAmount}
           totalQuestions={totalQuestions}
