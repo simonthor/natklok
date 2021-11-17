@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { PURPLE, WHITE } from "../../util/constants";
+import { PURPLE, WHITE } from "util/constants";
 import { withTranslation } from "react-i18next";
 
-import { AlignCenter, HTMLRenderer, StyledButton } from "../general";
+import AlignCenter from "components/AlignCenter";
+import HTMLRenderer from "components/HTMLRenderer";
+import StyledButton from "components/StyledButton";
 
 const MoreInfoDisplay = ({
   title,

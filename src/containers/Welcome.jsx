@@ -5,14 +5,14 @@ import { Link } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 
 // Custom
-import StyledButton from "components/general/StyledButton";
-import Logo from "components/general/Logo";
-import BackgroundOrbs from "components/features/BackgroundOrbs";
+import StyledButton from "components//StyledButton";
+import Logo from "components//Logo";
+import BackgroundOrbs from "features/BackgroundOrbs";
 
-import SocialShare from "components/features/SocialShare";
+import SocialShare from "features/SocialShare";
 
 import "keyframes.css";
-import Subtitle from "components/general/typeography/Subtitle";
+import Subtitle from "components/typeography/Subtitle";
 
 const Welcome = ({ t, hasStarted }) => {
   return (

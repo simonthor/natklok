@@ -7,13 +7,13 @@ import { Hidden } from "@material-ui/core";
 import { Popover, ArrowContainer } from "react-tiny-popover";
 
 // Custom components
-import AlignCenter from "components/general/AlignCenter";
-import ProgressBar from "components/features/ProgressBar";
-import StyledLink from "components/general/StyledLink";
+import AlignCenter from "components/AlignCenter";
+import ProgressBar from "features/ProgressBar";
+import StyledLink from "components/StyledLink";
 import { getAllQuestionAmount, getStoredTotalAmount } from "util/totalScore";
-import SmallText from "components/general/typeography/SmallText";
-import Subtitle from "components/general/typeography/Subtitle";
-import { Logo } from "components/general";
+import SmallText from "components/typeography/SmallText";
+import Subtitle from "components/typeography/Subtitle";
+import Logo from "components/Logo";
 import annaWhiteLogo from "assets/annaWhiteLogo.svg";
 
 const Header = ({

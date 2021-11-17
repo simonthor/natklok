@@ -3,18 +3,18 @@ import { withTranslation } from "react-i18next";
 import Grid from "@material-ui/core/Grid";
 
 // Custom components
-import AlignCenter from "components/general/AlignCenter";
-import Fade from "components/general/Fade";
-import StyledButton from "components/general/StyledButton";
-import StyledLink from "components/general/StyledLink";
+import AlignCenter from "components/AlignCenter";
+import Fade from "components//Fade";
+import StyledButton from "components//StyledButton";
+import StyledLink from "components//StyledLink";
 //import { Facebook, Instagram, Star, Twitter } from "@material-ui/icons";
 import Star from "@material-ui/icons/Star";
 import { BLUE, PALEBLUE } from "util/constants";
 import { getStoredTotalAmount, getAllQuestionAmount } from "util/totalScore";
-import Title from "components/general/typeography/Title";
-import Subtitle from "components/general/typeography/Subtitle";
-import SmallText from "components/general/typeography/SmallText";
-import SocialShare from "components/features/SocialShare";
+import Title from "components/typeography/Title";
+import Subtitle from "components/typeography/Subtitle";
+import SmallText from "components/typeography/SmallText";
+import SocialShare from "features/SocialShare";
 
 const getResultText = (t, starAmount, maxStarAmount) => {
   let title = "";

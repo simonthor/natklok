@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { withTranslation } from "react-i18next";
-import PwdSecurityModal from "components/features/PwdSecurity";
+import Fade from "react-reveal/Fade";
 
 // Custom components
-import AlignCenter from "components/general/AlignCenter";
-import Fade from "react-reveal/Fade";
-import StyledButton from "components/general/StyledButton";
-import HTMLRenderer from "components/general/HTMLRenderer";
+import AlignCenter from "components/AlignCenter";
+import PwdSecurityModal from "features/PwdSecurity";
+import StyledButton from "components//StyledButton";
+import HTMLRenderer from "components//HTMLRenderer";
+import BackgroundOrbs from "features/BackgroundOrbs";
+import Title from "components/typeography/Title";
 import AnswerFeedback from "./AnswerFeedback";
 
 import {
@@ -20,16 +22,14 @@ import {
   YES_NO,
   SEARCH_RESULT,
 } from "util/constants";
-import ChatQuestion from "components/dynamicQuestions/ChatQuestion";
-import FakeWebsite from "components/dynamicQuestions/FakeWebsite";
-import OrderQuestion from "components/dynamicQuestions/OrderQuestion";
-import YesNoWrapper from "components/features/YesNoWrapper";
-import BackgroundOrbs from "components/features/BackgroundOrbs";
-import DragToTrash from "components/dynamicQuestions/DragToTrash";
-import FakeDomain from "components/dynamicQuestions/FakeDomain";
-import SearchResult from "components/dynamicQuestions/SearchResult";
+import ChatQuestion from "dynamicQuestions/ChatQuestion";
+import FakeWebsite from "dynamicQuestions/FakeWebsite";
+import OrderQuestion from "dynamicQuestions/OrderQuestion";
+import YesNoWrapper from "features/YesNoWrapper";
+import DragToTrash from "dynamicQuestions/DragToTrash";
+import FakeDomain from "dynamicQuestions/FakeDomain";
+import SearchResult from "dynamicQuestions/SearchResult";
 import { addCorrectAnswer } from "util/totalScore";
-import Title from "components/general/typeography/Title";
 
 // Component that layers all the questions
 const Questions = ({

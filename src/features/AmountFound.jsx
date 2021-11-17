@@ -1,5 +1,5 @@
-import SmallText from "components/general/typeography/SmallText";
-import Subtitle from "components/general/typeography/Subtitle";
+import SmallText from "components/typeography/SmallText";
+import Subtitle from "components/typeography/Subtitle";
 import React from "react";
 
 const AmountFound = ({ amountFound, scams }) => {

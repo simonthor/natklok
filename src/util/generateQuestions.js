@@ -1,5 +1,9 @@
-import { GENERAL_PROFILE, MAX_AMOUNT_QUESTIONS, QUESTIONS } from "./constants";
-import { getCorrectlyAnsweredIds, getAllQuestionAmount } from "./totalScore";
+import {
+  GENERAL_PROFILE,
+  MAX_AMOUNT_QUESTIONS,
+  QUESTIONS,
+} from "util/constants";
+import { getCorrectlyAnsweredIds, getAllQuestionAmount } from "util/totalScore";
 
 export const generateQuestions = (profileState, showAllUnanswered) => {
   var randomizedQuestions = QUESTIONS.sort((a, b) => 0.5 - Math.random());

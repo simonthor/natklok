@@ -13,15 +13,15 @@ import {
 } from "util/constants";
 
 // Custom components
-import Loading from "components/general/Loading";
+import Loading from "components//Loading";
 import TestSlides from "containers/TestSlides";
 import Welcome from "containers/Welcome";
 import getWindowSize from "util/getWindowSize.js";
 import { ThumbDown } from "@material-ui/icons";
 import { generateQuestions } from "util/generateQuestions";
-import QuestionNotFound from "components/slides/QuestionNotFound";
+import QuestionNotFound from "slides/QuestionNotFound";
 import { getQuestionFromId } from "util/getQuestionFromId";
-import ResultSlide from "components/slides/ResultSlide";
+import ResultSlide from "slides/ResultSlide";
 
 // Lazy loading
 const Header = lazy(() => import("containers/Header"));

@@ -1,5 +1,5 @@
 import React from "react";
-import StyledButton from "components/general/StyledButton";
+import StyledButton from "components//StyledButton";
 
 const smses = [
   { side: "left", text: "questions.romanceScamChat.chat1" },

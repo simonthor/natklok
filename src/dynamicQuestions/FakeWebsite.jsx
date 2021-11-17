@@ -1,10 +1,10 @@
 import React from "react";
 import { useState } from "react";
-import StyledButton from "components/general/StyledButton";
+import StyledButton from "components//StyledButton";
 import fakeWebsite from "assets/fakewebsite.jpeg";
 import Hidden from "@material-ui/core/Hidden";
 import { Menu, Search, ShoppingBasket } from "@material-ui/icons";
-import AmountFound from "components/features/AmountFound";
+import AmountFound from "features/AmountFound";
 
 const FakeWebsite = ({ onSelectAnswer, t }) => {
   const [scams, setScams] = useState({

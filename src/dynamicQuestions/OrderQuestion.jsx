@@ -4,9 +4,9 @@ import ExpandMore from "@material-ui/icons/ExpandMore";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 
 import "./OrderQuestion.css";
-import StyledButton from "components/general/StyledButton";
-import SmallText from "components/general/typeography/SmallText";
-import AlignCenter from "components/general/AlignCenter";
+import StyledButton from "components//StyledButton";
+import SmallText from "components/typeography/SmallText";
+import AlignCenter from "components/AlignCenter";
 import Fade from "react-reveal/Fade";
 
 const OrderQuestion = ({ questionData, t, onSelectAnswer }) => {

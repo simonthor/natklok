@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import SearchResultLink from "../features/SearchResultLink";
+import SearchResultLink from "features/SearchResultLink";
 import { withTranslation } from "react-i18next";
-import searchEngineLogo from "../../assets/searchEngineLogo.svg";
+import searchEngineLogo from "assets/searchEngineLogo.svg";
 import getWindowSize from "util/getWindowSize.js";
 
 const SearchResults = ({ questionData, onSelectAnswer, t }) => {

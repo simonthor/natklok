@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
 
-import AmountFound from "components/features/AmountFound";
-import StyledButton from "components/general/StyledButton";
+import AmountFound from "features/AmountFound";
+import StyledButton from "components//StyledButton";
 
 import { Hidden } from "@material-ui/core";
 import { WarningOutlined } from "@material-ui/icons";

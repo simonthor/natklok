@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import SwipeableViews from "react-swipeable-views";
 
 // Custom components
-import { PINK, YES_NO } from "util/constants";
+import { YES_NO } from "util/constants";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
-import Fade from "components/general/Fade";
-import Subtitle from "components/general/typeography/Subtitle";
-import SmallText from "components/general/typeography/SmallText";
+import Fade from "components//Fade";
+import Subtitle from "components/typeography/Subtitle";
+import SmallText from "components/typeography/SmallText";
 
 const YesNoWrapper = ({
   children,
