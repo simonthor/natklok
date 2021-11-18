@@ -102,7 +102,7 @@ export const QUESTIONS = [
             type: "ad",
             title: "Frimärken för 1kr | Köp hos Postem'",
             metaDesc:
-              "Halva priset för frimärken  70% rabatt på Västkusten  Leverans i Sverige på några dagar  Garanterat pris",
+              "Halva priset för frimärken  70% rabatt på Vestkusten  Leverans i Sverige på några dagar  Garanterat pris",
           },
           {
             url: "https://postn0rd-sverige-norden.gq › 786",
@@ -469,21 +469,6 @@ export const QUESTIONS = [
     ],
   },
   {
-    id: "CKIE",
-    category: COOKIE,
-    type: SEVERAL_OPTION,
-    forProfile: GENERAL_PROFILE,
-    title: "questions.cookie.title",
-    text: "questions.cookie.text",
-    moreInfo: "questions.cookie.moreInfo",
-    evenMoreInfo: "questions.cookie.evenMoreInfo",
-    options: [
-      { text: "questions.cookie.option1", score: 0 },
-      { text: "questions.cookie.option2", score: 0 },
-      { text: "questions.cookie.option3", score: 1 },
-    ],
-  },
-  {
     id: "CDIT",
     category: CREDITREPORT,
     type: SEVERAL_OPTION,
@@ -492,8 +477,8 @@ export const QUESTIONS = [
     text: "questions.creditReport.text",
     moreInfo: "questions.creditReport.moreInfo",
     options: [
-      { text: "questions.creditReport.option1", score: 1 },
       { text: "questions.creditReport.option2", score: 0 },
+      { text: "questions.creditReport.option1", score: 1 },
       { text: "questions.creditReport.option3", score: 0 },
     ],
   },
@@ -510,3 +495,21 @@ export const QUESTIONS = [
     no_score: 0,
   },
 ];
+
+/*
+  {
+    id: "CKIE",
+    category: COOKIE,
+    type: SEVERAL_OPTION,
+    forProfile: GENERAL_PROFILE,
+    title: "questions.cookie.title",
+    text: "questions.cookie.text",
+    moreInfo: "questions.cookie.moreInfo",
+    evenMoreInfo: "questions.cookie.evenMoreInfo",
+    options: [
+      { text: "questions.cookie.option1", score: 0 },
+      { text: "questions.cookie.option2", score: 0 },
+      { text: "questions.cookie.option3", score: 1 },
+    ],
+  },
+*/

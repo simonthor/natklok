@@ -24,50 +24,56 @@ function shuffle(array) {
   return array;
 }
 
-const BackgroundOrbs = ({ hideWhenSmall = false, seed = -1 }) => {
+const generateBlobInfo = (isQuestionBlobs) => {
+  let availablePositions = [
+    { x: "15%", y: "20%" },
+    { x: "10%", y: "40%" },
+    { x: "15%", y: "60%" },
+    { x: "85%", y: "20%" },
+    { x: "90%", y: "40%" },
+    { x: "85%", y: "65%" },
+  ];
+  let standardblobInfo = [
+    { x: "15%", y: "20%", diam: 70 },
+    { x: "15%", y: "60%", diam: 150 },
+    { x: "85%", y: "40%", diam: 100 },
+  ];
+  let questionblobInfo = [
+    { x: "15%", y: "20%", diam: 70 },
+    { x: "10%", y: "40%", diam: 150 },
+    { x: "85%", y: "40%", diam: 100 },
+    { x: "80%", y: "70%", diam: 50 },
+  ];
+  let blobInfo = [];
+  if (isQuestionBlobs === false) {
+    return standardblobInfo;
+  } else {
+    return questionblobInfo;
+  }
+
+  shuffle(availablePositions)
+    .slice(0, 3)
+    .forEach((availablePosition) => {
+      blobInfo.splice(Math.floor(Math.random() * blobInfo.length), 0, {
+        ...availablePosition,
+        diam: Math.floor(70 + Math.random() * 80),
+      });
+    });
+  return blobInfo;
+};
+
+const BackgroundOrbs = ({ hideWhenSmall = false, questionBlobs = false }) => {
   const bgdRef = useRef(null);
   const [generatedOnce, setGeneratedOnce] = useState(false);
-  const [currentSeed, setCurrentSeed] = useState(-1);
   const [blobInfo, setBlobInfo] = useState([]);
 
   useEffect(() => {
     // Seed makes it possible for us to change the constalation of blobs
-    if (generatedOnce === false || currentSeed !== seed) {
+    if (generatedOnce === false) {
       setGeneratedOnce(true);
-      setCurrentSeed(seed);
-      setBlobInfo(generateBlobInfo(seed));
+      setBlobInfo(generateBlobInfo(questionBlobs));
     }
-  }, [bgdRef, seed, currentSeed]);
-
-  const generateBlobInfo = (seed) => {
-    let availablePositions = [
-      { x: "15%", y: "20%" },
-      { x: "10%", y: "40%" },
-      { x: "15%", y: "60%" },
-      { x: "85%", y: "20%" },
-      { x: "90%", y: "40%" },
-      { x: "85%", y: "65%" },
-    ];
-    let standardblobInfo = [
-      { x: "15%", y: "20%", diam: 70 },
-      { x: "15%", y: "60%", diam: 150 },
-      { x: "85%", y: "40%", diam: 100 },
-    ];
-    let blobInfo = [];
-    if (seed === -1) {
-      return standardblobInfo;
-    }
-
-    shuffle(availablePositions)
-      .slice(0, 3)
-      .forEach((availablePosition) => {
-        blobInfo.splice(Math.floor(Math.random() * blobInfo.length), 0, {
-          ...availablePosition,
-          diam: Math.floor(70 + Math.random() * 80),
-        });
-      });
-    return blobInfo;
-  };
+  }, [bgdRef]);
 
   if (window.innerWidth < 1000 && hideWhenSmall === true) {
     return null;
@@ -88,14 +94,14 @@ const BackgroundOrbs = ({ hideWhenSmall = false, seed = -1 }) => {
         id="hoverColorEffect"
       >
         {blobInfo.map((info, i) => {
-          return <Blob info={info} i={i} seed={seed} />;
+          return <Blob info={info} i={i} isQuestionBlobs={questionBlobs} />;
         })}
       </div>
     );
   }
 };
 
-const Blob = ({ info, i, seed }) => {
+const Blob = ({ info, i, isQuestionBlobs }) => {
   let color = i % 2 === 0 ? PINK : LIGHT_BLUE;
   let shade = i % 2 === 0 ? "#e892d5" : "#9fe0f5";
   let yPos = "calc(" + info.y + " - " + info.diam / 2 + "px)";
@@ -116,7 +122,7 @@ const Blob = ({ info, i, seed }) => {
         animation: "blobsExpand 8s infinite alternate",
         animationDelay: i * 2 + "s",
         transition: "0.8s cubic-bezier(.52,.08,.58,.93)",
-        opacity: seed === -1 ? 1 : 0.6,
+        opacity: isQuestionBlobs === false ? 1 : 0.6,
       }}
     />
   );

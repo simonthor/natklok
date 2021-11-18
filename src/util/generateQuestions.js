@@ -73,8 +73,9 @@ const generateQuestionsToShow = (profileFiltered, showAllUnanswered) => {
   });
 
   var questionsToShow = newQuestions;
+  console.log("showAllUnanswered: ", showAllUnanswered);
   if (showAllUnanswered === false) {
-    newQuestions.slice(0, MAX_AMOUNT_QUESTIONS);
+    questionsToShow = questionsToShow.slice(0, MAX_AMOUNT_QUESTIONS);
   }
   return questionsToShow;
 };

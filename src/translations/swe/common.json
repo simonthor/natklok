@@ -72,7 +72,7 @@
     "fakeApp": {
       "title": "Du hittar en app som visar vilka som stalkar dig på instagram!",
       "text": "Du loggar in genom att ange ditt användarnamn och lösenord. Kan personerna som gjort appen nu logga in på ditt konto och göra vad de vill med den?",
-      "moreInfo": "<b>Om du redan använder en sådan app/tjänst byt lösenord direkt!</b></br></br> Bedragare kan använda ditt konto bla för att lura dina nära och kära på pengar. I utpressningssyfte mot dig och massor av andra tråkiga saker."
+      "moreInfo": "<b>Om du redan använder en sådan app/tjänst byt lösenord direkt!</b></br></br> Bedragare kan använda ditt konto för att lura dina nära och kära på pengar eller i utpressningssyfte mot dig."
     },
     "publicWifi": {
       "title": "Gratis wifi på café",
@@ -171,21 +171,21 @@
     "searchResult": {
       "title": "Du har använt sökmotorn Piggy...",
       "text": "Vilken länk skulle du klicka på?",
-      "moreInfo": "Ingen sökmotor är perfekt. Ibland får du suspekta sökresultat, det kan till exempel handla om falsk information, piratkopior eller konstiga länkar. Tänk på att vara källkritisk och kontrollera strukturen av länkarna som du klickar på när du surfar."
+      "moreInfo": "Ingen sökmotor är perfekt. Ibland får du suspekta sökresultat, det kan till exempel handla om falsk information, piratkopior eller konstiga länkar. </br></br>Dubbelkolla alltid en hemsidas länk (URL) och beskrivning innan du klickar. Ifall du hittar stavfel eller orimliga erbjudanden bör du kanske undvika hemsidan."
     },
     "shoulderSurfSocial": {
       "title": "Din kompis lämnar sin telefon öppen och är inloggad på snapchat...",
       "text": "Klicka och dra idéen till soptunnan.",
       "dragToTrashText": "'Det vore fett kul att ändra deras lösenord och lägga upp pinsamma bilder!!🤣🤣🤣'",
       "moreInfo": "<b>Detta är ett brott</b> och ifall något går fel kan du råka riktigt illa ut.",
-      "evenMoreInfo": "<h2>Shoulder surfing</h2> Ifall du använder ett av dina lösenord och någon tittar över din axel och ser vad lösenordet är kan du utsättas för en <i>shoulder surfing attack</i>. Personen som såg ditt lösenord kan helt enkelt använda det vid ett senare tillfälle för att exempelvis lura dig eller dina nära och kära på pengar. </br></br> Ifall en kompis tar över ditt konto 'på skoj', något går snett och du råkar illa ut på grund av deras lilla praktiska skämt räknas även det som shoulder surfing."
+      "evenMoreInfo": "<h2>Shoulder surfing</h2> Ifall du använder ett av dina lösenord, någon tittar över din axel och ser vad ditt lösenord är kan du utsättas för en <i>shoulder surfing attack</i>. Personen som såg ditt lösenord kan helt enkelt använda det vid ett senare tillfälle för att exempelvis lura dig eller dina nära och kära på pengar. </br></br> Ifall en kompis tar över ditt konto 'på skoj' och något går snett på grund av deras praktiska skämt räknas även det som shoulder surfing."
     },
     "shoulderSurfGaming": {
       "title": "Din kompis lämnar sin laptop utan att logga ut ur sitt favoritspel",
       "text": "Klicka och dra idéen till soptunnan.",
       "dragToTrashText": "'Ey det vore fett kul att ändra spelkontots lösenordet och ändra deras karaktärs utseende!!🤣🤣🤣'",
       "moreInfo": "<b>Detta är ett brott</b> och ifall något går fel kan du råka riktigt illa ut.",
-      "evenMoreInfo": "<h2>Shoulder surfing</h2> Ifall att du använder ett av dina lösenord och någon samtidigt kikar över din axel och ser vad lösenordet är, kan du utsättas för en <i>shoulder surfing attack</i>. Personen som såg ditt lösenord kan helt enkelt använda det vid ett senare tillfälle för att exempelvis lura dig eller dina nära och kära på pengar. </br></br> Ifall en kompis tar över ditt konto 'på skoj', något går snett och du råkar illa ut på grund av deras skämt räknas även det som shoulder surfing."
+      "evenMoreInfo": "<h2>Shoulder surfing</h2> Ifall du använder ett av dina lösenord, någon tittar över din axel och ser vad ditt lösenord är kan du utsättas för en <i>shoulder surfing attack</i>. Personen som såg ditt lösenord kan helt enkelt använda det vid ett senare tillfälle för att exempelvis lura dig eller dina nära och kära på pengar. </br></br> Ifall en kompis tar över ditt konto 'på skoj' och något går snett på grund av deras praktiska skämt räknas även det som shoulder surfing."
     },
     "downloadFilmVirus": {
       "title": "Ah! Jag vill verkligen se Shrek 4 men hittar inte den på mina streamingtjänster...",
@@ -215,15 +215,15 @@
     "creditReport": {
       "title": "Va? Du har fått en kreditupplysning hemskickad...",
       "text": "...men du har inte gjort någon låneansökan. Vad kan detta tyda på?",
-      "moreInfo": "Kreditupplysningar görs i majoriteten av alla fall i samband med kreditavtal, exempelvis när man gör en låneansökan. </br></br>En bedragare kan ha fått tag på dina uppgifter och försöker nu göra ett lån i ditt namn - kontakta dem som skickade kreditupplysningen!",
+      "moreInfo": "Kreditupplysningar görs oftast i samband med kreditavtal, exempelvis när man gör en låneansökan. </br></br>En bedragare kan ha fått tag på dina uppgifter och försöker nu göra ett lån i ditt namn - kontakta dem som skickade kreditupplysningen!",
       "option1": "Att du blivit utsatt för ID-kapning",
       "option2": "En systemmässig rutinåtgärd från banken",
       "option3": "Att ett företag vill att du ska söka lån hos dem"
     },
     "iot": {
-      "title": "Nice - Google Home fixat...",
-      "text": "...du lyckas även koppla upp din dammsugare och ditt kylskåpet till en app, men finns det några risker med att ha allt uppkopplat?",
-      "moreInfo": "Apparater som går att koppla till wifi kallas ibland för <b>IoT produkter</b>. IoT står för <i>Internet of Things</i>. </br></br>IoT produkter underlättar våra liv, men de är <i>sällan designade med säkerhet i fokus.</i>",
+      "title": "Nice! Nu är ditt hem smart...",
+      "text": "...du har nämligen lyckats koppla upp både robotdammsugaren och kylskåpet till ditt wifi. Finns det några risker med att ha allt uppkopplat dock?",
+      "moreInfo": "Apparater som går att koppla till wifi kallas ibland för <b>IoT produkter</b>. IoT står för <i>Internet of Things</i>. </br></br>IoT produkter underlättar våra liv, men de är <i>inte alltid designade med säkerhet i fokus.</i>",
       "evenMoreInfo": "<h2>Bli IoT-klok!</h2>Gör dig själv en stor tjänst och köp inte första bästa IoT-pryl. Investera hellre i en produkt som fått ett bra säkerhetsomdöme och har regelbudna säkerhetsuppdateringar."
     }
   },

@@ -74,11 +74,10 @@ const YesNoWrapper = ({
                   pointerEvents: "auto",
                   transform:
                     "scale(" +
-                    Math.pow(Number(1 + (1 - percentSwitched)), 2) +
+                    Math.pow(Number(1 + (1 - percentSwitched)), 4) +
                     ")",
                 }}
               >
-                <KeyboardArrowLeft />
                 <Subtitle
                   onClick={() => {
                     onSelectAnswer(questionData.yes_score);
@@ -86,6 +85,7 @@ const YesNoWrapper = ({
                   style={{
                     cursor: "pointer",
                     margin: 0,
+                    fontSize: 32,
                     padding: "3px 0px",
                   }}
                 >
@@ -99,7 +99,7 @@ const YesNoWrapper = ({
                   alignItems: "center",
                   marginLeft: "20vw",
                   pointerEvents: "auto",
-                  transform: "scale(" + Math.pow(percentSwitched, 2) + ")",
+                  transform: "scale(" + Math.pow(percentSwitched, 4) + ")",
                 }}
               >
                 <Subtitle
@@ -109,12 +109,12 @@ const YesNoWrapper = ({
                   style={{
                     cursor: "pointer",
                     margin: 0,
+                    fontSize: 32,
                     padding: "3px 0px",
                   }}
                 >
                   {t("general.no")}
                 </Subtitle>
-                <KeyboardArrowRight />
               </div>
             </div>
           </Fade>

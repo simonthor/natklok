@@ -47,20 +47,17 @@ const Questions = ({
   setQuestionIndex,
   redoTest,
 }) => {
-  const [blobSeed, setBlobSeed] = useState(Math.random());
-
   const nextQuestion = () => {
     if (questionIndex + 1 === questions.length) {
       nextSlide();
     } else {
-      setBlobSeed(Math.random());
       setQuestionIndex(questionIndex + 1);
     }
   };
 
   return (
     <div>
-      <BackgroundOrbs hideWhenSmall seed={blobSeed} />
+      <BackgroundOrbs hideWhenSmall questionBlobs={true} />
       {questions.map((questionData, index) => {
         return (
           <>
