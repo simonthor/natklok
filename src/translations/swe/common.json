@@ -215,7 +215,7 @@
     "creditReport": {
       "title": "Va? Du har fått en kreditupplysning hemskickad...",
       "text": "...men du har inte gjort någon låneansökan. Vad kan detta tyda på?",
-      "moreInfo": "Kreditupplysningar görs oftast i samband med kreditavtal, exempelvis när man gör en låneansökan. </br></br>En bedragare kan ha fått tag på dina uppgifter och försöker nu göra ett lån i ditt namn - kontakta dem som skickade kreditupplysningen!",
+      "moreInfo": "Kreditupplysningar görs oftast i samband med kreditavtal, exempelvis när man gör en låneansökan. </br></br>En bedragare kan ha fått tag på dina uppgifter och försöker nu ta ett lån i ditt namn! <a rel='noopener noreferrer' target='_blank' href='https://sakerhetskollen.se/ta-hjalp-direkt/id-kapning' style='color: lightblue;'>Läs mer om hur du kan skydda dig mot ID-kapning på säkerhetskollen.se</a>",
       "option1": "Att du blivit utsatt för ID-kapning",
       "option2": "En systemmässig rutinåtgärd från banken",
       "option3": "Att ett företag vill att du ska söka lån hos dem"
@@ -223,7 +223,7 @@
     "iot": {
       "title": "Nice! Nu är ditt hem smart...",
       "text": "...du har nämligen lyckats koppla upp både robotdammsugaren och kylskåpet till ditt wifi. Finns det några risker med att ha allt uppkopplat dock?",
-      "moreInfo": "Apparater som går att koppla till wifi kallas ibland för <b>IoT produkter</b>. IoT står för <i>Internet of Things</i>. </br></br>IoT produkter underlättar våra liv, men de är <i>inte alltid designade med säkerhet i fokus.</i>",
+      "moreInfo": "Apparater som går att koppla till wifi kallas ibland för <b>IoT produkter</b>. IoT står för <i>''Internet of Things''</i> eller <i>''Sakernas Internet''</i> på svenska. </br></br>IoT produkter underlättar våra liv, men de är <i>inte alltid designade med säkerhet i fokus.</i>",
       "evenMoreInfo": "<h2>Bli IoT-klok!</h2>Gör dig själv en stor tjänst och köp inte första bästa IoT-pryl. Investera hellre i en produkt som fått ett bra säkerhetsomdöme och har regelbudna säkerhetsuppdateringar."
     }
   },
