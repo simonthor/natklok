@@ -176,7 +176,7 @@ export const QUESTIONS = [
         ],
       },
       {
-        query: "Var kan jag se Allsvenskan?",
+        query: "Var kan jag se Serie A fotboll?",
         correctAnswerIndex: 1,
         links: [
           {
