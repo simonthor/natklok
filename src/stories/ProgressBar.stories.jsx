@@ -3,7 +3,7 @@ import ProgressBar from "features/ProgressBar";
 
 export default {
   component: ProgressBar,
-  title: "Components/ProgressBar",
+  title: "Features/ProgressBar",
   decorators: [
     (Story) => (
       <div
@@ -18,8 +18,8 @@ export default {
   ],
 };
 
-export const Primary = ProgressBar.bind({});
-Primary.args = {
+export const Default = ProgressBar.bind({});
+Default.args = {
   height: 6,
   totalQuestions: 3,
   currentQuestionIndex: 2,

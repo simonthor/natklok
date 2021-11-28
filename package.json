@@ -80,6 +80,7 @@
     "@storybook/node-logger": "^6.3.7",
     "@storybook/preset-create-react-app": "^3.2.0",
     "@storybook/react": "^6.3.7",
-    "chromatic": "^5.9.2"
+    "chromatic": "^5.9.2",
+    "storybook-react-i18next": "^1.0.13"
   }
 }
