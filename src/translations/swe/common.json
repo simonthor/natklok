@@ -64,7 +64,7 @@
     "csgoSkin": {
       "title": "Du hittar det perfekta CSGO skin:et online...",
       "text": "Med ditt steamkonto kan du logga in på en hemsida som heter 'csgoskins.cz' för att få tag på den. <b>Är detta en bra idé?</b>",
-      "moreInfo": "Om du inte loggar in genom steam kan hackers se ditt lösenord och ta över ditt steamkonto.",
+      "moreInfo": "Bedragare kan skapa en låtsashemsida som ser ut som Steams officella inloggning. </br></br>Använd alltid officella hemsidor och program när känsla uppgifter som lösenord ska skrivas in.",
       "option1": "Det borde vara lugnt",
       "option2": "Om jag länkas vidare till Steams sida är det okej",
       "option3": "Jag borde försöka hitta skin:et någon annanstans"
@@ -72,7 +72,7 @@
     "fakeApp": {
       "title": "Du hittar en app som visar vilka som stalkar dig på instagram!",
       "text": "Du loggar in genom att ange ditt användarnamn och lösenord. Kan personerna som gjort appen nu logga in på ditt konto och göra vad de vill med den?",
-      "moreInfo": "<b>Om du redan använder en sådan app/tjänst byt lösenord direkt!</b></br></br> Bedragare kan använda ditt konto bla för att lura dina nära och kära på pengar. I utpressningssyfte mot dig och massor av andra tråkiga saker."
+      "moreInfo": "<b>Om du redan använder en sådan app/tjänst byt lösenord direkt!</b></br></br> Bedragare kan använda ditt konto för att lura dina nära och kära på pengar eller i utpressningssyfte mot dig."
     },
     "publicWifi": {
       "title": "Gratis wifi på café",
@@ -100,7 +100,7 @@
       "result1": "Du angav ett kasst lösenord, men du har bra koll på lösenordshantering.",
       "result2": "Njaa, lösenord ska vara unika för varje tjänst.",
       "result3": "Inte bra...",
-      "moreInfo": "Lösenordet 'mussepigg' tar <b>2 minuter</b> att knäcka.</br></br> 'mussePIGG_1999' tar <b>tvåhundra miljoner år</b> att knäcka!",
+      "moreInfo": "<b>Använd unika och starka lösenord för varje tjänst du använder.</b> </br></br>Lösenordet 'mussepigg' tar <b>2 minuter</b> att knäcka.</br></br> 'mussePIGG_1999' tar <b>tvåhundra miljoner år</b> att knäcka!",
       "inputLabel": "Skriv ett lösenord",
       "inputPlaceholder": "Börja skriv lösenord...",
       "resultPrefix": "Det skulle ta en hackare",
@@ -168,19 +168,24 @@
       "moreInfo": "Det är alltid namnet precis innan .com, .se, osv som är det 'riktiga' namnet på hemsidan. Så... </br></br> <span style='color: red;'>instagram.annat.com - tar dig till 'annat.com'</span></br><span style='color: lightgreen;'>annat.instagram.com - tar dig till 'instagram.com'</span></br><span>Även instagram.com.annat.com tar dig till 'annat.com'</span> </br></br>Se också alltid till att hemsidan du är inne på har <span style='color: lightgreen;'>https</span> (🔒-ikonen syns brevid hemsidans namn) med ett 's' och inte bara <span style='color: red;'>http</span>.",
       "evenMoreInfo": "<h2>HTTPS</h2> 'S'-et i HTTPS står får secure och hemsidor med HTTPS krypterar all information som skickas. Det innebär att om du skickar ett lösenord till en hemsida med HTTPS, är det omöjligt för någon annan än dig och hemsidan att se vad lösenordet är. </br></br>Ifall en hemsida bara har HTTP, kan vem som helst se lösenordet medans det 'färdas' till hemsidan - exempelvis personen som äger wifi:et du använder."
     },
+    "searchResult": {
+      "title": "Du har använt sökmotorn Piggy...",
+      "text": "Vilken länk skulle du klicka på?",
+      "moreInfo": "Ingen sökmotor är perfekt. Ibland får du suspekta sökresultat, det kan till exempel handla om falsk information, piratkopior eller konstiga länkar. </br></br>Dubbelkolla alltid en hemsidas länk (URL) och beskrivning innan du klickar. Ifall du hittar stavfel eller orimliga erbjudanden bör du kanske undvika hemsidan."
+    },
     "shoulderSurfSocial": {
       "title": "Din kompis lämnar sin telefon öppen och är inloggad på snapchat...",
       "text": "Klicka och dra idéen till soptunnan.",
       "dragToTrashText": "'Det vore fett kul att ändra deras lösenord och lägga upp pinsamma bilder!!🤣🤣🤣'",
       "moreInfo": "<b>Detta är ett brott</b> och ifall något går fel kan du råka riktigt illa ut.",
-      "evenMoreInfo": "<h2>Shoulder surfing</h2> Ifall du använder ett av dina lösenord och någon tittar över din axel och ser vad lösenordet är kan du utsättas för en <i>shoulder surfing attack</i>. Personen som såg ditt lösenord kan helt enkelt använda det vid ett senare tillfälle för att exempelvis lura dig eller dina nära och kära på pengar. </br></br> Ifall en kompis tar över ditt konto 'på skoj', något går snett och du råkar illa ut på grund av deras lilla praktiska skämt räknas även det som shoulder surfing."
+      "evenMoreInfo": "<h2>Shoulder surfing</h2> Ifall du använder ett av dina lösenord, någon tittar över din axel och ser vad ditt lösenord är kan du utsättas för en <i>shoulder surfing attack</i>. Personen som såg ditt lösenord kan helt enkelt använda det vid ett senare tillfälle för att exempelvis lura dig eller dina nära och kära på pengar. </br></br> Ifall en kompis tar över ditt konto 'på skoj' och något går snett på grund av deras praktiska skämt räknas även det som shoulder surfing."
     },
     "shoulderSurfGaming": {
       "title": "Din kompis lämnar sin laptop utan att logga ut ur sitt favoritspel",
       "text": "Klicka och dra idéen till soptunnan.",
       "dragToTrashText": "'Ey det vore fett kul att ändra spelkontots lösenordet och ändra deras karaktärs utseende!!🤣🤣🤣'",
       "moreInfo": "<b>Detta är ett brott</b> och ifall något går fel kan du råka riktigt illa ut.",
-      "evenMoreInfo": "<h2>Shoulder surfing</h2> Ifall att du använder ett av dina lösenord och någon samtidigt kikar över din axel och ser vad lösenordet är, kan du utsättas för en <i>shoulder surfing attack</i>. Personen som såg ditt lösenord kan helt enkelt använda det vid ett senare tillfälle för att exempelvis lura dig eller dina nära och kära på pengar. </br></br> Ifall en kompis tar över ditt konto 'på skoj', något går snett och du råkar illa ut på grund av deras skämt räknas även det som shoulder surfing."
+      "evenMoreInfo": "<h2>Shoulder surfing</h2> Ifall du använder ett av dina lösenord, någon tittar över din axel och ser vad ditt lösenord är kan du utsättas för en <i>shoulder surfing attack</i>. Personen som såg ditt lösenord kan helt enkelt använda det vid ett senare tillfälle för att exempelvis lura dig eller dina nära och kära på pengar. </br></br> Ifall en kompis tar över ditt konto 'på skoj' och något går snett på grund av deras praktiska skämt räknas även det som shoulder surfing."
     },
     "downloadFilmVirus": {
       "title": "Ah! Jag vill verkligen se Shrek 4 men hittar inte den på mina streamingtjänster...",
@@ -189,6 +194,37 @@
       "option1": "Att jag behöver 'logga in' och att mina uppgifter blir stulna",
       "option2": "Att ett virus installeras så fort jag går in",
       "option3": "Att jag får böter"
+    },
+    "unmarkedUsb": {
+      "title": "Du hittar en omärkt USB-sticka på kontoret eller i skolan",
+      "text": "Vad gör du?",
+      "moreInfo": "Några av <b>världens mest förödande cyberattacker</b> har inträffat när anställda på företag eller organisationer satt in omärkta USB-stickor i deras jobbdatorer.",
+      "evenMoreInfo": "<h2>Infekterade USB-stickor</h2> En infekterad USB-sticka kan innehålla ett virus med förmågan att snabbt sprida sig mellan flera dator i ett nätverk för att sedan göra enorm skada. </br></br>I en studie som gjordes 2016 i University of Illinois placerades cirka 300 USB-stickor på olika platser i universitet. Ungefär hälften av dessa USB-stickor upptäcktes av nyfikna studenter och sattes in i deras datorer - tur för dem att detta endast var ett experiment och att USB-stickorna inte innehöll någon farlig kod.",
+      "option1": "Sätter in i datorn för att se innehållet",
+      "option2": "Lämnar den till IT-ansvarige eller en lärare"
+    },
+    "cookie": {
+      "title": "Ja ja, jag accepterar väl kakor (cookies) då...",
+      "text": "Men vad händer när du trycker <i>acceptera alla</i>? Välj alternativet som är mest sannolikt.",
+      "moreInfo": "Cookies är små 'bitar' av information om dig som en hemsida kan spara i din webbläsare. </br></br> Syftet med cookies är vanligtvis att förbättra en hemsidas användarupplevelse, men det finns också risker med att acceptera alla cookies. Tryck <i>läs mer</i> för att läsa om dessa risker.",
+      "evenMoreInfo": "<h2>De hemsidor du besökt lagras</h2> Eftersom cookies lagras i datorn är det möjligt att se vilka hemsidor som har besökts genom att titta på vilka cookies som finns. </br></br> I Sverige, med hjälp av <i>offentlighetsprincipen</i>, är det möjligt att begära ut information från politikers och myndigheters datorer. Flera skandaler har uppstått när cookies från olämpliga sidor upptäckts på tjänstedatorer. <h2>Din information till salu</h2>Ifall man accepterar alla cookies kan man i vissa fall gå med på att ens information säljs vidare till tredjepartsföretag. Många tycker detta är obehagligt då det tillåter företag att samla ihop mycket information om ens intressen, rutiner, etc. </br></br> Ifall du är inne på en sporthemsida ofta är det inte svårt för ett företag att lista ut att du gillar sport. Samma sak gäller för mer privata intressen. Ifall ett företag som har din cookieinformation exempelvis utsätts för ett dataintrång kan känsliga uppgifter om dig hamna i fel händer. <h2>Hejdå cookies!</h2> Enligt GDPR måste alla hemsidor med cookies tillåta dig att stänga av onödiga cookies. Ibland kan du exempelvis trycka <i>avvisa cookies</i> istället för <i>acceptera alla cookies</i>. Du kan även förbjuda onödiga cookies genom att ändra inställningarna i din webbläsare.",
+      "option1": "Allt jag gör på hemsidan lagras och säljs till tredjepartsföretag",
+      "option2": "Jag blir anonym när jag surfar på hemsidan",
+      "option3": "Lite information lagras om mig för att förbättra min upplevelse"
+    },
+    "creditReport": {
+      "title": "Va? Du har fått en kreditupplysning hemskickad...",
+      "text": "...men du har inte gjort någon låneansökan. Vad kan detta tyda på?",
+      "moreInfo": "Kreditupplysningar görs oftast i samband med kreditavtal, exempelvis när man gör en låneansökan. </br></br>En bedragare kan ha fått tag på dina uppgifter och försöker nu ta ett lån i ditt namn! <a rel='noopener noreferrer' target='_blank' href='https://sakerhetskollen.se/ta-hjalp-direkt/id-kapning' style='color: lightblue;'>Läs mer om hur du kan skydda dig mot ID-kapning på säkerhetskollen.se</a>",
+      "option1": "Att du blivit utsatt för ID-kapning",
+      "option2": "En systemmässig rutinåtgärd från banken",
+      "option3": "Att ett företag vill att du ska söka lån hos dem"
+    },
+    "iot": {
+      "title": "Nice! Nu är ditt hem smart...",
+      "text": "...du har nämligen lyckats koppla upp både robotdammsugaren och kylskåpet till ditt wifi. Finns det några risker med att ha allt uppkopplat dock?",
+      "moreInfo": "Apparater som går att koppla till wifi kallas ibland för <b>IoT produkter</b>. IoT står för <i>''Internet of Things''</i> eller <i>''Sakernas Internet''</i> på svenska. </br></br>IoT produkter underlättar våra liv, men de är <i>inte alltid designade med säkerhet i fokus.</i>",
+      "evenMoreInfo": "<h2>Bli IoT-klok!</h2>Gör dig själv en stor tjänst och köp inte första bästa IoT-pryl. Investera hellre i en produkt som fått ett bra säkerhetsomdöme och har regelbudna säkerhetsuppdateringar."
     }
   },
   "result": {
@@ -200,10 +236,12 @@
     "firstPlaceEvenMorePoints2": " av ",
     "firstPlaceEvenMorePoints3": " frågor totalt tillgängliga i quizet - se ifall du kan få alla rätt!",
     "redoWithUnanswered": "Gör obesvarade frågor",
-    "secondPlaceTitle": "Inte bra, inte dåligt",
-    "secondPlaceDesc": "Du verkar kunna en del om säkerhet online, men du har fortfarande en hel del att lära dig.",
-    "thirdPlaceTitle": "Aj då...",
-    "thirdPlaceDesc": "Du skulle behöva lära dig mer om digital säkerhet innan du råkar ut för en olycka!",
+    "secondPlaceTitle": "Bra jobbat!",
+    "secondPlaceDesc": "Du har bra koll på säkerhetonline men får fortfarande lite fel. Läs gärna mer om frågorna du svarade fel på!",
+    "thirdPlaceTitle": "Helt okej",
+    "thirdPlaceDesc": "Du verkar kunna en del om säkerhet online, men du har fortfarande en hel del att lära dig.",
+    "forthPlaceTitle": "Aj då...",
+    "forthPlaceDesc": "Du skulle behöva lära dig mer om digital säkerhet innan du råkar ut för en olycka!",
     "readMore": "Läs mer",
     "yourScore": "Ditt resultat",
     "redo": "Gör om quizet",

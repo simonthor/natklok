@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ShareOutlinedIcon from "@material-ui/icons/ShareOutlined";
 import { withTranslation } from "react-i18next";
-import SmallText from "components/general/typeography/SmallText";
+import SmallText from "components/typeography/SmallText";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
 const SocialShare = ({ shareText, style, questionId, t }) => {

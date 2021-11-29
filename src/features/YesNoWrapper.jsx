@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import SwipeableViews from "react-swipeable-views";
 
 // Custom components
-import { PINK, YES_NO } from "util/constants";
+import { YES_NO } from "util/constants";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
-import Fade from "components/general/Fade";
-import Subtitle from "components/general/typeography/Subtitle";
-import SmallText from "components/general/typeography/SmallText";
+import Fade from "components//Fade";
+import Subtitle from "components/typeography/Subtitle";
+import SmallText from "components/typeography/SmallText";
 
 const YesNoWrapper = ({
   children,
@@ -74,11 +74,10 @@ const YesNoWrapper = ({
                   pointerEvents: "auto",
                   transform:
                     "scale(" +
-                    Math.pow(Number(1 + (1 - percentSwitched)), 1.5) +
+                    Math.pow(Number(1 + (1 - percentSwitched)), 4) +
                     ")",
                 }}
               >
-                <KeyboardArrowLeft />
                 <Subtitle
                   onClick={() => {
                     onSelectAnswer(questionData.yes_score);
@@ -86,6 +85,7 @@ const YesNoWrapper = ({
                   style={{
                     cursor: "pointer",
                     margin: 0,
+                    fontSize: 32,
                     padding: "3px 0px",
                   }}
                 >
@@ -99,7 +99,7 @@ const YesNoWrapper = ({
                   alignItems: "center",
                   marginLeft: "20vw",
                   pointerEvents: "auto",
-                  transform: "scale(" + Math.pow(percentSwitched, 1.5) + ")",
+                  transform: "scale(" + Math.pow(percentSwitched, 4) + ")",
                 }}
               >
                 <Subtitle
@@ -109,12 +109,12 @@ const YesNoWrapper = ({
                   style={{
                     cursor: "pointer",
                     margin: 0,
+                    fontSize: 32,
                     padding: "3px 0px",
                   }}
                 >
                   {t("general.no")}
                 </Subtitle>
-                <KeyboardArrowRight />
               </div>
             </div>
           </Fade>

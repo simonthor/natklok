@@ -1,5 +1,4 @@
-import keyframes from "./../src/keyframes.css";
-import { BLUE, PURPLE, PINK } from "./../src/util/constants";
+import { BLUE, PURPLE, PINK } from "../src/util/constants";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },

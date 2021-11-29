@@ -13,8 +13,8 @@ import MovieIcon from "@material-ui/icons/Movie";
 import ShareIcon from "@material-ui/icons/Share";
 
 // Custom components
-import AlignCenter from "components/general/AlignCenter";
-import StyledButton from "components/general/StyledButton";
+import AlignCenter from "components/AlignCenter";
+import StyledButton from "components//StyledButton";
 import {
   BANK_PROFILE,
   GAMING_PROFILE,
@@ -22,8 +22,8 @@ import {
   SOCIAL_MEDIA_PROFILE,
   PROFILE_STYLING,
 } from "util/constants";
-import Title from "components/general/typeography/Title";
-import SmallText from "components/general/typeography/SmallText";
+import Title from "components/typeography/Title";
+import SmallText from "components/typeography/SmallText";
 
 const ProfileSelectionSlide = ({
   t,

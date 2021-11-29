@@ -7,13 +7,13 @@ import { Hidden } from "@material-ui/core";
 import { Popover, ArrowContainer } from "react-tiny-popover";
 
 // Custom components
-import AlignCenter from "components/general/AlignCenter";
-import ProgressBar from "components/features/ProgressBar";
-import StyledLink from "components/general/StyledLink";
+import AlignCenter from "components/AlignCenter";
+import ProgressBar from "features/ProgressBar";
+import StyledLink from "components/StyledLink";
 import { getAllQuestionAmount, getStoredTotalAmount } from "util/totalScore";
-import SmallText from "components/general/typeography/SmallText";
-import Subtitle from "components/general/typeography/Subtitle";
-import { Logo } from "components/general";
+import SmallText from "components/typeography/SmallText";
+import Subtitle from "components/typeography/Subtitle";
+import Logo from "components/Logo";
 import annaWhiteLogo from "assets/annaWhiteLogo.svg";
 
 const Header = ({
@@ -125,41 +125,49 @@ const ContentAfterStart = ({
     <>
       {/*TODO: Implement auto-resume. When user clicks 'Return to Start' and then clicks 'Start' again, the quiz resumes from last answered question.*/}
       <div style={{ display: "flex" }}>
-        <div
-          style={{ lineHeight: 1, cursor: "pointer", paddingRight: 12 }}
-          onClick={() => {
-            history.push("/");
+        <a
+          style={{
+            lineHeight: 1,
+            cursor: "pointer",
+            paddingRight: 12,
+            color: "white",
+            textDecoration: "none",
           }}
+          href="https://sakerhetskollen.se/"
         >
-          <SmallText
-            opacity
-            xs
-            style={{
-              display: "block",
-              width: "100%",
-              margin: 0,
-            }}
-          >
-            Tillbaks till
-          </SmallText>
-          <SmallText
-            style={{
-              fontSize: "0.8em",
-              display: "block",
-              width: "100%",
-              margin: 0,
-              fontWeight: "bold",
-            }}
-          >
+          <div style={{ display: "flex", alignItems: "center" }}>
             <NavigateBeforeIcon
               style={{
                 height: 20,
                 margin: "-2px -2px -5px -8px",
               }}
             />
-            Start
-          </SmallText>
-        </div>
+            <div>
+              <SmallText
+                opacity
+                xs
+                style={{
+                  display: "block",
+                  width: "100%",
+                  margin: 0,
+                }}
+              >
+                Tillbaka till
+              </SmallText>
+              <SmallText
+                style={{
+                  fontSize: "0.8em",
+                  display: "block",
+                  width: "100%",
+                  margin: 0,
+                  fontWeight: "bold",
+                }}
+              >
+                Säkerhetskollen
+              </SmallText>
+            </div>
+          </div>
+        </a>
         <StarContainer
           starAmount={starAmount}
           totalQuestions={totalQuestions}

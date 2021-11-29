@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { withTranslation } from "react-i18next";
-import PwdSecurityModal from "components/features/PwdSecurity";
+import Fade from "react-reveal/Fade";
 
 // Custom components
-import AlignCenter from "components/general/AlignCenter";
-import Fade from "react-reveal/Fade";
-import StyledButton from "components/general/StyledButton";
-import HTMLRenderer from "components/general/HTMLRenderer";
+import AlignCenter from "components/AlignCenter";
+import PwdSecurityModal from "features/PwdSecurity";
+import StyledButton from "components//StyledButton";
+import HTMLRenderer from "components//HTMLRenderer";
+import BackgroundOrbs from "features/BackgroundOrbs";
+import Title from "components/typeography/Title";
 import AnswerFeedback from "./AnswerFeedback";
 
 import {
@@ -18,15 +20,16 @@ import {
   ORDER,
   FAKE_DOMAIN,
   YES_NO,
+  SEARCH_RESULT,
 } from "util/constants";
-import ChatQuestion from "components/dynamicQuestions/ChatQuestion";
-import FakeWebsite from "components/dynamicQuestions/FakeWebsite";
-import OrderQuestion from "components/dynamicQuestions/OrderQuestion";
-import YesNoWrapper from "components/features/YesNoWrapper";
-import DragToTrash from "components/dynamicQuestions/DragToTrash";
-import FakeDomain from "components/dynamicQuestions/FakeDomain";
+import ChatQuestion from "dynamicQuestions/ChatQuestion";
+import FakeWebsite from "dynamicQuestions/FakeWebsite";
+import OrderQuestion from "dynamicQuestions/OrderQuestion";
+import YesNoWrapper from "features/YesNoWrapper";
+import DragToTrash from "dynamicQuestions/DragToTrash";
+import FakeDomain from "dynamicQuestions/FakeDomain";
+import SearchResult from "dynamicQuestions/SearchResult";
 import { addCorrectAnswer } from "util/totalScore";
-import Title from "components/general/typeography/Title";
 
 // Component that layers all the questions
 const Questions = ({
@@ -54,6 +57,7 @@ const Questions = ({
 
   return (
     <div>
+      <BackgroundOrbs hideWhenSmall questionBlobs={true} />
       {questions.map((questionData, index) => {
         return (
           <>
@@ -263,11 +267,7 @@ const AnswerOptions = ({
   } else if (questionData.type === FAKE_WEBSITE) {
     return (
       <Fade delay={contentFadeDelay}>
-        <FakeWebsite
-          t={t}
-          options={questionData.options}
-          onSelectAnswer={onSelectAnswer}
-        />
+        <FakeWebsite t={t} onSelectAnswer={onSelectAnswer} />
       </Fade>
     );
   } else if (questionData.type === FAKE_DOMAIN) {
@@ -309,24 +309,30 @@ const AnswerOptions = ({
   } else if (questionData.type === DRAG_TO_TRASH) {
     return (
       <DragToTrash
+        t={t}
         questionData={questionData}
         onSelectAnswer={onSelectAnswer}
+      />
+    );
+  } else if (questionData.type === SEARCH_RESULT) {
+    return (
+      <SearchResult
         t={t}
+        questionData={questionData}
+        onSelectAnswer={onSelectAnswer}
       />
     );
   } else if (questionData.type === PASSWORD_INPUT) {
     return (
       <PasswordCheck
-        onSelectAnswer={onSelectAnswer}
-        questionData={questionData}
-        profileForQuestion={profileForQuestion}
         t={t}
+        profileForQuestion={profileForQuestion}
+        questionData={questionData}
+        onSelectAnswer={onSelectAnswer}
         setChangedTitle={setChangedTitle}
       />
     );
-  } else {
-    return null;
-  }
+  } else return null;
 };
 
 // Type: Interactive question

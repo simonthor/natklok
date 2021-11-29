@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { withTranslation } from "react-i18next";
 import Fade from "react-reveal/Fade";
-import StyledButton from "components/general/StyledButton";
-import AlignCenter from "components/general/AlignCenter";
-import HTMLRenderer from "components/general/HTMLRenderer";
+import StyledButton from "components//StyledButton";
+import AlignCenter from "components/AlignCenter";
+import HTMLRenderer from "components//HTMLRenderer";
 import Grid from "@material-ui/core/Grid";
 import { useHistory } from "react-router-dom";
 import WhatshotIcon from "@material-ui/icons/Whatshot";
-import SocialShare from "components/features/SocialShare";
-import MoreInfoDisplay from "components/features/MoreInfoDisplay";
+import SocialShare from "features/SocialShare";
+import MoreInfoDisplay from "features/MoreInfoDisplay";
 import { PALEBLUE, PURPLE } from "util/constants";
-import Title from "components/general/typeography/Title";
-import Subtitle from "components/general/typeography/Subtitle";
+import Title from "components/typeography/Title";
+import Subtitle from "components/typeography/Subtitle";
 
 const AnswerFeedback = ({
   t,

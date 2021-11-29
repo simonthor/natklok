@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { PURPLE, WHITE } from "util/constants";
-import BottomFade from "components/general/Fade";
+import BottomFade from "components//Fade";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import AlignCenter from "components/general/AlignCenter";
-import HTMLRenderer from "components/general/HTMLRenderer";
+import AlignCenter from "components/AlignCenter";
+import HTMLRenderer from "components//HTMLRenderer";
 
 const MoreInfoModal = ({ title, content, buttonComponent = null }) => {
   const [aboutExpanded, setaboutExpanded] = useState(false);

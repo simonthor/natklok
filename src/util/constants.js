@@ -41,6 +41,7 @@ export const PROFILE_STYLING = {
 
 // Categories
 export const SHARED_PASSWORD_QUESTION = "SHARED_PASSWORD_QUESTION";
+export const IOT = "IOT";
 export const PUBLIC_WIFI_QUESTION = "PUBLIC_WIFI_QUESTION";
 export const DECEIVE_WEBSITE = "DECEIVE_WEBSITE";
 export const PASSWORD_STRENGTH_QUESTION = "PASSWORD_STRENGTH_QUESTION";
@@ -52,6 +53,8 @@ export const USE_SAME_PASSWORD = "USE_SAME_PASSWORD";
 export const SHOULDER_SURFING = "SHOULDER_SURFING";
 export const RANK_PASSWORDS = "RANK_PASSWORDS";
 export const VIRUS = "VIRUS";
+export const COOKIE = "COOKIE";
+export const CREDITREPORT = "CREDITREPORT";
 
 // Question types
 export const YES_NO = "YES_NO";
@@ -61,9 +64,147 @@ export const PASSWORD_INPUT = "PASSWORD_INPUT";
 export const CHAT = "CHAT";
 export const FAKE_WEBSITE = "FAKE_WEBSITE";
 export const FAKE_DOMAIN = "FAKE_DOMAIN";
+export const SEARCH_RESULT = "SEARCH_RESULT";
 export const ORDER = "ORDER";
 
 export const QUESTIONS = [
+  {
+    id: "SRCH",
+    category: DONT_CLICK_LINK,
+    type: SEARCH_RESULT,
+    forProfile: GENERAL_PROFILE,
+    title: "questions.searchResult.title",
+    text: "questions.searchResult.text",
+    moreInfo: "questions.searchResult.moreInfo",
+    searchCategories: ["Allt", "Bilder", "Nyheter"],
+    adNotice: "ANNONS",
+    options: {
+      correct: {
+        text: "Se där! Helt rätt!",
+        score: 1,
+      },
+      partially: {
+        text: "Annonser går inte alltid att lita på.",
+        score: 0,
+      },
+      wrong: {
+        text: "Du klickade på en suspekt länk.",
+        score: 0,
+      },
+    },
+    searches: [
+      {
+        query: "Vad kostar ett frimärke?",
+        correctAnswerIndex: 2,
+        links: [
+          {
+            url: "https://www.post.em › frimarken-rabatt",
+            type: "ad",
+            title: "Frimärken för 1kr | Köp hos Postem'",
+            metaDesc:
+              "Halva priset för frimärken  70% rabatt på Vestkusten  Leverans i Sverige på några dagar  Garanterat pris",
+          },
+          {
+            url: "https://postn0rd-sverige-norden.gq › 786",
+            type: "normal",
+            title: "Frimärken | Postnord Sverige",
+            metaDesc:
+              "Med direktbetalande kund menar vi dig som betalar via internetbank eller med kort och inte har något avtal med oss. Se portotabeller.",
+          },
+          {
+            url: "https://www.postnord.se › inrikes › portotabeller",
+            type: "normal",
+            title: "Portotabell och priser för brev inrikes | PostNord",
+            metaDesc:
+              "Här hittar du portotabeller som visar vad det kostar för dig som direktbetalande kund att skicka brev och paket inrikes och utrikes.",
+          },
+        ],
+      },
+      {
+        query: "Vad är Tiktok?",
+        correctAnswerIndex: 1,
+        links: [
+          {
+            url: "https://www.harvest.ts",
+            type: "ad",
+            title: "Boosta dina följare på Tiktok med Harvest - helt gratis!",
+            metaDesc:
+              "Med hjälp av Harvest kan du få tusentals likes på dina videor. Premium följare enkelt och snabbt.",
+          },
+          {
+            url: "https://internetstiftelsen.se › podd › ... › vad-ar-tiktok",
+            type: "normal",
+            title: "Vad är Tiktok, och hur fungerar det? - Internetstiftelsen",
+            metaDesc:
+              "Vad är Tiktok? Tiktok är en app för mobiltelefonen, där man kan spela in och dela videor med varandra. Appen hette från början Musical.ly, och blev populär främst bland unga tjejer i åldern 7-13 år.",
+          },
+          {
+            url: "https://www.wikipediia.src.om",
+            type: "normal",
+            title: "TikTok - Wikipedia",
+            metaDesc:
+              "TikTok, även känt som Douyin (kinesiska: 抖音; pinyin: Dǒuyīn) i Kina, är en sociala medier-app för skapande och delning av videor och livesändningar.",
+          },
+        ],
+      },
+      {
+        query: "Hur mycket tjänar en tandläkare?",
+        correctAnswerIndex: 2,
+        links: [
+          {
+            url: "https://www.tandkram.en › tandlakare",
+            type: "ad",
+            title: "Tandläkare tjänar för mycket | Supertandkrämen 2",
+            metaDesc:
+              "Enligt pålitliga studier kan Supertandkrämen 2 eliminera 97% av all karies.",
+          },
+          {
+            url: "http://worldoftadzjikistan.an › home",
+            type: "ad",
+            title:
+              "Tandläkare tjänar 80% mindre i Sverige jämfört med i Tadzjikistan ...",
+            metaDesc:
+              "Flytta till Asiens pärla och tjäna mer pengar på samma timmar arbete idag.",
+          },
+          {
+            url: "https://www.saco.se › yrken-a-o › ... › tandlakare",
+            type: "normal",
+            title: "Tandläkare - Information om lön, utbildning ...",
+            metaDesc:
+              "Hur jobbar man, vad tjänar man och hur ser arbetsmarknaden ut? Saco har samlat information för dig som arbetar som eller vill utbilda dig till tandläkare.",
+          },
+        ],
+      },
+      {
+        query: "Var kan jag se Serie A fotboll?",
+        correctAnswerIndex: 1,
+        links: [
+          {
+            url: "http://www.streamasoccer.mi › allsvenskan › gratis",
+            type: "ad",
+            title:
+              "Se alla matcher från Serie A på StreamSoccer - helt gratis!",
+            metaDesc:
+              "Streama Serie A gratis på nätet med StreamSoccer. Även om rättigheterna för att streama är dyra har vi lyckats få det gratis!",
+          },
+          {
+            url: "https://www.tvmatchen.nu › fotboll › serie-a",
+            type: "normal",
+            title: "Serie A på TV stream idag - Tid, spelschema,kanal, tabell",
+            metaDesc:
+              "Serie A på TV och stream. TVmatchen ger dig Serie A spelschema för säsongen 2021/22. Här hittar du alla tv-sända Serie A matcher, med tid och kanal.",
+          },
+          {
+            url: "https://fussba.ll › how-to › ... › nike",
+            type: "normal",
+            title: "Fussball sänder Serie A : Hur kan jag se matcherna?",
+            metaDesc:
+              "Serie A Live Stream 2021/2022: Serie A kan den här säsongen bli mer intressant än på många länge. Cristiano Ronaldo finns som bekant i Juventus och vår svenska superstjärna Zlatan ibrahimovic återfinns i AC Milan igen.",
+          },
+        ],
+      },
+    ],
+  },
   {
     id: "GPW",
     category: SHARED_PASSWORD_QUESTION,
@@ -313,4 +454,62 @@ export const QUESTIONS = [
       { text: "questions.downloadFilmVirus.option3", score: 0 },
     ],
   },
+  {
+    id: "USB",
+    category: VIRUS,
+    type: SEVERAL_OPTION,
+    forProfile: GENERAL_PROFILE,
+    title: "questions.unmarkedUsb.title",
+    text: "questions.unmarkedUsb.text",
+    moreInfo: "questions.unmarkedUsb.moreInfo",
+    evenMoreInfo: "questions.unmarkedUsb.evenMoreInfo",
+    options: [
+      { text: "questions.unmarkedUsb.option1", score: 0 },
+      { text: "questions.unmarkedUsb.option2", score: 1 },
+    ],
+  },
+  {
+    id: "CDIT",
+    category: CREDITREPORT,
+    type: SEVERAL_OPTION,
+    forProfile: BANK_PROFILE,
+    title: "questions.creditReport.title",
+    text: "questions.creditReport.text",
+    moreInfo: "questions.creditReport.moreInfo",
+    options: [
+      { text: "questions.creditReport.option2", score: 0 },
+      { text: "questions.creditReport.option1", score: 1 },
+      { text: "questions.creditReport.option3", score: 0 },
+    ],
+  },
+  {
+    id: "IOT",
+    category: IOT,
+    type: YES_NO,
+    forProfile: GENERAL_PROFILE,
+    title: "questions.iot.title",
+    text: "questions.iot.text",
+    moreInfo: "questions.iot.moreInfo",
+    evenMoreInfo: "questions.iot.evenMoreInfo",
+    yes_score: 1,
+    no_score: 0,
+  },
 ];
+
+/*
+  {
+    id: "CKIE",
+    category: COOKIE,
+    type: SEVERAL_OPTION,
+    forProfile: GENERAL_PROFILE,
+    title: "questions.cookie.title",
+    text: "questions.cookie.text",
+    moreInfo: "questions.cookie.moreInfo",
+    evenMoreInfo: "questions.cookie.evenMoreInfo",
+    options: [
+      { text: "questions.cookie.option1", score: 0 },
+      { text: "questions.cookie.option2", score: 0 },
+      { text: "questions.cookie.option3", score: 1 },
+    ],
+  },
+*/

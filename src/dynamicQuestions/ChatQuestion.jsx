@@ -1,5 +1,5 @@
 import React from "react";
-import { StyledButton } from "../general";
+import { StyledButton } from "components/";
 import intim1 from "assets/intim1.png";
 import dontClickVideo from "assets/dontClickVideo.png";
 import { PINK } from "util/constants";

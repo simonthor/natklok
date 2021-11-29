@@ -4,9 +4,9 @@ import { withTranslation } from "react-i18next";
 // Custom
 import { PURPLE } from "util/constants";
 
-import ResultSlide from "components/slides/ResultSlide";
-import ProfileSelectionSlide from "components/slides/ProfileSelectionSlide";
-import QuestionsSlide from "components/slides/QuestionsSlide";
+import ResultSlide from "slides/ResultSlide";
+import ProfileSelectionSlide from "slides/ProfileSelectionSlide";
+import QuestionsSlide from "slides/QuestionsSlide";
 
 const TestSlides = ({
   t,

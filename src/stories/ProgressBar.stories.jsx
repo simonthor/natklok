@@ -1,5 +1,5 @@
 import React from "react";
-import ProgressBar from "components/features/ProgressBar";
+import ProgressBar from "features/ProgressBar";
 
 export default {
   component: ProgressBar,
@@ -20,8 +20,8 @@ export default {
 
 export const Primary = ProgressBar.bind({});
 Primary.args = {
-   height: 6,
-   totalQuestions: 3,
-   currentQuestionIndex: 2,
-   lineWidth: 2
+  height: 6,
+  totalQuestions: 3,
+  currentQuestionIndex: 2,
+  lineWidth: 2,
 };

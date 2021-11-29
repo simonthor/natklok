@@ -4,9 +4,9 @@ import ExpandMore from "@material-ui/icons/ExpandMore";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 
 import "./OrderQuestion.css";
-import StyledButton from "components/general/StyledButton";
-import SmallText from "components/general/typeography/SmallText";
-import AlignCenter from "components/general/AlignCenter";
+import StyledButton from "components/StyledButton";
+import SmallText from "components/typeography/SmallText";
+import AlignCenter from "components/AlignCenter";
 import Fade from "react-reveal/Fade";
 
 const OrderQuestion = ({ questionData, t, onSelectAnswer }) => {
@@ -112,15 +112,6 @@ const OrderQuestion = ({ questionData, t, onSelectAnswer }) => {
                         return (
                           <Draggable key={id} draggableId={id} index={index}>
                             {(provided, snapshot) => {
-                              if (snapshot.isDragging) {
-                                const offset = { x: 0, y: 0 }; // your fixed container left/top position
-                                const x =
-                                  provided.draggableProps.style.left - offset.x;
-                                const y =
-                                  provided.draggableProps.style.top - offset.y;
-                                provided.draggableProps.style.left = x;
-                                provided.draggableProps.style.top = y;
-                              }
                               return (
                                 <li
                                   style={{ width: "100%" }}

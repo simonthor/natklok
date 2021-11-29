@@ -3,8 +3,8 @@ import { Grid } from "@material-ui/core";
 import React from "react";
 import { withTranslation } from "react-i18next";
 // Custom
-import AlignCenter from "components/general/AlignCenter";
-import ProgressBar from "components/features/ProgressBar";
+import AlignCenter from "components/AlignCenter";
+import ProgressBar from "features/ProgressBar";
 
 const Footer = ({ t, currentQuestion, totalQuestions, isFinished, style }) => {
   return (
