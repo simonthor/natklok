@@ -3,7 +3,7 @@ import SSF from "assets/sakerhetskollen_logo.svg";
 import Title from "./typeography/Title";
 
 const Logo = ({ sm }) => {
-  let largeSize = window.innerWidth < 576 ? 46 : 72;
+  let largeSize = window.innerWidth < 630 ? 46 : 72;
 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
