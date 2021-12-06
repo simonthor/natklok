@@ -5,13 +5,14 @@ import StyledButton from "components//StyledButton";
 import AlignCenter from "components/AlignCenter";
 import HTMLRenderer from "components//HTMLRenderer";
 import Grid from "@material-ui/core/Grid";
-import { useHistory } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import WhatshotIcon from "@material-ui/icons/Whatshot";
 import SocialShare from "features/SocialShare";
 import MoreInfoDisplay from "features/MoreInfoDisplay";
 import { PALEBLUE, PURPLE } from "util/constants";
 import Title from "components/typeography/Title";
 import Subtitle from "components/typeography/Subtitle";
+import ProgressionDisplay from "features/ProgressionDisplay";
 
 const AnswerFeedback = ({
   t,
@@ -25,6 +26,11 @@ const AnswerFeedback = ({
   linkToEntireQuiz,
   redoTest,
 }) => {
+  const location = useLocation();
+  const [didQuestionWithQuerySearch] = useState(
+    new URLSearchParams(location.search).get("res")
+  );
+
   // Scroll to top of page so that mobile doesn't look bad
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -67,6 +73,11 @@ const AnswerFeedback = ({
         questionId={questionId}
         redoTest={redoTest}
       />
+      {didQuestionWithQuerySearch && (
+        <div style={{ position: "relative", zIndex: 100 }}>
+          <ProgressionDisplay redoTest={redoTest} fadeInAfter={1600} />
+        </div>
+      )}
     </div>
   );
 };

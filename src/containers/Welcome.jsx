@@ -1,5 +1,5 @@
 // Third party
-import React from "react";
+import React, { useState } from "react";
 import { withTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { Grid } from "@material-ui/core";
@@ -13,8 +13,13 @@ import SocialShare from "features/SocialShare";
 
 import "keyframes.css";
 import Subtitle from "components/typeography/Subtitle";
+import ProgressionDisplay from "features/ProgressionDisplay";
+import { getStoredTotalAmount } from "util/totalScore";
 
-const Welcome = ({ t, hasStarted }) => {
+const Welcome = ({ t, hasStarted, redoTest }) => {
+  const [amountCorrectQuestions] = useState(getStoredTotalAmount());
+  const hasGotAtleastOneCorrect = amountCorrectQuestions !== 0;
+
   return (
     <>
       <BackgroundOrbs />
@@ -69,6 +74,9 @@ const Welcome = ({ t, hasStarted }) => {
           <SocialShare shareText={t("general.shareTest")} />
         </Grid>
       </Grid>
+      {hasGotAtleastOneCorrect && (
+        <ProgressionDisplay redoTest={redoTest} fadeInAfter={500} />
+      )}
     </>
   );
 };

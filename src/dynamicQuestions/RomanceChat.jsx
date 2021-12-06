@@ -2,11 +2,11 @@ import React from "react";
 import StyledButton from "components//StyledButton";
 
 const smses = [
-  { side: "left", text: "questions.romanceScamChat.chat1" },
-  { side: "right", text: "questions.romanceScamChat.chat2" },
-  { side: "left", text: "questions.romanceScamChat.chat3" },
-  { side: "left", text: "questions.romanceScamChat.chat4" },
-  { side: "left", text: "questions.romanceScamChat.chat5" },
+  { side: "left", text: "questions.brotherSwishChat.chat1" },
+  { side: "right", text: "questions.brotherSwishChat.chat2" },
+  { side: "left", text: "questions.brotherSwishChat.chat3" },
+  { side: "left", text: "questions.brotherSwishChat.chat4" },
+  { side: "left", text: "questions.brotherSwishChat.chat5" },
 ];
 
 const RomanceChat = ({ options, onSelectAnswer, t }) => (
@@ -87,7 +87,7 @@ const RomanceChat = ({ options, onSelectAnswer, t }) => (
       </div>
     </div>
     <p style={{ marginBottom: 0 }}>
-      {t("questions.romanceScamChat.yourAnswer")}
+      {t("questions.brotherSwishChat.yourAnswer")}
     </p>
     <div style={{ margin: "6px 0", display: "flex", flexDirection: "row" }}>
       {options.map((option) => (

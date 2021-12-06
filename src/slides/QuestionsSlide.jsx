@@ -14,7 +14,7 @@ import AnswerFeedback from "./AnswerFeedback";
 import {
   SEVERAL_OPTION,
   PASSWORD_INPUT,
-  CHAT,
+  CHAT_QUESTION,
   FAKE_WEBSITE,
   DRAG_TO_TRASH,
   ORDER,
@@ -29,7 +29,7 @@ import YesNoWrapper from "features/YesNoWrapper";
 import DragToTrash from "dynamicQuestions/DragToTrash";
 import FakeDomain from "dynamicQuestions/FakeDomain";
 import SearchResult from "dynamicQuestions/SearchResult";
-import { addCorrectAnswer } from "util/totalScore";
+import { addCorrectAnswer, addIncorrectAnswer } from "util/totalScore";
 
 // Component that layers all the questions
 const Questions = ({
@@ -144,6 +144,8 @@ const Question = ({
       if (questionResult === null) {
         if (addedScore > 0.8) {
           addCorrectAnswer(questionData.id);
+        } else {
+          addIncorrectAnswer(questionData.id);
         }
 
         var res = "";
@@ -254,7 +256,7 @@ const AnswerOptions = ({
   setChangedTitle,
   contentFadeDelay,
 }) => {
-  if (questionData.type === CHAT) {
+  if (questionData.type === CHAT_QUESTION) {
     return (
       <Fade delay={contentFadeDelay}>
         <ChatQuestion

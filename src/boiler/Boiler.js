@@ -9,7 +9,6 @@ import {
   GAMING_PROFILE,
   STREAMING_PROFILE,
   SOCIAL_MEDIA_PROFILE,
-  PURPLE,
 } from "util/constants";
 
 // Custom components
@@ -79,11 +78,12 @@ const Boiler = () => {
     }
   };
 
-  const startQuiz = (generateUnanswered) => {
+  const startQuiz = (generateUnanswered, questionGroup = "") => {
     console.log("generateUnanswered: ", generateUnanswered);
     let generatedQuestions = generateQuestions(
       profileState,
-      generateUnanswered
+      generateUnanswered,
+      questionGroup
     );
     setQuestions(generatedQuestions);
     setMaxStarAmount(generatedQuestions.length);
@@ -93,10 +93,10 @@ const Boiler = () => {
     setSlideIndex(1);
   };
 
-  const redoTest = (generateUnansweredOnly) => {
+  const redoTest = (generateUnansweredOnly, questionGroup = "") => {
     resetQuizData(generateUnansweredOnly);
     if (generateUnansweredOnly === true) {
-      startQuiz(generateUnansweredOnly);
+      startQuiz(generateUnansweredOnly, questionGroup);
     }
   };
 
@@ -157,12 +157,14 @@ const Boiler = () => {
           <Route
             path="/"
             exact
-            render={() => <Welcome hasStarted={hasStarted} />}
+            render={() => (
+              <Welcome hasStarted={hasStarted} redoTest={redoTest} />
+            )}
           />
           <Route
             path="/resultslidepreview"
             exact
-            render={() => <ResultSlide />}
+            render={() => <ResultSlide redoTest={redoTest} />}
           />
           <Route
             path="/test"

@@ -10,11 +10,11 @@ import StyledLink from "components//StyledLink";
 //import { Facebook, Instagram, Star, Twitter } from "@material-ui/icons";
 import Star from "@material-ui/icons/Star";
 import { BLUE, PALEBLUE } from "util/constants";
-import { getStoredTotalAmount, getAllQuestionAmount } from "util/totalScore";
 import Title from "components/typeography/Title";
 import Subtitle from "components/typeography/Subtitle";
 import SmallText from "components/typeography/SmallText";
 import SocialShare from "features/SocialShare";
+import ProgressionDisplay from "features/ProgressionDisplay";
 
 const getResultText = (t, starAmount, maxStarAmount) => {
   let title = "";
@@ -26,15 +26,6 @@ const getResultText = (t, starAmount, maxStarAmount) => {
   if (percentCorrect >= 0.8) {
     title = t("result.firstPlaceTitle");
     desc = t("result.firstPlaceDesc");
-    if (getStoredTotalAmount() !== getAllQuestionAmount()) {
-      extraTitle = t("result.firstPlaceEvenMorePointsTitle");
-      extraDesc =
-        t("result.firstPlaceEvenMorePoints1") +
-        getStoredTotalAmount() +
-        t("result.firstPlaceEvenMorePoints2") +
-        getAllQuestionAmount() +
-        t("result.firstPlaceEvenMorePoints3");
-    }
   } else if (percentCorrect >= 0.5) {
     title = t("result.secondPlaceTitle");
     desc = t("result.secondPlaceDesc");
@@ -51,7 +42,7 @@ const getResultText = (t, starAmount, maxStarAmount) => {
 
 const ResultSlide = ({
   t,
-  starAmount = 7,
+  starAmount = 1,
   maxStarAmount = 12,
   testFinished = true,
   redoTest,
@@ -65,138 +56,115 @@ const ResultSlide = ({
   }
 
   return (
-    <AlignCenter withMaxWidth style={{ width: "100vw" }}>
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-        }}
-      >
-        <Title>{t("result.yourScore")}</Title>
+    <>
+      <AlignCenter withMaxWidth style={{ width: "100vw" }}>
         <div
           style={{
-            background: "rgba(255,255,255,0.2)",
-            borderRadius: 10,
-            padding: 2,
+            width: "100%",
             display: "flex",
-            justifyContent: "space-between",
+            flexDirection: "column",
+            justifyContent: "center",
           }}
         >
-          {achievedStars.map((val, index) => (
-            <ResultStar
-              unlocked={val}
-              index={index}
-              starAmount={starAmount}
-              starAnimationTimeMS={starAnimationTimeMS}
-              testFinished={testFinished}
-            />
-          ))}
-        </div>
-        <Fade delay={starAnimationTimeMS}>
-          <div style={{ marginTop: 32, textAlign: "center" }}>
-            <SmallText
-              opacity
-              style={{
-                margin: 0,
-                fontWeight: 600,
-              }}
-            >
-              {starAmount + " / " + maxStarAmount + " " + t("result.correct")}
-            </SmallText>
-            <Subtitle style={{ margin: "6px 0" }}>
-              {resultTextObj.title}
-            </Subtitle>
-            <p style={{ margin: "6px 0" }}>{resultTextObj.desc}</p>
+          <Title>{t("result.yourScore")}</Title>
+          <div
+            style={{ width: "100%", display: "flex", justifyContent: "center" }}
+          >
             <Grid
               container
               style={{
-                width: "100%",
-                marginTop: 12,
+                background: "rgba(255,255,255,0.2)",
+                borderRadius: 10,
+                maxWidth: "100%",
+                padding: 2,
+                display: "flex",
+                justifyContent: "center",
               }}
-              spacing={1}
             >
-              <Grid item xs={12} sm={6}>
-                <StyledButton
-                  onClick={() => {
-                    redoTest(false);
-                  }}
-                  style={{ width: "100%" }}
-                >
-                  {t("result.redo")}
-                </StyledButton>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <StyledLink
-                  rel=""
-                  target="_self"
-                  href="https://sakerhetskollen.se/"
-                >
-                  <StyledButton
-                    style={{
-                      margin: 0,
-                      width: "100%",
-                      padding: "14px 14px",
-                      background: PALEBLUE,
-                    }}
-                  >
-                    Tillbaka till säkerhetskollen
-                  </StyledButton>
-                </StyledLink>
-              </Grid>
-              <div style={{ width: "100%", textAlign: "center" }}>
-                <SocialShare shareText={t("general.shareTest")} />
-              </div>
+              {achievedStars.map((val, index) => (
+                <ResultStar
+                  unlocked={val}
+                  index={index}
+                  starAmount={starAmount}
+                  starAnimationTimeMS={starAnimationTimeMS}
+                  testFinished={testFinished}
+                />
+              ))}
+            </Grid>
+          </div>
 
-              {/* 
+          <Fade delay={starAnimationTimeMS}>
+            <div style={{ marginTop: 32, textAlign: "center" }}>
+              <SmallText
+                opacity
+                style={{
+                  margin: 0,
+                  fontWeight: 600,
+                }}
+              >
+                {starAmount + " / " + maxStarAmount + " " + t("result.correct")}
+              </SmallText>
+              <Subtitle style={{ margin: "6px 0" }}>
+                {resultTextObj.title}
+              </Subtitle>
+              <p style={{ margin: "6px 0" }}>{resultTextObj.desc}</p>
+              <Grid
+                container
+                style={{
+                  width: "100%",
+                  marginTop: 12,
+                }}
+                spacing={1}
+              >
+                <Grid item xs={12} sm={6}>
+                  <StyledButton
+                    onClick={() => {
+                      redoTest(false);
+                    }}
+                    style={{ width: "100%" }}
+                  >
+                    {t("result.redo")}
+                  </StyledButton>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <StyledLink
+                    rel=""
+                    target="_self"
+                    href="https://sakerhetskollen.se/"
+                  >
+                    <StyledButton
+                      style={{
+                        margin: 0,
+                        width: "100%",
+                        padding: "14px 14px",
+                        background: PALEBLUE,
+                      }}
+                    >
+                      Tillbaka till säkerhetskollen
+                    </StyledButton>
+                  </StyledLink>
+                </Grid>
+                <div style={{ width: "100%", textAlign: "center" }}>
+                  <SocialShare shareText={t("general.shareTest")} />
+                </div>
+
+                {/* 
                 <StyledLink href="https://sakerhetskollen.typeform.com/to/StcP4PFK">
                   <StyledButton style={{ margin: "8px 0", background: PALEBLUE }}>
                     Ge feedback här!
                   </StyledButton>
                 </StyledLink>
               */}
-            </Grid>
-
-            {/* 
-            This gives the user the option to redo the test with questions they haven't answered
-            <Subtitle style={{ margin: "32px 0 6px 0", opacity: 0.8 }}>
-              {resultTextObj.extraTitle}
-            </Subtitle>
-            <p style={{ margin: "6px 0", opacity: 0.8 }}>
-              {resultTextObj.extraDesc}
-            </p>
-            {resultTextObj.extraTitle !== "" && (
-              <StyledButton
-                onClick={() => {
-                  redoTest(true);
-                }}
-                style={{ margin: "8px 0", background: PALEBLUE }}
-              >
-                {t("result.redoWithUnanswered")}
-              </StyledButton>
-            )}
-            {getStoredTotalAmount() === getAllQuestionAmount() && (
-              <>
-                <Subtitle style={{ margin: "32px 0 6px 0", opacity: 0.8 }}>
-                  Grattis! Du har fått rätt på alla quiz:ets frågor.
-                </Subtitle>
-                <p style={{ opacity: 0.8, margin: "6px 0" }}>
-                  Läs mer om digitala brott på{" "}
-                  <StyledLink
-                    style={{ textDecoration: "underline" }}
-                    href="https://sakerhetskollen.se"
-                  >
-                    säkerhetskollen.se!
-                  </StyledLink>{" "}
-                </p>
-              </>
-            )}
-            */}
-          </div>
-        </Fade>
-      </div>
-    </AlignCenter>
+              </Grid>
+            </div>
+          </Fade>
+        </div>
+      </AlignCenter>
+      <ProgressionDisplay
+        redoTest={redoTest}
+        fadeInAfter={starAnimationTimeMS + 2000}
+      />
+    </>
   );
 };
 
@@ -346,7 +314,7 @@ const ResultStar = ({
   ]);
 
   return (
-    <div key={index} id={id}>
+    <Grid item key={index} id={id} style={{ margin: "0 12px" }}>
       {unlocked && (
         <div
           style={{
@@ -362,7 +330,7 @@ const ResultStar = ({
         </div>
       )}
       <Star style={{ color: staticStarColor }} />
-    </div>
+    </Grid>
   );
 };
 

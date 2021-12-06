@@ -5,7 +5,11 @@ import {
 } from "util/constants";
 import { getCorrectlyAnsweredIds, getAllQuestionAmount } from "util/totalScore";
 
-export const generateQuestions = (profileState, showAllUnanswered) => {
+export const generateQuestions = (
+  profileState,
+  showAllUnanswered,
+  questionGroup = ""
+) => {
   var randomizedQuestions = QUESTIONS.sort((a, b) => 0.5 - Math.random());
   var profileFiltered = filterAfterProfile(
     randomizedQuestions,
@@ -14,7 +18,8 @@ export const generateQuestions = (profileState, showAllUnanswered) => {
   );
   var newQuestions = generateQuestionsToShow(
     profileFiltered,
-    showAllUnanswered
+    showAllUnanswered,
+    questionGroup
   );
 
   return newQuestions;
@@ -27,7 +32,6 @@ const filterAfterProfile = (questions, profileState, showAllUnanswered) => {
   questions.forEach((question) => {
     if (showAllUnanswered) {
       if (correctlyAnsweredQuestions.includes(question.id) === false) {
-        console.log(question.id, " isn't correctly answered");
         profileFiltered.push(question);
       }
     } else if (
@@ -40,7 +44,11 @@ const filterAfterProfile = (questions, profileState, showAllUnanswered) => {
   return profileFiltered;
 };
 
-const generateQuestionsToShow = (profileFiltered, showAllUnanswered) => {
+const generateQuestionsToShow = (
+  profileFiltered,
+  showAllUnanswered,
+  questionGroup
+) => {
   let newQuestions = [];
   let usedCategories = [];
   var maxScore = getAllQuestionAmount();
@@ -66,6 +74,13 @@ const generateQuestionsToShow = (profileFiltered, showAllUnanswered) => {
       }
     }
 
+    // If we only want to do questions in a certain group filter out rest
+    console.log("requested question group: ", questionGroup);
+    console.log("question.group: ", question.group);
+    if (questionGroup !== "" && question.group !== questionGroup) {
+      showQuestion = false;
+    }
+
     if (showQuestion === true) {
       usedCategories.push(question.category);
       newQuestions.push(question);
@@ -73,7 +88,7 @@ const generateQuestionsToShow = (profileFiltered, showAllUnanswered) => {
   });
 
   var questionsToShow = newQuestions;
-  console.log("showAllUnanswered: ", showAllUnanswered);
+  console.log("questionsToShow: ", questionsToShow);
   if (showAllUnanswered === false) {
     questionsToShow = questionsToShow.slice(0, MAX_AMOUNT_QUESTIONS);
   }

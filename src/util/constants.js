@@ -6,12 +6,15 @@ export const MAX_AMOUNT_QUESTIONS = 12;
 
 // Global colors
 export const BLUE = "#063955";
+export const LIGHT_PINK = "rgba(226,20,126,.05)";
 export const LIGHT_BLUE = "#00b5f1";
 export const PURPLE = "#293881";
 export const PINK = "#E2147E";
 export const PALEBLUE = "#1DB6EB";
 export const BLACK = "#111111";
 export const WHITE = "#FFFFFF";
+export const AMBER = "#DAA520";
+export const GOLD = "#dac720";
 
 // Profiles
 export const BANK_PROFILE = "BANK_PROFILE";
@@ -39,6 +42,15 @@ export const PROFILE_STYLING = {
   },
 };
 
+// Question Groups
+export const PASSWORD = "PASSWORD";
+export const PHISHING = "PHISHING";
+export const THEFT = "THEFT";
+export const CONNECTION = "CONNECTION";
+export const CHAT = "CHAT";
+export const MALWARE = "MALWARE";
+export const SURFING = "SURFING";
+
 // Categories
 export const SHARED_PASSWORD_QUESTION = "SHARED_PASSWORD_QUESTION";
 export const IOT = "IOT";
@@ -46,7 +58,7 @@ export const PUBLIC_WIFI_QUESTION = "PUBLIC_WIFI_QUESTION";
 export const DECEIVE_WEBSITE = "DECEIVE_WEBSITE";
 export const PASSWORD_STRENGTH_QUESTION = "PASSWORD_STRENGTH_QUESTION";
 export const WIFI_ON_QUESTION = "WIFI_ON_QUESTION";
-export const ROMANCE_SCAM = "ROMANCE_SCAM";
+export const SWISH_SCAM = "SWISH_SCAM";
 export const BLACKMAIL = "BLACKMAIL";
 export const DONT_CLICK_LINK = "DONT_CLICK_LINK";
 export const USE_SAME_PASSWORD = "USE_SAME_PASSWORD";
@@ -61,7 +73,7 @@ export const YES_NO = "YES_NO";
 export const DRAG_TO_TRASH = "DRAG_TO_TRASH";
 export const SEVERAL_OPTION = "SEVERAL_OPTION";
 export const PASSWORD_INPUT = "PASSWORD_INPUT";
-export const CHAT = "CHAT";
+export const CHAT_QUESTION = "CHAT_QUESTION";
 export const FAKE_WEBSITE = "FAKE_WEBSITE";
 export const FAKE_DOMAIN = "FAKE_DOMAIN";
 export const SEARCH_RESULT = "SEARCH_RESULT";
@@ -70,6 +82,7 @@ export const ORDER = "ORDER";
 export const QUESTIONS = [
   {
     id: "SRCH",
+    group: SURFING,
     category: DONT_CLICK_LINK,
     type: SEARCH_RESULT,
     forProfile: GENERAL_PROFILE,
@@ -207,6 +220,7 @@ export const QUESTIONS = [
   },
   {
     id: "GPW",
+    group: PASSWORD,
     category: SHARED_PASSWORD_QUESTION,
     type: SEVERAL_OPTION,
     forProfile: GAMING_PROFILE,
@@ -227,6 +241,7 @@ export const QUESTIONS = [
   },
   {
     id: "SPWD",
+    group: PASSWORD,
     category: SHARED_PASSWORD_QUESTION,
     type: YES_NO,
     forProfile: SOCIAL_MEDIA_PROFILE,
@@ -241,30 +256,30 @@ export const QUESTIONS = [
   },
   {
     id: "CSCM",
-    category: ROMANCE_SCAM,
-    type: CHAT,
+    group: CHAT,
+    category: SWISH_SCAM,
+    type: CHAT_QUESTION,
     forProfile: GENERAL_PROFILE,
-    title: "questions.romanceScamChat.title",
-    text: "questions.romanceScamChat.text",
-    moreInfo: "questions.romanceScamChat.moreInfo",
-    evenMoreInfo: "questions.romanceScamChat.evenMoreInfo",
-    yourAnswer: "questions.romanceScamChat.yourAnswer",
-    from: "questions.romanceScamChat.from",
-    readMoreLink:
-      "https://sakerhetskollen.se/testa-din-sakerhet/ar-du-saker-pa-ditt-losenord",
+    title: "questions.brotherSwishChat.title",
+    text: "questions.brotherSwishChat.text",
+    moreInfo: "questions.brotherSwishChat.moreInfo",
+    evenMoreInfo: "questions.brotherSwishChat.evenMoreInfo",
+    yourAnswer: "questions.brotherSwishChat.yourAnswer",
+    from: "questions.brotherSwishChat.from",
     options: [
-      { text: "questions.romanceScamChat.good", score: 1 },
-      { text: "questions.romanceScamChat.bad", score: 0 },
+      { text: "questions.brotherSwishChat.good", score: 1 },
+      { text: "questions.brotherSwishChat.bad", score: 0 },
     ],
     smses: [
-      { side: "left", text: "questions.romanceScamChat.chat1" },
-      { side: "right", text: "questions.romanceScamChat.chat2" },
-      { side: "left", text: "questions.romanceScamChat.chat3" },
-      { side: "left", text: "questions.romanceScamChat.chat4" },
+      { side: "left", text: "questions.brotherSwishChat.chat1" },
+      { side: "right", text: "questions.brotherSwishChat.chat2" },
+      { side: "left", text: "questions.brotherSwishChat.chat3" },
+      { side: "left", text: "questions.brotherSwishChat.chat4" },
     ],
   },
   {
     id: "PWSTR",
+    group: PASSWORD,
     category: PASSWORD_STRENGTH_QUESTION,
     type: PASSWORD_INPUT,
     forProfile: GENERAL_PROFILE,
@@ -312,6 +327,7 @@ export const QUESTIONS = [
   },
   {
     id: "PLCWF",
+    group: CONNECTION,
     category: PUBLIC_WIFI_QUESTION,
     type: SEVERAL_OPTION,
     forProfile: GENERAL_PROFILE,
@@ -331,6 +347,7 @@ export const QUESTIONS = [
   },
   {
     id: "FKWBS",
+    group: PHISHING,
     category: DECEIVE_WEBSITE,
     type: FAKE_WEBSITE,
     forProfile: GENERAL_PROFILE,
@@ -340,6 +357,7 @@ export const QUESTIONS = [
   },
   {
     id: "SMPWD",
+    group: PASSWORD,
     category: USE_SAME_PASSWORD,
     type: DRAG_TO_TRASH,
     forProfile: GENERAL_PROFILE,
@@ -350,6 +368,7 @@ export const QUESTIONS = [
   },
   {
     id: "RKPW",
+    group: PASSWORD,
     category: RANK_PASSWORDS,
     type: ORDER,
     forProfile: GENERAL_PROFILE,
@@ -368,8 +387,9 @@ export const QUESTIONS = [
   },
   {
     id: "BMSCM",
+    group: CHAT,
     category: BLACKMAIL,
-    type: CHAT,
+    type: CHAT_QUESTION,
     forProfile: GENERAL_PROFILE,
     title: "questions.blackmailChat.title",
     text: "questions.blackmailChat.text",
@@ -389,8 +409,9 @@ export const QUESTIONS = [
   },
   {
     id: "DCLK",
+    group: PHISHING,
     category: DONT_CLICK_LINK,
-    type: CHAT,
+    type: CHAT_QUESTION,
     forProfile: GENERAL_PROFILE,
     title: "questions.dontClickLinkPhoto.title",
     text: "questions.dontClickLinkPhoto.text",
@@ -410,6 +431,7 @@ export const QUESTIONS = [
   },
   {
     id: "FKDMN",
+    group: PHISHING,
     category: DECEIVE_WEBSITE,
     type: FAKE_DOMAIN,
     forProfile: GENERAL_PROFILE,
@@ -420,6 +442,7 @@ export const QUESTIONS = [
   },
   {
     id: "SSHSRF",
+    group: THEFT,
     category: SHOULDER_SURFING,
     type: DRAG_TO_TRASH,
     forProfile: SOCIAL_MEDIA_PROFILE,
@@ -431,6 +454,7 @@ export const QUESTIONS = [
   },
   {
     id: "GSHSRF",
+    group: THEFT,
     category: SHOULDER_SURFING,
     type: DRAG_TO_TRASH,
     forProfile: GAMING_PROFILE,
@@ -442,6 +466,7 @@ export const QUESTIONS = [
   },
   {
     id: "STVRS",
+    group: PHISHING,
     category: VIRUS,
     type: SEVERAL_OPTION,
     forProfile: STREAMING_PROFILE,
@@ -456,6 +481,7 @@ export const QUESTIONS = [
   },
   {
     id: "USB",
+    group: MALWARE,
     category: VIRUS,
     type: SEVERAL_OPTION,
     forProfile: GENERAL_PROFILE,
@@ -470,6 +496,7 @@ export const QUESTIONS = [
   },
   {
     id: "CDIT",
+    group: THEFT,
     category: CREDITREPORT,
     type: SEVERAL_OPTION,
     forProfile: BANK_PROFILE,
@@ -484,6 +511,7 @@ export const QUESTIONS = [
   },
   {
     id: "IOT",
+    group: CONNECTION,
     category: IOT,
     type: YES_NO,
     forProfile: GENERAL_PROFILE,

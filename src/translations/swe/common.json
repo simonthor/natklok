@@ -60,6 +60,41 @@
     "doTheTestTitle": "Hur säker är du online?",
     "doTheTestDesc": "Gör hela quizet och ta reda på svaret!"
   },
+  "progressionDisplay": {
+    "yourProgress": "Dina prestationer",
+    "PASSWORD": "Lösenord",
+    "PHISHING": "Phishing",
+    "THEFT": "Stöld online",
+    "CONNECTION": "Uppkopplad värld",
+    "CHAT": "I chatten",
+    "MALWARE": "Skadeprogram",
+    "SURFING": "Surfa online",
+    "groupDesc": {
+      "PASSWORD": "Lösenord är A och O när det kommer till säkerhet online. Det är därför väldigt viktigt att du är en mästare på lösenord!",
+      "PHISHING": "Phishing är ett av det vanligaste bedrägerierna online. Ifall du har kunskap om phishing kan du enkelt undvika dem.",
+      "THEFT": "I en tid där mycket av det vi äger ligger på internet kan tjuvar sno från dig online. Lär dig försvara dig själv mot digital stöld.",
+      "CONNECTION": "Allt fler aspekter av våra liv håller på att kopplas upp till internet och andra nätverk - men finns det några risker med det?",
+      "CHAT": "Många av bedragerierna som sker online börjar i en chatt. Lär dig vilka varningstecken du ska se upp för så att du inte blir lurad.",
+      "MALWARE": "För att kunna skydda dig mot skadlig programvara bör du förstå hur de fungerar och angriper din dator. ",
+      "SURFING": "Att surfa online är inte alltid en dans på rosor. Det kan förekomma falsk information, bedrägerier och mycket annat fulspel."
+    },
+    "redoGroup": {
+      "desc1": "Du har ",
+      "desc2": "rätt inom denna kategori. Ifall du får alla rätt låser du upp ett märke!",
+      "button": "Gör alla frågor om '"
+    },
+    "redoWithUnanswered": "Gör obesvarade och felbesvarade frågor",
+    "firstPlaceEvenMorePointsTitle": "Kan du få alla rätt?",
+    "firstPlaceEvenMorePoints1": "Du har svarat rätt på ",
+    "firstPlaceEvenMorePoints2": " av ",
+    "firstPlaceEvenMorePoints3": " frågor totalt tillgängliga i quizet - se ifall du kan få alla rätt!",
+    "allCorrectTitle": "Grattis! Du har fått rätt på alla quiz:ets frågor.",
+    "allCorrectDesc": "Lär dig ännu mer om digitala brott och hur du kan skydda dig själv mot dem på https://sakerhetskollen.se!",
+    "toSSF": "Till Säkerhetskollen.se",
+    "correct": "Rätt",
+    "wrong": "Fel",
+    "test": "Få alla rätt"
+  },
   "questions": {
     "csgoSkin": {
       "title": "Du hittar det perfekta CSGO skin:et online...",
@@ -71,7 +106,7 @@
     },
     "fakeApp": {
       "title": "Du hittar en app som visar vilka som stalkar dig på instagram!",
-      "text": "Du loggar in genom att ange ditt användarnamn och lösenord. Kan personerna som gjort appen nu logga in på ditt konto och göra vad de vill med den?",
+      "text": "Du loggar in genom att ange ditt användarnamn och lösenord. Finns det en stor risk att personerna som gjort appen nu logga in på ditt konto och göra vad de vill med den?",
       "moreInfo": "<b>Om du redan använder en sådan app/tjänst byt lösenord direkt!</b></br></br> Bedragare kan använda ditt konto för att lura dina nära och kära på pengar eller i utpressningssyfte mot dig."
     },
     "publicWifi": {
@@ -106,7 +141,7 @@
       "resultPrefix": "Det skulle ta en hackare",
       "resultSuffix": "att knäcka lösenordet."
     },
-    "romanceScamChat": {
+    "brotherSwishChat": {
       "title": "Syrran skriver på messenger",
       "text": "",
       "moreInfo": "Bedragare har tagit över din systers konto och försöker nu lura dig på pengar.",
@@ -231,11 +266,6 @@
     "correct": "rätt",
     "firstPlaceTitle": "Imponerande!",
     "firstPlaceDesc": "Du kan mycket när det kommer till säkerhet online, men du kan alltid lära dig mer! ",
-    "firstPlaceEvenMorePointsTitle": "Kan du få alla rätt?",
-    "firstPlaceEvenMorePoints1": "Du har svarat rätt på ",
-    "firstPlaceEvenMorePoints2": " av ",
-    "firstPlaceEvenMorePoints3": " frågor totalt tillgängliga i quizet - se ifall du kan få alla rätt!",
-    "redoWithUnanswered": "Gör obesvarade frågor",
     "secondPlaceTitle": "Bra jobbat!",
     "secondPlaceDesc": "Du har bra koll på säkerhetonline men får fortfarande lite fel. Läs gärna mer om frågorna du svarade fel på!",
     "thirdPlaceTitle": "Helt okej",
@@ -247,6 +277,4 @@
     "redo": "Gör om quizet",
     "share": "Dela ditt resultat"
   }
- }
- 
- 
+}
