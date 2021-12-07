@@ -81,7 +81,9 @@
     "redoGroup": {
       "desc1": "Du har ",
       "desc2": "rätt inom denna kategori. Ifall du får alla rätt låser du upp ett märke!",
-      "button": "Gör alla frågor om '"
+      "button": "Gör alla frågor om '",
+      "allCorrect": "Du har alla rätt inom denna kategori. Bra jobbat!",
+      "showIncorrectAndCorrect": "Se frågor du svarat på"
     },
     "redoWithUnanswered": "Gör obesvarade och felbesvarade frågor",
     "firstPlaceEvenMorePointsTitle": "Kan du få alla rätt?",
