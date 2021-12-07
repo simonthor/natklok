@@ -38,15 +38,16 @@ const Welcome = ({ t, hasStarted }) => {
             textAlign: "center",
             zIndex: "5",
             marginTop: "10vh",
-            width: "100%",
+            width: "100vw",
+            overflow: "hidden",
           }}
         >
           <Logo />
           <Subtitle
             style={{
               marginBottom: "2em",
-              fontSize: window.innerWidth < 576 ? 16 : 24,
-              marginTop: window.innerWidth < 576 ? -8 : -14,
+              fontSize: window.innerWidth < 660 ? 16 : 24,
+              marginTop: window.innerWidth < 660 ? -8 : -14,
               fontWeight: 400,
               opacity: 0.8,
             }}
