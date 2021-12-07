@@ -10,7 +10,9 @@ export default {
 const Template = (args) => {
     const [open, setOpen] = useState(false);
     return (
-        <Modal open={open} setOpen={setOpen} {...args} />
+        <div style={{ color: "black"}}>
+            <Modal open={open} setOpen={setOpen} {...args} />
+        </div>
     )
 };
 
@@ -18,5 +20,5 @@ export const Default = Template.bind({});
 Default.args = {
 	title: "Läs mer om romansbedrägerier",
 	children: "<h1>Hej</h1>",
-    open: false
+    open: true
 };
