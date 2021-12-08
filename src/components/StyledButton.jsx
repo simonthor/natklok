@@ -46,7 +46,7 @@ const StyledButton = ({
         fontSize: 18,
         fontWeight: "bold",
         fontFamily: "Dagny",
-        background: PINK,
+        background: color,
         filter: filter,
         transform: hoveringOver && !disabled ? "scale(1.03)" : "scale(1)",
         color: disabled ? "lightgrey" : "white",
