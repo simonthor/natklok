@@ -1,7 +1,6 @@
 // Third party
 import React, { Suspense, lazy, useState, useEffect } from "react";
-import { Redirect, Route, Switch } from "react-router-dom";
-import { useHistory, useLocation } from "react-router";
+import { Redirect, Route, Switch, useHistory, useLocation } from "react-router-dom";
 import Confetti from "react-confetti";
 // Custom
 import {
