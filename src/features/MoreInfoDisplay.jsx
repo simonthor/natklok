@@ -48,6 +48,7 @@ const MoreInfoDisplay = ({
             marginTop: 16,
             background: WHITE,
             position: fixed ? "fixed" : "none",
+            left: 0,
             bottom: 0,
             color: PURPLE,
             transititon: "height 0.5s",

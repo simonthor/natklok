@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { PURPLE } from 'util/constants'
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
@@ -15,12 +16,13 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     backgroundColor: theme.palette.background.paper,
     outline: "none",
+    color: PURPLE,
     borderRadius: 4,
   },
 }));
 
 const TransitionsModal = ({ open, setOpen, title="title", children }) => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   return (
     <div>
