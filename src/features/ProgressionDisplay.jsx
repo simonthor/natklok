@@ -10,73 +10,79 @@ import {
   CHAT,
   MALWARE,
   SURFING,
-  PALEBLUE,
-  LIGHT_BLUE,
-  GOLD,
-  AMBER,
-  LIGHT_PINK,
 } from "util/constants";
 import { withTranslation } from "react-i18next";
 import Fade from "react-reveal/Fade";
 
 import {
   getAllQuestionAmount,
-  getCorrectlyAnsweredIds,
-  getIncorrectlyAnsweredIds,
+  getCorrectlyAnsweredQuestionData,
+  getIncorrectlyAnsweredQuestionData,
   getStoredTotalAmount,
 } from "util/totalScore";
 
 import AlignCenter from "components/AlignCenter";
 import Subtitle from "components/typeography/Subtitle";
-import StyledButton from "components/StyledButton";
+import HTMLRenderer from "components/HTMLRenderer";
 
 import Grid from "@material-ui/core/Grid";
 
 import BadgeDisplay from "./ProgressDisplay/BagdeDisplay";
 import BadgeModal from "./ProgressDisplay/BadgeModal";
 
-const getTextObj = (t, allCorrect) => {
-  let extraTitle = "";
-  let extraDesc = "";
-
-  if (allCorrect === true) {
-    extraTitle = t("progressionDisplay.allCorrectTitle");
-    extraDesc = t("progressionDisplay.allCorrectDesc");
-  } else {
-    extraTitle = t("progressionDisplay.firstPlaceEvenMorePointsTitle");
-    extraDesc =
-      t("progressionDisplay.firstPlaceEvenMorePoints1") +
-      getStoredTotalAmount() +
-      t("progressionDisplay.firstPlaceEvenMorePoints2") +
-      getAllQuestionAmount() +
-      t("progressionDisplay.firstPlaceEvenMorePoints3");
-  }
-
-  return { extraTitle, extraDesc };
-};
-
-const ProgressionDisplayFadeWrapper = ({ t, redoTest, fadeInAfter = -1 }) => {
+const ProgressionDisplayFadeWrapper = ({
+  t,
+  redoTest,
+  openQuestion,
+  fadeInAfter = -1,
+}) => {
   if (fadeInAfter === -1) {
-    return <ProgressionDisplay t={t} redoTest={redoTest} />;
+    return (
+      <ProgressionDisplay
+        t={t}
+        redoTest={redoTest}
+        openQuestion={openQuestion}
+      />
+    );
   } else {
     return (
-      <Fade delay={fadeInAfter} bottom>
-        <ProgressionDisplay t={t} redoTest={redoTest} />
+      <Fade delay={fadeInAfter} bottom fraction={0}>
+        <ProgressionDisplay
+          t={t}
+          redoTest={redoTest}
+          openQuestion={openQuestion}
+        />
       </Fade>
     );
   }
 };
 
-const ProgressionDisplay = ({ t, redoTest }) => {
-  const allCorrect = getStoredTotalAmount() >= getAllQuestionAmount();
-  const textObj = getTextObj(t, allCorrect);
-
+const ProgressionDisplay = ({ t, redoTest, openQuestion }) => {
+  let availableGroups = [
+    PASSWORD,
+    PHISHING,
+    THEFT,
+    CONNECTION,
+    CHAT,
+    MALWARE,
+    SURFING,
+  ];
+  let scoreStr = `<b>${getStoredTotalAmount()} ${t(
+    "general.outOf"
+  )} ${getAllQuestionAmount()}</b>`;
+  let progressionDisplayDesc = t("progressionDisplay.yourProgressDesc").replace(
+    "{score}",
+    scoreStr
+  );
   return (
     <div style={{ background: WHITE, minHeight: "70vh", color: PURPLE }}>
       <AlignCenter>
-        <Subtitle style={{ margin: 0 }}>
+        <Subtitle style={{ marginTop: 12 }}>
           {t("progressionDisplay.yourProgress")}
         </Subtitle>
+        <HTMLRenderer style={{ marginBottom: 12 }}>
+          {progressionDisplayDesc}
+        </HTMLRenderer>
         <Grid
           container
           justify="center"
@@ -87,128 +93,29 @@ const ProgressionDisplay = ({ t, redoTest }) => {
             width: "100%",
           }}
         >
-          <GroupProgressionItem
-            group={PASSWORD}
-            emoji="🔒"
-            t={t}
-            redoTest={redoTest}
-          />
-          <GroupProgressionItem
-            group={PHISHING}
-            emoji="🎣"
-            t={t}
-            redoTest={redoTest}
-          />
-          <GroupProgressionItem
-            group={THEFT}
-            emoji="💰"
-            t={t}
-            redoTest={redoTest}
-          />
-          <GroupProgressionItem
-            group={CONNECTION}
-            emoji="📶"
-            t={t}
-            redoTest={redoTest}
-          />
-          <GroupProgressionItem
-            group={CHAT}
-            emoji="💬"
-            t={t}
-            redoTest={redoTest}
-          />
-          <GroupProgressionItem
-            group={MALWARE}
-            emoji="🤖"
-            t={t}
-            redoTest={redoTest}
-          />
-          <GroupProgressionItem
-            group={SURFING}
-            emoji="🏄"
-            t={t}
-            redoTest={redoTest}
-          />
+          {availableGroups.map((group, index) => (
+            <GroupProgressionItem
+              key={index}
+              group={group}
+              t={t}
+              redoTest={redoTest}
+              openQuestion={openQuestion}
+            />
+          ))}
         </Grid>
-        <Subtitle style={{ margin: "42px 0 6px 0" }}>
-          {textObj.extraTitle}
-        </Subtitle>
-        <p
-          style={{
-            margin: "6px 0",
-            textAlign: "center",
-            opacity: 0.8,
-            padding: "0 20%",
-          }}
-        >
-          {textObj.extraDesc}
-        </p>
-        <StyledButton
-          onClick={() => {
-            if (allCorrect === false) {
-              redoTest(true);
-            } else {
-              window.open("https://sakerhetskollen.se/", "_blank").focus();
-            }
-          }}
-          style={{ margin: "8px 0 80px 0", background: PALEBLUE }}
-        >
-          {allCorrect
-            ? t("progressionDisplay.toSSF")
-            : t("progressionDisplay.redoWithUnanswered")}
-        </StyledButton>
       </AlignCenter>
     </div>
   );
 };
 
-const GroupProgressionItem = ({ group, emoji, t, redoTest }) => {
+const GroupProgressionItem = ({ group, t, redoTest, openQuestion, key }) => {
   const [openMoreInfoModal, setOpenMoreInfoModal] = useState(false);
-  const [correctAnsweredQuestions, setCorrectAnsweredQuestions] = useState([]);
-  const [incorrectAnsweredQuestions, setIncorrectAnsweredQuestions] = useState(
-    []
-  );
-
-  const [totalAmount, setTotalAmount] = useState(0);
   const [hoveringOver, setHoveringOver] = useState(false);
-
-  const getAllCorrect = () => {
-    return correctAnsweredQuestions.length === totalAmount;
-  };
-
-  const getProgress = (returnMax = false) => {
-    if (returnMax) return 80;
-
-    return (correctAnsweredQuestions.length / totalAmount) * 80;
-  };
-
-  useEffect(() => {
-    const correctlyAnsweredIds = getCorrectlyAnsweredIds();
-    const incorrectlyAnsweredIds = getIncorrectlyAnsweredIds();
-    let correct = [];
-    let incorrect = [];
-    let amount = 0;
-
-    QUESTIONS.forEach((questionData) => {
-      if (questionData.group === group) {
-        amount += 1;
-
-        if (correctlyAnsweredIds.includes(questionData["id"])) {
-          correct.push(questionData);
-        } else if (incorrectlyAnsweredIds.includes(questionData["id"])) {
-          incorrect.push(questionData);
-        }
-      }
-    });
-
-    setTotalAmount(amount);
-    setCorrectAnsweredQuestions(correct);
-    setIncorrectAnsweredQuestions(incorrect);
-  }, [group]);
 
   return (
     <Grid
       item
+      key={key}
       style={{
         margin: 6,
       }}
@@ -232,11 +139,6 @@ const GroupProgressionItem = ({ group, emoji, t, redoTest }) => {
         }}
       >
         <BadgeDisplay
-          emoji={emoji}
-          getAllCorrect={getAllCorrect}
-          getProgress={getProgress}
-          correctAnsweredQuestions={correctAnsweredQuestions}
-          totalAmount={totalAmount}
           group={group}
           progressLeft={"calc(50% - 24px)"}
           progressTop={55}
@@ -246,14 +148,10 @@ const GroupProgressionItem = ({ group, emoji, t, redoTest }) => {
       <BadgeModal
         openMoreInfoModal={openMoreInfoModal}
         setOpenMoreInfoModal={setOpenMoreInfoModal}
-        emoji={emoji}
-        getAllCorrect={getAllCorrect}
-        getProgress={getProgress}
-        correctAnsweredQuestions={correctAnsweredQuestions}
-        totalAmount={totalAmount}
         group={group}
         t={t}
         redoTest={redoTest}
+        openQuestion={openQuestion}
       />
     </Grid>
   );

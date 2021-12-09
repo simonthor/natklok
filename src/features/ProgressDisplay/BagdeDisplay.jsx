@@ -1,5 +1,5 @@
-import React from "react";
-import { GOLD, AMBER } from "util/constants";
+import React, { useState } from "react";
+import { GOLD, AMBER, getGroupIcon, PURPLE } from "util/constants";
 
 import SmallText from "components/typeography/SmallText";
 import Subtitle from "components/typeography/Subtitle";
@@ -9,21 +9,39 @@ import "./BadgeDisplay.css";
 
 import Star from "@material-ui/icons/Star";
 import { CircularProgress } from "@material-ui/core";
+import {
+  getCorrectlyAnsweredQuestionData,
+  getAllQuestionAmount,
+} from "util/totalScore";
 
 const BadgeDisplay = ({
-  emoji,
-  getAllCorrect,
-  getProgress,
-  correctAnsweredQuestions,
-  totalAmount,
   group,
   emojiLeft = 0,
   progressLeft = 55,
   progressTop = 55,
   containerStyle = {},
   useSubtitle = false,
+  showTitle = true,
+  bright = false,
   t,
 }) => {
+  const [correctAnsweredQuestions] = useState(
+    getCorrectlyAnsweredQuestionData(group)
+  );
+
+  const [totalAmount] = useState(getAllQuestionAmount(group));
+  const [emoji] = getGroupIcon(group);
+
+  const getAllCorrect = () => {
+    return correctAnsweredQuestions.length === totalAmount;
+  };
+
+  const getProgress = (returnMax = false) => {
+    if (returnMax) return 80;
+
+    return (correctAnsweredQuestions.length / totalAmount) * 80;
+  };
+
   return (
     <>
       <div
@@ -62,7 +80,11 @@ const BadgeDisplay = ({
           />
           <SmallText
             style={{
-              color: getAllCorrect() ? AMBER : "rgba(0, 0, 0, 0.6)",
+              color: getAllCorrect()
+                ? AMBER
+                : bright
+                ? "rgba(255, 255, 255, 0.6)"
+                : "rgba(0, 0, 0, 0.6)",
               fontWeight: "bold",
               margin: "4px 0 0 0",
             }}
@@ -94,13 +116,13 @@ const BadgeDisplay = ({
           progress={getProgress(true)}
           progressLeft={progressLeft}
           progressTop={progressTop}
-          color="rgba(0,0,0,0.1)"
+          color={bright ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.1)"}
         />
         <ProgressCircle
           progress={getProgress() + 1}
           progressLeft={progressLeft}
           progressTop={progressTop}
-          color="white"
+          color={bright ? PURPLE : "white"}
         />
         <ProgressCircle
           progress={getProgress()}
@@ -110,27 +132,29 @@ const BadgeDisplay = ({
         />
       </div>
 
-      <div style={{ textAlign: "center" }}>
-        {useSubtitle ? (
-          <Subtitle
-            style={{
-              marginTop: 16,
-              marginBottom: 0,
-            }}
-          >
-            {t("progressionDisplay." + group)}
-          </Subtitle>
-        ) : (
-          <p
-            style={{
-              margin: "8px 0 0 0",
-              fontWeight: "bold",
-            }}
-          >
-            {t("progressionDisplay." + group)}
-          </p>
-        )}
-      </div>
+      {showTitle && (
+        <div style={{ textAlign: "center" }}>
+          {useSubtitle ? (
+            <Subtitle
+              style={{
+                marginTop: 16,
+                marginBottom: 0,
+              }}
+            >
+              {t("progressionDisplay." + group)}
+            </Subtitle>
+          ) : (
+            <p
+              style={{
+                margin: "8px 0 0 0",
+                fontWeight: "bold",
+              }}
+            >
+              {t("progressionDisplay." + group)}
+            </p>
+          )}
+        </div>
+      )}
     </>
   );
 };

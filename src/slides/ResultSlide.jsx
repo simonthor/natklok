@@ -9,19 +9,45 @@ import StyledButton from "components//StyledButton";
 import StyledLink from "components//StyledLink";
 //import { Facebook, Instagram, Star, Twitter } from "@material-ui/icons";
 import Star from "@material-ui/icons/Star";
-import { BLUE, PALEBLUE } from "util/constants";
+import { BLUE, PALEBLUE, PINK } from "util/constants";
 import Title from "components/typeography/Title";
 import Subtitle from "components/typeography/Subtitle";
 import SmallText from "components/typeography/SmallText";
 import SocialShare from "features/SocialShare";
 import ProgressionDisplay from "features/ProgressionDisplay";
+import BagdeDisplay from "features/ProgressDisplay/BagdeDisplay";
+import RedoOrStartButton from "features/RedoOrStartButton";
+import { useLocation } from "react-router-dom";
+import {
+  getAllQuestionAmount,
+  getCorrectlyAnsweredQuestionData,
+} from "util/totalScore";
 
-const getResultText = (t, starAmount, maxStarAmount) => {
+const getResultText = (t, starAmount, maxStarAmount, finishedWithGroup) => {
   let title = "";
   let desc = "";
-  let extraTitle = "";
-  let extraDesc = "";
   let percentCorrect = starAmount / maxStarAmount;
+
+  if (finishedWithGroup !== null) {
+    let amount = getCorrectlyAnsweredQuestionData(finishedWithGroup).length;
+    let total = getAllQuestionAmount(finishedWithGroup);
+    let groupName = t("progressionDisplay." + finishedWithGroup);
+
+    if (amount / total >= 1) {
+      title = t("result.groupFewCorrectTitle");
+    } else if (amount / total >= 0.5) {
+      title = t("result.groupSeveralCorrectTitle");
+    } else {
+      title = t("result.groupFewCorrectTitle");
+    }
+
+    let scoreString = ` ${amount} ${t("general.outOf")} ${total} `;
+    let replacedDesc = t("result.groupCorrectDesc")
+      .replace("{score}", scoreString)
+      .replace("{group}", groupName);
+    desc = replacedDesc;
+    return { title, desc };
+  }
 
   if (percentCorrect >= 0.8) {
     title = t("result.firstPlaceTitle");
@@ -37,7 +63,7 @@ const getResultText = (t, starAmount, maxStarAmount) => {
     desc = t("result.forthPlaceDesc");
   }
 
-  return { title, desc, extraDesc, extraTitle };
+  return { title, desc };
 };
 
 const ResultSlide = ({
@@ -46,9 +72,21 @@ const ResultSlide = ({
   maxStarAmount = 12,
   testFinished = true,
   redoTest,
+  openQuestion,
 }) => {
-  const resultTextObj = getResultText(t, starAmount, maxStarAmount);
-  const starAnimationTimeMS = 310 * maxStarAmount;
+  let location = useLocation();
+  const [finishedWithGroup] = useState(
+    new URLSearchParams(location.search).get("group")
+  );
+  const [hasFinishedGroupTest] = useState(finishedWithGroup !== null);
+
+  const resultTextObj = getResultText(
+    t,
+    starAmount,
+    maxStarAmount,
+    finishedWithGroup
+  );
+  const starAnimationTimeMS = hasFinishedGroupTest ? 1000 : 310 * maxStarAmount;
   const achievedStars = [];
   for (let i = 0; i < maxStarAmount; i++) {
     let achieved = starAmount > i;
@@ -66,44 +104,41 @@ const ResultSlide = ({
             justifyContent: "center",
           }}
         >
-          <Title>{t("result.yourScore")}</Title>
-          <div
-            style={{ width: "100%", display: "flex", justifyContent: "center" }}
-          >
-            <Grid
-              container
-              style={{
-                background: "rgba(255,255,255,0.2)",
-                borderRadius: 10,
-                maxWidth: "100%",
-                padding: 2,
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
-              {achievedStars.map((val, index) => (
-                <ResultStar
-                  unlocked={val}
-                  index={index}
-                  starAmount={starAmount}
-                  starAnimationTimeMS={starAnimationTimeMS}
-                  testFinished={testFinished}
-                />
-              ))}
-            </Grid>
-          </div>
+          {hasFinishedGroupTest ? (
+            <GroupTestScoreDisplay t={t} group={finishedWithGroup} />
+          ) : (
+            <NormalTestScoreDisplay
+              achievedStars={achievedStars}
+              starAmount={starAmount}
+              starAnimationTimeMS={starAnimationTimeMS}
+              testFinished={testFinished}
+              t={t}
+            />
+          )}
 
           <Fade delay={starAnimationTimeMS}>
-            <div style={{ marginTop: 32, textAlign: "center" }}>
-              <SmallText
-                opacity
-                style={{
-                  margin: 0,
-                  fontWeight: 600,
-                }}
-              >
-                {starAmount + " / " + maxStarAmount + " " + t("result.correct")}
-              </SmallText>
+            <div
+              style={{
+                marginTop: hasFinishedGroupTest ? 6 : 32,
+                textAlign: "center",
+              }}
+            >
+              {!hasFinishedGroupTest && (
+                <SmallText
+                  opacity
+                  style={{
+                    margin: 0,
+                    fontWeight: 600,
+                  }}
+                >
+                  {starAmount +
+                    " / " +
+                    maxStarAmount +
+                    " " +
+                    t("result.correct")}
+                </SmallText>
+              )}
+
               <Subtitle style={{ margin: "6px 0" }}>
                 {resultTextObj.title}
               </Subtitle>
@@ -117,14 +152,11 @@ const ResultSlide = ({
                 spacing={1}
               >
                 <Grid item xs={12} sm={6}>
-                  <StyledButton
-                    onClick={() => {
-                      redoTest(false);
-                    }}
-                    style={{ width: "100%" }}
-                  >
-                    {t("result.redo")}
-                  </StyledButton>
+                  <RedoOrStartButton
+                    redoTest={redoTest}
+                    showText={false}
+                    buttonStyle={{ background: PINK, width: "100%" }}
+                  />
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <StyledLink
@@ -136,7 +168,6 @@ const ResultSlide = ({
                       style={{
                         margin: 0,
                         width: "100%",
-                        padding: "14px 14px",
                         background: PALEBLUE,
                       }}
                     >
@@ -163,8 +194,70 @@ const ResultSlide = ({
       <ProgressionDisplay
         redoTest={redoTest}
         fadeInAfter={starAnimationTimeMS + 2000}
+        openQuestion={openQuestion}
       />
     </>
+  );
+};
+
+const NormalTestScoreDisplay = ({
+  achievedStars,
+  starAmount,
+  starAnimationTimeMS,
+  testFinished,
+  t,
+}) => {
+  return (
+    <>
+      <Title>{t("result.yourScore")}</Title>
+      <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+        <Grid
+          container
+          style={{
+            background: "rgba(255,255,255,0.2)",
+            borderRadius: 10,
+            maxWidth: "100%",
+            padding: 2,
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          {achievedStars.map((val, index) => (
+            <ResultStar
+              unlocked={val}
+              index={index}
+              starAmount={starAmount}
+              starAnimationTimeMS={starAnimationTimeMS}
+              testFinished={testFinished}
+            />
+          ))}
+        </Grid>
+      </div>
+    </>
+  );
+};
+
+const GroupTestScoreDisplay = ({ group, t }) => {
+  return (
+    <Fade fraction={0}>
+      <div
+        style={{
+          width: "100%",
+          position: "relative",
+          textAlign: "center",
+          marginBottom: 32,
+        }}
+      >
+        <BagdeDisplay
+          group={group}
+          progressLeft={"calc(50% - 24px)"}
+          progressTop={55}
+          t={t}
+          bright
+          showTitle={false}
+        />
+      </div>
+    </Fade>
   );
 };
 

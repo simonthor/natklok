@@ -15,8 +15,9 @@ import "keyframes.css";
 import Subtitle from "components/typeography/Subtitle";
 import ProgressionDisplay from "features/ProgressionDisplay";
 import { getStoredTotalAmount } from "util/totalScore";
+import RedoOrStartButton from "features/RedoOrStartButton";
 
-const Welcome = ({ t, hasStarted, redoTest }) => {
+const Welcome = ({ t, hasStarted, redoTest, openQuestion }) => {
   const [amountCorrectQuestions] = useState(getStoredTotalAmount());
   const hasGotAtleastOneCorrect = amountCorrectQuestions !== 0;
 
@@ -58,24 +59,16 @@ const Welcome = ({ t, hasStarted, redoTest }) => {
           >
             {t("welcome.desc")}
           </Subtitle>
-          <Link to="/test">
-            <StyledButton
-              cinematicColor="#212058"
-              caps
-              style={{
-                boxShadow: "0px 0px 8px 8px rgba(33, 32, 88, 0.2)",
-                paddingLeft: 32,
-                paddingRight: 32,
-              }}
-            >
-              {hasStarted ? t("welcome.continueTest") : t("welcome.test")}
-            </StyledButton>
-          </Link>
+          <RedoOrStartButton redoTest={redoTest} />
           <SocialShare shareText={t("general.shareTest")} />
         </Grid>
       </Grid>
       {hasGotAtleastOneCorrect && (
-        <ProgressionDisplay redoTest={redoTest} fadeInAfter={500} />
+        <ProgressionDisplay
+          redoTest={redoTest}
+          fadeInAfter={500}
+          openQuestion={openQuestion}
+        />
       )}
     </>
   );

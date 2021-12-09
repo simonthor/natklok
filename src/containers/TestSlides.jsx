@@ -26,6 +26,7 @@ const TestSlides = ({
   foundQuerySearchQuestion,
   questions,
   maxStarAmount,
+  openQuestion,
 }) => {
   const [streak, setStreak] = useState(0);
   const [testFinished, setTestFinished] = useState(false);
@@ -95,6 +96,7 @@ const TestSlides = ({
             maxStarAmount={maxStarAmount}
             testFinished={testFinished}
             redoTest={redoTest}
+            openQuestion={openQuestion}
           />
         )}
       </div>

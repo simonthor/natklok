@@ -6,8 +6,18 @@ export const getStoredTotalAmount = () => {
   return amountCorrect;
 };
 
-export const getAllQuestionAmount = () => {
-  return Object.keys(QUESTIONS).length;
+export const getAllQuestionAmount = (group = "") => {
+  if (group === "") {
+    return Object.keys(QUESTIONS).length;
+  } else {
+    let total = 0;
+    QUESTIONS.forEach((questionData) => {
+      if (questionData.group === group) {
+        total += 1;
+      }
+    });
+    return total;
+  }
 };
 
 export const getCorrectlyAnsweredIds = () => {
@@ -15,7 +25,28 @@ export const getCorrectlyAnsweredIds = () => {
   if (correctlyAnsweredIds === null) {
     return [];
   }
+
   return correctlyAnsweredIds;
+};
+
+export const getCorrectlyAnsweredQuestionData = (group = "") => {
+  let correctlyAnsweredIds = getCorrectlyAnsweredIds();
+  let correctQuestionData = [];
+
+  QUESTIONS.forEach((questionData) => {
+    if (group !== "") {
+      if (
+        questionData.group === group &&
+        correctlyAnsweredIds.includes(questionData["id"])
+      ) {
+        correctQuestionData.push(questionData);
+      }
+    } else {
+      correctQuestionData.push(questionData);
+    }
+  });
+
+  return correctQuestionData;
 };
 
 export const addCorrectAnswer = (questionId) => {
@@ -41,6 +72,26 @@ export const getIncorrectlyAnsweredIds = () => {
     return [];
   }
   return incorrectlyAnsweredIds;
+};
+
+export const getIncorrectlyAnsweredQuestionData = (group = "") => {
+  let incorrectlyAnsweredIds = getIncorrectlyAnsweredIds();
+  let incorrectQuestionData = [];
+
+  QUESTIONS.forEach((questionData) => {
+    if (group !== "") {
+      if (
+        questionData.group === group &&
+        incorrectlyAnsweredIds.includes(questionData["id"])
+      ) {
+        incorrectQuestionData.push(questionData);
+      }
+    } else {
+      incorrectQuestionData.push(questionData);
+    }
+  });
+
+  return incorrectQuestionData;
 };
 
 export const addIncorrectAnswer = (questionId) => {

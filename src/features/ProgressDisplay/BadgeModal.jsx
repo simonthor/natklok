@@ -9,6 +9,11 @@ import BadgeDisplay from "features/ProgressDisplay/BagdeDisplay";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import { styled } from "@material-ui/styles";
+import {
+  getAllQuestionAmount,
+  getCorrectlyAnsweredQuestionData,
+  getIncorrectlyAnsweredQuestionData,
+} from "util/totalScore";
 
 const StyledTabs = styled((props) => (
   <Tabs
@@ -49,63 +54,116 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
 const BadgeModal = ({
   openMoreInfoModal,
   setOpenMoreInfoModal,
-  emoji,
-  getAllCorrect,
-  getProgress,
-  correctAnsweredQuestions,
-  totalAmount,
   group,
   t,
   redoTest,
+  openQuestion,
 }) => {
-  const [value, setValue] = useState(0);
+  const [slide, setSlide] = useState(0);
+  const [prevAnswerSlide, setPrevAnswerSlide] = useState(0);
+  const [correctAnsweredQuestions] = useState(
+    getCorrectlyAnsweredQuestionData(group)
+  );
+  const [incorrectAnsweredQuestions] = useState(
+    getIncorrectlyAnsweredQuestionData(group)
+  );
+  const [totalAmount] = useState(getAllQuestionAmount(group));
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  const handlePrevAnswerChangeSlide = (event, newValue) => {
+    setPrevAnswerSlide(newValue);
   };
 
   return (
     <Modal open={openMoreInfoModal} setOpen={setOpenMoreInfoModal} title={""}>
-      <div style={{ flex: 1, position: "relative" }}>
-        <BadgeDisplay
-          emoji={emoji}
-          getAllCorrect={getAllCorrect}
-          getProgress={getProgress}
-          correctAnsweredQuestions={correctAnsweredQuestions}
-          totalAmount={totalAmount}
-          group={group}
-          emojiLeft={"calc(50% - 24px)"}
-          progressLeft={"calc(50% - 24px)"}
-          progressTop={28}
-          t={t}
-          containerStyle={{ marginTop: 6 }}
-          useSubtitle
-        />
-        {/* <p
-          style={{
-            textAlign: "center",
-            opacity: 0.7,
-            margin: 0,
-          }}
-        >
-          {t("progressionDisplay.groupDesc." + group)}
-        </p>*/}
+      <div style={{ position: "relative" }}>
+        {slide === 0 && (
+          <>
+            <BadgeDisplay
+              group={group}
+              emojiLeft={"calc(50% - 24px)"}
+              progressLeft={"calc(50% - 24px)"}
+              progressTop={28}
+              t={t}
+              containerStyle={{ marginTop: 6 }}
+              useSubtitle
+            />
+            {/* 
+            <p
+              style={{
+                textAlign: "center",
+                opacity: 0.7,
+                margin: 0,
+              }}
+            >
+            {t("progressionDisplay.groupDesc." + group)}
+          </p>
+          */}
 
-        <div
-          style={{
-            overflow: "hidden",
-            transition: "opacity 0.5s ease",
-          }}
-        >
-          <TestContainer
-            redoTest={redoTest}
-            t={t}
-            groupName={t("progressionDisplay." + group)}
-            group={group}
-            amountCorrect={correctAnsweredQuestions.length}
-            totalAmount={totalAmount}
-          />
-        </div>
+            <div
+              style={{
+                overflow: "hidden",
+                transition: "opacity 0.5s ease",
+              }}
+            >
+              <TestContainer
+                redoTest={redoTest}
+                t={t}
+                groupName={t("progressionDisplay." + group)}
+                group={group}
+                amountCorrect={correctAnsweredQuestions.length}
+                totalAmount={totalAmount}
+                setSlide={setSlide}
+              />
+            </div>
+          </>
+        )}
+        {slide === 1 && (
+          <>
+            <p
+              style={{ cursor: "pointer", fontWeight: "bold", marginTop: -20 }}
+              onClick={() => {
+                setSlide(0);
+              }}
+            >
+              {"< Tillbaka"}
+            </p>
+            <StyledTabs
+              value={prevAnswerSlide}
+              onChange={handlePrevAnswerChangeSlide}
+            >
+              <StyledTab
+                label={
+                  t("progressionDisplay.correct") +
+                  ` (${correctAnsweredQuestions.length})`
+                }
+              />
+              <StyledTab
+                label={
+                  t("progressionDisplay.wrong") +
+                  ` (${incorrectAnsweredQuestions.length})`
+                }
+              />
+            </StyledTabs>
+            <div style={{ overflow: "scroll", maxHeight: 250 }}>
+              {prevAnswerSlide === 0 && (
+                <QuestionContainerList
+                  questionDataArray={correctAnsweredQuestions}
+                  t={t}
+                  openQuestion={openQuestion}
+                  noneText={t("general.right")}
+                />
+              )}
+              {prevAnswerSlide === 1 && (
+                <QuestionContainerList
+                  questionDataArray={incorrectAnsweredQuestions}
+                  t={t}
+                  openQuestion={openQuestion}
+                  noneText={t("general.wrong")}
+                />
+              )}
+            </div>
+          </>
+        )}
       </div>
     </Modal>
   );
@@ -118,6 +176,7 @@ const TestContainer = ({
   group,
   amountCorrect,
   totalAmount,
+  setSlide,
 }) => {
   return (
     <div style={{ textAlign: "center" }}>
@@ -134,25 +193,24 @@ const TestContainer = ({
             onClick={() => {
               redoTest(true, group);
             }}
-            style={{ marginTop: 16, width: 360, maxWidth: "100%" }}
+            style={{ marginTop: 16, width: "80%" }}
           >
             {t("progressionDisplay.redoGroup.button") + groupName + "'"}
           </StyledButton>
         </>
       ) : (
-        <p style={{ margin: "20px 0 6px 0" }}>
+        <p style={{ margin: "6px 0 16px 0" }}>
           {t("progressionDisplay.redoGroup.allCorrect")}
         </p>
       )}
       <div style={{ width: "100%" }}>
         <StyledButton
-          onClick={() => {
-            redoTest(true, group);
+          onClick={(e) => {
+            setSlide(1);
           }}
           style={{
             margin: "6px 0 16px 0",
-            width: 360,
-            maxWidth: "100%",
+            width: "80%",
             background: PALEBLUE,
           }}
         >
@@ -163,7 +221,12 @@ const TestContainer = ({
   );
 };
 
-const QuestionContainerList = ({ questionDataArray, noneText, t }) => {
+const QuestionContainerList = ({
+  questionDataArray,
+  noneText,
+  openQuestion,
+  t,
+}) => {
   if (questionDataArray.length === 0) {
     return (
       <p style={{ textAlign: "center", margin: "32px 0", opacity: 0.6 }}>
@@ -172,47 +235,50 @@ const QuestionContainerList = ({ questionDataArray, noneText, t }) => {
     );
   }
   return questionDataArray.map((questionData) => {
-    return <QuestionContainer questionData={questionData} t={t} />;
+    return (
+      <QuestionContainer
+        questionData={questionData}
+        t={t}
+        openQuestion={openQuestion}
+      />
+    );
   });
 };
 
-const QuestionContainer = ({ questionData, t }) => {
+const QuestionContainer = ({ questionData, openQuestion, t }) => {
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        margin: "12px 0",
-      }}
-    >
-      <div style={{ width: "75%" }}>
-        <p style={{ margin: "0 0 4px 0", fontWeight: "bold" }}>
-          {/*HACK: replace() is to remove dynamic naming title*/}
-          {t(questionData.title).replace("{profileBasedService}", "")}
-        </p>
-        <HTMLRenderer style={{ marginTop: 0, fontSize: 14, opacity: 0.7 }}>
-          {t(questionData.text)}
-        </HTMLRenderer>
-      </div>
-      <StyledButton
-        onClick={() => {
-          let href = window.location.href;
-          let url = new URL(href);
-          // Gets domain name only (even with localhost)
-          let domain = (url + "")
-            .replace(url.search, "")
-            .replace(url.pathname, "");
-          let questionUrl =
-            domain + "/test?id=" + questionData.id + "&res=true";
-          document.location.href = questionUrl;
+    <>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          margin: "12px 0",
         }}
-        color={LIGHT_BLUE}
-        style={{ padding: 0, width: "25%", height: 40, margin: "0 4px" }}
       >
-        {"Gör frågan"}
-      </StyledButton>
-    </div>
+        <div style={{ width: "75%" }}>
+          <p style={{ margin: "0 0 4px 0", fontWeight: "bold" }}>
+            {/*HACK: replace() is to remove dynamic naming title*/}
+            {t(questionData.title).replace("{profileBasedService}", "")}
+          </p>
+          <HTMLRenderer style={{ marginTop: 0, fontSize: 14, opacity: 0.7 }}>
+            {t(questionData.text)}
+          </HTMLRenderer>
+        </div>
+        <StyledButton
+          onClick={() => {
+            openQuestion(questionData.id);
+          }}
+          color={LIGHT_BLUE}
+          style={{ padding: 4, width: "25%", margin: "0 12px 0 4px" }}
+        >
+          {"Gör om frågan"}
+        </StyledButton>
+      </div>
+      <div
+        style={{ height: 1, width: "100%", background: "rgba(0,0,0,0.1)" }}
+      />
+    </>
   );
 };
 

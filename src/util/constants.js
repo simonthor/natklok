@@ -42,6 +42,34 @@ export const PROFILE_STYLING = {
   },
 };
 
+export const getGroupIcon = (group) => {
+  switch (group) {
+    case PASSWORD:
+      return "🔒";
+
+    case PHISHING:
+      return "🎣";
+
+    case THEFT:
+      return "💰";
+
+    case CONNECTION:
+      return "📶";
+
+    case CHAT:
+      return "💬";
+
+    case MALWARE:
+      return "🤖";
+
+    case SURFING:
+      return "🏄";
+
+    default:
+      return "";
+  }
+};
+
 // Question Groups
 export const PASSWORD = "PASSWORD";
 export const PHISHING = "PHISHING";

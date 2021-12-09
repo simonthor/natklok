@@ -79,7 +79,10 @@ const Boiler = () => {
   };
 
   const startQuiz = (generateUnanswered, questionGroup = "") => {
-    console.log("generateUnanswered: ", generateUnanswered);
+    if (questionGroup !== "") {
+      history.push("/test?group=" + questionGroup);
+    }
+
     let generatedQuestions = generateQuestions(
       profileState,
       generateUnanswered,
@@ -93,8 +96,13 @@ const Boiler = () => {
     setSlideIndex(1);
   };
 
+  const openQuestion = (questionDataId) => {
+    resetQuizData();
+    history.push("/test?id=" + questionDataId + "&res=true");
+  };
+
   const redoTest = (generateUnansweredOnly, questionGroup = "") => {
-    resetQuizData(generateUnansweredOnly);
+    resetQuizData();
     if (generateUnansweredOnly === true) {
       startQuiz(generateUnansweredOnly, questionGroup);
     }
@@ -158,13 +166,19 @@ const Boiler = () => {
             path="/"
             exact
             render={() => (
-              <Welcome hasStarted={hasStarted} redoTest={redoTest} />
+              <Welcome
+                hasStarted={hasStarted}
+                redoTest={redoTest}
+                openQuestion={openQuestion}
+              />
             )}
           />
           <Route
             path="/resultslidepreview"
             exact
-            render={() => <ResultSlide redoTest={redoTest} />}
+            render={() => (
+              <ResultSlide redoTest={redoTest} openQuestion={openQuestion} />
+            )}
           />
           <Route
             path="/test"
@@ -186,6 +200,7 @@ const Boiler = () => {
                 questions={questions}
                 foundQuerySearchQuestion={foundQuerySearchQuestion}
                 maxStarAmount={maxStarAmount}
+                openQuestion={openQuestion}
               />
             )}
           />
