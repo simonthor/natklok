@@ -6,6 +6,7 @@ import { PURPLE } from "util/constants";
 
 import ResultSlide from "slides/ResultSlide";
 import ProfileSelectionSlide from "slides/ProfileSelectionSlide";
+import AgeSlide from "slides/AgeSlide";
 import QuestionsSlide from "slides/QuestionsSlide";
 
 const TestSlides = ({

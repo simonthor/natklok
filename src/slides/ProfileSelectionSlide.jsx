@@ -24,6 +24,7 @@ import {
 } from "util/constants";
 import Title from "components/typeography/Title";
 import SmallText from "components/typeography/SmallText";
+import CheckboxButton from "components/IconButton";
 
 const ProfileSelectionSlide = ({
   t,
